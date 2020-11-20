@@ -1,0 +1,28 @@
+.image-grid {
+    padding: 10rem 15rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-column-gap: 2rem;
+    grid-row-gap: 1rem;
+
+    &__no-image {
+        width: 24rem;
+        height: 34rem;
+        background-color: #f5f5dc;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__container {
+        width: 24rem;
+        height: 34rem;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+    }
+}
+

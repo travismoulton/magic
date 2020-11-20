@@ -1,0 +1,11 @@
+.error {
+    margin-top: 2rem;
+    text-align: center;
+    background-color: $color-red-light;
+    border-radius: 10px;
+
+    padding: 2rem;
+    font-size: 2rem;
+    grid-column: center-start / center-end;
+    font-weight: 700;
+}

@@ -1,0 +1,39 @@
+.login-form {
+    &__group {
+        &:not(:last-child) { margin-bottom: 2.5rem; }
+    }
+
+    &__label {
+        margin-right: .7rem; 
+        color: $color-white;
+        font-size: 1.8rem;
+        font-weight: 400;
+    } 
+
+    &__input {
+        background-color: $color-white;
+        padding: .5rem 0;
+        border: none;
+    }
+
+    &__btn-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.login__register-text {
+    margin-top: 1.5rem;
+    color: $color-white;
+}
+
+.login__register-link {
+    text-decoration: none;
+    color: $color-white;
+    transition: all .2s;
+
+    &:hover {
+        color: $color-orange;
+        text-decoration: underline;
+    }
+}

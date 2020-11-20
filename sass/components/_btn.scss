@@ -1,0 +1,18 @@
+.btn {
+    &,
+    &:link,
+    &:visited {
+        padding: .75rem 2rem;
+        border-radius: .5rem;
+        background-color: $color-grey-light;
+        font-weight: 400;
+        display: inline-block;
+    }
+
+    &:active,
+    &:focus {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+}

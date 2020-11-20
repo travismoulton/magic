@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+
+  <div class="card">
+    <div class="card__img">
+      <img src="{{ card.image_uris.large }}" alt="card-img" class="card__img-img">
+    </div>
+    <div class="card__text">
+      <div class="card__text-title card__text-flex">
+        <h3 class="card__text-title-h3">{{ card.name }}</h3>
+        <span class="js--card-mana-cost" data-mana-cost="{{ card.mana_cost }}"></span>
+      </div>
+      <p class="card__text-type card__text-flex">{{ card.type_line }}</p>
+      <div class="card__text-oracle card__text-flex js--card-oracle">
+        {% for text in oracle_texts %}
+          <p class="card__text-oracle-p js--oracle-text-line">{{ text }}</p>
+        {% endfor %}
+        <p class="card__text-oracle-flavor">{{ card.flavor_text }}</p>
+      </div>
+      {% if card.power and card.toughness %}
+        <p class="card__text-stats card__text-flex">{{ card.power }}/{{ card.toughness }}</p>
+      {% endif %}
+      <p class="card__text-illustrator card__text-flex">Illustrated by {{ card.artist }}</p>
+      <div class="card__text-legal card__text-flex">
+        <div class="card__text-legal-half">
+          <div class="card__text-legal-span-container">
+            <span class="js--card-legality card__text-legal-span-box card__text-legal-span-box--{{ card.legalities.standard }}">{{ card.legalities.standard }}</span> Standard
+          </div>
+          <div class="card__text-legal-span-container">
+            <span class="js--card-legality card__text-legal-span-box card__text-legal-span-box--{{ card.legalities.pioneer }}">{{ card.legalities.pioneer }}</span> Pioneer
+          </div>
+          <div class="card__text-legal-span-container">
+            <span class="js--card-legality card__text-legal-span-box card__text-legal-span-box--{{ card.legalities.modern }}">{{ card.legalities.modern }}</span> Modern
+          </div>
+          <div class="card__text-legal-span-container">
+            <span class="js--card-legality card__text-legal-span-box card__text-legal-span-box--{{ card.legalities.legacy }}">{{ card.legalities.legacy }}</span> Legacy
+          </div>
+          <div class="card__text-legal-span-container">
+            <span class="js--card-legality card__text-legal-span-box card__text-legal-span-box--{{ card.legalities.vintage }}">{{ card.legalities.vintage }}</span> Vintage
+          </div>
+        </div>
+        <div class="card__text-legal-half">
+          <div class="card__text-legal-span-container">
+            <span class="js--card-legality card__text-legal-span-box card__text-legal-span-box--{{ card.legalities.brawl }}">{{ card.legalities.brawl }}</span> Brawl
+          </div>
+          <div class="card__text-legal-span-container">
+            <span class="js--card-legality card__text-legal-span-box card__text-legal-span-box--{{ card.legalities.historic }}">{{ card.legalities.historic }}</span> Historic
+          </div>
+          <div class="card__text-legal-span-container">
+            <span class="js--card-legality card__text-legal-span-box card__text-legal-span-box--{{ card.legalities.pauper }}">{{ card.legalities.pauper }}</span> Pauper
+          </div>
+          <div class="card__text-legal-span-container">
+            <span class="js--card-legality card__text-legal-span-box card__text-legal-span-box--{{ card.legalities.penny }}">{{ card.legalities.penny }}</span> Penny
+          </div>
+          <div class="card__text-legal-span-container">
+            <span class="js--card-legality card__text-legal-span-box card__text-legal-span-box--{{ card.legalities.commander }}">{{ card.legalities.commander }}</span> Commander
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

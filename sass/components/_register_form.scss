@@ -1,0 +1,44 @@
+.register-form {
+    &__group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+
+        &:not(:last-child) { margin-bottom: 3rem; }
+    }
+
+    &__label {
+        margin-right: 4rem; 
+        color: $color-white;
+        font-size: 1.8rem;
+        font-weight: 400;
+    } 
+
+    &__input {
+        background-color: $color-grey-light;
+        padding: .5rem 0;
+        border: none;
+    }
+
+    &__btn-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.register__login-text {
+    margin-top: 1.5rem;
+    color: $color-white;
+}
+
+.register__login-link {
+    text-decoration: none;
+    color: $color-white;
+    transition: all .2s;
+
+    &:hover {
+        color: $color-orange;
+        text-decoration: underline;
+    }
+}

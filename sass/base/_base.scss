@@ -1,0 +1,29 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    // This defines what one rem is
+    font-size: 62.5%; // 1rem = 10px;
+}
+
+body {
+    box-sizing: border-box;
+    overflow-x: hidden;
+    font-size: 1.6rem;
+    //background-image: linear-gradient(to right bottom, $color-grey-bg-dark, $color-grey-bg-light);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 127.5rem;
+    font-family: 'Lato', sans-serif;
+}
+
+// Using this so that the elements in the dopdown menus on the search page are hidden. otherwise
+// the flexbox styling overrides and the element is displayed
+[hidden] { display: none !important; }
+
+ 
