@@ -57,7 +57,42 @@
           </div>
         </div>
       </div>
-
+    </div>
+    <div class="card__set">
+      <div class="card__set-banner">
+        <div class="card__set-banner-svg-container">
+          <img src="{{ set_svg.set_svg }}" alt="set-logo" class="card__set-banner-svg">
+          <!-- <svg class="card__set-banner-svg">
+            <use xlink:href="{{ set_svg.set_svg }}">
+          </svg> -->
+        </div>
+        <div class="card__set-details">
+          <div class="card__set-header">
+            <span class="card__set-header-name">{{ card.set_name }}</span>
+            <span class="card__set-header-code">({{ card.set }})</span>
+          </div>
+          <span class="card__set-details-collection">#{{ card.collector_number }} - {{ card.rarity }}</span>
+        </div>
+      </div>
+      <div class="card__set-prints-header">
+        <p>Prints</p>
+        <p>usd</p>
+      </div>
+      <ul class="card__set-prints-list">
+        {% for p in all_prints %}
+          <li class="card__set-prints-list-item">
+            <div class="card__set-prints-list-item-name-wrapper">
+              <div class="card__set-prints-svg-container">
+                <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                  <path class="card__set-prints-svg--{{ p.rarity }}" d="M12 4.435c0 .106-.063.221-.188.346l-2.618 2.553.62 3.606.007.144c0 .101-.025.186-.076.256-.05.07-.124.105-.22.105-.091 0-.188-.029-.288-.087l-3.238-1.702-3.238 1.702c-.106.058-.202.087-.288.087-.101 0-.177-.035-.227-.105-.05-.07-.076-.155-.076-.256l.014-.144.62-3.606-2.625-2.553c-.12-.13-.18-.245-.18-.346 0-.178.135-.288.404-.332l3.62-.526 1.623-3.281c.091-.197.209-.296.353-.296s.262.099.353.296l1.623 3.281 3.62.526c.269.043.404.154.404.332z"></path>
+                </svg>
+              </div>
+              <p class="card__set-prints-list-item-set-name">{{ p.set_name }}</p>
+            </div>
+            <p class="card__set-prints-list-item-price">${{ p.prices.usd }}</p>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 

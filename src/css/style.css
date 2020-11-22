@@ -387,7 +387,8 @@ body {
     width: 34rem;
     display: flex;
     flex-direction: column;
-    padding: 1rem; }
+    padding: 1rem;
+    margin-right: 3rem; }
     .card__text-flex {
       margin-bottom: 1rem;
       border-bottom: 1px solid #bfbfbf; }
@@ -433,6 +434,64 @@ body {
           background-color: #ff0000; }
         .card__text-legal-span-box--legal {
           background-color: #47d147; }
+  .card__set {
+    display: flex;
+    flex-direction: column; }
+    .card__set-banner {
+      display: flex;
+      border: 1px solid #bfbfbf;
+      width: 40rem;
+      background-color: #000;
+      color: #fff; }
+      .card__set-banner-svg-container {
+        margin-right: 1rem; }
+      .card__set-banner-svg {
+        width: 2.4rem;
+        height: 2.4rem;
+        filter: invert(100%); }
+    .card__set-details {
+      display: flex;
+      flex-direction: column; }
+    .card__set-header-name {
+      font-size: 1.7remrem; }
+    .card__set-header-code {
+      text-transform: uppercase; }
+    .card__set-prints-header {
+      display: flex;
+      justify-content: space-between;
+      background-color: #000;
+      color: #fff;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      border: 1px solid #bfbfbf;
+      padding: .3rem .7rem; }
+    .card__set-prints-svg-container {
+      height: 1.8rem;
+      width: 1.8rem;
+      border: 1px solid #bfbfbf;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%; }
+    .card__set-prints-svg--common {
+      fill: #000; }
+    .card__set-prints-svg--uncommon {
+      fill: #e6e6e6; }
+    .card__set-prints-svg--rare {
+      fill: #e6c300; }
+    .card__set-prints-list {
+      list-style: none; }
+      .card__set-prints-list-item {
+        display: flex;
+        justify-content: space-between; }
+      .card__set-prints-list-item-name-wrapper {
+        display: flex;
+        align-items: center;
+        margin-left: -1rem; }
+      .card__set-prints-list-item-set-name {
+        margin-left: .5rem; }
+      .card__set-prints-list-item-price {
+        margin-right: .7rem; }
 
 .container {
   display: grid;

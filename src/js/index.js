@@ -91,6 +91,7 @@ if (window.location.pathname.substring(1, 8) === 'results') {
         await state.search.getCards(state);
         resultsView.updateDisplayBar(state);
         console.log(state.search.cards);
+        console.log(state.query)
 
         // In the background, get all cards 
         state.search.getAllCards(state, resultsView.enableBtn);

@@ -155,11 +155,30 @@ def results(query, display_method):
 
 @app.route('/card/<string:card_name>')
 def display_card(card_name):
-
     card = requests.get(f'https://api.scryfall.com/cards/named?exact={card_name}').json()
     oracle_texts = card['oracle_text'].rsplit("\n")
 
-    return render_template('card.html', card=card, oracle_texts=oracle_texts)
+    set_svg = { 'set_svg': requests.get(card['set_uri']).json()['icon_svg_uri'] }
+    print(set_svg)
+
+    if card['reprint']:
+        all_prints = requests.get(card['prints_search_uri']).json()['data']
+    else:
+        all_prints = [card]
+
+    for p in all_prints:
+        print(p['set_name'])
+
+    
+
+
+    return render_template(
+        'card.html',
+        card=card,
+        oracle_texts=oracle_texts,
+        set_svg=set_svg,
+        all_prints=all_prints
+    )
 
 
 # # One time route to store the types in a data base
