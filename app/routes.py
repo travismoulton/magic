@@ -156,7 +156,11 @@ def results(query, display_method):
 @app.route('/card/<string:card_name>')
 def display_card(card_name):
     card = requests.get(f'https://api.scryfall.com/cards/named?exact={card_name}').json()
-    oracle_texts = card['oracle_text'].rsplit("\n")
+    
+    if 'oracle_text' in card:
+        oracle_texts = card['oracle_text'].rsplit("\n")
+    else:
+        oracle_texts = {'oracle_texts': ''}
 
     set_svg = { 'set_svg': requests.get(card['set_uri']).json()['icon_svg_uri'] }
     print(set_svg)
@@ -249,3 +253,43 @@ def display_card(card_name):
 #     db.session.commit()
     
 #     return render_template('get_types.html')
+
+
+# Currently not going to use this. Doesn't seem like it's having an impact on performance.
+# # One time route to write html elements to a txt file
+# @app.route('/import_set_html')
+# def import_set_html():
+
+#     sets = {
+#         'expansions': Set.query.filter_by(set_type='expansion').all(),
+#         'core': Set.query.filter_by(set_type='core').all(),
+#         'masters': Set.query.filter_by(set_type='masters').all(),
+#         'draft_innovation': Set.query.filter_by(set_type='draft_innovation').all(),
+#         'duel_deck': Set.query.filter_by(set_type='duel_deck').all(),
+#         'archenemy': Set.query.filter_by(set_type='archenemy').all(),
+#         'box': Set.query.filter_by(set_type='box').all(),
+#         'commander': Set.query.filter_by(set_type='commander'),
+#         'from_the_vault': Set.query.filter_by(set_type='from_the_vault').all(),
+#         'funny': Set.query.filter_by(set_type='funny').all(),
+#         'masterpiece': Set.query.filter_by(set_type='masterpiece').all(),
+#         'memorabilia': Set.query.filter_by(set_type='memorabilia').all(),
+#         'planechase': Set.query.filter_by(set_type='planechase').all(),
+#         'premium_deck': Set.query.filter_by(set_type='premium_deck').all(),
+#         'promo': Set.query.filter_by(set_type='promo').all(),
+#         'spellbook': Set.query.filter_by(set_type='spellbook').all(),
+#         'starter': Set.query.filter_by(set_type='starter').all(),
+#         'token': Set.query.filter_by(set_type='token').all(),
+#         'treasure_chest': Set.query.filter_by(set_type='treasure_chest').all(),
+#         'vanguard': Set.query.filter_by(set_type='vanguard').all()
+#     }
+#     for s in sets['expansions']:
+#         print(s.code)
+
+#     f = open('set_html.txt', 'w')
+#     f.write('<li class="js--api-dropdown-sets-list js--sets-category-header js--expansion-header search-form__dropdown-list-category">Expansions</li>\n')
+#     for s in sets['expansions']:
+#         f.write(f'<li class="js--api-dropdown-sets-list js--expansion search-form__dropdown-list-option" data-set-code="{s.code}" data-set-name="{s.name}"><img src="{s.svg}" alt="set-icon" class="search-form__dropdown-list-img">{s.name} <span>({s.code})</span></li>\n')
+    
+#     f.close()
+    
+#     return (render_template('get_types.html'))

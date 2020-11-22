@@ -151,6 +151,7 @@
             &--common { fill: $color-black; }
             &--uncommon { fill: $color-silver; }
             &--rare { fill: $color-gold; }
+            &--mythic { fill: $color-red-dark; }
         }
 
         &-prints-list {
@@ -159,6 +160,9 @@
             &-item {
                 display: flex;
                 justify-content: space-between;
+                cursor: pointer;
+
+                &:hover { background-color: $color-grey-light; }
             }
 
             &-item-name-wrapper {

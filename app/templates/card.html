@@ -80,7 +80,7 @@
       </div>
       <ul class="card__set-prints-list">
         {% for p in all_prints %}
-          <li class="card__set-prints-list-item">
+          <li class="card__set-prints-list-item js--card-print-row" data-cardImg="{{ p.image_uris.normal }}">
             <div class="card__set-prints-list-item-name-wrapper">
               <div class="card__set-prints-svg-container">
                 <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +89,7 @@
               </div>
               <p class="card__set-prints-list-item-set-name">{{ p.set_name }}</p>
             </div>
-            <p class="card__set-prints-list-item-price">${{ p.prices.usd }}</p>
+            <p class="card__set-prints-list-item-price js--card-price">${{ p.prices.usd }}</p>
           </li>
         {% endfor %}
       </ul>

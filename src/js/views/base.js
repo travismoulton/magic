@@ -42,5 +42,7 @@ export const elements = {
         manaCostTitleSpan: document.querySelector('.js--card-mana-cost'),
         oracleTexts: document.querySelectorAll('.js--oracle-text-line'),
         legalities: document.querySelectorAll('.js--card-legality'),
+        printRows: document.querySelectorAll('.js--card-print-row'),
+        prices: document.querySelectorAll('.js--card-price'),
     }
 };

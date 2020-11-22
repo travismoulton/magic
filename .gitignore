@@ -4,6 +4,10 @@ node_modules
 
 leftoff.txt
 
+todo.txt
+
+import.py
+
 env
 
 migrations

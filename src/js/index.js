@@ -217,4 +217,8 @@ if (window.location.pathname.substring(1, 5) === 'card') {
     cardView.insertManaCostToOracleText();
 
     cardView.removeUnderScoreFromLegalStatus();
+
+    cardView.fixCardPrices();
+
+    cardView.printListHoverEvents();
 }
