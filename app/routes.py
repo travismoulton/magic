@@ -155,30 +155,51 @@ def results(query, display_method):
 
 @app.route('/card/<string:card_name>')
 def display_card(card_name):
+    # Grab the card with an api call to scryall using the exact name query
     card = requests.get(f'https://api.scryfall.com/cards/named?exact={card_name}').json()
-    
-    if 'oracle_text' in card:
-        oracle_texts = card['oracle_text'].rsplit("\n")
-    else:
-        oracle_texts = {'oracle_texts': ''}
 
+    # The set_svg will be the same regardless of the card has two faces or one, 
+    # and so we can set the variable for both single and double sided cards
     set_svg = { 'set_svg': requests.get(card['set_uri']).json()['icon_svg_uri'] }
-    print(set_svg)
 
+    #If the card has two faces, the JSON that comes back is different
+    if 'card_faces' in card:
+        face_one = card['card_faces'][0]
+        face_two = card['card_faces'][1]
+
+        oracle_texts = {
+            'face_one_text': face_one['oracle_text'].rsplit("\n"),
+            'face_two_text': face_two['oracle_text'].rsplit("\n")
+        }
+    else:
+        oracle_texts = {'face_one_texts': card['oracle_text'].rsplit("\n")}
+        face_one = card
+        # face_two = {'face_two': None}
+        face_two = None
+
+    """
+        If the card is a reprint, we fetch all the prints with an api call to 
+        scryfall. all_prints stores the card object for each print. If the card
+        is not a reprint, we store the original card in an array
+    """
     if card['reprint']:
         all_prints = requests.get(card['prints_search_uri']).json()['data']
     else:
         all_prints = [card]
-
-    for p in all_prints:
-        print(p['set_name'])
-
     
-
-
+    """
+        If the reprints / orginal card is double sided then we need to set the
+        image uri and normal keys so they can be accessed in card.html
+    """
+    for p in all_prints:
+        if 'card_faces' in p:
+            p['image_uris'] = {'normal': p['card_faces'][0]['image_uris']['normal']}
+ 
     return render_template(
         'card.html',
         card=card,
+        face_one=face_one,
+        face_two=face_two,
         oracle_texts=oracle_texts,
         set_svg=set_svg,
         all_prints=all_prints

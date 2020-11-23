@@ -3,24 +3,43 @@
 
   <div class="card">
     <div class="card__img">
-      <img src="{{ card.image_uris.large }}" alt="card-img" class="card__img-img">
+      <img src="{{ face_one.image_uris.large }}" alt="card-img" class="card__img-img">
     </div>
     <div class="card__text">
       <div class="card__text-title card__text-flex">
-        <h3 class="card__text-title-h3">{{ card.name }}</h3>
-        <span class="js--card-mana-cost" data-mana-cost="{{ card.mana_cost }}"></span>
+        <h3 class="card__text-title-h3">{{ face_one.name }}</h3>
+        <span class="js--card-mana-cost" data-mana-cost="{{ face_one.mana_cost }}"></span>
       </div>
-      <p class="card__text-type card__text-flex">{{ card.type_line }}</p>
+      <p class="card__text-type card__text-flex">{{ face_one.type_line }}</p>
       <div class="card__text-oracle card__text-flex js--card-oracle">
-        {% for text in oracle_texts %}
+        {% for text in oracle_texts.face_one_texts %}
           <p class="card__text-oracle-p js--oracle-text-line">{{ text }}</p>
         {% endfor %}
-        <p class="card__text-oracle-flavor">{{ card.flavor_text }}</p>
+        <p class="card__text-oracle-flavor">{{ face_one.flavor_text }}</p>
       </div>
-      {% if card.power and card.toughness %}
-        <p class="card__text-stats card__text-flex">{{ card.power }}/{{ card.toughness }}</p>
+      {% if face_one.power and face_one.toughness %}
+        <p class="card__text-stats card__text-flex">{{ face_one.power }}/{{ face_one.toughness }}</p>
       {% endif %}
-      <p class="card__text-illustrator card__text-flex">Illustrated by {{ card.artist }}</p>
+
+      <!-- This is only for double sided cards  -->
+      {% if face_two %}
+        <div class="card__text-title card__text-flex">
+          <h3 class="card__text-title-h3">{{ face_two.name }}</h3>
+          <span class="js--card-mana-cost" data-mana-cost="{{ face_two.mana_cost }}"></span>
+        </div>       
+        <p class="card__text-type card__text-flex">{{ face_two.type_line }}</p>
+        <div class="card__text-oracle card__text-flex js--card-oracle">
+          {% for text in oracle_texts.face_two_texts %}
+            <p class="card__text-oracle-p js--oracle-text-line">{{ text }}</p>
+          {% endfor %}
+          <p class="card__text-oracle-flavor">{{ face_two.flavor_text }}</p>
+        </div>
+        {% if face_two.power and face_two.toughness %}
+          <p class="card__text-stats card__text-flex">{{ face_two.power }}/{{ face_two.toughness }}</p>
+        {% endif %}
+      {% endif %}
+
+      <p class="card__text-illustrator card__text-flex">Illustrated by {{ face_one.artist }}</p>
       <div class="card__text-legal card__text-flex">
         <div class="card__text-legal-half">
           <div class="card__text-legal-span-container">
@@ -62,9 +81,6 @@
       <div class="card__set-banner">
         <div class="card__set-banner-svg-container">
           <img src="{{ set_svg.set_svg }}" alt="set-logo" class="card__set-banner-svg">
-          <!-- <svg class="card__set-banner-svg">
-            <use xlink:href="{{ set_svg.set_svg }}">
-          </svg> -->
         </div>
         <div class="card__set-details">
           <div class="card__set-header">
