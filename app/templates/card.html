@@ -20,6 +20,9 @@
       {% if face_one.power and face_one.toughness %}
         <p class="card__text-stats card__text-flex">{{ face_one.power }}/{{ face_one.toughness }}</p>
       {% endif %}
+      {% if face_one.loyalty %}
+        <p class="card__text-stats card__text-flex">Loyalty: {{ face_one.loyalty }}</p>
+      {% endif %}
 
       <!-- This is only for double sided cards  -->
       {% if face_two %}
@@ -36,6 +39,9 @@
         </div>
         {% if face_two.power and face_two.toughness %}
           <p class="card__text-stats card__text-flex">{{ face_two.power }}/{{ face_two.toughness }}</p>
+        {% endif %}
+        {% if face_two.loyalty %}
+          <p class="card__text-stats card__text-flex">Loyalty: {{ face_two.loyalty }}</p>
         {% endif %}
       {% endif %}
 
@@ -96,18 +102,25 @@
       </div>
       <ul class="card__set-prints-list">
         {% for p in all_prints %}
-          <li class="card__set-prints-list-item js--card-print-row" data-cardImg="{{ p.image_uris.normal }}">
-            <div class="card__set-prints-list-item-name-wrapper">
-              <div class="card__set-prints-svg-container">
-                <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-                  <path class="card__set-prints-svg--{{ p.rarity }}" d="M12 4.435c0 .106-.063.221-.188.346l-2.618 2.553.62 3.606.007.144c0 .101-.025.186-.076.256-.05.07-.124.105-.22.105-.091 0-.188-.029-.288-.087l-3.238-1.702-3.238 1.702c-.106.058-.202.087-.288.087-.101 0-.177-.035-.227-.105-.05-.07-.076-.155-.076-.256l.014-.144.62-3.606-2.625-2.553c-.12-.13-.18-.245-.18-.346 0-.178.135-.288.404-.332l3.62-.526 1.623-3.281c.091-.197.209-.296.353-.296s.262.099.353.296l1.623 3.281 3.62.526c.269.043.404.154.404.332z"></path>
-                </svg>
-              </div>
-              <p class="card__set-prints-list-item-set-name">{{ p.set_name }}</p>
-            </div>
-            <p class="card__set-prints-list-item-price js--card-price">${{ p.prices.usd }}</p>
-          </li>
+          {% if loop.index < 10 %}
+            <a class="card__set-prints-list-link" href="/card/{{ p.set }}/{{ p.name }}">
+              <li class="card__set-prints-list-item js--card-print-row" data-cardImg="{{ p.image_uris.normal }}">
+                <div class="card__set-prints-list-item-name-wrapper">
+                  <div class="card__set-prints-svg-container">
+                    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                      <path class="card__set-prints-svg--{{ p.rarity }}" d="M12 4.435c0 .106-.063.221-.188.346l-2.618 2.553.62 3.606.007.144c0 .101-.025.186-.076.256-.05.07-.124.105-.22.105-.091 0-.188-.029-.288-.087l-3.238-1.702-3.238 1.702c-.106.058-.202.087-.288.087-.101 0-.177-.035-.227-.105-.05-.07-.076-.155-.076-.256l.014-.144.62-3.606-2.625-2.553c-.12-.13-.18-.245-.18-.346 0-.178.135-.288.404-.332l3.62-.526 1.623-3.281c.091-.197.209-.296.353-.296s.262.099.353.296l1.623 3.281 3.62.526c.269.043.404.154.404.332z"></path>
+                    </svg>
+                  </div>
+                  <p class="card__set-prints-list-item-set-name">{{ p.set_name }}</p>
+                </div>
+                <p class="card__set-prints-list-item-price js--card-price">${{ p.prices.usd }}</p>
+              </li>
+            </a>
+          {% endif %}
         {% endfor %}
+        <a class="card__set-prints-list-link" href="/results/images/{{ card.name }}&unique=prints">
+          <li class="card__set-prints-list-item">View all prints</li>
+        </a>
       </ul>
     </div>
   </div>

@@ -157,6 +157,12 @@
         &-prints-list {
             list-style: none;
 
+            &-link:link,
+            &-link:visited {
+                text-decoration: none; 
+                color: $color-black;
+            }
+
             &-item {
                 display: flex;
                 justify-content: space-between;

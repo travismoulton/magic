@@ -153,10 +153,12 @@ def results(query, display_method):
 
 
 
-@app.route('/card/<string:card_name>')
-def display_card(card_name):
-    # Grab the card with an api call to scryall using the exact name query
-    card = requests.get(f'https://api.scryfall.com/cards/named?exact={card_name}').json()
+@app.route('/card/<string:card_set>/<string:card_name>')
+def display_card(card_set, card_name):
+    # Grab the card with an api call to scryall using the set and card name. 
+    card = requests.get(
+        f'https://api.scryfall.com/cards/search?q={card_name}+set%3A{card_set}'
+    ).json()['data'][0]
 
     # The set_svg will be the same regardless of the card has two faces or one, 
     # and so we can set the variable for both single and double sided cards
@@ -168,14 +170,14 @@ def display_card(card_name):
         face_two = card['card_faces'][1]
 
         oracle_texts = {
-            'face_one_text': face_one['oracle_text'].rsplit("\n"),
-            'face_two_text': face_two['oracle_text'].rsplit("\n")
+            'face_one_texts': face_one['oracle_text'].rsplit("\n"),
+            'face_two_texts': face_two['oracle_text'].rsplit("\n")
         }
     else:
         oracle_texts = {'face_one_texts': card['oracle_text'].rsplit("\n")}
         face_one = card
-        # face_two = {'face_two': None}
         face_two = None
+
 
     """
         If the card is a reprint, we fetch all the prints with an api call to 
@@ -192,6 +194,7 @@ def display_card(card_name):
         image uri and normal keys so they can be accessed in card.html
     """
     for p in all_prints:
+        print(p['set_name'])
         if 'card_faces' in p:
             p['image_uris'] = {'normal': p['card_faces'][0]['image_uris']['normal']}
  

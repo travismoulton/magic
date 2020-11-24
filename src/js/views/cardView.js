@@ -66,7 +66,6 @@ export const printListHoverEvents = () => {
             const img = document.createElement('img');
             img.className = 'tooltip__img';
             img.src = print.getAttribute('data-cardImg');
-            console.log(img.src);
             
             // Put the img into the div and then append the div directly to the body of the document.
             div.appendChild(img); 

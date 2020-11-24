@@ -483,6 +483,9 @@ body {
       fill: #ff0000; }
     .card__set-prints-list {
       list-style: none; }
+      .card__set-prints-list-link:link, .card__set-prints-list-link:visited {
+        text-decoration: none;
+        color: #000; }
       .card__set-prints-list-item {
         display: flex;
         justify-content: space-between;

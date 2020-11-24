@@ -94,9 +94,13 @@ export const generateManaCostImages = (manaCost, size='small') => {
     if (matches) {
         matches.forEach(m => {
             const regex = new RegExp(`\{(${m.slice(1, -1)})\}`, 'g');
+            // This will be the string used to get the right class from mana.css
+            // We want to take everything inside the brackets, and if there is a /
+            // remove it.
+            const manaIconStr = m.slice(1, -1).toLowerCase().replace('/', '')
             manaCost = manaCost.replace(
                 regex, 
-                `<span class="mana ${size} s${m.slice(1, -1).toLowerCase()}"></span>`
+                `<span class="mana ${size} s${manaIconStr}"></span>`
             )
         })
     }
@@ -135,13 +139,13 @@ const generateChecklist = cards => {
 
         const markup = `
             <tr class="js--checklist-row ${isRowGrey(ctr)} card-checklist__row data-component="card-tooltip" data-card-img=${checkForImg(card)}>
-                <td class="card-checklist__data card-checklist__data--set"><a href="/card/${cardNameForUrl}" class="card-checklist__data-link">${card.set}</a></td>
-                <td class="card-checklist__data"><a href="/card/${cardNameForUrl}" class="card-checklist__data-link">${card.name}</a></td>
-                <td class="card-checklist__data"><a href="/card/${cardNameForUrl}" class="card-checklist__data-link">${generateManaCostImages(card.mana_cost)}</a></td>
-                <td class="card-checklist__data"><a href="/card/${cardNameForUrl}" class="card-checklist__data-link">${shortenTypeLine(card.type_line)}</a></td>
-                <td class="card-checklist__data card-checklist__data--rarity"><a href="/card/${cardNameForUrl}" class="card-checklist__data-link">${card.rarity}</a></td>
-                <td class="card-checklist__data"><a href="/card/${cardNameForUrl}" class="card-checklist__data-link">${card.artist}</a></td>
-                <td class="card-checklist__data"><a href="/card/${cardNameForUrl}" class="card-checklist__data-link">${card.prices.usd}</a></td>
+                <td class="card-checklist__data card-checklist__data--set"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.set}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.name}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${generateManaCostImages(card.mana_cost)}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${shortenTypeLine(card.type_line)}</a></td>
+                <td class="card-checklist__data card-checklist__data--rarity"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.rarity}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.artist}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.prices.usd}</a></td>
             </tr>
             `
         // Put the row in the table
