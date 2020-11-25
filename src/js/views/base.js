@@ -44,5 +44,6 @@ export const elements = {
         legalities: document.querySelectorAll('.js--card-legality'),
         printRows: document.querySelectorAll('.js--card-print-row'),
         prices: document.querySelectorAll('.js--card-price'),
+        cardPrintLinks: document.querySelectorAll('.js--card-print-link'),
     }
 };

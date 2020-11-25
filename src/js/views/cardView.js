@@ -1,5 +1,6 @@
 import { generateManaCostImages } from './resultsView';
 import { elements } from './base';
+import { indexOf } from 'lodash';
 
 export const insertManaCostToCardTextTitle = () => {
     elements.card.manaCostTitleSpan.innerHTML = generateManaCostImages(
@@ -39,6 +40,27 @@ export const fixCardPrices = () => {
 };
 
 
+const fixDoubleSidedCardName = cardName => {
+    if (cardName.includes('/')) {
+        cardName = cardName.substring(0, cardName.indexOf('/') - 1)
+    }
+    return cardName;    
+}
+
+
+export const setPrintLinkHref = () => {
+    const links = Array.from(elements.card.cardPrintLinks);
+
+    links.forEach(link => {
+        let cardName = link.getAttribute('data-name').replaceAll(' ', '-');
+        cardName = fixDoubleSidedCardName(cardName);
+        const setCode = link.getAttribute('data-set');
+
+        link.href = `/card/${setCode}/${cardName}`
+    })
+}
+
+
 // Create the hover effect on each row that displays the image of the card
 export const printListHoverEvents = () => {
     // Get the HTML for each table row
@@ -52,7 +74,7 @@ export const printListHoverEvents = () => {
             // If there is already an image being displayed, remove it from the DOM
             if (document.querySelector('.tooltip')) {
                 document.body.removeChild(document.querySelector('.tooltip'));
-            }
+            };
 
             // Prep the div.
             const div = document.createElement('div');
@@ -70,14 +92,14 @@ export const printListHoverEvents = () => {
             // Put the img into the div and then append the div directly to the body of the document.
             div.appendChild(img); 
             document.body.appendChild(div);  
-            }
+            };
 
         // Remove the img when taking the cursor off the print
         print.onmouseout = e => {
             if (document.querySelector('.tooltip')) {
                 document.body.removeChild(document.querySelector('.tooltip'));
-            }
-        }
-    })
-}
+            };
+        };
+    });
+};
 

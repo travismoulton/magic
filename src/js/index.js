@@ -220,5 +220,7 @@ if (window.location.pathname.substring(1, 5) === 'card') {
 
     cardView.fixCardPrices();
 
+    cardView.setPrintLinkHref();
+
     cardView.printListHoverEvents();
 }

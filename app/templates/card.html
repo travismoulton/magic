@@ -3,7 +3,7 @@
 
   <div class="card">
     <div class="card__img">
-      <img src="{{ face_one.image_uris.large }}" alt="card-img" class="card__img-img">
+      <img src="{{ card.image_uris.large }}" alt="card-img" class="card__img-img">
     </div>
     <div class="card__text">
       <div class="card__text-title card__text-flex">
@@ -103,7 +103,7 @@
       <ul class="card__set-prints-list">
         {% for p in all_prints %}
           {% if loop.index < 10 %}
-            <a class="card__set-prints-list-link" href="/card/{{ p.set }}/{{ p.name }}">
+            <a class="card__set-prints-list-link js--card-print-link" data-set="{{ p.set }}" data-name="{{ p.name }}">
               <li class="card__set-prints-list-item js--card-print-row" data-cardImg="{{ p.image_uris.normal }}">
                 <div class="card__set-prints-list-item-name-wrapper">
                   <div class="card__set-prints-svg-container">

@@ -169,6 +169,13 @@ def display_card(card_set, card_name):
         face_one = card['card_faces'][0]
         face_two = card['card_faces'][1]
 
+        # In order to properly handle both double sided cards and adventure cards,
+        # we set the image_uris property to the card object (which on a double sided
+        # card belongs to face_one) so that we can access it from the same place in 
+        # both situations in card.html
+        if not card['type_line'].endswith('Adventure'):
+            card['image_uris'] = { 'large': face_one['image_uris']['large'] }
+
         oracle_texts = {
             'face_one_texts': face_one['oracle_text'].rsplit("\n"),
             'face_two_texts': face_two['oracle_text'].rsplit("\n")
@@ -177,26 +184,21 @@ def display_card(card_set, card_name):
         oracle_texts = {'face_one_texts': card['oracle_text'].rsplit("\n")}
         face_one = card
         face_two = None
-
-
-    """
-        If the card is a reprint, we fetch all the prints with an api call to 
-        scryfall. all_prints stores the card object for each print. If the card
-        is not a reprint, we store the original card in an array
-    """
-    if card['reprint']:
-        all_prints = requests.get(card['prints_search_uri']).json()['data']
-    else:
-        all_prints = [card]
     
+    all_prints = requests.get(card['prints_search_uri']).json()['data']
+
     """
         If the reprints / orginal card is double sided then we need to set the
         image uri and normal keys so they can be accessed in card.html
     """
+
+    print(card['type_line'].endswith('Adventure'))
     for p in all_prints:
-        print(p['set_name'])
-        if 'card_faces' in p:
+        if 'card_faces' in p and not p['type_line'].endswith('Adventure'):            
             p['image_uris'] = {'normal': p['card_faces'][0]['image_uris']['normal']}
+
+    
+
  
     return render_template(
         'card.html',

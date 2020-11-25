@@ -106,9 +106,8 @@ const removeTypeBtn = () => {
         
         const typeToToggle = document.querySelector(`[data-type|=${typeName}]`)
 
-
         toggleDataSelected(typeToToggle);
-        console.log(typeToToggle);
+
         btn.parentElement.parentElement.removeChild(btn.parentElement)
     }
 

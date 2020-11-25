@@ -141,7 +141,7 @@ const generateChecklist = cards => {
             <tr class="js--checklist-row ${isRowGrey(ctr)} card-checklist__row data-component="card-tooltip" data-card-img=${checkForImg(card)}>
                 <td class="card-checklist__data card-checklist__data--set"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.set}</a></td>
                 <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.name}</a></td>
-                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${generateManaCostImages(card.mana_cost)}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${generateManaCostImages(checkForManaCost(card))}</a></td>
                 <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${shortenTypeLine(card.type_line)}</a></td>
                 <td class="card-checklist__data card-checklist__data--rarity"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.rarity}</a></td>
                 <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.artist}</a></td>
@@ -156,8 +156,21 @@ const generateChecklist = cards => {
     })
 }
 
-// Used in the checklist display to check if a card has an image
-const checkForImg = card => (card.image_uris ? card.image_uris.normal : 'no-img')
+const checkForManaCost = card => {
+    if (card.mana_cost) {
+        return card.mana_cost;
+    } else if (card.card_faces) {
+        return card.card_faces[0].mana_cost;
+    }
+}
+
+const checkForImg = card => {
+    if (card.image_uris) return card.image_uris.normal;
+
+    // If there is no card.image_uris, then it's a double sided card. In this
+    // case we want to display the image from face one of the card.
+    else return card.card_faces[0].image_uris.normal;
+}
 
 
 // Create the hover effect on each row that displays the image of the card
