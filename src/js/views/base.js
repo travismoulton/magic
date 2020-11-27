@@ -45,5 +45,8 @@ export const elements = {
         printRows: document.querySelectorAll('.js--card-print-row'),
         prices: document.querySelectorAll('.js--card-price'),
         cardPrintLinks: document.querySelectorAll('.js--card-print-link'),
+        front: document.querySelector('.js--front'),
+        back: document.querySelector('.js--back'),
+        transformBtn: document.querySelector('.js--card-transform'),
     }
 };

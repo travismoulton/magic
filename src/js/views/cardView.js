@@ -57,7 +57,45 @@ export const setPrintLinkHref = () => {
         const setCode = link.getAttribute('data-set');
 
         link.href = `/card/${setCode}/${cardName}`
-    })
+    });
+};
+
+
+const setDoubleSidedTransition = () => {
+    // Checks to see if an inline style has been set for the front of the card.
+    // If not, set a transiton. This makes sure we don't set the transiton every
+    // time the card is flipped.
+    if (!elements.card.front.getAttribute('style')) {
+        elements.card.front.style.transition = `all .8s ease`;
+        elements.card.back.style.transition = `all .8s ease`;
+    }
+};
+
+
+export const flipToBackSide = () => {
+    // Sets the transition property on both sides of the card the first time the
+    // transform button is clicked
+    setDoubleSidedTransition();
+
+    // Rotates the card to show the backside.
+    elements.card.front.style.transform = `rotateY(-180deg)`;
+    elements.card.back.style.transform = `rotateY(0)`;
+
+    // Reset the event listener so that on clicking the button it will flip
+    // back to the front of the card
+    elements.card.transformBtn.removeEventListener('click', flipToBackSide);
+    elements.card.transformBtn.addEventListener('click', flipToFrontSide);
+};
+
+
+export const flipToFrontSide = () => {
+    elements.card.front.style.transform = `rotateY(0)`;
+    elements.card.back.style.transform = `rotateY(180deg)`;
+
+    // Reset the event listener so that on clicking the button it will flip
+    // to the backside of the card
+    elements.card.transformBtn.removeEventListener('click', flipToFrontSide);
+    elements.card.transformBtn.addEventListener('click', flipToBackSide);
 }
 
 

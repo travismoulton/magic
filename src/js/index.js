@@ -223,4 +223,12 @@ if (window.location.pathname.substring(1, 5) === 'card') {
     cardView.setPrintLinkHref();
 
     cardView.printListHoverEvents();
+
+    // If the transform btn is on the dom (if the card is double sided) set
+    // the event listener for the card to be flipped back and forth
+    if (elements.card.transformBtn) {
+        elements.card.transformBtn.addEventListener(
+            'click', cardView.flipToBackSide
+        );
+    }
 }

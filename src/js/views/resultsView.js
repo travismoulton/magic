@@ -32,21 +32,110 @@ const prepImageContainer = () => {
 };
 
 
+const generateSingleSidedCard = card => {
+    const a = document.createElement('a');
+    const div = document.createElement('div');
+    const img = document.createElement('img');
+
+    a.classList = `image-grid__link js--image-grid-link`;
+    a.href = `/card/${card.set}/${parseCardName(card.name)}`;
+
+    div.classList = `image-grid__container`;
+    img.src = `${card.image_uris.normal}`;
+    img.alt = `${card.name}`
+    img.classList = `image-grid__image`;
+    div.appendChild(img);
+    a.appendChild(div);
+
+    document.querySelector('.js--image-grid').insertAdjacentElement('beforeend', a);
+}
+
+
+const showBackSide = card => {
+    const front = card.querySelector('.js--image-grid-card-side-front');
+    const back = card.querySelector('.js--image-grid-card-side-back');    
+    
+    front.style.transform = 'rotateY(-180deg)';
+    back.style.transform = 'rotateY(0)';
+
+    front.classList.remove('js--showing');
+    back.classList.add('js--showing');
+}
+
+
+const showFrontSide = card => {
+    const front = card.querySelector('.js--image-grid-card-side-front');
+    const back = card.querySelector('.js--image-grid-card-side-back');
+
+    front.style.transform = 'rotateY(0)';
+    back.style.transform = 'rotateY(180deg)';
+
+    front.classList.add('js--showing');
+    back.classList.remove('js--showing');
+}
+
+
+const flipCard = e => {
+    // Prevent the link from going to the card specific page
+    e.preventDefault();
+    const card = e.target.parentElement;
+
+    const front = card.querySelector('.js--image-grid-card-side-front');
+
+    // If the front is showing, display the backside. Otherwise, display the front
+    if (front.classList.contains('js--showing')) showBackSide(card);
+    else showFrontSide(card);
+}
+
+
+const generateFlipCardBtn = () => {
+    const btn = document.createElement('button');
+    btn.classList = 'image-grid__double-btn js--image-grid-flip-card-btn';
+    btn.addEventListener('click', e => flipCard(e))
+
+    return btn;
+}
+
+
+const generateDoubleSidedCard = card => {
+    const a = document.createElement('a');
+    const outerDiv = document.createElement('div');
+    const innerDiv = document.createElement('div');
+    const imgFrontSide = document.createElement('img');
+    const imgBackSide = document.createElement('img');
+    const flipCardBtn = generateFlipCardBtn();
+
+    a.classList = `image-grid__link js--image-grid-link`;
+    a.href = `/card/${card.set}/${parseCardName(card.name)}`;
+
+    outerDiv.classList = `image-grid__outer-div`;
+    innerDiv.classList = `image-grid__inner-div js--inner-div-${card.name}`;
+
+    imgFrontSide.classList = `image-grid__double image-grid__double--front js--image-grid-card-side-front js--showing`;
+    imgFrontSide.src = card.card_faces[0].image_uris.normal;
+    imgFrontSide.alt = card.name;
+
+    imgBackSide.classList = `image-grid__double image-grid__double--back js--image-grid-card-side-back`;
+    imgBackSide.src = card.card_faces[1].image_uris.normal;
+    imgBackSide.alt = card.card_faces[1].name;
+
+    a.appendChild(outerDiv);
+    outerDiv.appendChild(innerDiv);
+    innerDiv.appendChild(imgBackSide);
+    innerDiv.appendChild(imgFrontSide);
+    innerDiv.appendChild(flipCardBtn);
+
+    document.querySelector('.js--image-grid').insertAdjacentElement('beforeend', a);
+}
+
+
 const generateImageGrid = cards => {
     cards.forEach(card => {
-        if (card.image_uris) {
-            var markup = `<div class="image-grid__container"><img src=${card.image_uris.normal} alt="${card.name}" class="image-grid__image"></div>`    
-          } else {
-            var markup = `
-              <div class=image-grid__no-image>
-                <p>This card has no image</p>
-                <p>${card.name}</p>
-                <p>${card.type_line}</p>
-                <p>${card.color_identity}</p>
-              </div>
-            `
-        }
-        document.querySelector('.js--image-grid').insertAdjacentHTML('beforeend', markup);        
+        // For single sided cards
+        if (card.image_uris) generateSingleSidedCard(card);
+
+        // Double sided cards
+        else generateDoubleSidedCard(card);       
     })
 }
 
@@ -58,7 +147,7 @@ export const dispalyImages = cards => {
     generateImageGrid(cards);
 }
 
-
+ 
 const prepChecklistContainer = () => {
     const markup = `
         <table class="card-checklist js--card-checklist">
@@ -139,13 +228,13 @@ const generateChecklist = cards => {
 
         const markup = `
             <tr class="js--checklist-row ${isRowGrey(ctr)} card-checklist__row data-component="card-tooltip" data-card-img=${checkForImg(card)}>
-                <td class="card-checklist__data card-checklist__data--set"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.set}</a></td>
-                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.name}</a></td>
-                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${generateManaCostImages(checkForManaCost(card))}</a></td>
-                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${shortenTypeLine(card.type_line)}</a></td>
-                <td class="card-checklist__data card-checklist__data--rarity"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.rarity}</a></td>
-                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.artist}</a></td>
-                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link">${card.prices.usd}</a></td>
+                <td class="card-checklist__data card-checklist__data--set"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${card.set}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--start">${card.name}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${generateManaCostImages(checkForManaCost(card))}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${shortenTypeLine(card.type_line)}</a></td>
+                <td class="card-checklist__data card-checklist__data--rarity"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${card.rarity}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${card.artist}</a></td>
+                <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${card.prices.usd}</a></td>
             </tr>
             `
         // Put the row in the table
@@ -358,41 +447,4 @@ export const disableBtn = btn => {
         btn.disabled = true;
     }
 }
-
-
-// ********************************************** \\
-// *************** ON BACK BUTTON *************** \\
-// ********************************************** \\
-
-// const paginationTrackerForPopState = (state, data) => {
-//     var beg, end;
-//     beg = ((data.currentIndex + 1) * 175) - 174; 
-//     end = ((data.currentIndex) * 175) + state.allCards[data.currentIndex].length
-
-//     return { beg, end };
-// }
-
-
-// const updateDisplayBarForPopState = (state, data) => {
-//     const markup = `
-//         <p class="api-results-display__display-bar-text js--display-bar-text">
-//             Displaying ${paginationTrackerForPopState(state, data).beg} - ${paginationTrackerForPopState(state, data).end} of ${state.search.results.total_cards} cards
-//         </p>
-//     `
-
-//     clearDisplayBar();
-//     elements.resultsPage.displayBar.insertAdjacentHTML('beforeend', markup);
-// }
-
-
-// export const updateDisplayOnPopState = (state, data) => {
-//     // Clear any existing HTML in the display
-//     clearResults();
-
-//     updateDisplayBarForPopState(state, data);    
-
-//     // Refresh the display
-//     if (data.display === 'list') displayChecklist(state.allCards[data.currentIndex]);
-//     if (data.display === 'images') dispalyImages(state.allCards[data.currentIndex]);
-// }
 

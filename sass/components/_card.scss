@@ -3,14 +3,51 @@
     grid-column: center-start / center-end;
     margin-top: 3rem;
 
-
-    &__img {
+    // Single  sided cards
+    &__img-container {
         margin-right: 10rem;
     }
 
-    &__img-img { 
+    &__img { 
         width: 33rem;
         height: 46rem;
+    }
+
+    // Double sided cards
+    &__img-left {
+        margin-right: 10rem;
+        // Without defining the width the page is not giving the element any width because
+        // the img is position absolute.
+        width: 33rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__img-btn {
+        justify-self: flex-end;
+        align-self: flex-end;
+        margin-top: auto;
+    }
+
+    &__img-double-area {
+        position: relative;
+    }
+
+    &__img-double-sided {
+        perspective: 150rem;
+        height: 46rem;
+    }
+
+    &__img-double {
+        width: 33rem;
+        height: 46rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        backface-visibility: hidden;
+        overflow: hidden;
+
+        &--back { transform: rotateY(180deg); }
     }
 
     &__text {
@@ -119,9 +156,7 @@
                 font-size: 1.7remrem;
             }
 
-            &-code { text-transform: uppercase; }
-
-            
+            &-code { text-transform: uppercase; }            
         }
 
         &-prints-header {
@@ -133,7 +168,6 @@
             text-transform: uppercase;
             border: 1px solid $color-grey-medium;
             padding: .3rem .7rem;
-
         }
 
         &-prints-svg-container {

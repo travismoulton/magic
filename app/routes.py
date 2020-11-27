@@ -180,25 +180,22 @@ def display_card(card_set, card_name):
             'face_one_texts': face_one['oracle_text'].rsplit("\n"),
             'face_two_texts': face_two['oracle_text'].rsplit("\n")
         }
+    # For single sided cards
     else:
         oracle_texts = {'face_one_texts': card['oracle_text'].rsplit("\n")}
         face_one = card
         face_two = None
     
+    # Used to display the list of prints. This gets all different prints and
+    # stores them in a list
     all_prints = requests.get(card['prints_search_uri']).json()['data']
 
-    """
-        If the reprints / orginal card is double sided then we need to set the
-        image uri and normal keys so they can be accessed in card.html
-    """
-
-    print(card['type_line'].endswith('Adventure'))
     for p in all_prints:
+        # For double sided cards and not adventure cards, we grab the image 
+        # to be displayed when hovering over a card from the print list.
+        # Adventure and single sided cards need no additional logic to display
         if 'card_faces' in p and not p['type_line'].endswith('Adventure'):            
-            p['image_uris'] = {'normal': p['card_faces'][0]['image_uris']['normal']}
-
-    
-
+            p['image_uris'] = {'normal': p['card_faces'][0]['image_uris']['normal']}   
  
     return render_template(
         'card.html',

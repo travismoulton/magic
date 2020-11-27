@@ -12,8 +12,10 @@
 
     &__data {
         display: flex;
+        flex-wrap: nowrap;
         justify-content: center;
         overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 1.4rem;
 
         &--set { text-transform: uppercase; }
@@ -24,11 +26,15 @@
     &__data-link {
         padding: 1rem 0;
         display: flex;
-        justify-content: center;
+        flex-wrap: nowrap;
         align-items: center;
         text-decoration: none;
         width: 100%;
         color: $color-black;
+        white-space: nowrap;
+
+        &--start { justify-content: flex-start; }
+        &--center { justify-content: center; }
     }
 }
 

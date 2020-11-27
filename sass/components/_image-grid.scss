@@ -5,14 +5,37 @@
     grid-column-gap: 2rem;
     grid-row-gap: 1rem;
 
-    &__no-image {
+    &__outer-div {
+        position: relative;
+    }
+
+    &__inner-div {
+        perspective: 150rem;
+        height: 34rem; 
         width: 24rem;
+    }
+
+    &__double {
         height: 34rem;
-        background-color: #f5f5dc;
-    
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        width: 24rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        backface-visibility: hidden;
+        overflow: hidden;
+        transition: all .8s ease;
+
+        &--back { transform: rotateY(180deg); }
+    }
+
+    &__double-btn {
+        position: absolute;
+        top: 50%;
+        right: 15%;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background-color: rgba($color-white, .4);
     }
 
     &__container {

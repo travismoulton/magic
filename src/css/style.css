@@ -328,8 +328,10 @@ body {
       background-color: #f2f2f2; }
   .card-checklist__data {
     display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
     overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 1.4rem; }
     .card-checklist__data--set {
       text-transform: uppercase; }
@@ -338,11 +340,16 @@ body {
   .card-checklist__data-link {
     padding: 1rem 0;
     display: flex;
-    justify-content: center;
+    flex-wrap: nowrap;
     align-items: center;
     text-decoration: none;
     width: 100%;
-    color: #000; }
+    color: #000;
+    white-space: nowrap; }
+    .card-checklist__data-link--start {
+      justify-content: flex-start; }
+    .card-checklist__data-link--center {
+      justify-content: center; }
 
 .tooltip {
   position: absolute;
@@ -359,13 +366,31 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   grid-column-gap: 2rem;
   grid-row-gap: 1rem; }
-  .image-grid__no-image {
-    width: 24rem;
+  .image-grid__outer-div {
+    position: relative; }
+  .image-grid__inner-div {
+    perspective: 150rem;
     height: 34rem;
-    background-color: #f5f5dc;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; }
+    width: 24rem; }
+  .image-grid__double {
+    height: 34rem;
+    width: 24rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    overflow: hidden;
+    transition: all .8s ease; }
+    .image-grid__double--back {
+      transform: rotateY(180deg); }
+  .image-grid__double-btn {
+    position: absolute;
+    top: 50%;
+    right: 15%;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4); }
   .image-grid__container {
     width: 24rem;
     height: 34rem; }
@@ -377,11 +402,35 @@ body {
   display: flex;
   grid-column: center-start / center-end;
   margin-top: 3rem; }
-  .card__img {
+  .card__img-container {
     margin-right: 10rem; }
-  .card__img-img {
+  .card__img {
     width: 33rem;
     height: 46rem; }
+  .card__img-left {
+    margin-right: 10rem;
+    width: 33rem;
+    display: flex;
+    flex-direction: column; }
+  .card__img-btn {
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin-top: auto; }
+  .card__img-double-area {
+    position: relative; }
+  .card__img-double-sided {
+    perspective: 150rem;
+    height: 46rem; }
+  .card__img-double {
+    width: 33rem;
+    height: 46rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    overflow: hidden; }
+    .card__img-double--back {
+      transform: rotateY(180deg); }
   .card__text {
     background-color: #f4f4d7;
     width: 34rem;
