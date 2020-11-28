@@ -1,6 +1,5 @@
 import { generateManaCostImages } from './resultsView';
 import { elements } from './base';
-import { indexOf } from 'lodash';
 
 export const insertManaCostToCardTextTitle = () => {
     elements.card.manaCostTitleSpan.innerHTML = generateManaCostImages(

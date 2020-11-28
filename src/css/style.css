@@ -182,8 +182,6 @@ body {
     margin-top: .7rem; }
   .search-form__group-input-wrapper {
     flex: 0 0 80%; }
-    .search-form__group-input-wrapper--has-dropdown {
-      position: relative; }
   .search-form__tip {
     font-size: 1rem;
     line-height: 1.4;
@@ -254,10 +252,11 @@ body {
     .search-form__selected-types-toggler--not {
       background-color: #ff0000; }
   .search-form__dropdown {
-    height: 28rem;
+    position: absolute;
+    max-height: 28rem;
     background-color: #fff;
     z-index: 2;
-    bottom: 0;
+    top: 100%;
     width: 40rem;
     margin-top: -1rem;
     overflow-y: auto;
@@ -280,6 +279,9 @@ body {
         width: 2rem;
         height: 2rem;
         margin-right: .7rem; }
+
+.dropdown-wrapper {
+  position: relative; }
 
 .api-results-display__nav {
   background-color: #99b1ff;

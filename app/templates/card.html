@@ -7,7 +7,6 @@
         <img src="{{ card.image_uris.large }}" alt="card-img" class="card__img">
       </div>
     {% else %}
-
       <div class="card__img-left">
         <div class="card__img-double-area">
           <div class="card__img-double-sided">
@@ -15,11 +14,8 @@
             <img src="{{ face_one.image_uris.large }}" alt="front" class="card__img-double card__img-double--front js--front js--visibile-side">
           </div>
         </div>
-
         <button class="btn card__img-btn js--card-transform">Transform</button>
       </div>
-
-
     {% endif %}
     <div class="card__text">
       <div class="card__text-title card__text-flex">
@@ -134,7 +130,7 @@
             </a>
           {% endif %}
         {% endfor %}
-        <a class="card__set-prints-list-link" href="/results/images/{{ card.name }}&unique=prints">
+        <a class="card__set-prints-list-link" href='/results/images/!"{{ card.name }}"&unique=prints'>
           <li class="card__set-prints-list-item">View all prints</li>
         </a>
       </ul>

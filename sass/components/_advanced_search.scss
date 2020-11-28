@@ -21,8 +21,6 @@
 
     &__group-input-wrapper {
         flex: 0 0 80%;
-
-        &--has-dropdown { position: relative; }
     }
 
     &__tip {
@@ -125,11 +123,11 @@
     }
 
     &__dropdown {
-        // position: absolute;
-        height: 28rem;
+        position: absolute;
+        max-height: 28rem;
         background-color: $color-white;
         z-index: 2;
-        bottom: 0;
+        top: 100%;
         width: 40rem;
         margin-top: -1rem;
         overflow-y: auto;
@@ -166,3 +164,5 @@
         }
     }
 }
+
+.dropdown-wrapper { position: relative; }

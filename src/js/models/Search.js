@@ -4,29 +4,23 @@ import { elements } from '../views/base';
 
 export default class Search {
     searchByName() {
-        const cardName = elements.apiSearch.cardName.value;
+        let cardName = elements.apiSearch.cardName.value;
+        cardName = cardName.replace(' ', '+');
+
         if (cardName) this.search += cardName;        
       }  
       
     searchByOtext() {
         const oracleText = elements.apiSearch.oracleText.value;
-    
-        // In each this.search funtion this If conditons exists. If there is already text in the this.search string
-        // Then the '+' at the begining is necessary. Otherwise it is not required.
-        if (oracleText) {
-            if (this.search !== '') {
-                this.search += `+oracle%3A${oracleText}`;
-            } else {
-                this.search += `oracle%3A${oracleText}`
-            }
-        }
+
+        if (oracleText) this.search += `+oracle%3A${oracleText}`
     }
     
     searchByCardType() {
         const typesToInclude = Array.from(document.querySelectorAll('[data-include-type]'));
         const typesToExclude = Array.from(document.querySelectorAll('[data-exclude-type]'));
         const includePartialTypes = elements.apiSearch.includePartialTypes.checked;
-        let tempStr = '';
+        let temporaryStr = '';
 
         if (typesToInclude && !includePartialTypes) {
             typesToInclude.forEach(type => {
@@ -36,7 +30,7 @@ export default class Search {
 
         if ((typesToInclude.length > 0) && includePartialTypes) {
             typesToInclude.forEach(type => {
-                tempStr += `type%3A${type.getAttribute('data-include-type')}+OR+`
+                temporaryStr += `type%3A${type.getAttribute('data-include-type')}+OR+`
             })
 
             tempStr = tempStr.slice(0, -4);
@@ -61,64 +55,41 @@ export default class Search {
         })
     
         const sortBy = elements.apiSearch.colorSortBy.value;
-    
-        // If colors is empty then there is no need to add to the this.search string
-        if (colors) {
-            if (this.search !== '') {
-                this.search += `+color${sortBy}${colors}`;
-            } else {
-                this.search += `color${sortBy}${colors}`;
-            }
-        }        
+
+        if (colors) this.search += `+color${sortBy}${colors}`;
     }
     
     searchByStats() {
         const stat = elements.apiSearch.stat.value;
         const sortBy = elements.apiSearch.statFilter.value;
         const sortValue = elements.apiSearch.statValue.value;
-    
-        // stat and sortBy have values by deault in the HTML form. sortValue is empty.
-        // If no value is given by the user then we don't need to alter the this.search string
-        if (sortValue) {
-            if (this.search !== '') {
-                this.search += `+${stat}${sortBy}${sortValue}`
-            } else {
-                this.search += `${stat}${sortBy}${sortValue}`
-            }
-        }          
+
+        if (sortValue) this.search += `+${stat}${sortBy}${sortValue}`;
     }
     
     searchByFormat() {
         const legalStatus = elements.apiSearch.legalStatus.value;
         const format = elements.apiSearch.format.value;
-    
-        // legalStatus has a value by default in the HTML form. If no value is given for format, there is no need to run the code
-        if (format) {
-            if (this.search !== '') {
-                this.search += `+${legalStatus}%3A${format}`
-            } else {
-                this.search += `${legalStatus}%3A${format}`
-            }
-        }        
+ 
+        if (format) this.search += `+${legalStatus}%3A${format}`;
     }
 
     searchBySet() {
         const sets = Array.from(document.querySelectorAll('[data-include-set]'));
-        let tempStr = '';
+        let temporaryStr = '';
 
         if (sets.length > 0) {
-            sets.forEach(s => tempStr += `set%3A${s.getAttribute('data-include-set')}+OR+`);
+            sets.forEach(s => temporaryStr += `set%3A${s.getAttribute('data-include-set')}+OR+`);
 
-            tempStr = tempStr.slice(0, -4);
-            this.search += `+%28${tempStr}%29`;
+            temporaryStr = temporaryStr.slice(0, -4);
+            this.search += `+%28${temporaryStr}%29`;
         }
     }
     
     searchByRarity() {
         const boxes = elements.apiSearch.rarityBoxes;
         var values = [];
-        var starterString = '';
-        var finalString;
+        let temporaryStr = '';
     
         // Push all rarities given by the user into the values array
         boxes.forEach(box => {
@@ -127,24 +98,20 @@ export default class Search {
     
         if (values.length > 0) {
             // We need a starter string so we can slice it later %28 is an open parentheses 
-            starterString += '%28';
+            temporaryStr += '%28';
     
             // For every value given by the user we need to add the +OR+
             // to the end for grouping. We will remove the +OR+ from the last
             // iteration of the loop
-            values.forEach(value => starterString += `rarity%3A${value}+OR+`);
+            values.forEach(value => temporaryStr += `rarity%3A${value}+OR+`);
     
             // Remove the unnecessary +OR+ at the end
-            finalString = starterString.slice(0, -4);
+            temporaryStr = temporaryStr.slice(0, -4);
     
             // Close the parentheses
-            finalString += `%29`;
-    
-            if (this.search !== '') {
-                this.search += `+${finalString}`;
-            } else {
-                this.search += `${finalString}`;
-            }
+            temporaryStr += `%29`;
+
+            this.search += `+${temporaryStr}`;
         }        
     }
     
@@ -152,14 +119,8 @@ export default class Search {
         const denomination = elements.apiSearch.denomination.value;
         const sortBy = elements.apiSearch.denominationSortBy.value;
         const inputVal = elements.apiSearch.denominationSortValue.value;
-    
-        if (inputVal) {
-            if (this.search !== '') {
-                this.search += `+${denomination}${sortBy}${inputVal}`
-            } else {
-                this.search += `${denomination}${sortBy}${inputVal}`
-            }
-        }        
+        
+        if (inputVal) this.search += `+${denomination}${sortBy}${inputVal}`;
     }
 
     sortResults() {
