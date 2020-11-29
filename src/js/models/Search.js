@@ -8,12 +8,24 @@ export default class Search {
         cardName = cardName.replace(' ', '+');
 
         if (cardName) this.search += cardName;        
-      }  
+    }  
       
     searchByOtext() {
         const oracleText = elements.apiSearch.oracleText.value;
 
-        if (oracleText) this.search += `+oracle%3A${oracleText}`
+        // If the oracle text includes more than one word, we need to search the terms individually
+        if (oracleText.includes(' ') && oracleText.indexOf(' ') !== oracleText.length - 1) {
+            let temporaryStr = '';
+            const texts = oracleText.split(' ');
+
+            texts.forEach(text => {
+                if (text.length > 0) temporaryStr += `oracle%3A${text}+`
+            });
+            
+            this.search += `+%28${temporaryStr.slice(0, -1)}%29`
+        }
+
+        else if (oracleText) this.search += `+oracle%3A${oracleText}`;
     }
     
     searchByCardType() {

@@ -172,7 +172,7 @@ export const generateManaCostImages = (manaCost, size='small') => {
     // If there is no mana cost associated with the card, then return an empty string to leave the row empty
     if (!manaCost) return '';
 
-    // Regular expressions to find each set of curly braces
+    // Regular expressions to find each set of curly braces {}
     let re = /\{(.*?)\}/g
 
     // Parse the strings and get all matches

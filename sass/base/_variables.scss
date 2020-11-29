@@ -1,5 +1,6 @@
 $color-grey-light: #f2f2f2;
 $color-grey-medium: #bfbfbf;
+$color-grey-dark: #333;
 
 $color-grey-bg-dark: #808080;
 $color-grey-bg-light: #bfbfbf;
@@ -25,3 +26,10 @@ $color-beige: #f4f4d7;
 $color-silver: #e6e6e6;
 
 $color-gold: #e6c300;
+
+// Color indicators for double sided cards
+$color-indicator-blue: rgba(#8080ff, .7);
+$color-indicator-white: rgba(#fff, .7);
+$color-indicator-red: rgba(#ff4d4d, .7);
+$color-indicator-black: rgba(#000, .7);
+$color-indicator-green: rgba(#00ff00, .7);

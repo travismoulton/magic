@@ -29,7 +29,7 @@ if (window.location.pathname === '/search') {
         const displayMethod = search.displayMethod();
 
         // Create a get request with the query string
-        window.location.href = `/results/${displayMethod}/${query}`
+        window.location.href = `/results/${displayMethod}/${query}`;
     
         return false
     }

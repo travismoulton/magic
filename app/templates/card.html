@@ -2,11 +2,11 @@
 {% block content %}
 
   <div class="card">
-    {% if not face_two %}
+    {% if not face_two or adventure %}
       <div class="card__img-container">
         <img src="{{ card.image_uris.large }}" alt="card-img" class="card__img">
       </div>
-    {% else %}
+    {% elif face_one and face_two %}
       <div class="card__img-left">
         <div class="card__img-double-area">
           <div class="card__img-double-sided">
@@ -17,6 +17,7 @@
         <button class="btn card__img-btn js--card-transform">Transform</button>
       </div>
     {% endif %}
+
     <div class="card__text">
       <div class="card__text-title card__text-flex">
         <h3 class="card__text-title-h3">{{ face_one.name }}</h3>
@@ -42,7 +43,10 @@
           <h3 class="card__text-title-h3">{{ face_two.name }}</h3>
           <span class="js--card-mana-cost" data-mana-cost="{{ face_two.mana_cost }}"></span>
         </div>       
-        <p class="card__text-type card__text-flex">{{ face_two.type_line }}</p>
+          <p class="card__text-type card__text-flex">
+            <span class="card__text-color-indicator card__text-color-indicator--{{ color_indicator.color }}"></span> 
+            {{ face_two.type_line }}
+          </p>
         <div class="card__text-oracle card__text-flex js--card-oracle">
           {% for text in oracle_texts.face_two_texts %}
             <p class="card__text-oracle-p js--oracle-text-line">{{ text }}</p>

@@ -164,6 +164,7 @@ def display_card(card_set, card_name):
     # and so we can set the variable for both single and double sided cards
     set_svg = { 'set_svg': requests.get(card['set_uri']).json()['icon_svg_uri'] }
 
+
     #If the card has two faces, the JSON that comes back is different
     if 'card_faces' in card:
         face_one = card['card_faces'][0]
@@ -175,16 +176,24 @@ def display_card(card_set, card_name):
         # both situations in card.html
         if not card['type_line'].endswith('Adventure'):
             card['image_uris'] = { 'large': face_one['image_uris']['large'] }
+            color_indicator = { 'color': face_two['color_indicator'][0] }
+            adventure = False
+        
+        if card['type_line'].endswith('Adventure'):
+            color_indicator = None
+            adventure = True
 
         oracle_texts = {
             'face_one_texts': face_one['oracle_text'].rsplit("\n"),
             'face_two_texts': face_two['oracle_text'].rsplit("\n")
         }
+        
     # For single sided cards
     else:
         oracle_texts = {'face_one_texts': card['oracle_text'].rsplit("\n")}
         face_one = card
         face_two = None
+        adventure = False
     
     # Used to display the list of prints. This gets all different prints and
     # stores them in a list
@@ -203,8 +212,10 @@ def display_card(card_set, card_name):
         face_one=face_one,
         face_two=face_two,
         oracle_texts=oracle_texts,
+        color_indicator = color_indicator,
         set_svg=set_svg,
-        all_prints=all_prints
+        all_prints=all_prints,
+        adventure=adventure,
     )
 
 

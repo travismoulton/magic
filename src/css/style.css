@@ -450,6 +450,24 @@ body {
         font-size: 1.8rem;
         font-weight: 400;
         margin-right: 1rem; }
+    .card__text-color-indicator {
+      width: 1.3rem;
+      height: 1.3rem;
+      border: 1px solid #333;
+      border-radius: 50%;
+      box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.2);
+      margin-right: .7rem;
+      display: inline-block; }
+      .card__text-color-indicator--U {
+        background-color: rgba(128, 128, 255, 0.7); }
+      .card__text-color-indicator--B {
+        background-color: rgba(0, 0, 0, 0.7); }
+      .card__text-color-indicator--R {
+        background-color: rgba(255, 77, 77, 0.7); }
+      .card__text-color-indicator--W {
+        background-color: rgba(255, 255, 255, 0.7); }
+      .card__text-color-indicator--G {
+        background-color: rgba(0, 255, 0, 0.7); }
     .card__text-oracle-p {
       margin-bottom: 1rem;
       font-size: 1.3rem; }
