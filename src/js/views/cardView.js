@@ -2,9 +2,13 @@ import { generateManaCostImages } from './resultsView';
 import { elements } from './base';
 
 export const insertManaCostToCardTextTitle = () => {
-    elements.card.manaCostTitleSpan.innerHTML = generateManaCostImages(
-        elements.card.manaCostTitleSpan.getAttribute('data-mana-cost')
-    );
+    const manaCosts = Array.from(elements.card.manaCostTitleSpan);    
+
+    manaCosts.forEach(cost => {
+        cost.innerHTML = generateManaCostImages(
+            cost.getAttribute('data-mana-cost')
+        );
+    })
 };
 
 

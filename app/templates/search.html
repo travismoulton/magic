@@ -14,7 +14,7 @@
         Card Name
       </label>
       <div class="search-form__grpup-input-wrapper">
-        <input type="text" class="search-form__input-text js--api-card-name" name="card-name" id="card-name" placeholder="Any words that appear in the name of the card">
+        <input type="text" autocomplete="off" class="search-form__input-text js--api-card-name" name="card-name" id="card-name" placeholder="Any words that appear in the name of the card">
       </div>
     </div>
     
@@ -31,7 +31,7 @@
         Text
       </label>
       <div class="search-form__group-input-wrapper">
-        <input type="text" class="search-form__input-text js--api-o-text" name="oracle-text" id="oracle-text" placeholder="Any text, e.g. 'Draw a Card'">
+        <input type="text" autocomplete="off" class="search-form__input-text js--api-o-text" name="oracle-text" id="oracle-text" placeholder="Any text, e.g. 'Draw a Card'">
         <p class="search-form__tip">
           Enter text that should appear in the rules box. You can use ~ as a placeholder for the card name. Word order doesn't matter. 
         </p>
@@ -53,40 +53,40 @@
             
           </ul>
           <div class="dropdown-wrapper">
-            <input type="text" class="search-form__input-text js--api-type-line" name="type-line" id="type-line" placeholder="Enter a type or choose from the list">
+            <input type="text" autocomplete="off" class="search-form__input-text js--api-type-line" name="type-line" id="type-line" placeholder="Enter a type or choose from the list">
             <div class="search-form__dropdown js--api-types-dropdown js--api-dropdown-types-list" hidden>
-              <ul class="search-form__dropdown-list js--api-dropdown-types-list">
+              <ul class="search-form__dropdown-list js--api-dropdown-types-list" role="tree">
                 <li strong class="js--api-dropdown-types-list js--types-category-header js--basic-header search-form__dropdown-list-category">Types</li>
                 {% for line in types.basic_types %}
-                  <li class="js--api-dropdown-types-list js--basic search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                  <li class="js--api-dropdown-types-list js--basic search-form__dropdown-list-option" tabindex="-1" role="treeitem" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
                 {% endfor %}
                 <li strong class="js--api-dropdown-types-list js--types-category-header js--super-header search-form__dropdown-list-category">Super Types</li>
                 {% for line in types.super_types %}
-                  <li class="js--api-dropdown-types-list js--super search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                  <li class="js--api-dropdown-types-list js--super search-form__dropdown-list-option" tabindex="-1" role="treeitem" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
                 {% endfor %}
                 <li strong class="js--api-dropdown-types-list js--types-category-header js--artifact-header search-form__dropdown-list-category">Artifact Types</li>
                 {% for line in types.artifact_types %}
-                  <li class="js--api-dropdown-types-list js--artifact search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                  <li class="js--api-dropdown-types-list js--artifact search-form__dropdown-list-option" tabindex="-1" role="treeitem" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
                 {% endfor %}
                 <li strong class="js--api-dropdown-types-list js--types-category-header js--enchantment-header search-form__dropdown-list-category">Enchantment Types</li>
                 {% for line in types.enchantment_types %}
-                  <li class="js--api-dropdown-types-list js--enchantment search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                  <li class="js--api-dropdown-types-list js--enchantment search-form__dropdown-list-option" tabindex="-1" role="treeitem" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
                 {% endfor %}
                 <li strong class="js--api-dropdown-types-list js--types-category-header js--land-header search-form__dropdown-list-category">Land Types</li>
                 {% for line in types.land_types %}
-                  <li class="js--api-dropdown-types-list js--land search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                  <li class="js--api-dropdown-types-list js--land search-form__dropdown-list-option" tabindex="-1" role="treeitem" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
                 {% endfor %}
                 <li strong class="js--api-dropdown-types-list js--types-category-header js--spell-header search-form__dropdown-list-category">Spell Types</li>
                 {% for line in types.spell_types %}
-                  <li class="js--api-dropdown-types-list js--spell search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                  <li class="js--api-dropdown-types-list js--spell search-form__dropdown-list-option" tabindex="-1" role="treeitem" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
                 {% endfor %}
                 <li strong class="js--api-dropdown-types-list js--types-category-header js--planeswalker-header search-form__dropdown-list-category">Planesalker Types</li>
                 {% for line in types.planeswalker_types %}
-                  <li class="js--api-dropdown-types-list js--planeswalker search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                  <li class="js--api-dropdown-types-list js--planeswalker search-form__dropdown-list-option" tabindex="-1" role="treeitem" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
                 {% endfor %}
                 <li strong class="js--api-dropdown-types-list js--types-category-header js--creature-header search-form__dropdown-list-category">Creature Types</li>
                 {% for line in types.creature_types %}
-                  <li class="js--api-dropdown-types-list js--creature search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                  <li class="js--api-dropdown-types-list js--creature search-form__dropdown-list-option" tabindex="-1" role="treeitem" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
                 {% endfor %}
               </ul>
             </div>
@@ -250,7 +250,7 @@
 
           </ul>
           <div class="dropdown-wrapper">
-            <input type="text" class="search-form__input-text js--api-set" name="set" placeholder="Enter a set name or choose from the list">
+            <input type="text" autocomplete="off" class="search-form__input-text js--api-set" name="set" placeholder="Enter a set name or choose from the list">
             <div class="search-form__dropdown js--api-set-dropdown js--api-set-dropdown-list" hidden>
               <ul class="search-form__dropdown-list js--api-dropdown-sets js--api-dropdown-sets-target">
                 <li class="js--api-dropdown-sets-list js--sets-category-header js--expansion-header search-form__dropdown-list-category">Expansions</li>

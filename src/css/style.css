@@ -269,7 +269,7 @@ body {
         padding: .3rem 2rem;
         display: flex;
         align-items: center; }
-        .search-form__dropdown-list-option:hover {
+        .search-form__dropdown-list-option:hover, .search-form__dropdown-list-option:focus {
           background-color: #ccd8ff;
           cursor: pointer; }
         .search-form__dropdown-list-option span {

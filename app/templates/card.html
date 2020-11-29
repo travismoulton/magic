@@ -37,14 +37,16 @@
         <p class="card__text-stats card__text-flex">Loyalty: {{ face_one.loyalty }}</p>
       {% endif %}
 
-      <!-- This is only for double sided cards  -->
       {% if face_two %}
+        <!-- This is only for double sided cards  -->
         <div class="card__text-title card__text-flex">
           <h3 class="card__text-title-h3">{{ face_two.name }}</h3>
           <span class="js--card-mana-cost" data-mana-cost="{{ face_two.mana_cost }}"></span>
         </div>       
           <p class="card__text-type card__text-flex">
-            <span class="card__text-color-indicator card__text-color-indicator--{{ color_indicator.color }}"></span> 
+            {% if not adventure %}
+              <span class="card__text-color-indicator card__text-color-indicator--{{ color_indicator.color }}"></span> 
+            {% endif %}
             {{ face_two.type_line }}
           </p>
         <div class="card__text-oracle card__text-flex js--card-oracle">

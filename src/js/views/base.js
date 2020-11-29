@@ -39,7 +39,7 @@ export const elements = {
         lastPageBtn: document.querySelector('.js--api-last-page')
     },
     card: {
-        manaCostTitleSpan: document.querySelector('.js--card-mana-cost'),
+        manaCostTitleSpan: document.querySelectorAll('.js--card-mana-cost'),
         oracleTexts: document.querySelectorAll('.js--oracle-text-line'),
         legalities: document.querySelectorAll('.js--card-legality'),
         printRows: document.querySelectorAll('.js--card-print-row'),

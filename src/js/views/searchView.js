@@ -93,6 +93,8 @@ export const filterTypes = str => {
             console.log(type);
         }
     })
+
+    // document.querySelector('[data-type]').focus();
 }
 
 const removeTypeBtn = () => {
@@ -306,7 +308,9 @@ export const filterSets = str => {
     // that don't include the string given in the input from the user
     sets.forEach(s => {        
         if (s.hasAttribute('hidden')) s.removeAttribute('hidden');
-        if (!s.getAttribute('data-set-name').toLowerCase().includes(str.toLowerCase())) {
+
+        if (!s.getAttribute('data-set-name').toLowerCase().includes(str.toLowerCase()) &&
+          !s.getAttribute('data-set-code').toLowerCase().includes(str.toLowerCase())) {            
             s.setAttribute('hidden', 'true');
         }
     })
