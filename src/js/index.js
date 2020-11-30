@@ -34,9 +34,10 @@ if (window.location.pathname === '/search') {
         return false
     }
 
-    elements.apiSearch.typeLine.addEventListener('focus', () => {
+    elements.apiSearch.typeLine.addEventListener('click', () => {
         // Display the dropdown
         searchView.showTypesDropDown();
+        searchView.startTypesDropDownNavigation();
 
         // Start an event listener on the document. This will close the dropdown if the user clicks
         // outside of the input or dropdown. This will also cancel the event listener
@@ -44,13 +45,19 @@ if (window.location.pathname === '/search') {
     })
 
     elements.apiSearch.typeLine.addEventListener('input', () => {
+        if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
+            searchView.showTypesDropDown();
+        }
+
         searchView.filterTypes(elements.apiSearch.typeLine.value);
         searchView.filterTypeHeaders();
+        searchView.startTypesDropDownNavigation();
     })
 
-    elements.apiSearch.setInput.addEventListener('focus', () => {
+    elements.apiSearch.setInput.addEventListener('click', () => {
         // Display the dropdown
         searchView.showSetsDropDown();
+        searchView.startSetsDropDownNavigation();
 
         // Start an event listener on the document. This will close the dropdown if the user clicks
         // outside of the input or dropdown. This will also cancel the event listener
@@ -58,8 +65,13 @@ if (window.location.pathname === '/search') {
     })
 
     elements.apiSearch.setInput.addEventListener('input', () => {
+        if (elements.apiSearch.setDropDown.hasAttribute('hidden')) {
+            searchView.showSetsDropDown();
+        }
+
         searchView.filterSets(elements.apiSearch.setInput.value);
-        searchView.filterSetHeaders();
+        searchView.filterSetHeaders();        
+        searchView.startSetsDropDownNavigation();
     })
 } 
 

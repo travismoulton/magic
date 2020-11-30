@@ -269,9 +269,10 @@ body {
         padding: .3rem 2rem;
         display: flex;
         align-items: center; }
-        .search-form__dropdown-list-option:hover, .search-form__dropdown-list-option:focus {
-          background-color: #ccd8ff;
+        .search-form__dropdown-list-option:hover {
           cursor: pointer; }
+        .search-form__dropdown-list-option--highlighted {
+          background-color: #ccd8ff; }
         .search-form__dropdown-list-option span {
           text-transform: uppercase;
           margin-left: 1rem; }

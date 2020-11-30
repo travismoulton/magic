@@ -45,8 +45,8 @@ export default class Search {
                 temporaryStr += `type%3A${type.getAttribute('data-include-type')}+OR+`
             })
 
-            tempStr = tempStr.slice(0, -4);
-            this.search += `+%28${tempStr}%29`;
+            temporaryStr = temporaryStr.slice(0, -4);
+            this.search += `+%28${temporaryStr}%29`;
         }
 
         if (typesToExclude) {

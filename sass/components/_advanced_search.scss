@@ -145,18 +145,14 @@
                 display: flex;
                 align-items: center;
 
-                &:hover,
-                &:focus { 
-                    background-color: $color-display-nav-light;
-                    cursor: pointer;
-                }
+                &:hover { cursor: pointer; }
+
+                &--highlighted { background-color: $color-display-nav-light; }
 
                 & span { 
                     text-transform: uppercase;
                     margin-left: 1rem;
                 }
-
-
             }
 
             &-img {
