@@ -21,6 +21,7 @@ export const hideTypesDropDown = () => {
     if (!elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
         elements.apiSearch.typeLine.value = '';
         elements.apiSearch.typeDropDown.setAttribute('hidden', 'true');        
+        document.removeEventListener('keydown', navigateTypesDropDown);
     }
 }
 
@@ -111,24 +112,49 @@ const removeCurrentHighlight = () => {
     );
 };
 
+const setScrollTopOnDownArrow = (el, dropdown) => {
+    if (el.offsetTop > dropdown.offsetHeight - el.offsetHeight &&
+      dropdown.scrollTop + dropdown.offsetHeight - el.offsetHeight < el.offsetTop) {
+        dropdown.scrollTop = el.offsetTop - 
+          dropdown.offsetHeight + el.offsetHeight;
+    }
+}
+
+const setScrollTopOnUpArrow = (el, dropdown) => {
+    if (el.offsetTop < dropdown.scrollTop) {
+        dropdown.scrollTop = el.offsetTop;
+
+        // 30 is the height of category headers. If the category header is 
+        // the only element left that is not revealed, set teh scroll top to 0
+        if (dropdown.scrollTop <= 30) dropdown.scrollTop = 0;
+    }
+}
+
 const navigateTypesDropDown = e => {
     const types = Array.from(document.querySelectorAll('.js--type:not([hidden])'));
     const i = types.indexOf(document.querySelector('.js--highlighted'));
-    const dropdown = elements.apiSearch.typeDropDown;
 
     if (e.code === 'ArrowDown' && i < types.length - 1) {
-        removeCurrentHighlight()
+        e.preventDefault();
+        removeCurrentHighlight();
         highlightType(types[i + 1]);
 
-        // console.log(types[i + 1]);   
-        // console.log(dropdown);
-
-        dropdown.scrollTop = types[i + 1].offsetTop;        
+        setScrollTopOnDownArrow(types[i + 1], elements.apiSearch.typeDropDown);
     }
 
-    if (e.code === 'ArrowUp' && i > 0) {
-        removeCurrentHighlight()
-        highlightType(types[i - 1]);
+    if (e.code === 'ArrowUp') {
+        e.preventDefault();
+        
+        // We always want to prevent the default. We only want to change the
+        // highlight if not on the top type in the dropdown
+        if (i > 0) {
+            removeCurrentHighlight()
+            highlightType(types[i - 1]);
+    
+            setScrollTopOnUpArrow(
+                types[i - 1], elements.apiSearch.typeDropDown
+            );
+        }
     }
 
     if (e.code === 'Enter') {
@@ -144,15 +170,17 @@ const hoverOverTypesListener = () => {
     const types = Array.from(document.querySelectorAll('.js--type:not([hidden])'));
 
     types.forEach(type => {
-        type.addEventListener('mouseover', () => highlightType(type));
+        type.addEventListener('mouseenter', () => highlightType(type));
     })
 }
 
 export const startTypesDropDownNavigation = () => {
+    document.removeEventListener('keydown', navigateTypesDropDown);
     const firstType = document.querySelector('.js--type:not([hidden])');
     highlightType(firstType);
     hoverOverTypesListener();
     document.addEventListener('keydown', navigateTypesDropDown);
+    elements.apiSearch.typeDropDown.scrollTop = 0;
 }
 
 const removeTypeBtn = () => {
@@ -267,6 +295,7 @@ const hideSetsDropDown = () => {
     if (!elements.apiSearch.setDropDown.hasAttribute('hidden')) {
         elements.apiSearch.setDropDown.setAttribute('hidden', 'true');
         elements.apiSearch.setInput.value = '';
+        document.removeEventListener('keydown', navigateSetsDropDown);
     }
 }
 
@@ -403,13 +432,19 @@ const navigateSetsDropDown = e => {
     const i = sets.indexOf(document.querySelector('.js--highlighted'));
 
     if (e.code === 'ArrowDown' && i < sets.length - 1) {
+        e.preventDefault();
         removeCurrentHighlight()
         highlightSet(sets[i + 1]);
+
+        setScrollTopOnDownArrow(sets[i + 1], elements.apiSearch.setDropDown);
     }
 
     if (e.code === 'ArrowUp' && i > 0) {
+        e.preventDefault();
         removeCurrentHighlight()
         highlightSet(sets[i - 1]);
+
+        setScrollTopOnUpArrow(sets[i - 1], elements.apiSearch.setDropDown);
     }
 
     if (e.code === 'Enter') {
@@ -428,7 +463,7 @@ const hoverOverSetsListener = () => {
     const sets = Array.from(document.querySelectorAll('.js--set:not([hidden])'));
 
     sets.forEach(s => {
-        s.addEventListener('mouseover', () => highlightType(s));
+        s.addEventListener('mouseenter', () => highlightType(s));
     })
 }
 
@@ -436,7 +471,8 @@ export const startSetsDropDownNavigation = () => {
     const firstSet = document.querySelector('.js--set:not([hidden])');
     highlightSet(firstSet);
     hoverOverSetsListener();
-    document.addEventListener('keydown', navigateSetsDropDown)
+    document.addEventListener('keydown', navigateSetsDropDown);
+    elements.apiSearch.setDropDown.scrollTop = 0;
 }
 
 const removeSetBtn = () => {
