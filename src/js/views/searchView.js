@@ -530,3 +530,53 @@ export const setInputListener = e => {
     }
 }
 
+// ******************************* \\
+// ************ STATS ************ \\
+// ******************************* \\
+
+export const statLineController = () => {
+    if (checkStatLineForInteger() && checkForLessThanFourStatLines()) {
+        editStatsClone();
+        resetStatLineEventListener();
+    }
+}
+
+const checkStatLineForInteger = () => {
+    const statVal = Array.from(document.querySelectorAll(
+        '.js--api-stat-value'
+    )).slice(-1)[0];
+
+    return (parseInt(statVal.value) >= 0 ? true : false);
+};
+
+const checkForLessThanFourStatLines = () => {
+    const stats = Array.from(document.querySelectorAll('.js--api-stat-value'));
+
+    return (stats.length < 4 ? true : false);
+}
+
+const createStatsClone = () => {
+    return document.querySelector('.js--api-stats-wrapper').cloneNode(true);
+};
+
+const editStatsClone = () => {
+    const clone = createStatsClone();
+    clone.querySelector('.js--api-stat').value = '';
+    clone.querySelector('.js--api-stat-filter').value = '';
+    clone.querySelector('.js--api-stat-value').value = '';
+    
+    const lastStatLine = Array.from(document.querySelectorAll(
+        '.js--api-stats-wrapper'
+    )).slice(-1)[0];
+
+    lastStatLine.insertAdjacentElement('afterend', clone);
+}
+
+const resetStatLineEventListener = () => {
+    const statValues = Array.from(
+        document.querySelectorAll('.js--api-stat-value')
+    );
+    statValues.slice(-2)[0].removeEventListener('input', statLineController);
+    statValues.slice(-1)[0].addEventListener('input', statLineController);
+}
+

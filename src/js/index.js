@@ -73,6 +73,10 @@ if (window.location.pathname === '/search') {
         searchView.filterSetHeaders();        
         searchView.startSetsDropDownNavigation();
     })
+
+    elements.apiSearch.statValue.addEventListener(
+        'input', searchView.statLineController
+    );
 } 
 
  
