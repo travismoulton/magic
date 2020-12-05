@@ -375,16 +375,12 @@ export const changeDisplayAndUrl = state => {
     // Update the state with new display method
     state.display = newMethod;
 
-    // // If the display method has changed, update the URL
-    // window.location.pathname = `results/${newMethod}/${state.query}`
-
     // Update the url without pushing to the server
     const title = document.title;
     const pathName = `/results/${newMethod}/${state.query}`
     history.pushState({
         currentIndex: state.currentIndex,
         display: state.display,
-        //cards: state.allCards
     }, title, pathName);
 
 }
@@ -448,3 +444,53 @@ export const disableBtn = btn => {
     }
 }
 
+
+// ********************************************** \\
+// ********************* 404 ******************** \\
+// ********************************************** \\
+
+export const display404 = () => {
+    const div = create404Message();
+    elements.resultsPage.resultsContainer.appendChild(div);
+}
+
+const create404Div = () => {
+    const div = document.createElement('div');
+    div.classList = `no-results`
+    return div;
+}
+
+const create404h3 = () => {
+    const h3 = document.createElement('h3');
+    h3.classList = `no-results__h3`;
+    h3.innerHTML = `No cards found`;
+    return h3;
+}
+
+const create404pElement = () => {
+    const p = document.createElement('p');
+    p.classList = `no-results__p`
+    p.innerHTML = 'Your search didn\'t match any cards. Go back to the search page and edit your search';
+    return p;    
+}
+
+const create404Btn = () => {
+    const btn = document.createElement('a');
+    btn.classList = `btn no-results__btn`
+    btn.href = '/search';
+    btn.innerHTML = 'Go Back';
+    return btn;
+}
+
+const create404Message = () => {
+    const div = create404Div();
+    const h3 = create404h3();
+    const p = create404pElement();
+    const btn = create404Btn();
+
+    div.appendChild(h3);
+    div.appendChild(p);
+    div.appendChild(btn);
+
+    return div;
+}

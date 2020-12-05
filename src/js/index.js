@@ -105,6 +105,12 @@ if (window.location.pathname.substring(1, 8) === 'results') {
 
         // Run the get cards function, then update the display bar with the total card count
         await state.search.getCards(state);
+
+        if (state.allCards[0] === 404) {
+            resultsView.display404();
+            return
+        }
+
         resultsView.updateDisplayBar(state);
         console.log(state.search.cards);
         console.log(state.query)

@@ -536,7 +536,9 @@ export const setInputListener = e => {
 
 export const statLineController = () => {
     if (checkStatLineForInteger() && checkForLessThanFourStatLines()) {
-        editStatsClone();
+        const clone = createStatsClone();
+        editStatsClone(clone);
+        insertStatsClone(clone);
         resetStatLineEventListener();
     }
 }
@@ -556,15 +558,16 @@ const checkForLessThanFourStatLines = () => {
 }
 
 const createStatsClone = () => {
-    return document.querySelector('.js--api-stats-wrapper').cloneNode(true);
+    return document.querySelector('.js--api-stats-wrapper').cloneNode(true); 
 };
 
-const editStatsClone = () => {
-    const clone = createStatsClone();
+const editStatsClone = clone => {
     clone.querySelector('.js--api-stat').value = '';
     clone.querySelector('.js--api-stat-filter').value = '';
-    clone.querySelector('.js--api-stat-value').value = '';
-    
+    clone.querySelector('.js--api-stat-value').value = '';   
+}
+
+const insertStatsClone = clone => {
     const lastStatLine = Array.from(document.querySelectorAll(
         '.js--api-stats-wrapper'
     )).slice(-1)[0];

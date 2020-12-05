@@ -194,6 +194,7 @@ def display_card(card_set, card_name):
         face_one = card
         face_two = None
         adventure = False
+        color_indicator = None
     
     # Used to display the list of prints. This gets all different prints and
     # stores them in a list

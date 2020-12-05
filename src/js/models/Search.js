@@ -72,11 +72,19 @@ export default class Search {
     }
     
     searchByStats() {
-        const stat = elements.apiSearch.stat.value;
-        const sortBy = elements.apiSearch.statFilter.value;
-        const sortValue = elements.apiSearch.statValue.value;
+        const statLines = Array.from(document.querySelectorAll(
+            '.js--api-stats-wrapper'
+        ));
 
-        if (sortValue) this.search += `+${stat}${sortBy}${sortValue}`;
+        statLines.forEach(line => {
+            const stat = line.querySelector('.js--api-stat').value;
+            const sortBy = line.querySelector('.js--api-stat-filter').value;
+            const sortValue = line.querySelector('.js--api-stat-value').value;
+
+            if (stat && sortBy && sortValue) {
+                this.search += `+${stat}${sortBy}${sortValue}`
+            }
+        })
     }
     
     searchByFormat() {
@@ -177,7 +185,12 @@ export default class Search {
                 state.allCards.push(res.data.data)
                 resolve();
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                if (err.response.status === 404) {
+                    state.allCards.push(404);
+                    resolve();
+                }
+            });
         })
     }
 
