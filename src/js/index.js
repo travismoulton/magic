@@ -7,6 +7,18 @@ import * as cardView from './views/cardView';
 import { elements } from './views/base';
 
 
+// ******************************* \\
+// ********* Quick Search ******** \\
+// ******************************* \\
+elements.nav.quickSearchBtn.addEventListener('click', () => {
+    const search = new Search();
+
+    if (elements.nav.searchInput.value !== '') {
+        const query = search.quickSearch();
+        window.location.href = `/results/list/${query}&order=name`
+    }
+})
+
 
 // ******************************* \\
 // ********* Search Page ********* \\
@@ -112,8 +124,6 @@ if (window.location.pathname.substring(1, 8) === 'results') {
         }
 
         resultsView.updateDisplayBar(state);
-        console.log(state.search.cards);
-        console.log(state.query)
 
         // In the background, get all cards 
         state.search.getAllCards(state, resultsView.enableBtn);

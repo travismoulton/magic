@@ -143,6 +143,12 @@ export default class Search {
         if (inputVal) this.search += `+${denomination}${sortBy}${inputVal}`;
     }
 
+    quickSearch() {
+        let cardName = elements.nav.searchInput.value;
+        cardName = cardName.replace(' ', '+');
+        return cardName;
+    }
+
     sortResults() {
         const sortBy = elements.apiSearch.cardSorter.value;
         this.search += `&order=${sortBy}`

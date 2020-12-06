@@ -13,3 +13,5 @@ env
 migrations
 
 package-lock.json
+
+Procfile

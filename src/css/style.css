@@ -112,6 +112,8 @@ body {
       .nav__search-input:focus {
         outline: none;
         width: 120%; }
+    .nav__search-btn {
+      cursor: pointer; }
   .nav__icon-sizing--home {
     width: 3rem;
     height: 3rem; }

@@ -1,4 +1,8 @@
 export const elements = {
+    nav: {
+        quickSearchBtn: document.querySelector('.js--nav-search'),
+        searchInput: document.querySelector('.js--nav-search-input'),
+    },
     apiSearch: {
         cardName: document.querySelector('.js--api-card-name'),
         oracleText: document.querySelector('.js--api-o-text'),
