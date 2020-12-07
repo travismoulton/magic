@@ -89,6 +89,12 @@ if (window.location.pathname === '/search') {
     elements.apiSearch.statValue.addEventListener(
         'input', searchView.statLineController
     );
+
+    elements.apiSearch.format.addEventListener(
+        'change', searchView.formatLineController
+    );
+
+
 } 
 
  

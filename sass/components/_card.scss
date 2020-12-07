@@ -1,6 +1,5 @@
 .card {
-    display: flex;
-    grid-column: center-start / center-end;
+    display: flex;    
     margin-top: 3rem;
 
     // Single  sided cards
@@ -233,7 +232,29 @@
                 margin-right: .7rem;
             }
         }
+    }
+}
 
+.card-page {
+    display: flex;
+    flex-direction: column;
+    grid-column: center-start / center-end;
+}
 
+.add-to-inv {
+    margin-top: 3rem;
+    width: 50%;
+    
+    &__form {
+        display: flex;
+        flex-direction: column;
+
+        &-group {
+            display: flex;
+            align-content: center;
+            margin-bottom: 3rem;
+        }
+
+        &-label { margin-right: .3rem; }
     }
 }

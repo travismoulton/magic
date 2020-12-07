@@ -2,13 +2,16 @@ from app import db, login
 from datetime import datetime
 from flask_login import UserMixin
 from passlib.hash import sha256_crypt
+from sqlalchemy import ForeignKey
 
 
 class User(UserMixin, db.Model):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email= db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    cards = db.Column(db.Integer, ForeignKey("card.id"))
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -26,6 +29,7 @@ def load_user(id):
 
 
 class Card(db.Model):
+    __tablename__ = 'cards'
     id = db.Column(db.Integer, primary_key=True)
     artist = db.Column(db.String(64))
     booster = db.Column(db.Boolean)
@@ -40,9 +44,6 @@ class Card(db.Model):
     foil = db.Column(db.Boolean)
     full_art = db.Column(db.String)
 
-    # Same thought process for games
-    games = db.Column(db.String(256))
-
     highres_image = db.Column(db.Boolean)
     scryfall_id = db.Column(db.String(128))
 
@@ -56,42 +57,18 @@ class Card(db.Model):
 
     keywords = db.Column(db.String(128))
 
-    # Legalities
-    legality_brawl = db.Column(db.Boolean)
-    legality_commander = db.Column(db.Boolean)
-    legality_duel = db.Column(db.Boolean)
-    legality_future = db.Column(db.Boolean)
-    legality_historic = db.Column(db.Boolean)
-    legality_legacy = db.Column(db.Boolean)
-    legality_modern = db.Column(db.Boolean)
-    legality_oldschool = db.Column(db.Boolean)
-    legality_pauper = db.Column(db.Boolean)
-    legality_penny = db.Column(db.Boolean)
-    legality_standard = db.Column(db.Boolean)
-    legality_vintage = db.Column(db.Boolean)
-    legality_brawl = db.Column(db.Boolean)
-
-    mana_cost = db.Column(db.String(16))
+    mana_cost = db.Column(db.String(32))
     name = db.Column(db.String(128))
     nonfoil = db.Column(db.Boolean)
-    oracle_id = db.Column(db.String(128))
-    oracle_text = db.Column(db.String(512))
-    power = db.Column(db.Integer)
     
     # Prices
     price_usd = db.Column(db.Integer)
-    price_eur = db.Column(db.Integer)
-    price_eur_foil = db.Column(db.Integer)
-    price_usd_foil = db.Column(db.Integer)
-    price_tix = db.Column(db.Integer)
 
     promo = db.Column(db.Boolean)
     set_code = db.Column(db.String(8))
     set_name = db.Column(db.String(128))
     set_search_uri = db.Column(db.String(128))
     set_uri = db.Column(db.String(128))
-    tcgplayer_id = db.Column(db.Integer)
-    toughness = db.Column(db.Integer)
     type_line = db.Column(db.String(128))
     uri = db.Column(db.String(128))
 
@@ -100,6 +77,7 @@ class Card(db.Model):
 
 
 class Type(db.Model):
+    __tablename__ = 'types'
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(64))
     name = db.Column(db.String(64))
@@ -109,6 +87,7 @@ class Type(db.Model):
 
 
 class Set(db.Model):
+    __tablename__ = 'sets'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
     code = db.Column(db.String(32))

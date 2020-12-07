@@ -541,7 +541,7 @@ export const statLineController = () => {
         insertStatsClone(clone);
         resetStatLineEventListener();
     }
-}
+};
 
 const checkStatLineForInteger = () => {
     const statVal = Array.from(document.querySelectorAll(
@@ -555,7 +555,7 @@ const checkForLessThanFourStatLines = () => {
     const stats = Array.from(document.querySelectorAll('.js--api-stat-value'));
 
     return (stats.length < 4 ? true : false);
-}
+};
 
 const createStatsClone = () => {
     return document.querySelector('.js--api-stats-wrapper').cloneNode(true); 
@@ -565,7 +565,7 @@ const editStatsClone = clone => {
     clone.querySelector('.js--api-stat').value = '';
     clone.querySelector('.js--api-stat-filter').value = '';
     clone.querySelector('.js--api-stat-value').value = '';   
-}
+};
 
 const insertStatsClone = clone => {
     const lastStatLine = Array.from(document.querySelectorAll(
@@ -573,7 +573,7 @@ const insertStatsClone = clone => {
     )).slice(-1)[0];
 
     lastStatLine.insertAdjacentElement('afterend', clone);
-}
+};
 
 const resetStatLineEventListener = () => {
     const statValues = Array.from(
@@ -581,5 +581,57 @@ const resetStatLineEventListener = () => {
     );
     statValues.slice(-2)[0].removeEventListener('input', statLineController);
     statValues.slice(-1)[0].addEventListener('input', statLineController);
-}
+};
 
+// ******************************* \\
+// ********* LEGAL STATUS ******** \\
+// ******************************* \\
+
+
+export const formatLineController = () => {
+    console.log(checkForFourLessThanFormatLines())
+    if (checkForFourLessThanFormatLines() && checkFormatLineForValue()) {
+        const clone = createFormatClone();
+        editFormatClone(clone);
+        insertFormatClone(clone);
+        resetFormatLineEventListener();
+    }
+};
+
+const checkFormatLineForValue = () => {
+    const format = Array.from(document.querySelectorAll(
+        '.js--api-format'
+    )).slice(-1)[0];
+
+    return (format.value !== '' ? true : false);
+};
+
+const checkForFourLessThanFormatLines = () => {
+    const formats = Array.from(document.querySelectorAll('.js--api-format'));
+    return (formats.length < 4 ? true : false);
+};
+
+const createFormatClone = () => {
+    return document.querySelector('.js--api-format-wrapper').cloneNode(true);
+};
+
+const editFormatClone = clone => {
+    clone.querySelector('.js--api-legal-status').value = '';
+    clone.querySelector('.js--api-format').value = '';
+};
+
+const insertFormatClone = clone => {
+    const lastFormatLine = Array.from(document.querySelectorAll(
+        '.js--api-format-wrapper'
+    )).slice(-1)[0];
+
+    lastFormatLine.insertAdjacentElement('afterend', clone);
+};
+
+const resetFormatLineEventListener = () => {
+    const formats = Array.from(
+        document.querySelectorAll('.js--api-format')
+    );
+    formats.slice(-2)[0].removeEventListener('change', formatLineController);
+    formats.slice(-1)[0].addEventListener('change', formatLineController);
+};

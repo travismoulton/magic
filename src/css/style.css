@@ -405,7 +405,6 @@ body {
 
 .card {
   display: flex;
-  grid-column: center-start / center-end;
   margin-top: 3rem; }
   .card__img-container {
     margin-right: 10rem; }
@@ -572,6 +571,24 @@ body {
         margin-left: .5rem; }
       .card__set-prints-list-item-price {
         margin-right: .7rem; }
+
+.card-page {
+  display: flex;
+  flex-direction: column;
+  grid-column: center-start / center-end; }
+
+.add-to-inv {
+  margin-top: 3rem;
+  width: 50%; }
+  .add-to-inv__form {
+    display: flex;
+    flex-direction: column; }
+    .add-to-inv__form-group {
+      display: flex;
+      align-content: center;
+      margin-bottom: 3rem; }
+    .add-to-inv__form-label {
+      margin-right: .3rem; }
 
 .no-results {
   justify-self: center; }

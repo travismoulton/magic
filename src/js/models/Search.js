@@ -88,10 +88,16 @@ export default class Search {
     }
     
     searchByFormat() {
-        const legalStatus = elements.apiSearch.legalStatus.value;
-        const format = elements.apiSearch.format.value;
- 
-        if (format) this.search += `+${legalStatus}%3A${format}`;
+        const formatLines = Array.from(document.querySelectorAll(
+            '.js--api-format-wrapper'
+        ));
+
+        formatLines.forEach(line => {
+            const status = line.querySelector('.js--api-legal-status').value;
+            const format = line.querySelector('.js--api-format').value;
+
+            if (format && status) this.search += `+${status}%3A${format}`;
+        })
     }
 
     searchBySet() {

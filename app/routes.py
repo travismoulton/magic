@@ -176,8 +176,12 @@ def display_card(card_set, card_name):
         # both situations in card.html
         if not card['type_line'].endswith('Adventure'):
             card['image_uris'] = { 'large': face_one['image_uris']['large'] }
-            color_indicator = { 'color': face_two['color_indicator'][0] }
             adventure = False
+
+            if 'color_indicator' in face_two:
+                color_indicator = { 'color': face_two['color_indicator'][0] }
+            else:
+                color_indicator = None
         
         if card['type_line'].endswith('Adventure'):
             color_indicator = None
@@ -220,74 +224,74 @@ def display_card(card_set, card_name):
     )
 
 
-# One time route to store the types in a data base
-@app.route('/get_types')
-def get_types():
-    creature_types = requests.get('https://api.scryfall.com/catalog/creature-types').json()['data']
-    planeswalker_types = requests.get('https://api.scryfall.com/catalog/planeswalker-types').json()['data']
-    land_types = requests.get('https://api.scryfall.com/catalog/land-types').json()['data']
-    artifact_types = requests.get('https://api.scryfall.com/catalog/artifact-types').json()['data']
-    enchantment_types = requests.get('https://api.scryfall.com/catalog/enchantment-types').json()['data']
-    spell_types = requests.get('https://api.scryfall.com/catalog/spell-types').json()['data']  
+# # One time route to store the types in a data base
+# @app.route('/get_types')
+# def get_types():
+#     creature_types = requests.get('https://api.scryfall.com/catalog/creature-types').json()['data']
+#     planeswalker_types = requests.get('https://api.scryfall.com/catalog/planeswalker-types').json()['data']
+#     land_types = requests.get('https://api.scryfall.com/catalog/land-types').json()['data']
+#     artifact_types = requests.get('https://api.scryfall.com/catalog/artifact-types').json()['data']
+#     enchantment_types = requests.get('https://api.scryfall.com/catalog/enchantment-types').json()['data']
+#     spell_types = requests.get('https://api.scryfall.com/catalog/spell-types').json()['data']  
 
-    for creature_type in creature_types:
-        print(creature_type)
-        creature = Type(name=creature_type, category='creature')
-        db.session.add(creature)
+#     for creature_type in creature_types:
+#         print(creature_type)
+#         creature = Type(name=creature_type, category='creature')
+#         db.session.add(creature)
     
-    print('*****************************')
+#     print('*****************************')
 
-    for planeswalker_type in planeswalker_types:
-        planeswalker = Type(name=planeswalker_type, category='planeswalker')
-        db.session.add(planeswalker)
+#     for planeswalker_type in planeswalker_types:
+#         planeswalker = Type(name=planeswalker_type, category='planeswalker')
+#         db.session.add(planeswalker)
     
-    print('*****************************')
+#     print('*****************************')
 
-    for land_type in land_types:
-        land = Type(name=land_type, category='land')
-        db.session.add(land)
+#     for land_type in land_types:
+#         land = Type(name=land_type, category='land')
+#         db.session.add(land)
     
-    print('*****************************')
+#     print('*****************************')
 
-    for artifact_type in artifact_types:
-        artifact = Type(name=artifact_type, category='artifact')
-        db.session.add(artifact)
+#     for artifact_type in artifact_types:
+#         artifact = Type(name=artifact_type, category='artifact')
+#         db.session.add(artifact)
     
-    print('*****************************')
+#     print('*****************************')
 
-    for enchantment_type in enchantment_types:
-        enchantment = Type(name=enchantment_type, category='enchantment')
-        db.session.add(enchantment)
+#     for enchantment_type in enchantment_types:
+#         enchantment = Type(name=enchantment_type, category='enchantment')
+#         db.session.add(enchantment)
     
-    print('*****************************')
+#     print('*****************************')
 
-    for spell_type in spell_types:
-        spell = Type(name=spell_type, category='spell')
-        db.session.add(spell)
+#     for spell_type in spell_types:
+#         spell = Type(name=spell_type, category='spell')
+#         db.session.add(spell)
     
-    print('*****************************')
+#     print('*****************************')
 
-    db.session.commit()
-    return render_template('get_types.html')
+#     db.session.commit()
+#     return render_template('get_types.html')
 
 
-# One time route to store the sets in the database
-@app.route('/get_sets')
-def get_sets():
-    sets = requests.get('https://api.scryfall.com/sets').json()['data']
+# # One time route to store the sets in the database
+# @app.route('/get_sets')
+# def get_sets():
+#     sets = requests.get('https://api.scryfall.com/sets').json()['data']
 
-    for s in sets:
-        new_set = Set(
-            name=s['name'],
-            code=s['code'],
-            svg=s['icon_svg_uri'],
-            set_type=s['set_type']
-        )
-        db.session.add(new_set)
+#     for s in sets:
+#         new_set = Set(
+#             name=s['name'],
+#             code=s['code'],
+#             svg=s['icon_svg_uri'],
+#             set_type=s['set_type']
+#         )
+#         db.session.add(new_set)
     
-    db.session.commit()
+#     db.session.commit()
     
-    return render_template('get_types.html')
+#     return render_template('get_types.html')
 
 
 # Currently not going to use this. Doesn't seem like it's having an impact on performance.
