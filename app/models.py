@@ -5,13 +5,15 @@ from passlib.hash import sha256_crypt
 from sqlalchemy import ForeignKey
 
 
+
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email= db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    cards = db.Column(db.Integer, ForeignKey("card.id"))
+
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -35,6 +37,8 @@ class Card(db.Model):
     booster = db.Column(db.Boolean)
     cardmarket_id = db.Column(db.Integer)
     cmc = db.Column(db.Integer)
+
+    just_testing = db.Column(db.Integer)
 
     # Should I just store the colors as a string and break the string apart as needed?
     # That is what I am currently doing here
