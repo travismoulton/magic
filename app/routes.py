@@ -2,7 +2,7 @@ import requests
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from app import app, db
 from flask_login import login_user, logout_user, current_user, login_required
-from app.models import User, Type, Set
+from app.models import User, Type, Set, Card, Inventory
 import os
 
 api_response = {}
@@ -153,8 +153,50 @@ def results(query, display_method):
 
 
 
-@app.route('/card/<string:card_set>/<string:card_name>')
+@app.route('/card/<string:card_set>/<string:card_name>', methods=['GET', 'POST'])
 def display_card(card_set, card_name):
+    if request.method == 'POST':   
+        # Grab the card with an api call to scryall using the set and card name. 
+        card = requests.get(
+            f'https://api.scryfall.com/cards/search?q={card_name}+set%3A{card_set}'
+        ).json()['data'][0]
+
+        if not Card.query.filter_by(name=card['name']).first():
+            new_card = Card(
+                artist = card['artist'],
+                booster = card['booster'],
+                cardmarket_id = card['cardmarket_id'],
+                cmc = card['cmc'],
+                colors = card['colors'],
+                foil = card['foil'],
+                full_art = card['full_art'],
+                highres_image = card['highres_image'],
+                scryfall_id = card['id'],
+                image_uri_small = card['image_uris']['small'],
+                image_uri_normal = card['image_uris']['normal'],
+                image_uri_large = card['image_uris']['large'],
+                image_uri_art_crop = card['image_uris']['art_crop'],
+                image_uri_border_crop = card['image_uris']['border_crop'],
+                image_uri_png = card['image_uris']['png'],
+                mana_cost = card['mana_cost'],
+                name = card['name'],
+                price_usd = card['prices']['usd'],
+                promo = card['promo'],
+                set_code = card['set'],
+                set_name = card['set_name'],
+                type_line = card['type_line'],
+            )
+            db.session.add(new_card)
+        
+        user = User.query.filter_by(username=current_user.username).one()
+        new_card = Card.query.filter_by(name=card['name']).one()
+        i = Inventory(card=new_card.id, user=user.id, purchase_price=5)
+        user.cards.append(i)
+
+
+        db.session.commit()
+
+
     # Grab the card with an api call to scryall using the set and card name. 
     card = requests.get(
         f'https://api.scryfall.com/cards/search?q={card_name}+set%3A{card_set}'
