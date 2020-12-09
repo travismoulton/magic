@@ -26,7 +26,6 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     cards = db.relationship('Inventory')  
 
-
     def __repr__(self):
         return f'<User {self.username}>'
 
@@ -104,9 +103,3 @@ class Set(db.Model):
 
     def __repr__(self):
         return f'<Set: {self.name}, {self.code}, {self.set_type}>'
-
-
-
-
-
-

@@ -152,6 +152,61 @@ def results(query, display_method):
     return render_template('search-results.html')
 
 
+def add_card(card):
+
+    if not 'card_faces' in card:
+        new_card = Card(
+            artist = card['artist'],
+            booster = card['booster'],
+            cardmarket_id = card['cardmarket_id'],
+            cmc = card['cmc'],
+            colors = card['colors'],
+            foil = card['foil'],
+            full_art = card['full_art'],
+            highres_image = card['highres_image'],
+            scryfall_id = card['id'],
+            image_uri_small = card['image_uris']['small'],
+            image_uri_normal = card['image_uris']['normal'],
+            image_uri_large = card['image_uris']['large'],
+            image_uri_art_crop = card['image_uris']['art_crop'],
+            image_uri_border_crop = card['image_uris']['border_crop'],
+            image_uri_png = card['image_uris']['png'],
+            mana_cost = card['mana_cost'],
+            name = card['name'],
+            price_usd = card['prices']['usd'],
+            promo = card['promo'],
+            set_code = card['set'],
+            set_name = card['set_name'],
+            type_line = card['type_line'],
+        )
+    
+    if 'card_faces' in card:
+        new_card = Card(
+            artist = card['artist'],
+            booster = card['booster'],
+            cardmarket_id = card['cardmarket_id'],
+            cmc = card['cmc'],
+            colors = card['card_faces'][0]['colors'],
+            foil = card['foil'],
+            full_art = card['full_art'],
+            highres_image = card['highres_image'],
+            scryfall_id = card['id'],
+            image_uri_small = card['card_faces'][0]['image_uris']['small'],
+            image_uri_normal = card['card_faces'][0]['image_uris']['normal'],
+            image_uri_large = card['card_faces'][0]['image_uris']['large'],
+            image_uri_art_crop = card['card_faces'][0]['image_uris']['art_crop'],
+            image_uri_border_crop = card['card_faces'][0]['image_uris']['border_crop'],
+            image_uri_png = card['card_faces'][0]['image_uris']['png'],
+            mana_cost = card['card_faces'][0]['mana_cost'],
+            name = card['name'],
+            price_usd = card['prices']['usd'],
+            promo = card['promo'],
+            set_code = card['set'],
+            set_name = card['set_name'],
+            type_line = card['card_faces'][0]['type_line'],
+        )
+    db.session.add(new_card)    
+
 
 @app.route('/card/<string:card_set>/<string:card_name>', methods=['GET', 'POST'])
 def display_card(card_set, card_name):
@@ -162,37 +217,19 @@ def display_card(card_set, card_name):
         ).json()['data'][0]
 
         if not Card.query.filter_by(name=card['name']).first():
-            new_card = Card(
-                artist = card['artist'],
-                booster = card['booster'],
-                cardmarket_id = card['cardmarket_id'],
-                cmc = card['cmc'],
-                colors = card['colors'],
-                foil = card['foil'],
-                full_art = card['full_art'],
-                highres_image = card['highres_image'],
-                scryfall_id = card['id'],
-                image_uri_small = card['image_uris']['small'],
-                image_uri_normal = card['image_uris']['normal'],
-                image_uri_large = card['image_uris']['large'],
-                image_uri_art_crop = card['image_uris']['art_crop'],
-                image_uri_border_crop = card['image_uris']['border_crop'],
-                image_uri_png = card['image_uris']['png'],
-                mana_cost = card['mana_cost'],
-                name = card['name'],
-                price_usd = card['prices']['usd'],
-                promo = card['promo'],
-                set_code = card['set'],
-                set_name = card['set_name'],
-                type_line = card['type_line'],
-            )
-            db.session.add(new_card)
+            add_card(card)
+
+        price = float(request.form.get('price'))
         
         user = User.query.filter_by(username=current_user.username).one()
         new_card = Card.query.filter_by(name=card['name']).one()
-        i = Inventory(card=new_card.id, user=user.id, purchase_price=5)
-        user.cards.append(i)
 
+        if not Inventory.query.filter_by(card=new_card.id, user=user.id).first():
+            i = Inventory(card=new_card.id, user=user.id, purchase_price=price, quantity=1)
+            user.cards.append(i)
+        else: 
+            i = Inventory.query.filter_by(card=new_card.id, user=user.id).one()
+            i.quantity += 1
 
         db.session.commit()
 
