@@ -586,9 +586,15 @@ body {
     .add-to-inv__form-group {
       display: flex;
       align-content: center;
-      margin-bottom: 3rem; }
+      margin-bottom: 3rem;
+      position: relative; }
     .add-to-inv__form-label {
       margin-right: .3rem; }
+  .add-to-inv-price-msg {
+    position: absolute;
+    bottom: -1.8rem;
+    right: 25%;
+    color: red; }
 
 .no-results {
   justify-self: center; }

@@ -4,15 +4,13 @@ from flask_login import UserMixin
 from passlib.hash import sha256_crypt
 from sqlalchemy import ForeignKey
 
-# user_inventory = db.Table('user_inventory',
-#     db.Column('card_id', db.Integer, db.ForeignKey('cards.id'), primary_key=True),
-#     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-# )
 
 class Inventory(db.Model):
-    card = db.Column(db.Integer, db.ForeignKey('cards.id'), primary_key=True)
-    user = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    card = db.Column(db.Integer, db.ForeignKey('cards.id'), nullable=False)
+    user = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     purchase_price = db.Column(db.Integer)
+    current_price = db.Column(db.String(16))
 
     def __repr__(self):
         return f'{Card.query.filter_by(id=self.card).first()}'
@@ -25,6 +23,7 @@ class User(UserMixin, db.Model):
     email= db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     cards = db.relationship('Inventory')  
+
 
     def __repr__(self):
         return f'<User {self.username}>'

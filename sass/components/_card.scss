@@ -247,14 +247,22 @@
     
     &__form {
         display: flex;
-        flex-direction: column;
+        flex-direction: column; 
 
         &-group {
             display: flex;
             align-content: center;
             margin-bottom: 3rem;
+            position: relative;
         }
 
         &-label { margin-right: .3rem; }
+    }
+
+    &-price-msg {
+        position: absolute;
+        bottom: -1.8rem;
+        right: 25%;
+        color: red;
     }
 }

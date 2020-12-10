@@ -144,3 +144,23 @@ export const printListHoverEvents = () => {
     });
 };
 
+export const checkPriceInputForDigits = e => {
+
+    const priceInput = document.querySelector('.js--add-to-inv-price').value;
+
+    if (typeof(parseInt(priceInput)) !== 'number' || priceInput === '') {
+        e.preventDefault();
+        renderPriceInputErrorMessage();
+        return false;
+    }
+}
+
+const renderPriceInputErrorMessage = () => {
+    const priceInputDiv = document.querySelector('.js--add-to-inv-price-div');
+    const msg = `<p class="add-to-inv-price-msg">Invalid price. Must be a number.</p>`;
+
+    if (!document.querySelector('.add-to-inv-price-msg')) {
+        priceInputDiv.insertAdjacentHTML('beforeend', msg);
+    }    
+}
+

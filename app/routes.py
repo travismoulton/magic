@@ -153,59 +153,46 @@ def results(query, display_method):
 
 
 def add_card(card):
+    new_card = Card(
+            artist = card['artist'],
+            booster = card['booster'],
+            cardmarket_id = card['cardmarket_id'],
+            cmc = card['cmc'],
+            foil = card['foil'],
+            full_art = card['full_art'],
+            highres_image = card['highres_image'],
+            scryfall_id = card['id'],
+            name = card['name'],
+            price_usd = card['prices']['usd'],
+            promo = card['promo'],
+            set_code = card['set'],
+            set_name = card['set_name'],
+    )
 
     if not 'card_faces' in card:
-        new_card = Card(
-            artist = card['artist'],
-            booster = card['booster'],
-            cardmarket_id = card['cardmarket_id'],
-            cmc = card['cmc'],
-            colors = card['colors'],
-            foil = card['foil'],
-            full_art = card['full_art'],
-            highres_image = card['highres_image'],
-            scryfall_id = card['id'],
-            image_uri_small = card['image_uris']['small'],
-            image_uri_normal = card['image_uris']['normal'],
-            image_uri_large = card['image_uris']['large'],
-            image_uri_art_crop = card['image_uris']['art_crop'],
-            image_uri_border_crop = card['image_uris']['border_crop'],
-            image_uri_png = card['image_uris']['png'],
-            mana_cost = card['mana_cost'],
-            name = card['name'],
-            price_usd = card['prices']['usd'],
-            promo = card['promo'],
-            set_code = card['set'],
-            set_name = card['set_name'],
-            type_line = card['type_line'],
-        )
+        new_card.colors = card['colors']
+        new_card.image_uri_small = card['image_uris']['small']
+        new_card.image_uri_normal = card['image_uris']['normal']
+        new_card.image_uri_large = card['image_uris']['large']
+        new_card.image_uri_art_crop = card['image_uris']['art_crop']
+        new_card.image_uri_border_crop = card['image_uris']['border_crop']
+        new_card.image_uri_png = card['image_uris']['png']
+        new_card.mana_cost = card['mana_cost']
+        new_card.type_line = card['type_line']
     
     if 'card_faces' in card:
-        new_card = Card(
-            artist = card['artist'],
-            booster = card['booster'],
-            cardmarket_id = card['cardmarket_id'],
-            cmc = card['cmc'],
-            colors = card['card_faces'][0]['colors'],
-            foil = card['foil'],
-            full_art = card['full_art'],
-            highres_image = card['highres_image'],
-            scryfall_id = card['id'],
-            image_uri_small = card['card_faces'][0]['image_uris']['small'],
-            image_uri_normal = card['card_faces'][0]['image_uris']['normal'],
-            image_uri_large = card['card_faces'][0]['image_uris']['large'],
-            image_uri_art_crop = card['card_faces'][0]['image_uris']['art_crop'],
-            image_uri_border_crop = card['card_faces'][0]['image_uris']['border_crop'],
-            image_uri_png = card['card_faces'][0]['image_uris']['png'],
-            mana_cost = card['card_faces'][0]['mana_cost'],
-            name = card['name'],
-            price_usd = card['prices']['usd'],
-            promo = card['promo'],
-            set_code = card['set'],
-            set_name = card['set_name'],
-            type_line = card['card_faces'][0]['type_line'],
-        )
+        new_card.colors = card['card_faces'][0]['colors']
+        new_card.image_uri_small = card['card_faces'][0]['image_uris']['small']
+        new_card.image_uri_normal = card['card_faces'][0]['image_uris']['normal']
+        new_card.image_uri_large = card['card_faces'][0]['image_uris']['large']
+        new_card.image_uri_art_crop = card['card_faces'][0]['image_uris']['art_crop']
+        new_card.image_uri_border_crop = card['card_faces'][0]['image_uris']['border_crop']
+        new_card.image_uri_png = card['card_faces'][0]['image_uris']['png']
+        new_card.mana_cost = card['card_faces'][0]['mana_cost']
+        new_card.type_line = card['card_faces'][0]['type_line']
+
     db.session.add(new_card)    
+    return
 
 
 @app.route('/card/<string:card_set>/<string:card_name>', methods=['GET', 'POST'])
@@ -222,85 +209,88 @@ def display_card(card_set, card_name):
         price = float(request.form.get('price'))
         
         user = User.query.filter_by(username=current_user.username).one()
-        new_card = Card.query.filter_by(name=card['name']).one()
+        c = Card.query.filter_by(name=card['name']).one()
 
-        if not Inventory.query.filter_by(card=new_card.id, user=user.id).first():
-            i = Inventory(card=new_card.id, user=user.id, purchase_price=price, quantity=1)
-            user.cards.append(i)
-        else: 
-            i = Inventory.query.filter_by(card=new_card.id, user=user.id).one()
-            i.quantity += 1
-
+        i = Inventory(
+            card=c.id, 
+            user=user.id,
+            purchase_price=price, 
+            current_price = card['prices']['usd']
+        )
+        user.cards.append(i)
         db.session.commit()
 
-
-    # Grab the card with an api call to scryall using the set and card name. 
-    card = requests.get(
-        f'https://api.scryfall.com/cards/search?q={card_name}+set%3A{card_set}'
-    ).json()['data'][0]
-
-    # The set_svg will be the same regardless of the card has two faces or one, 
-    # and so we can set the variable for both single and double sided cards
-    set_svg = { 'set_svg': requests.get(card['set_uri']).json()['icon_svg_uri'] }
+        return redirect(url_for('search'))
 
 
-    #If the card has two faces, the JSON that comes back is different
-    if 'card_faces' in card:
-        face_one = card['card_faces'][0]
-        face_two = card['card_faces'][1]
+    if request.method == 'GET':
+        # Grab the card with an api call to scryall using the set and card name. 
+        card = requests.get(
+            f'https://api.scryfall.com/cards/search?q={card_name}+set%3A{card_set}'
+        ).json()['data'][0]
 
-        # In order to properly handle both double sided cards and adventure cards,
-        # we set the image_uris property to the card object (which on a double sided
-        # card belongs to face_one) so that we can access it from the same place in 
-        # both situations in card.html
-        if not card['type_line'].endswith('Adventure'):
-            card['image_uris'] = { 'large': face_one['image_uris']['large'] }
-            adventure = False
+        # The set_svg will be the same regardless of the card has two faces or one, 
+        # and so we can set the variable for both single and double sided cards
+        set_svg = { 'set_svg': requests.get(card['set_uri']).json()['icon_svg_uri'] }
 
-            if 'color_indicator' in face_two:
-                color_indicator = { 'color': face_two['color_indicator'][0] }
-            else:
+
+        #If the card has two faces, the JSON that comes back is different
+        if 'card_faces' in card:
+            face_one = card['card_faces'][0]
+            face_two = card['card_faces'][1]
+
+            # In order to properly handle both double sided cards and adventure cards,
+            # we set the image_uris property to the card object (which on a double sided
+            # card belongs to face_one) so that we can access it from the same place in 
+            # both situations in card.html
+            if not card['type_line'].endswith('Adventure'):
+                card['image_uris'] = { 'large': face_one['image_uris']['large'] }
+                adventure = False
+
+                if 'color_indicator' in face_two:
+                    color_indicator = { 'color': face_two['color_indicator'][0] }
+                else:
+                    color_indicator = None
+            
+            if card['type_line'].endswith('Adventure'):
                 color_indicator = None
-        
-        if card['type_line'].endswith('Adventure'):
+                adventure = True
+
+            oracle_texts = {
+                'face_one_texts': face_one['oracle_text'].rsplit("\n"),
+                'face_two_texts': face_two['oracle_text'].rsplit("\n")
+            }
+            
+        # For single sided cards
+        else:
+            oracle_texts = {'face_one_texts': card['oracle_text'].rsplit("\n")}
+            face_one = card
+            face_two = None
+            adventure = False
             color_indicator = None
-            adventure = True
-
-        oracle_texts = {
-            'face_one_texts': face_one['oracle_text'].rsplit("\n"),
-            'face_two_texts': face_two['oracle_text'].rsplit("\n")
-        }
         
-    # For single sided cards
-    else:
-        oracle_texts = {'face_one_texts': card['oracle_text'].rsplit("\n")}
-        face_one = card
-        face_two = None
-        adventure = False
-        color_indicator = None
-    
-    # Used to display the list of prints. This gets all different prints and
-    # stores them in a list
-    all_prints = requests.get(card['prints_search_uri']).json()['data']
+        # Used to display the list of prints. This gets all different prints and
+        # stores them in a list
+        all_prints = requests.get(card['prints_search_uri']).json()['data']
 
-    for p in all_prints:
-        # For double sided cards and not adventure cards, we grab the image 
-        # to be displayed when hovering over a card from the print list.
-        # Adventure and single sided cards need no additional logic to display
-        if 'card_faces' in p and not p['type_line'].endswith('Adventure'):            
-            p['image_uris'] = {'normal': p['card_faces'][0]['image_uris']['normal']}   
- 
-    return render_template(
-        'card.html',
-        card=card,
-        face_one=face_one,
-        face_two=face_two,
-        oracle_texts=oracle_texts,
-        color_indicator = color_indicator,
-        set_svg=set_svg,
-        all_prints=all_prints,
-        adventure=adventure,
-    )
+        for p in all_prints:
+            # For double sided cards and not adventure cards, we grab the image 
+            # to be displayed when hovering over a card from the print list.
+            # Adventure and single sided cards need no additional logic to display
+            if 'card_faces' in p and not p['type_line'].endswith('Adventure'):            
+                p['image_uris'] = {'normal': p['card_faces'][0]['image_uris']['normal']}   
+    
+        return render_template(
+            'card.html',
+            card=card,
+            face_one=face_one,
+            face_two=face_two,
+            oracle_texts=oracle_texts,
+            color_indicator = color_indicator,
+            set_svg=set_svg,
+            all_prints=all_prints,
+            adventure=adventure,
+        )
 
 
 # # One time route to store the types in a data base

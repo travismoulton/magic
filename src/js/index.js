@@ -269,4 +269,8 @@ if (window.location.pathname.substring(1, 5) === 'card') {
             'click', cardView.flipToBackSide
         );
     }
+
+    document.querySelector('.js--add-to-inv-submit').addEventListener(
+        'click', cardView.checkPriceInputForDigits
+    )
 }
