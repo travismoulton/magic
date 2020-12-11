@@ -4,6 +4,7 @@ import Search from './models/Search';
 import * as searchView from './views/searchView';
 import * as resultsView from './views/resultsView';
 import * as cardView from './views/cardView';
+import * as inventoryView from './views/inventoryView';
 import { elements } from './views/base';
 
 
@@ -273,4 +274,11 @@ if (window.location.pathname.substring(1, 5) === 'card') {
     document.querySelector('.js--add-to-inv-submit').addEventListener(
         'click', cardView.checkPriceInputForDigits
     )
+}
+
+// ******************************* \\
+// ******* Inventory Page ******** \\
+// ******************************* \\
+if (window.location.pathname.substring(1, 10) === 'inventory') {
+    document.addEventListener('DOMContentLoaded', inventoryView.alterInventoryTable)
 }

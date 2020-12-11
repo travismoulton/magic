@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="value">
+  <p>Your inventory is worth {{ total_inv_value.value }}</p>
+</div>
+<div class="api-results-display">
+  <table class="card-checklist js--card-checklist">
+    <thead>
+      <tr class="card-checklist__row card-checklist__row--8 card-checklist__row--header">
+        <th class="card-checklist__data">Set</th>
+        <th class="card-checklist__data">Name</th>
+        <th class="card-checklist__data">Cost</th>
+        <th class="card-checklist__data">Type</th>
+        <th class="card-checklist__data">Rarity</th>
+        <th class="card-checklist__data">Artist</th>
+        <th class="card-checklist__data">Price</th>
+        <th class="card-checklist__data">Quantity Owned</th>
+      </tr>
+    </thead>
+    <tbody class="js--card-checklist-body">
+      {% for card in cards %}
+        <tr class="card-checklist__row card-checklist__row--8 js--checklist-row" data-component="card-tooltip" data-card-img="{{ card.image_uri_normal }}">
+          <td class="card-checklist__data card-checklist__data--set">{{ card.set_code }}</td>
+          <td class="card-checklist__data card-checklist__data--name">{{ card.name }}</td>
+          <td class="card-checklist__data js--inv-mana-cost">{{ card.mana_cost }}</td>
+          <td class="card-checklist__data js--inv-types">{{ card.type_line }}</td>
+          <td class="card-checklist__data card-checklist__data--rarity">{{ card.rarity }}</td>
+          <td class="card-checklist__data">{{ card.artist }}</td>
+          <td class="card-checklist__data">{{ card.price_usd }}</td>
+          <td class="card-checklist__data">{{ quantity_owned[card.name] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

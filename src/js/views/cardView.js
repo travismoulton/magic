@@ -145,7 +145,6 @@ export const printListHoverEvents = () => {
 };
 
 export const checkPriceInputForDigits = e => {
-
     const priceInput = document.querySelector('.js--add-to-inv-price').value;
 
     if (typeof(parseInt(priceInput)) !== 'number' || priceInput === '') {

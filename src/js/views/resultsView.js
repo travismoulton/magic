@@ -152,7 +152,7 @@ const prepChecklistContainer = () => {
     const markup = `
         <table class="card-checklist js--card-checklist">
             <thead>
-                <tr class="card-checklist__row card-checklist__row--header">
+                <tr class="card-checklist__row card-checklist__row--7 card-checklist__row--header">
                     <th class="card-checklist__data">Set</th>
                     <th class="card-checklist__data">Name</th>
                     <th class="card-checklist__data">Cost</th>
@@ -217,17 +217,12 @@ const parseCardName = cardName => {
 }
 
 const generateChecklist = cards => {
-    // The ctr and isRowGrey function are used to set a class on every other row so it can 
-    // be styled grey
-    let ctr = 0
-    const isRowGrey = ctr => (ctr % 2 === 0 ? 'card-checklist__row--grey' : '')   
-
     // Create a new table row for each card object
     cards.forEach(card => {
         const cardNameForUrl = parseCardName(card.name);
 
         const markup = `
-            <tr class="js--checklist-row ${isRowGrey(ctr)} card-checklist__row data-component="card-tooltip" data-card-img=${checkForImg(card)}>
+            <tr class="js--checklist-row card-checklist__row card-checklist__row--7 data-component="card-tooltip" data-card-img=${checkForImg(card)}>
                 <td class="card-checklist__data card-checklist__data--set"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${card.set}</a></td>
                 <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--start">${card.name}</a></td>
                 <td class="card-checklist__data"><a href="/card/${card.set}/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${generateManaCostImages(checkForManaCost(card))}</a></td>
@@ -239,9 +234,6 @@ const generateChecklist = cards => {
             `
         // Put the row in the table
         document.querySelector('.js--card-checklist-body').insertAdjacentHTML('beforeend', markup);
-
-        // Increment the ctr
-        ctr ++;
     })
 }
 
@@ -263,7 +255,7 @@ const checkForImg = card => {
 
 
 // Create the hover effect on each row that displays the image of the card
-const checkListHoverEvents = () => {
+export const checkListHoverEvents = () => {
     // Get the HTML for each table row
     const rows = Array.from(document.querySelectorAll('.js--checklist-row'));
  

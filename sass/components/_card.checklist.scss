@@ -3,11 +3,16 @@
     justify-self: center;
     &__row {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        
+        &--7 { grid-template-columns: repeat(7, 1fr) };
+
+        &--8 { grid-template-columns: repeat(8, 1fr) };
 
         &--header { border-bottom: 1px solid $color-black; }
 
         &--grey { background-color: $color-grey-light; }
+
+        &:nth-child(even) { background-color: $color-grey-light; }
     }
 
     &__data {
@@ -21,6 +26,11 @@
         &--set { text-transform: uppercase; }
 
         &--rarity { text-transform: capitalize }
+
+        &--name {
+            white-space: nowrap;
+            justify-content: flex-start;
+        }
     }
 
     &__data-link {

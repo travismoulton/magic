@@ -293,6 +293,38 @@ def display_card(card_set, card_name):
         )
 
 
+@app.route('/inventory')
+def user_inventory():
+    user = User.query.filter_by(username=current_user.username).one()
+    user_inv = Inventory.query.filter_by(user=user.id).all()
+    cards = []
+    quantity_owned = {}
+
+    total_inv_value = {'value': 0}
+    for i in user_inv:
+        cards.append(Card.query.filter_by(id=i.card).one())
+        total_inv_value['value'] += float(i.current_price)
+
+        if not Card.query.filter_by(id=i.card).one().name in quantity_owned:
+            quantity_owned[Card.query.filter_by(id=i.card).one().name] = 1
+        else:
+            quantity_owned[Card.query.filter_by(id=i.card).one().name] += 1
+    
+    # remove duplicates from list
+    cards = list(dict.fromkeys(cards))
+
+    print(quantity_owned)
+
+
+    return render_template(
+        'inventory.html', 
+        user_inv=user_inv, 
+        cards=cards, 
+        total_inv_value=total_inv_value,
+        quantity_owned=quantity_owned
+    )
+
+
 # # One time route to store the types in a data base
 # @app.route('/get_types')
 # def get_types():

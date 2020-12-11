@@ -325,11 +325,16 @@ body {
   width: 80%;
   justify-self: center; }
   .card-checklist__row {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr); }
+    display: grid; }
+    .card-checklist__row--7 {
+      grid-template-columns: repeat(7, 1fr); }
+    .card-checklist__row--8 {
+      grid-template-columns: repeat(8, 1fr); }
     .card-checklist__row--header {
       border-bottom: 1px solid #000; }
     .card-checklist__row--grey {
+      background-color: #f2f2f2; }
+    .card-checklist__row:nth-child(even) {
       background-color: #f2f2f2; }
   .card-checklist__data {
     display: flex;
@@ -342,6 +347,9 @@ body {
       text-transform: uppercase; }
     .card-checklist__data--rarity {
       text-transform: capitalize; }
+    .card-checklist__data--name {
+      white-space: nowrap;
+      justify-content: flex-start; }
   .card-checklist__data-link {
     padding: 1rem 0;
     display: flex;
