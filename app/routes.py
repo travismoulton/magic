@@ -1,9 +1,10 @@
 import requests
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from app import app, db
+from app import app, db, celery
 from flask_login import login_user, logout_user, current_user, login_required
 from app.models import User, Type, Set, Card, Inventory
 import os
+
 
 api_response = {}
 
@@ -313,9 +314,6 @@ def user_inventory():
     # remove duplicates from list
     cards = list(dict.fromkeys(cards))
 
-    print(quantity_owned)
-
-
     return render_template(
         'inventory.html', 
         user_inv=user_inv, 
@@ -323,6 +321,27 @@ def user_inventory():
         total_inv_value=total_inv_value,
         quantity_owned=quantity_owned
     )
+
+@celery.task
+def update_inventory_prices():
+    user = User.query.filter_by(username=current_user.username).one()
+    user_inv = Inventory.query.filter_by(user=user.id).all()
+
+    for i in user_inv:
+        card = Card.query.filter_by(id=i.card).one()
+        scryfall_card = requests.get(
+            f'https://api.scryfall.com/cards/search?q={card.name}'
+        ).json()['data'][0]
+        
+        i.current_price = scryall_card['prices']['usd']
+        print(i.current_price)
+    db.session.commit()
+
+
+@app.route('/test_task')
+def execute_test():
+    update_inventory_prices.delay()
+    return render_template('index.html')
 
 
 # # One time route to store the types in a data base
