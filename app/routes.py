@@ -8,6 +8,8 @@ import os
 
 api_response = {}
 
+
+
 @app.route('/')
 def index():
     return render_template('index.html', logged_in=False)
@@ -322,9 +324,9 @@ def user_inventory():
         quantity_owned=quantity_owned
     )
 
-@celery.task
+@celery.task()
 def update_inventory_prices():
-    user = User.query.filter_by(username=current_user.username).one()
+    user = User.query.filter_by(username='travis').one()
     user_inv = Inventory.query.filter_by(user=user.id).all()
 
     for i in user_inv:
@@ -333,9 +335,13 @@ def update_inventory_prices():
             f'https://api.scryfall.com/cards/search?q={card.name}'
         ).json()['data'][0]
         
-        i.current_price = scryall_card['prices']['usd']
-        print(i.current_price)
+        i.current_price = scryfall_card['prices']['usd']
+        print(i.current_price)  
+       
+    print('task finished')   
     db.session.commit()
+    print('commited')
+
 
 
 @app.route('/test_task')
