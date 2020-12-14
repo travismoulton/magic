@@ -15,7 +15,7 @@ login = LoginManager(app)
 celery = Celery(
     app.name,
     backend=app.config['CELERY_RESULT_BACKEND'],
-    broker=app.config['CLOUDAMQP_URL']
+    broker=app.config['BROKER_URL']
 )
 celery.conf.update(app.config)
 
