@@ -6,12 +6,10 @@ leftoff.txt
 
 todo.txt
 
-import.py
-
 env
 
 migrations
 
 package-lock.json
 
-Procfile
+config.py

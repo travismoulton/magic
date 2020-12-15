@@ -22,6 +22,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email= db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    last_visit = db.Column(db.DateTime, default=datetime.utcnow)
     cards = db.relationship('Inventory')  
 
 
@@ -43,9 +44,6 @@ def load_user(id):
 class Card(db.Model):
     __tablename__ = 'cards'
     id = db.Column(db.Integer, primary_key=True)
-    artist = db.Column(db.String(64))
-    booster = db.Column(db.Boolean)
-    cardmarket_id = db.Column(db.Integer)
     cmc = db.Column(db.Integer)
 
 
@@ -53,27 +51,20 @@ class Card(db.Model):
     # That is what I am currently doing here
     colors = db.Column(db.String(32))
 
-    foil = db.Column(db.Boolean)
-    full_art = db.Column(db.Boolean)
-
-    highres_image = db.Column(db.Boolean)
     scryfall_id = db.Column(db.String(128))
 
     # Image URIs
     image_uri_small = db.Column(db.String(256))
     image_uri_normal = db.Column(db.String(256))
     image_uri_large = db.Column(db.String(256))
-    image_uri_art_crop = db.Column(db.String(256))
-    image_uri_border_crop = db.Column(db.String(256))
-    image_uri_png = db.Column(db.String(256))
 
     mana_cost = db.Column(db.String(32))
     name = db.Column(db.String(128))
+    rarity = db.Column(db.String(32))
     
     # Prices
     price_usd = db.Column(db.String(16))
 
-    promo = db.Column(db.Boolean)
     set_code = db.Column(db.String(8))
     set_name = db.Column(db.String(128))
     type_line = db.Column(db.String(128))

@@ -4,15 +4,50 @@ from app import app, db, celery
 from flask_login import login_user, logout_user, current_user, login_required
 from app.models import User, Type, Set, Card, Inventory
 import os
+from datetime import datetime
 
 
-api_response = {}
+@celery.task()
+def update_inventory_prices():
+    user = User.query.filter_by(username='travis').one()
+    user_inv = Inventory.query.filter_by(user=user.id).all()
 
+    for i in user_inv:
+        card = Card.query.filter_by(id=i.card).one()
+        scryfall_card = requests.get(
+            f'https://api.scryfall.com/cards/search?q={card.name}'
+        ).json()['data'][0]
+        
+        i.current_price = scryfall_card['prices']['usd']       
+
+    db.session.commit()
+
+
+def update_prices_on_daily_visit():
+    if current_user.is_authenticated:
+        d = datetime.utcnow()
+        d = datetime(d.year, d.month, d.day)
+
+        u = User.query.filter_by(username=current_user.username).first()
+        lv = u.last_visit
+        lv = datetime(lv.year, lv.month, lv.day)
+
+        if (d > lv):
+            update_inventory_prices.delay()
+
+
+def update_users_last_visit():
+    if current_user.is_authenticated:
+        u = User.query.filter_by(username=current_user.username).first()
+        u.last_visit = datetime.utcnow()
+        db.session.commit()
 
 
 @app.route('/')
 def index():
-    return render_template('index.html', logged_in=False)
+    update_prices_on_daily_visit()
+    update_users_last_visit()
+    return render_template('index.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -114,6 +149,9 @@ def logout():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+    update_prices_on_daily_visit()
+    update_users_last_visit()
+
     types = {
         'basic_types': Type.query.filter_by(category='basic').all(),
         'super_types': Type.query.filter_by(category='super').all(),
@@ -157,19 +195,13 @@ def results(query, display_method):
 
 def add_card(card):
     new_card = Card(
-            artist = card['artist'],
-            booster = card['booster'],
-            cardmarket_id = card['cardmarket_id'],
             cmc = card['cmc'],
-            foil = card['foil'],
-            full_art = card['full_art'],
-            highres_image = card['highres_image'],
             scryfall_id = card['id'],
             name = card['name'],
             price_usd = card['prices']['usd'],
-            promo = card['promo'],
             set_code = card['set'],
             set_name = card['set_name'],
+            rarity = card['rarity']
     )
 
     if not 'card_faces' in card:
@@ -177,9 +209,6 @@ def add_card(card):
         new_card.image_uri_small = card['image_uris']['small']
         new_card.image_uri_normal = card['image_uris']['normal']
         new_card.image_uri_large = card['image_uris']['large']
-        new_card.image_uri_art_crop = card['image_uris']['art_crop']
-        new_card.image_uri_border_crop = card['image_uris']['border_crop']
-        new_card.image_uri_png = card['image_uris']['png']
         new_card.mana_cost = card['mana_cost']
         new_card.type_line = card['type_line']
     
@@ -188,9 +217,6 @@ def add_card(card):
         new_card.image_uri_small = card['card_faces'][0]['image_uris']['small']
         new_card.image_uri_normal = card['card_faces'][0]['image_uris']['normal']
         new_card.image_uri_large = card['card_faces'][0]['image_uris']['large']
-        new_card.image_uri_art_crop = card['card_faces'][0]['image_uris']['art_crop']
-        new_card.image_uri_border_crop = card['card_faces'][0]['image_uris']['border_crop']
-        new_card.image_uri_png = card['card_faces'][0]['image_uris']['png']
         new_card.mana_cost = card['card_faces'][0]['mana_cost']
         new_card.type_line = card['card_faces'][0]['type_line']
 
@@ -209,7 +235,10 @@ def display_card(card_set, card_name):
         if not Card.query.filter_by(name=card['name']).first():
             add_card(card)
 
-        price = float(request.form.get('price'))
+        if request.form.get('price'):
+            price = float(request.form.get('price'))
+        else:
+            price = float(card['prices']['usd'])
         
         user = User.query.filter_by(username=current_user.username).one()
         c = Card.query.filter_by(name=card['name']).one()
@@ -298,6 +327,9 @@ def display_card(card_set, card_name):
 
 @app.route('/inventory')
 def user_inventory():
+    update_prices_on_daily_visit()
+    update_users_last_visit()
+    
     user = User.query.filter_by(username=current_user.username).one()
     user_inv = Inventory.query.filter_by(user=user.id).all()
     cards = []
@@ -306,7 +338,8 @@ def user_inventory():
     total_inv_value = {'value': 0}
     for i in user_inv:
         cards.append(Card.query.filter_by(id=i.card).one())
-        total_inv_value['value'] += float(i.current_price)
+        if (i.current_price):
+            total_inv_value['value'] += float(i.current_price)
 
         if not Card.query.filter_by(id=i.card).one().name in quantity_owned:
             quantity_owned[Card.query.filter_by(id=i.card).one().name] = 1
@@ -323,24 +356,6 @@ def user_inventory():
         total_inv_value=total_inv_value,
         quantity_owned=quantity_owned
     )
-
-@celery.task()
-def update_inventory_prices():
-    user = User.query.filter_by(username='travis').one()
-    user_inv = Inventory.query.filter_by(user=user.id).all()
-
-    for i in user_inv:
-        card = Card.query.filter_by(id=i.card).one()
-        scryfall_card = requests.get(
-            f'https://api.scryfall.com/cards/search?q={card.name}'
-        ).json()['data'][0]
-        
-        i.current_price = scryfall_card['prices']['usd']
-        print(i.current_price)  
-       
-    print('task finished')   
-    db.session.commit()
-    print('commited')
 
 
 

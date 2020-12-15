@@ -25,8 +25,11 @@
           <td class="card-checklist__data js--inv-mana-cost">{{ card.mana_cost }}</td>
           <td class="card-checklist__data js--inv-types">{{ card.type_line }}</td>
           <td class="card-checklist__data card-checklist__data--rarity">{{ card.rarity }}</td>
-          <td class="card-checklist__data">{{ card.artist }}</td>
-          <td class="card-checklist__data">{{ card.price_usd }}</td>
+          {% if card.price %}
+            <td class="card-checklist__data">{{ card.price_usd }}</td>
+          {% else %}
+            <td class="card-checklist__data">0</td>
+          {% endif %}
           <td class="card-checklist__data">{{ quantity_owned[card.name] }}</td>
         </tr>
       {% endfor %}
