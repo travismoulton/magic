@@ -9,6 +9,7 @@ class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     card = db.Column(db.Integer, db.ForeignKey('cards.id'), nullable=False)
     user = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    card_name = db.Column(db.String(128))
     purchase_price = db.Column(db.Float)
     current_price = db.Column(db.Float)
 
@@ -45,7 +46,6 @@ class Card(db.Model):
     __tablename__ = 'cards'
     id = db.Column(db.Integer, primary_key=True)
     cmc = db.Column(db.Integer)
-
 
     # Should I just store the colors as a string and break the string apart as needed?
     # That is what I am currently doing here

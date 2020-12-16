@@ -5,6 +5,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app.models import User, Type, Set, Card, Inventory
 import os
 from datetime import datetime
+from sqlalchemy import text
 
 
 @celery.task()
@@ -147,11 +148,7 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/search', methods=['GET', 'POST'])
-def search():
-    update_prices_on_daily_visit()
-    update_users_last_visit()
-
+def get_types():
     types = {
         'basic_types': Type.query.filter_by(category='basic').all(),
         'super_types': Type.query.filter_by(category='super').all(),
@@ -162,7 +159,10 @@ def search():
         'enchantment_types': Type.query.filter_by(category='enchantment').all(),
         'spell_types': Type.query.filter_by(category='spell').all()
     }
+    return types
 
+
+def get_sets():
     sets = {
         'expansions': Set.query.filter_by(set_type='expansion').all(),
         'core': Set.query.filter_by(set_type='core').all(),
@@ -185,7 +185,49 @@ def search():
         'treasure_chest': Set.query.filter_by(set_type='treasure_chest').all(),
         'vanguard': Set.query.filter_by(set_type='vanguard').all()
     }
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    update_prices_on_daily_visit()
+    update_users_last_visit()
+    types = get_types()
+    sets = get_sets()
     return render_template('search.html', types=types, sets=sets)
+
+
+@app.route('/inventory/search', methods=['GET', 'POST'])
+def search_inventory():
+    if request.method == 'GET':
+        return render_template('inventory_search.html')
+    if request.method == 'POST':
+        card_name = request.form.get('card-name')
+        card_type = request.form.get('type-line')
+        card_set = request.form.get('set')
+        card_rarity = request.form.get('set')
+
+        def test():
+            if card_name:
+                return f'name LIKE :name'
+            else:
+                return ''
+
+        black= 'white' in request.form
+        red = 'red' in request.form
+        blue = 'blue' in request.form
+        green = 'green' in request.form
+        black= 'black' in request.form
+
+        user = User.query.filter_by(username=current_user.username).first()
+
+        stmt = text(f'SELECT * FROM cards WHERE {test()}')
+        print(stmt)
+
+        cards = Card.query.from_statement(stmt).params(name=card_name).all()
+        print(cards)
+
+
+        return render_template('inventory_search.html')
+
 
 
 @app.route('/results/<string:display_method>/<string:query>', methods=['GET', 'POST'])
@@ -250,6 +292,7 @@ def display_card(card_set, card_name):
         i = Inventory(
             card=c.id, 
             user=user.id,
+            card_name=card['name'],
             purchase_price=price, 
             current_price = float(card['prices']['usd'])
         )
@@ -335,7 +378,7 @@ def user_inventory():
     update_users_last_visit()
     
     user = User.query.filter_by(username=current_user.username).one()
-    user_inv = Inventory.query.filter_by(user=user.id).all()
+    user_inv = Inventory.query.filter_by(user=user.id).order_by(Inventory.card_name).all()
     cards = []
     data = []
 
@@ -356,7 +399,7 @@ def user_inventory():
 
 # # One time route to store the types in a data base
 # @app.route('/get_types')
-# def get_types():
+# def get_typess():
 #     creature_types = requests.get('https://api.scryfall.com/catalog/creature-types').json()['data']
 #     planeswalker_types = requests.get('https://api.scryfall.com/catalog/planeswalker-types').json()['data']
 #     land_types = requests.get('https://api.scryfall.com/catalog/land-types').json()['data']
@@ -407,7 +450,7 @@ def user_inventory():
 
 # # One time route to store the sets in the database
 # @app.route('/get_sets')
-# def get_sets():
+# def get_setss():
 #     sets = requests.get('https://api.scryfall.com/sets').json()['data']
 
 #     for s in sets:

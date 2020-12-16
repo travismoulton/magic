@@ -25,6 +25,7 @@ const alterManaImages = () => {
     })
 };
 
+// Not using this right now *************************************
 const sortTableAlphabetically = () => {
     let rows = Array.from(document.querySelectorAll(
         '.js--checklist-row'
@@ -70,6 +71,6 @@ export const alterInventoryTable = () => {
     shortenTypeLine();
     alterManaImages();
     checkListHoverEvents();
-    sortTableAlphabetically();
+    // sortTableAlphabetically();
     giveEarningsColumnModifier();
 }

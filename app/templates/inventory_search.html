@@ -1,0 +1,206 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="search">
+  <form action="#" method="POST" class="search-form">
+
+    <!-- Card Name -->
+    <div class="search-form__group">
+      <label for="card-name" class="search-form__label">
+        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+          <path class="search-form__svg-color" d="M29 4h-26c-1.65 0-3 1.35-3 3v18c0 1.65 1.35 3 3 3h26c1.65 0 3-1.35 3-3v-18c0-1.65-1.35-3-3-3zM3 6h26c0.542 0 1 0.458 1 1v3h-28v-3c0-0.542 0.458-1 1-1zM29 26h-26c-0.542 0-1-0.458-1-1v-9h28v9c0 0.542-0.458 1-1 1zM4 20h2v4h-2zM8 20h2v4h-2zM12 20h2v4h-2z"></path>
+        </svg>
+        Card Name
+      </label>
+      <div class="search-form__grpup-input-wrapper">
+        <input type="text" autocomplete="off" class="search-form__input-text js--api-card-name" name="card-name" id="card-name" placeholder="Any words that appear in the name of the card">
+      </div>
+    </div>
+
+    <!-- Type Line -->
+    <div class="search-form__group">
+      <label for="type-line" class="search-form__label">
+        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+          <title>barcode</title>
+          <path d="M0 4h4v20h-4zM6 4h2v20h-2zM10 4h2v20h-2zM16 4h2v20h-2zM24 4h2v20h-2zM30 4h2v20h-2zM20 4h1v20h-1zM14 4h1v20h-1zM27 4h1v20h-1zM0 26h2v2h-2zM6 26h2v2h-2zM10 26h2v2h-2zM20 26h2v2h-2zM30 26h2v2h-2zM24 26h4v2h-4zM14 26h4v2h-4z"></path>
+        </svg>
+        Type Line
+      </label>
+      <div class="search-form__group-input-wrapper">
+        <input type="search" autocomplete="off" class="search-form__input-text js--api-type-line" name="type-line" id="type-line" placeholder="Enter a type or choose from the list">
+      </div>
+    </div>
+
+    <!-- Colors -->    
+    <div class="search-form__group">
+      <label class="search-form__label">
+        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+          <path d="M13 29c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM0 16c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM26 16c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM3.808 6.808c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM22.192 25.192c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM3.808 25.192c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM22.192 6.808c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3z"></path>
+        </svg>
+        Colors
+      </label>
+      <div class="search-form__group-input-wrapper">
+        <div class="search-form__group--checkbox">
+          <div class="search-form__checkbox-wrapper">
+            <input type="checkbox" name="white" class="search-form__input-checkbox js--api-color-box" value="w" id="color-white">
+            <label for="color-white" class="search-form__label--checkbox">
+              <img src="{{ url_for('static', filename='/img/white.png') }}" alt="white mana symbol" class="search-form__mana-symbol">
+              White
+            </label>
+          </div>
+          <div class="search-form__checkbox-wrapper">
+            <input type="checkbox" class="search-form__input-checkbox js--api-color-box" value="u" id="color-blue">
+            <label for="color-blue" name="blue" class="search-form__label--checkbox">
+              <img src="{{ url_for('static', filename='/img/blue.png') }}" alt="blue mana symbol" class="search-form__mana-symbol">
+              Blue
+            </label>
+          </div>
+          <div class="search-form__checkbox-wrapper">
+            <input type="checkbox" name='black' class="search-form__input-checkbox js--api-color-box" value="b" id="color-black">
+            <label for="color-black" class="search-form__label--checkbox">
+              <img src="{{ url_for('static', filename='/img/black.png') }}" alt="black mana symbol" class="search-form__mana-symbol">
+              Black
+            </label>
+          </div>
+          <div class="search-form__checkbox-wrapper">
+            <input type="checkbox" name="red" class="search-form__input-checkbox js--api-color-box" value="r" id="color-red">
+            <label for="color-red" class="search-form__label--checkbox">
+              <img src="{{ url_for('static', filename='/img/red.png') }}" alt="red mana symbol" class="search-form__mana-symbol">
+              Red
+            </label>
+          </div>
+          <div class="search-form__checkbox-wrapper">
+            <input type="checkbox" name="green" class="search-form__input-checkbox js--api-color-box" value="g" id="color-green">
+            <label for="color-green" class="search-form__label--checkbox">
+              <img src="{{ url_for('static', filename='/img/green.png') }}" alt="green mana symbol" class="search-form__mana-symbol">
+              Green
+            </label>
+          </div>
+          <div class="search-form__checkbox-wrapper">
+            <input type="checkbox" class="search-form__input-checkbox js--api-color-box" value="colorless" id="color-Colorless">
+            <label for="color-colorless" class="search-form__label--checkbox">Colorless</label>
+          </div>
+        </div>
+        <select name="color-select" id="color-select" class="search-form__select-menu js--api-color-sorter">
+          <option value="%3D>" selected>Including these colors</option>
+          <option value="%3D">Only These Colors</option>
+          <option value="<%3D">At most these colors</option>
+        </select>
+        <p class="search-form__tip">
+          "Including" means cards that are all the colors you select, with or without any others. "At most" means cards that have some or all of the colors you select, plus colorless. 
+        </p>
+      </div>
+    </div>
+
+    <!-- Set -->
+    <div class="search-form__group">
+      <label class="search-form__label">
+        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+          <path d="M25.549 10.88c-6.049-4.496-8.133-8.094-9.549-10.88v0c-0 0-0-0-0-0v0c-1.415 2.785-3.5 6.384-9.549 10.88-10.314 7.665-0.606 18.365 7.93 12.476-0.556 3.654-2.454 6.318-4.381 7.465v1.179h12.001v-1.179c-1.928-1.147-3.825-3.811-4.382-7.465 8.535 5.889 18.244-4.811 7.93-12.476z"></path>
+        </svg>
+        Sets
+      </label>
+      <div class="search-form__group-input-wrapper search-form__group-input-wrapper--has-dropdown">
+        <input type="text" autocomplete="off" class="search-form__input-text js--api-set" name="set" placeholder="Enter a set name or choose from the list">
+      </div>
+    </div>
+
+    <!-- Rarity -->
+    <div class="search-form__group">
+      <label class="search-form__label">
+        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+          <path d="M24.11 10c0.566-0.402 1.11-0.851 1.608-1.348 1.044-1.044 1.742-2.328 1.966-3.616 0.246-1.412-0.115-2.723-0.988-3.597-0.697-0.697-1.641-1.065-2.73-1.065-1.551 0-3.185 0.744-4.483 2.043-2.077 2.077-3.288 4.945-3.94 6.991-0.482-2.056-1.444-4.833-3.313-6.702-1.003-1.003-2.285-1.518-3.495-1.518-0.989 0-1.931 0.344-2.633 1.046-1.562 1.562-1.351 4.306 0.471 6.128 0.65 0.65 1.409 1.189 2.21 1.638h-6.782v8h2v14h24v-14h2v-8h-5.89zM21.073 4.007c0.866-0.866 1.948-1.384 2.892-1.384 0.334 0 0.803 0.070 1.139 0.406 0.813 0.813 0.357 2.697-0.977 4.031-1.373 1.373-3.221 2.318-4.826 2.939h-1.584c0.58-1.798 1.627-4.264 3.356-5.993zM7.31 5.028c-0.022-0.285-0.002-0.82 0.381-1.203 0.32-0.32 0.743-0.387 1.042-0.387v0c0.664 0 1.358 0.313 1.904 0.859 1.059 1.058 1.93 2.743 2.521 4.871 0.016 0.057 0.031 0.115 0.047 0.171-0.057-0.015-0.114-0.031-0.171-0.047-2.128-0.591-3.813-1.462-4.871-2.521-0.495-0.495-0.805-1.13-0.853-1.743zM14 30h-8v-13h8v13zM14 16h-10v-4h10v4zM26 30h-8v-13h8v13zM28 16h-10v-4h10v4z"></path>
+        </svg>
+        Rarity
+      </label>
+      <div class="search-form__group-input-wrapper">
+        <div class="search-form__group--checkbox">
+          <div class="search-form__checkbox-wrapper">
+            <input type="checkbox" class="search-form__input-checkbox js--api-rarity-box" value="common" name="common">
+            <label for="common" class="search-form__label--checkbox">Common</label>
+          </div>
+          <div class="search-form__checkbox-wrapper">
+            <input type="checkbox" class="search-form__input-checkbox js--api-rarity-box" value="uncommon" name="uncommon">
+            <label for="uncommon" class="search-form__label--checkbox">Uncommon</label>
+          </div>
+          <div class="search-form__checkbox-wrapper">
+            <input type="checkbox" class="search-form__input-checkbox js--api-rarity-box" value="rare" name="rare">
+            <label for="rare" class="search-form__label--checkbox">Rare</label>
+          </div>
+          <div class="search-form__checkbox-wrapper">
+            <input type="checkbox" class="search-form__input-checkbox js--api-rarity-box" value="mythic" name="mythic">
+            <label for="mythic" class="search-form__label--checkbox">Mythic Rare</label>
+          </div>
+        </div>
+        <p class="search-form__tip">
+          Only return cards of the selected rarities
+        </p>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="search-form__group">
+      <label class="search-form__label">
+        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+          <path d="M12 29c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"></path>
+          <path d="M32 29c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"></path>
+          <path d="M32 16v-12h-24c0-1.105-0.895-2-2-2h-6v2h4l1.502 12.877c-0.915 0.733-1.502 1.859-1.502 3.123 0 2.209 1.791 4 4 4h24v-2h-24c-1.105 0-2-0.895-2-2 0-0.007 0-0.014 0-0.020l26-3.98z"></path>
+        </svg>
+        Price
+      </label>
+      <div class="search-form__input-wrapper">
+        <div class="search-form__select-menu-grouping">
+          <select name="denomination" class="search-form__select-menu js--api-denomination">
+            <option value="usd">USD</option>
+          </select>
+          <select name="denomination-sorter" class="search-form__select-menu js--api-denomination-sort-by">
+            <option value=">">Greater than</option>
+            <option value="<">Less than</option>
+            <option value="=">Equals</option>
+            <option value=">=">Greater than or equal to</option>
+            <option value="<=">Less than or equal to</option>
+            <option value="!=">Not equal to</option>
+          </select>
+          <input type="number" class="search-form__input-integer js--api-denomination-sort-value">
+        </div>
+        <p class="search-form__tip">
+          Restrict cards based on their price
+        </p>
+      </div>
+    </div>
+
+    <!-- Sort selection -->
+    <div class="search-form__group">
+      <label class="search-form__label">
+        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+          <path d="M20.807 10.22l-2.030-2.029-10.15 10.148c-1.682 1.681-1.682 4.408 0 6.089s4.408 1.681 6.090 0l12.18-12.178c2.804-2.802 2.804-7.346 0-10.148-2.802-2.803-7.347-2.803-10.149 0l-12.788 12.787c-0.009 0.009-0.019 0.018-0.027 0.026-3.909 3.909-3.909 10.245 0 14.153 3.908 3.908 10.246 3.908 14.156 0 0.009-0.009 0.016-0.018 0.026-0.027l0.001 0.001 8.729-8.728-2.031-2.029-8.729 8.727c-0.009 0.008-0.018 0.018-0.026 0.026-2.784 2.783-7.312 2.783-10.096 0-2.783-2.783-2.783-7.31 0-10.093 0.010-0.009 0.019-0.018 0.028-0.026l-0.001-0.002 12.79-12.786c1.678-1.679 4.411-1.679 6.090 0s1.678 4.411 0 6.089l-12.18 12.178c-0.56 0.56-1.47 0.56-2.030 0-0.559-0.559-0.559-1.47 0-2.029l10.15-10.149z"></path>
+        </svg>
+        Preferences
+      </label>
+      <div class="search-form__input-wrapper">
+        <select name="sorter" class="search-form__select-menu js--api-results-sorter">
+          <option value="name" selected>Sort by name</option>
+          <option value="released">Sort by release date</option>
+          <option value="set">Sort by set</option>
+          <option value="usd">Sort by price</option>
+          <option value="color">Sort by color</option>
+          <option value="toughness">Sort by toughness</option>
+          <option value="power">Sort by power</option>
+        </select>
+        <select name="display-as" class="search-form__select-menu js--api-search-display-selector">
+          <option value="images">Images</option>
+          <option value="list" selected>Checklist</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="search-form__submit js--api-btn">Search with these options</button>
+
+
+
+
+  </form>
+</div>
+
+{% endblock %}
