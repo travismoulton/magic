@@ -9,8 +9,8 @@ class Inventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     card = db.Column(db.Integer, db.ForeignKey('cards.id'), nullable=False)
     user = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    purchase_price = db.Column(db.Integer)
-    current_price = db.Column(db.String(16))
+    purchase_price = db.Column(db.Float)
+    current_price = db.Column(db.Float)
 
     def __repr__(self):
         return f'{Card.query.filter_by(id=self.card).first()}'
@@ -63,7 +63,7 @@ class Card(db.Model):
     rarity = db.Column(db.String(32))
     
     # Prices
-    price_usd = db.Column(db.String(16))
+    price_usd = db.Column(db.Float)
 
     set_code = db.Column(db.String(8))
     set_name = db.Column(db.String(128))

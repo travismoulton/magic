@@ -328,8 +328,8 @@ body {
     display: grid; }
     .card-checklist__row--7 {
       grid-template-columns: repeat(7, 1fr); }
-    .card-checklist__row--8 {
-      grid-template-columns: repeat(8, 1fr); }
+    .card-checklist__row--9 {
+      grid-template-columns: repeat(9, 1fr); }
     .card-checklist__row--header {
       border-bottom: 1px solid #000; }
     .card-checklist__row--grey {
@@ -372,6 +372,12 @@ body {
   .tooltip__img {
     width: 100%;
     height: 100%; }
+
+.negative-earnings {
+  color: red; }
+
+.positive-earnings {
+  color: green; }
 
 .image-grid {
   padding: 10rem 15rem;

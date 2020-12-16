@@ -198,7 +198,7 @@ def add_card(card):
             cmc = card['cmc'],
             scryfall_id = card['id'],
             name = card['name'],
-            price_usd = card['prices']['usd'],
+            price_usd = float(card['prices']['usd']),
             set_code = card['set'],
             set_name = card['set_name'],
             rarity = card['rarity']
@@ -235,10 +235,14 @@ def display_card(card_set, card_name):
         if not Card.query.filter_by(name=card['name']).first():
             add_card(card)
 
-        if request.form.get('price'):
+        if request.form.get('price') != '':
             price = float(request.form.get('price'))
         else:
-            price = float(card['prices']['usd'])
+            if card['prices']['usd']:
+                price = float(card['prices']['usd'])
+            # If there is no price associated with the api response
+            else:
+                price = 0
         
         user = User.query.filter_by(username=current_user.username).one()
         c = Card.query.filter_by(name=card['name']).one()
@@ -247,7 +251,7 @@ def display_card(card_set, card_name):
             card=c.id, 
             user=user.id,
             purchase_price=price, 
-            current_price = card['prices']['usd']
+            current_price = float(card['prices']['usd'])
         )
         user.cards.append(i)
         db.session.commit()
@@ -333,36 +337,21 @@ def user_inventory():
     user = User.query.filter_by(username=current_user.username).one()
     user_inv = Inventory.query.filter_by(user=user.id).all()
     cards = []
-    quantity_owned = {}
+    data = []
 
     total_inv_value = {'value': 0}
     for i in user_inv:
-        cards.append(Card.query.filter_by(id=i.card).one())
+        cards.append(Card.query.filter_by(id=i.card).one())      
+
         if (i.current_price):
             total_inv_value['value'] += float(i.current_price)
-
-        if not Card.query.filter_by(id=i.card).one().name in quantity_owned:
-            quantity_owned[Card.query.filter_by(id=i.card).one().name] = 1
-        else:
-            quantity_owned[Card.query.filter_by(id=i.card).one().name] += 1
-    
-    # remove duplicates from list
-    cards = list(dict.fromkeys(cards))
 
     return render_template(
         'inventory.html', 
         user_inv=user_inv, 
         cards=cards, 
         total_inv_value=total_inv_value,
-        quantity_owned=quantity_owned
     )
-
-
-
-@app.route('/test_task')
-def execute_test():
-    update_inventory_prices.delay()
-    return render_template('index.html')
 
 
 # # One time route to store the types in a data base

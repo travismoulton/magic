@@ -25,8 +25,51 @@ const alterManaImages = () => {
     })
 };
 
+const sortTableAlphabetically = () => {
+    let rows = Array.from(document.querySelectorAll(
+        '.js--checklist-row'
+    ));
+    const table = document.querySelector('.js--card-checklist');    
+    let cards = []
+
+    rows.forEach(row => {
+        cards.push(row.querySelector('.js--checklist-card-name').innerHTML)
+        row.parentElement.removeChild(row)
+    })
+
+    cards = cards.sort()
+
+    for (let i = 0; i < cards.length; i++) {
+        const rowIndex = rows.indexOf(rows.find(row => 
+            row.getAttribute('data-row') === cards[i]
+        ))
+
+        table.insertAdjacentElement('beforeend', rows[rowIndex])   
+
+        rows.splice(rowIndex, 1)
+    }
+}
+
+const giveEarningsColumnModifier = () => {
+    let rows = Array.from(document.querySelectorAll(
+        '.js--inv-earnings'
+    ));
+
+    rows.forEach(row => {
+        if (row.innerHTML.startsWith('-')) {
+            row.classList.add('negative-earnings');
+        } else if (row.innerHTML === '0.0') {
+            row.classList.add('no-earnings');
+        } else {
+            row.classList.add('positive-earnings');
+        }
+    })
+}
+
 export const alterInventoryTable = () => {
     shortenTypeLine();
     alterManaImages();
     checkListHoverEvents();
+    sortTableAlphabetically();
+    giveEarningsColumnModifier();
 }

@@ -1,36 +1,39 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="value">
-  <p>Your inventory is worth {{ total_inv_value.value }}</p>
+  <p>Your inventory is worth {{ (total_inv_value.value)|round(2) }}</p>
 </div>
 <div class="api-results-display">
   <table class="card-checklist js--card-checklist">
     <thead>
-      <tr class="card-checklist__row card-checklist__row--8 card-checklist__row--header">
+      <tr class="card-checklist__row card-checklist__row--9 card-checklist__row--header">
         <th class="card-checklist__data">Set</th>
         <th class="card-checklist__data">Name</th>
         <th class="card-checklist__data">Cost</th>
         <th class="card-checklist__data">Type</th>
         <th class="card-checklist__data">Rarity</th>
-        <th class="card-checklist__data">Artist</th>
-        <th class="card-checklist__data">Price</th>
-        <th class="card-checklist__data">Quantity Owned</th>
+
+        <th class="card-checklist__data">Purchase Price</th>
+        <th class="card-checklist__data">Current Market Value</th>
+        <th class="card-checklist__data">Earnings</th>
       </tr>
     </thead>
     <tbody class="js--card-checklist-body">
       {% for card in cards %}
-        <tr class="card-checklist__row card-checklist__row--8 js--checklist-row" data-component="card-tooltip" data-card-img="{{ card.image_uri_normal }}">
+        <tr class="card-checklist__row card-checklist__row--9 js--checklist-row" data-row="{{ card.name }}" data-component="card-tooltip" data-card-img="{{ card.image_uri_normal }}">
           <td class="card-checklist__data card-checklist__data--set">{{ card.set_code }}</td>
-          <td class="card-checklist__data card-checklist__data--name">{{ card.name }}</td>
+          <td class="card-checklist__data card-checklist__data--name js--checklist-card-name">{{ card.name }}</td>
           <td class="card-checklist__data js--inv-mana-cost">{{ card.mana_cost }}</td>
           <td class="card-checklist__data js--inv-types">{{ card.type_line }}</td>
           <td class="card-checklist__data card-checklist__data--rarity">{{ card.rarity }}</td>
-          {% if card.price %}
+
+          <td class="card-checklist__data">{{ user_inv[loop.index0].purchase_price }}</td>
+          {% if card.price_usd %}
             <td class="card-checklist__data">{{ card.price_usd }}</td>
           {% else %}
             <td class="card-checklist__data">0</td>
           {% endif %}
-          <td class="card-checklist__data">{{ quantity_owned[card.name] }}</td>
+          <td class="card-checklist__data js--inv-earnings">{{ (card.price_usd - user_inv[loop.index0].purchase_price)|round(2) }}</td>
         </tr>
       {% endfor %}
     </tbody>

@@ -6,7 +6,7 @@
         
         &--7 { grid-template-columns: repeat(7, 1fr) };
 
-        &--8 { grid-template-columns: repeat(8, 1fr) };
+        &--9 { grid-template-columns: repeat(9, 1fr) };
 
         &--header { border-bottom: 1px solid $color-black; }
 
@@ -60,3 +60,5 @@
     }
 }
 
+.negative-earnings { color: red; }
+.positive-earnings { color: green; }

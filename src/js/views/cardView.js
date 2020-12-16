@@ -147,7 +147,7 @@ export const printListHoverEvents = () => {
 export const checkPriceInputForDigits = e => {
     const priceInput = document.querySelector('.js--add-to-inv-price').value;
 
-    if (typeof(parseInt(priceInput)) !== 'number') {
+    if (isNaN(priceInput) && priceInput !== '') {
         e.preventDefault();
         renderPriceInputErrorMessage();
         return false;
