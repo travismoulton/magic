@@ -5,7 +5,9 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app.models import User, Type, Set, Card, Inventory
 import os
 from datetime import datetime
-from sqlalchemy import text
+from sqlalchemy import text, create_engine
+
+engine = create_engine(os.getenv('DATABASE_URL'))
 
 
 @celery.task()
@@ -203,26 +205,59 @@ def search_inventory():
         card_name = request.form.get('card-name')
         card_type = request.form.get('type-line')
         card_set = request.form.get('set')
-        card_rarity = request.form.get('set')
+        card_rarity = request.form.get('rarity')
 
-        def test():
+        w = 'white' in request.form
+        r = 'red' in request.form
+        u = 'blue' in request.form
+        g = 'green' in request.form
+        b = 'black' in request.form
+
+
+
+        def check_for_card_name():
             if card_name:
-                return f'name LIKE :name'
+                return f'name ILIKE :name and'
             else:
                 return ''
+        
+        def check_for_card_type():
+            if card_type:
+                return f'type_line ILIKE :type_line and'
+            else:
+                return ''
+        
+        def check_for_set():
+            if card_set:
+                return f'set_name ILIKE :set_name and'
+            else:
+                return ''
+        
+        def check_for_rarity():
+            if card_rarity():
+                return f'rarity ILIKE :rarity and'
 
-        black= 'white' in request.form
-        red = 'red' in request.form
-        blue = 'blue' in request.form
-        green = 'green' in request.form
-        black= 'black' in request.form
+
 
         user = User.query.filter_by(username=current_user.username).first()
 
-        stmt = text(f'SELECT * FROM cards WHERE {test()}')
+        stmt = f'SELECT * FROM cards WHERE {check_for_card_name()} {check_for_card_type()} {check_for_set()}'
+
+        stmt = stmt.replace('  ', ' ')
+
+        stmt = text(stmt[:-4])
+
         print(stmt)
 
-        cards = Card.query.from_statement(stmt).params(name=card_name).all()
+        with engine.connect() as con:
+            cards = con.execute(stmt, {
+                'test': f'%{card_name}%',
+                'type_line': f'%{card_type}%',
+                'set_name': f'%{card_set}%'.
+                'rarity': f'%{card_rarity}%'
+            }).fetchall()
+
+
         print(cards)
 
 
