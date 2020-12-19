@@ -5,9 +5,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app.models import User, Type, Set, Card, Inventory
 import os
 from datetime import datetime
-from sqlalchemy import text, create_engine
-
-engine = create_engine(os.getenv('DATABASE_URL'))
+from sqlalchemy import text
 
 
 @celery.task()
@@ -207,59 +205,35 @@ def search_inventory():
         card_set = request.form.get('set')
         card_rarity = request.form.get('rarity')
 
-        w = 'white' in request.form
-        r = 'red' in request.form
-        u = 'blue' in request.form
-        g = 'green' in request.form
-        b = 'black' in request.form
+        white = 'w' if 'white' in request.form else ''
+        red = 'r' if 'red' in request.form else ''
+        blue = 'u' if 'blue' in request.form else ''
+        green = 'g' if 'green' in request.form else ''
+        black = 'b' if 'black' in request.form else ''
 
-
-
-        def check_for_card_name():
-            if card_name:
-                return f'name ILIKE :name and'
-            else:
-                return ''
+        print(blue)
         
-        def check_for_card_type():
-            if card_type:
-                return f'type_line ILIKE :type_line and'
-            else:
-                return ''
-        
-        def check_for_set():
-            if card_set:
-                return f'set_name ILIKE :set_name and'
-            else:
-                return ''
-        
-        def check_for_rarity():
-            if card_rarity():
-                return f'rarity ILIKE :rarity and'
-
-
 
         user = User.query.filter_by(username=current_user.username).first()
 
-        stmt = f'SELECT * FROM cards WHERE {check_for_card_name()} {check_for_card_type()} {check_for_set()}'
+        stmt = text('SELECT * FROM cards WHERE name ILIKE :name \
+          AND type_line ILIKE :type_line AND set_name ILIKE :set_name \
+          AND colors ILIKE :white AND colors ILIKE :red AND colors ILIKE :blue \
+          AND colors ILIKE :green AND colors ILIKE :black')
 
-        stmt = stmt.replace('  ', ' ')
+        cards = Card.query.from_statement(stmt).params(
+            name=f'%{card_name}%',
+            type_line=f'%{card_type}%',
+            set_name=f'%{card_set}%',
+            white=f'%{white}%',
+            red=f'%{red}%',
+            blue=f'%{blue}%',
+            green=f'%{green}%',
+            black=f'%{black}%',
+        ).all()
 
-        stmt = text(stmt[:-4])
-
-        print(stmt)
-
-        with engine.connect() as con:
-            cards = con.execute(stmt, {
-                'test': f'%{card_name}%',
-                'type_line': f'%{card_type}%',
-                'set_name': f'%{card_set}%'.
-                'rarity': f'%{card_rarity}%'
-            }).fetchall()
-
-
-        print(cards)
-
+        for card in cards:
+            print(card.name)
 
         return render_template('inventory_search.html')
 
