@@ -211,15 +211,15 @@ def search_inventory():
         green = 'g' if 'green' in request.form else ''
         black = 'b' if 'black' in request.form else ''
 
-        print(blue)
-        
-
         user = User.query.filter_by(username=current_user.username).first()
+        print(user.id)
 
         stmt = text('SELECT * FROM cards WHERE name ILIKE :name \
           AND type_line ILIKE :type_line AND set_name ILIKE :set_name \
           AND colors ILIKE :white AND colors ILIKE :red AND colors ILIKE :blue \
           AND colors ILIKE :green AND colors ILIKE :black')
+
+
 
         cards = Card.query.from_statement(stmt).params(
             name=f'%{card_name}%',
@@ -232,8 +232,13 @@ def search_inventory():
             black=f'%{black}%',
         ).all()
 
+        inventory = []
+
         for card in cards:
-            print(card.name)
+            for i in card.owned_by:
+                if i.user == user.id:
+                    print(i)
+
 
         return render_template('inventory_search.html')
 
