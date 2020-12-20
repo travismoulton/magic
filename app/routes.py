@@ -224,9 +224,16 @@ def search_inventory():
           AND cards.set_name ILIKE :set_name  AND cards.colors ILIKE :white \
           AND cards.colors ILIKE :red AND cards.colors ILIKE :blue \
           AND cards.colors ILIKE :green AND cards.colors ILIKE :black \
-          AND inventory.user = :user_id \
-          AND cards.rarity ILIKE :common AND cards.rarity ILIKE :uncommon \
-          AND cards.rarity ILIKE :rare AND cards.rarity ILIKE :mythic')
+          AND inventory.user = :user_id AND\
+          (cards.rarity = :common OR cards.rarity = :uncommon \
+          OR cards.rarity = :rare OR cards.rarity = :mythic)')
+
+        
+        print(common)
+        print(uncommon)
+        print(rare)
+        print(mythic)
+        
 
 
 
@@ -240,14 +247,15 @@ def search_inventory():
             green=f'%{green}%',
             black=f'%{black}%',
             user_id=user.id,
-            common=f'%{common}%',
-            uncommon=f'%{uncommon}%',
-            rare=f'%{rare}%',
-            mythic=f'%{mythic}%',
+            common=common,
+            uncommon=uncommon,
+            rare=rare,
+            mythic=mythic,
 
         ).all()
 
-        print(cards)
+        for card in cards:
+            print(card.name, card.rarity)
 
 
         return render_template('inventory_search.html')
