@@ -203,7 +203,6 @@ def search_inventory():
         card_name = request.form.get('card-name')
         card_type = request.form.get('type-line')
         card_set = request.form.get('set')
-        card_rarity = request.form.get('rarity')
 
         white = 'w' if 'white' in request.form else ''
         red = 'r' if 'red' in request.form else ''
@@ -211,13 +210,23 @@ def search_inventory():
         green = 'g' if 'green' in request.form else ''
         black = 'b' if 'black' in request.form else ''
 
-        user = User.query.filter_by(username=current_user.username).first()
-        print(user.id)
+        common = '#common' if 'common' in request.form else ''
+        uncommon = '#uncommon' if 'uncommon' in request.form else ''
+        rare = '#rare' if 'rare' in request.form else ''
+        mythic = '#mythic' if 'mthic' in request.form else ''
 
-        stmt = text('SELECT * FROM cards WHERE name ILIKE :name \
-          AND type_line ILIKE :type_line AND set_name ILIKE :set_name \
-          AND colors ILIKE :white AND colors ILIKE :red AND colors ILIKE :blue \
-          AND colors ILIKE :green AND colors ILIKE :black')
+
+
+        user = User.query.filter_by(username=current_user.username).first()
+
+        stmt = text(f'SELECT * FROM cards JOIN inventory ON inventory.card = cards.id \
+          WHERE cards.name ILIKE :name AND cards.type_line ILIKE :type_line \
+          AND cards.set_name ILIKE :set_name  AND cards.colors ILIKE :white \
+          AND cards.colors ILIKE :red AND cards.colors ILIKE :blue \
+          AND cards.colors ILIKE :green AND cards.colors ILIKE :black \
+          AND inventory.user = :user_id \
+          AND cards.rarity ILIKE :common AND cards.rarity ILIKE :uncommon \
+          AND cards.rarity ILIKE :rare AND cards.rarity ILIKE :mythic')
 
 
 
@@ -230,14 +239,15 @@ def search_inventory():
             blue=f'%{blue}%',
             green=f'%{green}%',
             black=f'%{black}%',
+            user_id=user.id,
+            common=f'%{common}%',
+            uncommon=f'%{uncommon}%',
+            rare=f'%{rare}%',
+            mythic=f'%{mythic}%',
+
         ).all()
 
-        inventory = []
-
-        for card in cards:
-            for i in card.owned_by:
-                if i.user == user.id:
-                    print(i)
+        print(cards)
 
 
         return render_template('inventory_search.html')
@@ -257,7 +267,7 @@ def add_card(card):
             price_usd = float(card['prices']['usd']),
             set_code = card['set'],
             set_name = card['set_name'],
-            rarity = card['rarity']
+            rarity = f"#{card['rarity']}"
     )
 
     if not 'card_faces' in card:

@@ -15,7 +15,7 @@ class Inventory(db.Model):
     current_price = db.Column(db.Float)
 
     def __repr__(self):
-        return f'{Card.query.filter_by(id=self.card).first()}'
+        return f'{Card.query.filter_by(id=self.card).first()} owned by {User.query.filter_by(id=self.user).first()}'
 
 
 class User(UserMixin, db.Model):
