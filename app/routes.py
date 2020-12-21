@@ -11,8 +11,9 @@ from sqlalchemy import text
 
 @celery.task()
 def update_inventory_prices():
-    user = User.query.filter_by(username=current_user.username).one()
-    user_inv = Inventory.query.filter_by(user=user.id).all()
+    with app.app_context():
+        user = User.query.filter_by(username=current_user.username).one()
+        user_inv = Inventory.query.filter_by(user=user.id).all()
 
     for i in user_inv:
         card = Card.query.filter_by(id=i.card).one()
