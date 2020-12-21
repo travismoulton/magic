@@ -31,12 +31,12 @@ def update_prices_on_daily_visit():
         d = datetime(d.year, d.month, d.day)
 
         u = User.query.filter_by(username=current_user.username).first()
-        lv = u.invetory_last_updated
+        lv = u.inventory_last_updated
         lv = datetime(lv.year, lv.month, lv.day)
 
         if (d > lv):
             update_inventory_prices.delay()
-            u.invetory_last_updated = d
+            u.inventory_last_updated = d
             db.session.commit()
 
 
