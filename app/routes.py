@@ -7,10 +7,12 @@ import os
 from datetime import datetime
 from sqlalchemy import text
 
+if current_user.is_authenticated:
+    user_name = current_user.username
 
 @celery.task()
 def update_inventory_prices():
-    user = User.query.filter_by(username=current_user.username).one()
+    user = User.query.filter_by(username=username).one()
     user_inv = Inventory.query.filter_by(user=user.id).all()
 
     for i in user_inv:
@@ -19,8 +21,7 @@ def update_inventory_prices():
             f'https://api.scryfall.com/cards/search?q={card.name}'
         ).json()['data'][0]
         
-        # i.current_price = scryfall_card['prices']['usd']
-        i.current_price = 1
+        i.current_price = scryfall_card['prices']['eur']
 
 
     db.session.commit()
@@ -35,7 +36,7 @@ def update_prices_on_daily_visit():
         lv = u.inventory_last_updated
         lv = datetime(lv.year, lv.month, lv.day)
 
-        if (2 > 1):
+        if (d > lv):
             update_inventory_prices.delay()
             u.inventory_last_updated = d
             db.session.commit()
