@@ -7,12 +7,11 @@ import os
 from datetime import datetime
 from sqlalchemy import text
 
-if current_user.is_authenticated:
-    user_name = current_user.username
+
 
 @celery.task()
 def update_inventory_prices():
-    user = User.query.filter_by(username=username).one()
+    user = User.query.filter_by(username=current_user.username).one()
     user_inv = Inventory.query.filter_by(user=user.id).all()
 
     for i in user_inv:
