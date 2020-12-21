@@ -19,7 +19,8 @@ def update_inventory_prices():
             f'https://api.scryfall.com/cards/search?q={card.name}'
         ).json()['data'][0]
         
-        i.current_price = scryfall_card['prices']['usd']
+        # i.current_price = scryfall_card['prices']['usd']
+        i.current_price = 1
 
 
     db.session.commit()
@@ -34,7 +35,7 @@ def update_prices_on_daily_visit():
         lv = u.inventory_last_updated
         lv = datetime(lv.year, lv.month, lv.day)
 
-        if (d > lv):
+        if (2 > 1):
             update_inventory_prices.delay()
             u.inventory_last_updated = d
             db.session.commit()
