@@ -49,8 +49,9 @@ def update_users_last_visit():
 
 @app.route('/')
 def index():
-    update_prices_on_daily_visit()
-    update_users_last_visit()
+    if current_user.is_authenticated:
+        update_prices_on_daily_visit()
+        update_users_last_visit()
     return render_template('index.html')
 
 
@@ -191,8 +192,9 @@ def get_sets():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    update_prices_on_daily_visit()
-    update_users_last_visit()
+    if current_user.is_authenticated:
+        update_prices_on_daily_visit()
+        update_users_last_visit()
     types = get_types()
     sets = get_sets()
     return render_template('search.html', types=types, sets=sets)
@@ -409,8 +411,9 @@ def display_card(card_set, card_name):
 
 @app.route('/inventory')
 def user_inventory():
-    update_prices_on_daily_visit()
-    update_users_last_visit()
+    if current_user.is_authenticated:
+        update_prices_on_daily_visit()
+        update_users_last_visit()
     
     user = User.query.filter_by(username=current_user.username).one()
     user_inv = Inventory.query.filter_by(user=user.id).order_by(Inventory.card_name).all()
