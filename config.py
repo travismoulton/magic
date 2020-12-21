@@ -7,9 +7,9 @@ class Config(object):
 
     
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
-    # BROKER_URL = os.environ['REDIS_URL']
+    CELERY_RESULT_BACKEND = os.environ['REDIS_URL'] or 'redis://localhost:6379/0'
+    BROKER_URL = os.environ['REDIS_URL'] or 'redis://localhost:6379/0'
 
 
-    CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-    BROKER_URL = 'redis://localhost:6379/0'
+    # CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+    # BROKER_URL = 'redis://localhost:6379/0'

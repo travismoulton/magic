@@ -33,7 +33,7 @@ def update_prices_on_daily_visit():
         lv = u.last_visit
         lv = datetime(lv.year, lv.month, lv.day)
 
-        if (d > lv):
+        if (2 > 1):
             update_inventory_prices.delay()
 
 
