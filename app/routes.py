@@ -19,8 +19,8 @@ def update_inventory_prices():
             f'https://api.scryfall.com/cards/search?q={card.name}'
         ).json()['data'][0]
         
-        # i.current_price = scryfall_card['prices']['eur']
-        i.current_price = 1       
+        i.current_price = scryfall_card['prices']['usd']
+
 
     db.session.commit()
 
@@ -31,11 +31,13 @@ def update_prices_on_daily_visit():
         d = datetime(d.year, d.month, d.day)
 
         u = User.query.filter_by(username=current_user.username).first()
-        lv = u.last_visit
+        lv = u.invetory_last_updated
         lv = datetime(lv.year, lv.month, lv.day)
 
-        if (2 > 1):
+        if (d > lv):
             update_inventory_prices.delay()
+            u.invetory_last_updated = d
+            db.session.commit()
 
 
 def update_users_last_visit():

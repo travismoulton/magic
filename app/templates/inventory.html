@@ -29,7 +29,7 @@
 
           <td class="card-checklist__data">{{ user_inv[loop.index0].purchase_price }}</td>
           {% if card.price_usd %}
-            <td class="card-checklist__data">{{ card.price_usd }}</td>
+            <td class="card-checklist__data">{{ user_inv[loop.index0].current_price }}</td>
           {% else %}
             <td class="card-checklist__data">0</td>
           {% endif %}
