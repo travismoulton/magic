@@ -10,7 +10,7 @@ from sqlalchemy import text
 
 @celery.task()
 def update_inventory_prices():
-    user = User.query.filter_by(username='travis').one()
+    user = User.query.filter_by(username=current_user.username).one()
     user_inv = Inventory.query.filter_by(user=user.id).all()
 
     for i in user_inv:
@@ -19,7 +19,8 @@ def update_inventory_prices():
             f'https://api.scryfall.com/cards/search?q={card.name}'
         ).json()['data'][0]
         
-        i.current_price = scryfall_card['prices']['eur']       
+        # i.current_price = scryfall_card['prices']['eur']
+        i.current_price = 1       
 
     db.session.commit()
 
