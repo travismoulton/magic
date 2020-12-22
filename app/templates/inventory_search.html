@@ -149,7 +149,7 @@
         </svg>
         Price
       </label>
-      <div class="search-form__input-wrapper">
+      <div class="search-form__input-wrapper js--inv-search-price-div relative">
         <div class="search-form__select-menu-grouping">
           <select name="denomination" class="search-form__select-menu js--api-denomination">
             <option value="usd">USD</option>
@@ -161,7 +161,7 @@
             <option value=">=">Greater than or equal to</option>
             <option value="<=">Less than or equal to</option>
           </select>
-          <input type="number" class="search-form__input-integer js--api-denomination-sort-value">
+          <input type="text" name="price" class="search-form__input-integer js--inv-denomination-sort-value">
         </div>
         <p class="search-form__tip">
           Restrict cards based on their price
@@ -194,7 +194,7 @@
       </div>
     </div>
 
-    <button class="search-form__submit js--api-btn">Search with these options</button>
+    <button class="search-form__submit js--inv-search-btn">Search with these options</button>
 
 
 

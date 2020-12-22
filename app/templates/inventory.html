@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="value">
+<div class="inventory-details">
   <p>Your inventory is worth {{ (total_inv_value.value)|round(2) }}</p>
+  <a href="{{ url_for('search_inventory') }}">Search your inventory</a>
 </div>
 <div class="api-results-display">
   <table class="card-checklist js--card-checklist">
@@ -33,7 +34,7 @@
           {% else %}
             <td class="card-checklist__data">0</td>
           {% endif %}
-          <td class="card-checklist__data js--inv-earnings">{{ (card.price_usd - user_inv[loop.index0].purchase_price)|round(2) }}</td>
+          <td class="card-checklist__data js--inv-earnings">{{ (user_inv[loop.index0].current_price - user_inv[loop.index0].purchase_price)|round(2) }}</td>
         </tr>
       {% endfor %}
     </tbody>

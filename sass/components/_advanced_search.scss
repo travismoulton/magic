@@ -40,6 +40,10 @@
         &:focus { border: solid 1px $color-black; }
     }
 
+    &__input-integer {
+        &--relative { position: relative; }
+    }
+
     &__group--checkbox {
         display: flex;
         margin-bottom: 1rem;
@@ -165,3 +169,12 @@
 }
 
 .dropdown-wrapper { position: relative; }
+
+.inv-search-price-msg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: red;
+}
+
+.relative { position: relative; }

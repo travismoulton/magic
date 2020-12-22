@@ -5,6 +5,7 @@ import * as searchView from './views/searchView';
 import * as resultsView from './views/resultsView';
 import * as cardView from './views/cardView';
 import * as inventoryView from './views/inventoryView';
+import * as invSearch from './views/inventorySearchView'
 import { elements } from './views/base';
 
 
@@ -281,4 +282,13 @@ if (window.location.pathname.substring(1, 5) === 'card') {
 // ******************************* \\
 if (window.location.pathname.substring(1, 10) === 'inventory') {
     document.addEventListener('DOMContentLoaded', inventoryView.alterInventoryTable)
+}
+
+// ******************************* \\
+// **** Inventory Search Page **** \\
+// ******************************* \\
+if (window.location.pathname.substring(1, 17) === 'inventory/search') {
+    document.querySelector('.js--inv-search-btn').addEventListener(
+        'click', invSearch.checkPriceInputForDigits
+    )
 }
