@@ -19,7 +19,10 @@ def update_inventory_prices(username):
             f'https://api.scryfall.com/cards/search?q={card.name}'
         ).json()['data'][0]
         
-        i.current_price = scryfall_card['prices']['usd']
+        if scryfall_card['prices']['usd']:
+            i.current_price = scryfall_card['prices']['usd']
+        else:
+            i.current_price = 0
 
 
     db.session.commit()
