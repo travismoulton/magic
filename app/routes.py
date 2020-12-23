@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 from app import app, db, celery
 from flask_login import login_user, logout_user, current_user, login_required
 from app.models import User, Type, Set, Card, Inventory
@@ -9,8 +9,8 @@ from sqlalchemy import text
 
 
 @celery.task()
-def update_inventory_prices():
-    user = User.query.filter_by(username=current_user.username).one()
+def update_inventory_prices(username):
+    user = User.query.filter_by(username=username).one()
     user_inv = Inventory.query.filter_by(user=user.id).all()
 
     for i in user_inv:
@@ -19,10 +19,8 @@ def update_inventory_prices():
             f'https://api.scryfall.com/cards/search?q={card.name}'
         ).json()['data'][0]
         
-        i.current_price = scryfall_card['prices']['eur']
-
-        print(i.current_price)
-
+        # i.current_price = scryfall_card['prices']['eur']
+        i.current_price = 1
 
     db.session.commit()
 
@@ -37,7 +35,7 @@ def update_prices_on_daily_visit():
         lv = datetime(lv.year, lv.month, lv.day)
 
         if (2 > 1):
-            update_inventory_prices.delay()
+            update_inventory_prices.delay(u.username)
             u.inventory_last_updated = d
             db.session.commit()
 
@@ -83,6 +81,7 @@ def login():
         if user.check_password(password):
             # If it passes, log the user in and redirect to index
             login_user(user)
+            session['username'] = username
             return redirect(url_for('index'))
         
         # If the password was wrong, display an error message
