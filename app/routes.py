@@ -6,6 +6,7 @@ from app.models import User, Type, Set, Card, Inventory
 import os
 from datetime import datetime
 from sqlalchemy import text
+from time import sleep
 
 
 @celery.task()
@@ -16,14 +17,16 @@ def update_inventory_prices(username):
     for i in user_inv:
         card = Card.query.filter_by(id=i.card).one()
         scryfall_card = requests.get(
-            f'https://api.scryfall.com/cards/search?q={card.name}'
+            f'https://api.scryfall.com/cards/search?q={card.name}+set%3A{card.set_code}'
         ).json()['data'][0]
+
+        print(card.name)
         
         if scryfall_card['prices']['usd']:
             i.current_price = scryfall_card['prices']['usd']
         else:
             i.current_price = 0
-
+        sleep(.05)
 
     db.session.commit()
 
@@ -37,10 +40,11 @@ def update_prices_on_daily_visit():
         lv = u.inventory_last_updated
         lv = datetime(lv.year, lv.month, lv.day)
 
-        if (2 > 1):
+        if (d > lv):
             update_inventory_prices.delay(u.username)
             u.inventory_last_updated = d
             db.session.commit()
+
 
 
 def update_users_last_visit():
@@ -208,7 +212,11 @@ def search():
 @app.route('/inventory/search', methods=['GET', 'POST'])
 def search_inventory():
     if request.method == 'GET':
-        return render_template('inventory_search.html')
+        return render_template(
+            'inventory_search.html',
+            types=get_types(),
+            sets=get_sets()
+        )
     if request.method == 'POST':
         card_name = request.form.get('card-name')
         card_type = request.form.get('type-line')
@@ -223,15 +231,55 @@ def search_inventory():
         common = '#common' if 'common' in request.form else ''
         uncommon = '#uncommon' if 'uncommon' in request.form else ''
         rare = '#rare' if 'rare' in request.form else ''
-        mythic = '#mythic' if 'mthic' in request.form else ''
+        mythic = '#mythic' if 'mthic' in request.form else ''        
 
         if request.form.get('price') != '':
             price = float(request.form.get('price'))
         else:
             price = ''
-
-
+        
         user = User.query.filter_by(username=current_user.username).first()
+        
+        def build_search_paramater_string():
+            final_string = ''
+
+            if request.form.get('card-name'):
+                final_string += f' and card name includes "{card_name}"'            
+            if request.form.get('card_type'):
+                final_string += f' and type includes "{card_type}"'            
+            if request.form.get('card_set'):
+                final_string += f' and set code is {card_set}'            
+            if white == 'w':
+                final_string += f' and color includes white'
+            if red == 'r':
+                final_string += f' and color includes red'
+            if blue == 'u':
+                final_string += f' and color includes blue'
+            if green == 'g':
+                final_string += f' and color includes green'
+            if black == 'b':
+                final_string += f' and color includes black'     
+            if common == '#common':
+                final_string += f' and rarity is common'     
+            if uncommon == '#uncommon':
+                final_string += f' and rarity is uncommon'     
+            if rare == '#rare':
+                final_string += f' and rarity is rare'     
+            if mythic == '#mythic':
+                final_string += f' and rarity is mythic'   
+
+            if final_string == '':
+                return f'Displaying all of {user.username}\'s cards'   
+            else:
+                final_string = final_string.replace(' and ', '', 1)
+                return f'Display all of {user.username}\'s cards that\'s {final_string}'
+
+        string = build_search_paramater_string()
+
+        print(string)
+
+
+
 
         def check_for_rarity():
             if common != '' or uncommon != '' or rare != '' or mythic != '':
@@ -244,7 +292,7 @@ def search_inventory():
             if request.form.get('price'):
                 return f'AND cards.price_usd {(request.form.get("denomination-sorter"))} :price'
             else:
-                return ''
+                return ''      
 
         stmt = text(f'SELECT * FROM cards JOIN inventory ON inventory.card = cards.id \
           WHERE cards.name ILIKE :name AND cards.type_line ILIKE :type_line \
@@ -254,13 +302,6 @@ def search_inventory():
           AND inventory.user = :user_id {check_for_rarity()} \
           {check_for_price()}')
 
-        stmt2 = text(f'SELECT * FROM inventory JOIN cards ON inventory.card = cards.id \
-          WHERE cards.name ILIKE :name AND cards.type_line ILIKE :type_line \
-          AND cards.set_name ILIKE :set_name  AND cards.colors ILIKE :white \
-          AND cards.colors ILIKE :red AND cards.colors ILIKE :blue \
-          AND cards.colors ILIKE :green AND cards.colors ILIKE :black \
-          AND inventory.user = :user_id {check_for_rarity()} \
-          {check_for_price()}')
 
         cards = Card.query.from_statement(stmt).params(
             name=f'%{card_name}%',
@@ -279,7 +320,7 @@ def search_inventory():
             price=price
         ).all()
 
-        user_inv = Inventory.query.from_statement(stmt2).params(
+        user_inv = Inventory.query.from_statement(stmt).params(
             name=f'%{card_name}%',
             type_line=f'%{card_type}%',
             set_name=f'%{card_set}%',
@@ -296,17 +337,14 @@ def search_inventory():
             price=price
         ).all()
 
-        print(cards)
-        print(user_inv)
 
+    return render_template(
+        'inventory.html', 
+        user_inv=user_inv, 
+        cards=cards, 
+        total_inv_value={'value': 0},
+    )
 
-    # return render_template(
-    #     'inventory.html', 
-    #     user_inv=user_inv, 
-    #     cards=cards, 
-    #     total_inv_value={'value': 0},
-    # )
-    return render_template('inventory_search.html')
 
 
 
@@ -316,11 +354,15 @@ def results(query, display_method):
 
 
 def add_card(card):
+    if card['prices']['usd'] != None:
+        price = float(card['prices']['usd'])
+    else:
+        price = float(0)
     new_card = Card(
             cmc = card['cmc'],
             scryfall_id = card['id'],
             name = card['name'],
-            price_usd = float(card['prices']['usd']),
+            price_usd = price,
             set_code = card['set'],
             set_name = card['set_name'],
             rarity = f"#{card['rarity']}"
@@ -366,6 +408,8 @@ def display_card(card_set, card_name):
             else:
                 price = 0
         
+        p = float(card['prices']['usd']) if card['prices']['usd'] else float(0)
+        
         user = User.query.filter_by(username=current_user.username).one()
         c = Card.query.filter_by(name=card['name']).one()
 
@@ -374,7 +418,7 @@ def display_card(card_set, card_name):
             user=user.id,
             card_name=card['name'],
             purchase_price=price, 
-            current_price = float(card['prices']['usd'])
+            current_price=p
         )
         user.cards.append(i)
         db.session.commit()
@@ -461,7 +505,7 @@ def user_inventory():
     user = User.query.filter_by(username=current_user.username).one()
     user_inv = Inventory.query.filter_by(user=user.id).order_by(Inventory.card_name).all()
     cards = []
-    data = []
+    inv_last_updated = {'updated': user.inventory_last_updated}
 
     total_inv_value = {'value': 0}
     for i in user_inv:
@@ -475,6 +519,7 @@ def user_inventory():
         user_inv=user_inv, 
         cards=cards, 
         total_inv_value=total_inv_value,
+        inv_last_updated=inv_last_updated,
     )
 
 
@@ -494,7 +539,7 @@ def user_inventory():
 #     emblem = Type(name='Emblem', category='basic')
 #     enchantment = Type(name='Enchantment', category='basic')
 #     hero = Type(name='Hero', category='basic')
-#     instant = Type(name='Artifact', category='basic')
+#     instant = Type(name='Instant', category='basic')
 #     land = Type(name='Land', category='basic')
 #     phenomenon = Type(name='Phenomenon', category='basic')
 #     plane = Type(name='Plane', category='basic')
@@ -562,23 +607,23 @@ def user_inventory():
 #     return render_template('get_types.html')
 
 
-# One time route to store the sets in the database
-@app.route('/get_sets')
-def get_setss():
-    sets = requests.get('https://api.scryfall.com/sets').json()['data']
+# # One time route to store the sets in the database
+# @app.route('/get_sets')
+# def get_setss():
+#     sets = requests.get('https://api.scryfall.com/sets').json()['data']
 
-    for s in sets:
-        new_set = Set(
-            name=s['name'],
-            code=s['code'],
-            svg=s['icon_svg_uri'],
-            set_type=s['set_type']
-        )
-        db.session.add(new_set)
+#     for s in sets:
+#         new_set = Set(
+#             name=s['name'],
+#             code=s['code'],
+#             svg=s['icon_svg_uri'],
+#             set_type=s['set_type']
+#         )
+#         db.session.add(new_set)
     
-    db.session.commit()
+#     db.session.commit()
     
-    return render_template('get_types.html')
+#     return render_template('get_types.html')
 
 
 # Currently not going to use this. Doesn't seem like it's having an impact on performance.

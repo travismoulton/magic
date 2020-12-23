@@ -288,7 +288,49 @@ if (window.location.pathname.substring(1, 10) === 'inventory') {
 // **** Inventory Search Page **** \\
 // ******************************* \\
 if (window.location.pathname.substring(1, 17) === 'inventory/search') {
+    
     document.querySelector('.js--inv-search-btn').addEventListener(
         'click', invSearch.checkPriceInputForDigits
     )
+
+    elements.apiSearch.typeLine.addEventListener('click', () => {
+        // Display the dropdown
+        console.log('click')
+        searchView.showTypesDropDown();
+        invSearch.startTypesDropDownNavigation();
+
+        // Start an event listener on the document. This will close the dropdown if the user clicks
+        // outside of the input or dropdown. This will also cancel the event listener
+        document.addEventListener('click', invSearch.typeLineListener)
+    })
+
+    elements.apiSearch.typeLine.addEventListener('input', () => {
+        if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
+            searchView.showTypesDropDown();
+        }
+
+        searchView.filterTypes(elements.apiSearch.typeLine.value);
+        searchView.filterTypeHeaders();
+        invSearch.startTypesDropDownNavigation();
+    })
+
+    elements.apiSearch.setInput.addEventListener('click', () => {
+        // Display the dropdown
+        searchView.showSetsDropDown();
+        invSearch.startSetsDropDownNavigation();
+
+        // Start an event listener on the document. This will close the dropdown if the user clicks
+        // outside of the input or dropdown. This will also cancel the event listener
+        document.addEventListener('click', invSearch.setInputListener)
+    })
+
+    elements.apiSearch.setInput.addEventListener('input', () => {
+        if (elements.apiSearch.setDropDown.hasAttribute('hidden')) {
+            searchView.showSetsDropDown();
+        }
+
+        searchView.filterSets(elements.apiSearch.setInput.value);
+        searchView.filterSetHeaders();        
+        invSearch.startSetsDropDownNavigation();
+    })
 }

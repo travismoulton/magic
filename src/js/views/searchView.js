@@ -9,6 +9,7 @@ export const showTypesDropDown = () => {
     if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {            
         elements.apiSearch.typeDropDown.removeAttribute('hidden');
         elements.apiSearch.typeDropDown.scrollTop = 0;
+        console.log('types dropdown')
 
         // Make sure to display all types when opening the dropdown and before taking input
         filterTypes('');
@@ -67,7 +68,7 @@ export const filterTypeHeaders = () => {
     }
 };
 
-const filterSelectedTypes = () => {
+export const filterSelectedTypes = () => {
     const types = Array.from(document.querySelectorAll(
         '[data-type][data-selected]'
     ));
@@ -96,7 +97,7 @@ export const filterTypes = str => {
     filterSelectedTypes();
 }
 
-const highlightType = type => {
+export const highlightType = type => {
     if (document.querySelector('.js--highlighted')) removeCurrentHighlight();
 
     if (type) {
@@ -106,13 +107,13 @@ const highlightType = type => {
     }
 };
 
-const removeCurrentHighlight = () => {
+export const removeCurrentHighlight = () => {
     document.querySelector('.js--highlighted').classList.remove(
         'js--highlighted', 'search-form__dropdown-list-option--highlighted'
     );
 };
 
-const setScrollTopOnDownArrow = (el, dropdown) => {
+export const setScrollTopOnDownArrow = (el, dropdown) => {
     if (el.offsetTop > dropdown.offsetHeight - el.offsetHeight &&
       dropdown.scrollTop + dropdown.offsetHeight - el.offsetHeight < el.offsetTop) {
         dropdown.scrollTop = el.offsetTop - 
@@ -120,7 +121,7 @@ const setScrollTopOnDownArrow = (el, dropdown) => {
     }
 }
 
-const setScrollTopOnUpArrow = (el, dropdown) => {
+export const setScrollTopOnUpArrow = (el, dropdown) => {
     if (el.offsetTop < dropdown.scrollTop) {
         dropdown.scrollTop = el.offsetTop;
 
@@ -130,7 +131,7 @@ const setScrollTopOnUpArrow = (el, dropdown) => {
     }
 }
 
-const navigateTypesDropDown = e => {
+export const navigateTypesDropDown = e => {
     const types = Array.from(document.querySelectorAll('.js--type:not([hidden])'));
     const i = types.indexOf(document.querySelector('.js--highlighted'));
 
@@ -166,7 +167,7 @@ const navigateTypesDropDown = e => {
     }
 }
 
-const hoverOverTypesListener = () => {
+export const hoverOverTypesListener = () => {
     const types = Array.from(document.querySelectorAll('.js--type:not([hidden])'));
 
     types.forEach(type => {
@@ -231,7 +232,7 @@ const typeToggleBtn = () => {
     return btn;
 }
 
-const toggleDataSelected = typeOrSet => {
+export const toggleDataSelected = typeOrSet => {
     if (typeOrSet.getAttribute('data-selected') === 'true') {
         typeOrSet.setAttribute('data-selected', 'false')
     } else {
@@ -291,7 +292,7 @@ export const showSetsDropDown = () => {
     }
 }
 
-const hideSetsDropDown = () => {
+export const hideSetsDropDown = () => {
     if (!elements.apiSearch.setDropDown.hasAttribute('hidden')) {
         elements.apiSearch.setDropDown.setAttribute('hidden', 'true');
         elements.apiSearch.setInput.value = '';
@@ -407,7 +408,7 @@ export const filterSets = str => {
     })
 }
 
-const filterSelectedSets = () => {
+export const filterSelectedSets = () => {
     const sets = Array.from(document.querySelectorAll('[data-set-name][data-selected]'));
 
     sets.forEach(s => {
@@ -417,7 +418,7 @@ const filterSelectedSets = () => {
     })
 }
 
-const highlightSet = sett => {
+export const highlightSet = sett => {
     if (document.querySelector('.js--highlighted')) removeCurrentHighlight();
 
     if (sett) {
@@ -427,7 +428,7 @@ const highlightSet = sett => {
     }
 };
 
-const navigateSetsDropDown = e => {
+export const navigateSetsDropDown = e => {
     const sets = Array.from(document.querySelectorAll('.js--set:not([hidden])'));
     const i = sets.indexOf(document.querySelector('.js--highlighted'));
 
@@ -459,7 +460,7 @@ const navigateSetsDropDown = e => {
     }
 };
 
-const hoverOverSetsListener = () => {
+export const hoverOverSetsListener = () => {
     const sets = Array.from(document.querySelectorAll('.js--set:not([hidden])'));
 
     sets.forEach(s => {
