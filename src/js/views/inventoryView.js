@@ -52,7 +52,7 @@ const sortTableAlphabetically = () => {
 }
 
 const giveEarningsColumnModifier = () => {
-    let rows = Array.from(document.querySelectorAll(
+    const rows = Array.from(document.querySelectorAll(
         '.js--inv-earnings'
     ));
 
@@ -67,10 +67,15 @@ const giveEarningsColumnModifier = () => {
     })
 }
 
+const removeHashTagFromRarity = () => {
+    const raritys = Array.from(document.querySelectorAll('.js--rarity'))
+    raritys.forEach(r => r.innerHTML = r.innerHTML.substring(1))
+}
+
 export const alterInventoryTable = () => {
     shortenTypeLine();
     alterManaImages();
     checkListHoverEvents();
-    // sortTableAlphabetically();
     giveEarningsColumnModifier();
+    removeHashTagFromRarity();
 }

@@ -80,7 +80,6 @@ def login():
         if user.check_password(password):
             # If it passes, log the user in and redirect to index
             login_user(user)
-            session['username'] = username
             return redirect(url_for('index'))
         
         # If the password was wrong, display an error message
@@ -215,6 +214,7 @@ def add_card(card):
             rarity = f"#{card['rarity']}"
     )
 
+    # For double sided cards
     if not 'card_faces' in card:
         new_card.colors = card['colors']
         new_card.image_uri_small = card['image_uris']['small']
@@ -223,6 +223,7 @@ def add_card(card):
         new_card.mana_cost = card['mana_cost']
         new_card.type_line = card['type_line']
     
+    # For single sided cards
     if 'card_faces' in card:
         new_card.colors = card['card_faces'][0]['colors']
         new_card.image_uri_small = card['card_faces'][0]['image_uris']['small']
@@ -373,9 +374,11 @@ def build_search_paramater_string(request):
     final_string = ''
 
     if request.form.get('card-name'):
-        final_string += f' and card name includes {request.form.get("card-name")}'            
+        final_string += f' and name includes \
+         {request.form.get("card-name")}'            
     if request.form.get('card_type'):
-        final_string += f' and type includes "{request.form.get("card_type")}"'            
+        final_string += f' and type includes \
+        "{request.form.get("card_type")}"'            
     if request.form.get('card_set'):
         final_string += f' and set code is {request.form.get("card_set")}'            
     if 'white' in request.form:
@@ -396,6 +399,18 @@ def build_search_paramater_string(request):
         final_string += f' and rarity is rare'     
     if 'mythic' in request.form:
         final_string += f' and rarity is mythic'   
+    if request.form.get('price'):
+        if request.form.get('denomination-sorter') == '>':
+            final_string += f' and price is greater than \
+            ${request.form.get("price")}'
+        else:
+            final_string += f' and price is less than \
+            ${request.form.get("price")}'
+    
+    first_rarity = final_string.find('rarity')
+    last_rarity = final_string.rfind('rarity')
+    print(first_rarity, last_rarity)
+    print(final_string[first_rarity:last_rarity])
 
     if final_string == '':
         return f'Displaying all of {current_user.username}\'s cards'   
@@ -436,12 +451,12 @@ def search_inventory():
             sets=get_sets()
         )
     if request.method == 'POST':
+        # Checking to see if checkboxes from the form are checked
         white = 'w' if 'white' in request.form else ''
         red = 'r' if 'red' in request.form else ''
         blue = 'u' if 'blue' in request.form else ''
         green = 'g' if 'green' in request.form else ''
         black = 'b' if 'black' in request.form else ''
-
         common = '#common' if 'common' in request.form else ''
         uncommon = '#uncommon' if 'uncommon' in request.form else ''
         rare = '#rare' if 'rare' in request.form else ''

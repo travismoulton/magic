@@ -70,13 +70,8 @@
             </div>
           </div>          
         </span>
-
-        <div class="search-form__checkbox-wrapper">
-          <input type="checkbox" class="search-form__input-checkbox js--api-type-box" id="partial-type-box">
-          <label for="partial-type-box" class="search-form__label--checkbox">Allow partial type matches</label>
-        </div>
         <p class="search-form__tip">
-          "Including" means cards that are all the colors you select, with or without any others. "At most" means cards that have some or all of the colors you select, plus colorless. 
+          Will return all cards that include the specified type
         </p>
       </div>
     </div>
@@ -132,7 +127,7 @@
           </div>
         </div>
         <p class="search-form__tip">
-          Will only return cards of one color at a time.
+          Will return on the cards that match all colors selected.
         </p>
       </div>
     </div>
@@ -351,9 +346,6 @@
           <select name="denomination-sorter" class="search-form__select-menu js--api-denomination-sort-by">
             <option value=">">Greater than</option>
             <option value="<">Less than</option>
-            <option value="=">Equals</option>
-            <option value=">=">Greater than or equal to</option>
-            <option value="<=">Less than or equal to</option>
           </select>
           <input type="text" name="price" class="search-form__input-integer js--inv-denomination-sort-value">
         </div>
