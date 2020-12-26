@@ -236,107 +236,152 @@ def add_card(card):
     return
 
 
+def get_purchase_price(request, card):
+    if request.form.get('price') != '':
+        return float(request.form.get('price'))
+    else:
+        if card['prices']['usd']:
+            return float(card['prices']['usd'])
+        # If there is no price associated with the api response
+        else:
+            return float(0)
+
+
+def get_current_price(card):
+    if card['prices']['usd']:
+        return float(card['prices']['usd'])
+    else:
+        return float(0)
+
+
+def display_for_card_page(request, card_name, card_set):
+    card = get_card_from_scryfall(card_name, card_set)
+
+    # The set_svg will be the same regardless of the card has two faces or one, 
+    # and so we can set the variable for both single and double sided cards
+    set_svg = { 'set_svg': requests.get(card['set_uri']).json()['icon_svg_uri'] }
+
+    #If the card has two faces, the JSON that comes back is different
+    if 'card_faces' in card:
+        face_one = card['card_faces'][0]
+        face_two = card['card_faces'][1]
+
+        # In order to properly handle both double sided cards and adventure cards,
+        # we set the image_uris property to the card object (which on a double sided
+        # card belongs to face_one) so that we can access it from the same place in 
+        # both situations in card.html
+        if not card['type_line'].endswith('Adventure'):
+            card['image_uris'] = { 'large': face_one['image_uris']['large'] }
+            adventure = False
+
+            if 'color_indicator' in face_two:
+                color_indicator = { 'color': face_two['color_indicator'][0] }
+            else:
+                color_indicator = None
+        
+        if card['type_line'].endswith('Adventure'):
+            color_indicator = None
+            adventure = True
+
+        oracle_texts = {
+            'face_one_texts': face_one['oracle_text'].rsplit("\n"),
+            'face_two_texts': face_two['oracle_text'].rsplit("\n")
+        }
+        
+    # For single sided cards
+    else:
+        oracle_texts = {'face_one_texts': card['oracle_text'].rsplit("\n")}
+        face_one = card
+        face_two = None
+        adventure = False
+        color_indicator = None
+    
+    # Used to display the list of prints. This gets all different prints and
+    # stores them in a list
+    all_prints = requests.get(card['prints_search_uri']).json()['data']
+
+    for p in all_prints:
+        # For double sided cards and not adventure cards, we grab the image 
+        # to be displayed when hovering over a card from the print list.
+        # Adventure and single sided cards need no additional logic to display
+        if 'card_faces' in p and not p['type_line'].endswith('Adventure'):            
+            p['image_uris'] = {
+                'normal': p['card_faces'][0]['image_uris']['normal']
+            }
+    
+    return {
+        'card' : card,
+        'face_one' : face_one,
+        'face_two' : face_two,
+        'oracle_texts' : oracle_texts,
+        'color_indicator' : color_indicator,
+        'set_svg' : set_svg,
+        'all_prints' : all_prints,
+        'adventure' : adventure,        
+    }
+
+
 @app.route('/card/<string:card_set>/<string:card_name>', methods=['GET', 'POST'])
 def display_card(card_set, card_name):
     if request.method == 'POST':   
-        card = get_card_from_scryfall(card_name, card_set)
+        scryfall_card = get_card_from_scryfall(card_name, card_set)
 
         if not Card.query.filter_by(name=card['name']).first():
-            add_card(card)
+            add_card(scryfall_card)
 
-        if request.form.get('price') != '':
-            price = float(request.form.get('price'))
-        else:
-            if card['prices']['usd']:
-                price = float(card['prices']['usd'])
-            # If there is no price associated with the api response
-            else:
-                price = 0
+        purchase_price = get_purchase_price(request, scryfall_card)
         
-        p = float(card['prices']['usd']) if card['prices']['usd'] else float(0)
+        current_price = get_current_price(scryfall_card)
         
         user = User.query.filter_by(username=current_user.username).one()
-        c = Card.query.filter_by(name=card['name']).one()
+        card = Card.query.filter_by(name=card['name']).one()
 
         i = Inventory(
-            card=c.id, 
+            card=card.id, 
             user=user.id,
             card_name=card['name'],
-            purchase_price=price, 
-            current_price=p
+            purchase_price=purchase_price, 
+            current_price=current_price
         )
         user.cards.append(i)
         db.session.commit()
 
         return redirect(url_for('search'))
 
-
     if request.method == 'GET':
-        card = get_card_from_scryfall(card_name, card_set)
-
-        # The set_svg will be the same regardless of the card has two faces or one, 
-        # and so we can set the variable for both single and double sided cards
-        set_svg = { 'set_svg': requests.get(card['set_uri']).json()['icon_svg_uri'] }
-
-
-        #If the card has two faces, the JSON that comes back is different
-        if 'card_faces' in card:
-            face_one = card['card_faces'][0]
-            face_two = card['card_faces'][1]
-
-            # In order to properly handle both double sided cards and adventure cards,
-            # we set the image_uris property to the card object (which on a double sided
-            # card belongs to face_one) so that we can access it from the same place in 
-            # both situations in card.html
-            if not card['type_line'].endswith('Adventure'):
-                card['image_uris'] = { 'large': face_one['image_uris']['large'] }
-                adventure = False
-
-                if 'color_indicator' in face_two:
-                    color_indicator = { 'color': face_two['color_indicator'][0] }
-                else:
-                    color_indicator = None
-            
-            if card['type_line'].endswith('Adventure'):
-                color_indicator = None
-                adventure = True
-
-            oracle_texts = {
-                'face_one_texts': face_one['oracle_text'].rsplit("\n"),
-                'face_two_texts': face_two['oracle_text'].rsplit("\n")
-            }
-            
-        # For single sided cards
-        else:
-            oracle_texts = {'face_one_texts': card['oracle_text'].rsplit("\n")}
-            face_one = card
-            face_two = None
-            adventure = False
-            color_indicator = None
-        
-        # Used to display the list of prints. This gets all different prints and
-        # stores them in a list
-        all_prints = requests.get(card['prints_search_uri']).json()['data']
-
-        for p in all_prints:
-            # For double sided cards and not adventure cards, we grab the image 
-            # to be displayed when hovering over a card from the print list.
-            # Adventure and single sided cards need no additional logic to display
-            if 'card_faces' in p and not p['type_line'].endswith('Adventure'):            
-                p['image_uris'] = {
-                    'normal': p['card_faces'][0]['image_uris']['normal']
-                }   
+        values = display_for_card_page(request, card_name, card_set)
     
         return render_template(
             'card.html',
-            card=card,
-            face_one=face_one,
-            face_two=face_two,
-            oracle_texts=oracle_texts,
-            color_indicator = color_indicator,
-            set_svg=set_svg,
-            all_prints=all_prints,
-            adventure=adventure,
+            card=values['card'],
+            face_one=values['face_one'],
+            face_two=values['face_two'],
+            oracle_texts=values['oracle_texts'],
+            color_indicator=values['color_indicator'],
+            set_svg=values['set_svg'],
+            all_prints=values['all_prints'],
+            adventure=values['adventure'],
+            user_copy=False
+        )
+
+
+
+@app.route('/<string:username>/card/<string:card_set>/<string:card_name>', methods=['GET', 'POST'])
+def display_user_card(username, card_set, card_name):
+    if request.method == 'GET':
+        values = display_for_card_page(request, card_name, card_set)
+            
+        return render_template(
+            'card.html',
+            card=values['card'],
+            face_one=values['face_one'],
+            face_two=values['face_two'],
+            oracle_texts=values['oracle_texts'],
+            color_indicator=values['color_indicator'],
+            set_svg=values['set_svg'],
+            all_prints=values['all_prints'],
+            adventure=values['adventure'],
+            user_copy=True,
         )
 
 
@@ -347,6 +392,16 @@ def get_inv_value(cards):
             total_inv_value['value'] += float(card.current_price)    
     return total_inv_value
 
+
+def parse_card_name_for_url(card_name):
+    print(card_name)
+    card_name = card_name.replace(' ', '-')
+
+    if card_name.find('/') != -1:
+        card_name = card_name[0:card_name.index('/')]
+   
+    print(card_name)
+    return card_name
 
 @app.route('/inventory')
 def user_inventory():
@@ -361,13 +416,35 @@ def user_inventory():
     
     cards = Card.query.from_statement(stmt).params(id=user.id)
 
+    card_links = []
+    for card in cards:
+        card_links.append(parse_card_name_for_url(card.name))
+
     return render_template(
         'inventory.html', 
         user_inv=user_inv, 
         cards=cards, 
         total_inv_value=get_inv_value(user_inv),
-        search_string=f'Display all of {user.username}\'s cards'
+        search_string=f'Display all of {user.username}\'s cards',
+        card_links=card_links
     )
+
+
+def adjust_for_two_rarities(string):
+    if string.find('rarity') != string.rfind('rarity'):
+        part_one = string[0:string.find('rarity')]
+        part_two = string[string.find('rarity'):string.rfind('rarity')]
+        part_three = string[string.rfind('rarity'):]
+
+        # part_two = part_two.replace('and', 'or')
+
+        print(string.find('rarity'))
+        print(string.rfind('rarity'))
+
+        return part_one + part_two + part_three
+    
+    else:
+        return string
 
 
 def build_search_paramater_string(request):
@@ -392,13 +469,13 @@ def build_search_paramater_string(request):
     if 'black' in request.form:
         final_string += f' and color includes black'     
     if 'common' in request.form:
-        final_string += f' and rarity is common'     
+        final_string += f' and rarities are common'     
     if 'uncommon' in request.form:
-        final_string += f' and rarity is uncommon'     
+        final_string += f' and rarities are uncommon'     
     if 'rare' in request.form:
-        final_string += f' and rarity is rare'     
+        final_string += f' and rarities are rare'     
     if 'mythic' in request.form:
-        final_string += f' and rarity is mythic'   
+        final_string += f' and rarities are mythic'   
     if request.form.get('price'):
         if request.form.get('denomination-sorter') == '>':
             final_string += f' and price is greater than \
@@ -406,17 +483,14 @@ def build_search_paramater_string(request):
         else:
             final_string += f' and price is less than \
             ${request.form.get("price")}'
-    
-    first_rarity = final_string.find('rarity')
-    last_rarity = final_string.rfind('rarity')
-    print(first_rarity, last_rarity)
-    print(final_string[first_rarity:last_rarity])
+
+    final_string = adjust_for_two_rarities(final_string)
 
     if final_string == '':
         return f'Displaying all of {current_user.username}\'s cards'   
     else:
         final_string = final_string.replace(' and ', '', 1)
-        return f'Display all of {current_user.username}\'s cards that\'s {final_string}'
+        return f'Displaying all of {current_user.username}\'s cards that\'s {final_string}'
 
 
 def check_for_rarity(request):

@@ -24,7 +24,9 @@
     <tbody class="js--card-checklist-body">
       {% for card in cards %}
         <tr class="card-checklist__row card-checklist__row--9 js--checklist-row" data-row="{{ card.name }}" data-component="card-tooltip" data-card-img="{{ card.image_uri_normal }}">
-          <td class="card-checklist__data card-checklist__data--set">{{ card.set_code }}</td>
+          <a href="/{{ current_user.username }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}" class="card-checklist__data-link">
+            <td class="card-checklist__data card-checklist__data--set">{{ card.set_code }}</td>
+          </a>
           <td class="card-checklist__data card-checklist__data--name js--checklist-card-name">{{ card.name }}</td>
           <td class="card-checklist__data js--inv-mana-cost">{{ card.mana_cost }}</td>
           <td class="card-checklist__data js--inv-types">{{ card.type_line }}</td>

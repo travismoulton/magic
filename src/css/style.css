@@ -602,20 +602,25 @@ body {
   flex-direction: column;
   grid-column: center-start / center-end; }
 
-.add-to-inv {
+.add-to-inv,
+.remove-from-inv {
   margin-top: 3rem;
   width: 50%; }
-  .add-to-inv__form {
+  .add-to-inv__form,
+  .remove-from-inv__form {
     display: flex;
     flex-direction: column; }
-    .add-to-inv__form-group {
+    .add-to-inv__form-group,
+    .remove-from-inv__form-group {
       display: flex;
       align-content: center;
       margin-bottom: 3rem;
       position: relative; }
-    .add-to-inv__form-label {
+    .add-to-inv__form-label,
+    .remove-from-inv__form-label {
       margin-right: .3rem; }
-  .add-to-inv-price-msg {
+  .add-to-inv-price-msg,
+  .remove-from-inv-price-msg {
     position: absolute;
     bottom: -1.8rem;
     right: 25%;

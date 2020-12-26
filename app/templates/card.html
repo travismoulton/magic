@@ -143,20 +143,38 @@
       </ul>
     </div>
   </div>
-  <div class="add-to-inv">
-    <h3 class="add-to-inv__header">Add {{ card.name }} to your inventory</h3>
-    <form action="#" method="POST" class="add-to-inv__form">
-      <div class="add-to-inv__form-group js--add-to-inv-price-div">
-        <label for="add-to-inv-price" class="add-to-inv__form-label">The price you aquired {{ card.name }}</label>
-        <input type="text" id="add-to-inv-price" name="price" class="add-to-inv__form-price js--add-to-inv-price" placeholder="Aquired Price">        
-      </div>
-      <div class="add-to-inv__form-group">
-        <label for="add-to-inv-date" class="add-to-inv__form-label">The date you aquired {{ card.name }}</label>
-        <input type="date" id="add-to-inv-date" name="date" class="add-to-inv__form-date" placeholder="Date Aquired">        
-      </div>
-      <input type="submit" value="Add {{ card.name }} to your inventory" class="js--add-to-inv-submit">
-    </form>
-  </div>
+
+  {% if not user_copy %}
+
+    <div class="add-to-inv">
+      <h3 class="add-to-inv__header">Add {{ card.name }} to your inventory</h3>
+      <form action="#" method="POST" class="add-to-inv__form">
+        <div class="add-to-inv__form-group js--add-to-inv-price-div">
+          <label for="add-to-inv-price" class="add-to-inv__form-label">The price you aquired {{ card.name }}</label>
+          <input type="text" id="add-to-inv-price" name="price" class="add-to-inv__form-price js--add-to-inv-price" placeholder="Aquired Price">        
+        </div>
+        <div class="add-to-inv__form-group">
+          <label for="add-to-inv-date" class="add-to-inv__form-label">The date you aquired {{ card.name }}</label>
+          <input type="date" id="add-to-inv-date" name="date" class="add-to-inv__form-date" placeholder="Date Aquired">        
+        </div>
+        <input type="submit" value="Add {{ card.name }} to your inventory" class="js--add-to-inv-submit">
+      </form>
+    </div>
+  
+  {% else %}
+
+    <div class="remove-from-inv">
+      <h3 class="remove-from-inv__header">Remove {{ card.name }} from your inventory</h3>
+      <form action="#" method="POST" class="remove-from-inv__form">
+        <div class="remove-from-inv__form-group js--remove-from-inv-price-div">
+          <label for="remove-from-inv-price" class="remove-from-inv__form-label">The price you sold {{ card.name }}</label>
+          <input type="text" id="remove-from-inv-price" name="price" class="remove-from-inv__form-price js--remove-from-inv-price" placeholder="Aquired Price">        
+        </div>
+        <input type="submit" value="Remove {{ card.name }} from your inventory" class="js--remove-from-inv-submit">
+      </form>
+    </div>
+  {% endif %}
+  
 </div>
 
 {% endblock %}
