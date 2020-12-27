@@ -1,336 +1,342 @@
-import '../css/style.css';
-import '../css/vendor/mana.css';
-import Search from './models/Search';
-import * as searchView from './views/searchView';
-import * as resultsView from './views/resultsView';
-import * as cardView from './views/cardView';
-import * as inventoryView from './views/inventoryView';
-import * as invSearch from './views/inventorySearchView'
-import { elements } from './views/base';
-
+import "../css/style.css";
+import "../css/vendor/mana.css";
+import Search from "./models/Search";
+import * as searchView from "./views/searchView";
+import * as resultsView from "./views/resultsView";
+import * as cardView from "./views/cardView";
+import * as inventoryView from "./views/inventoryView";
+import * as invSearch from "./views/inventorySearchView";
+import { elements } from "./views/base";
 
 // ******************************* \\
 // ********* Quick Search ******** \\
 // ******************************* \\
-elements.nav.quickSearchBtn.addEventListener('click', () => {
-    const search = new Search();
+elements.nav.quickSearchBtn.addEventListener("click", () => {
+  const search = new Search();
 
-    if (elements.nav.searchInput.value !== '') {
-        const query = search.quickSearch();
-        window.location.href = `/results/list/${query}&order=name`
-    }
-})
-
+  if (elements.nav.searchInput.value !== "") {
+    const query = search.quickSearch();
+    window.location.href = `/results/list/${query}&order=name`;
+  }
+});
 
 // ******************************* \\
 // ********* Search Page ********* \\
 // ******************************* \\
-if (window.location.pathname === '/search') {
-    const search = new Search();
+if (window.location.pathname === "/search") {
+  const search = new Search();
 
-    // Event listener for the submit search button. This goes through the form and generates
-    // the qujery string. It then passes the string to the server through the URL
-    elements.apiSearch.submitBtn.onclick = async e => {
-        e.preventDefault()
+  // Event listener for the submit search button. This goes through the form and generates
+  // the qujery string. It then passes the string to the server through the URL
+  elements.apiSearch.submitBtn.onclick = async (e) => {
+    e.preventDefault();
 
-        // Clear any existing query string
-        search.resetSearchQuery();
-    
-        // Build the query string
-        const query = search.buildSearchQuery();
+    // Clear any existing query string
+    search.resetSearchQuery();
 
-        // Get the display method
-        const displayMethod = search.displayMethod();
+    // Build the query string
+    const query = search.buildSearchQuery();
 
-        // Create a get request with the query string
-        window.location.href = `/results/${displayMethod}/${query}`;
-    
-        return false
+    // Get the display method
+    const displayMethod = search.displayMethod();
+
+    // Create a get request with the query string
+    window.location.href = `/results/${displayMethod}/${query}`;
+
+    return false;
+  };
+
+  elements.apiSearch.typeLine.addEventListener("click", () => {
+    // Display the dropdown
+    searchView.showTypesDropDown();
+    searchView.startTypesDropDownNavigation();
+
+    // Start an event listener on the document. This will close the dropdown if the user clicks
+    // outside of the input or dropdown. This will also cancel the event listener
+    document.addEventListener("click", searchView.typeLineListener);
+  });
+
+  elements.apiSearch.typeLine.addEventListener("input", () => {
+    if (elements.apiSearch.typeDropDown.hasAttribute("hidden")) {
+      searchView.showTypesDropDown();
     }
 
-    elements.apiSearch.typeLine.addEventListener('click', () => {
-        // Display the dropdown
-        searchView.showTypesDropDown();
-        searchView.startTypesDropDownNavigation();
+    searchView.filterTypes(elements.apiSearch.typeLine.value);
+    searchView.filterTypeHeaders();
+    searchView.startTypesDropDownNavigation();
+  });
 
-        // Start an event listener on the document. This will close the dropdown if the user clicks
-        // outside of the input or dropdown. This will also cancel the event listener
-        document.addEventListener('click', searchView.typeLineListener)
-    })
+  elements.apiSearch.setInput.addEventListener("click", () => {
+    // Display the dropdown
+    searchView.showSetsDropDown();
+    searchView.startSetsDropDownNavigation();
 
-    elements.apiSearch.typeLine.addEventListener('input', () => {
-        if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
-            searchView.showTypesDropDown();
-        }
+    // Start an event listener on the document. This will close the dropdown if the user clicks
+    // outside of the input or dropdown. This will also cancel the event listener
+    document.addEventListener("click", searchView.setInputListener);
+  });
 
-        searchView.filterTypes(elements.apiSearch.typeLine.value);
-        searchView.filterTypeHeaders();
-        searchView.startTypesDropDownNavigation();
-    })
+  elements.apiSearch.setInput.addEventListener("input", () => {
+    if (elements.apiSearch.setDropDown.hasAttribute("hidden")) {
+      searchView.showSetsDropDown();
+    }
 
-    elements.apiSearch.setInput.addEventListener('click', () => {
-        // Display the dropdown
-        searchView.showSetsDropDown();
-        searchView.startSetsDropDownNavigation();
+    searchView.filterSets(elements.apiSearch.setInput.value);
+    searchView.filterSetHeaders();
+    searchView.startSetsDropDownNavigation();
+  });
 
-        // Start an event listener on the document. This will close the dropdown if the user clicks
-        // outside of the input or dropdown. This will also cancel the event listener
-        document.addEventListener('click', searchView.setInputListener)
-    })
+  elements.apiSearch.statValue.addEventListener(
+    "input",
+    searchView.statLineController
+  );
 
-    elements.apiSearch.setInput.addEventListener('input', () => {
-        if (elements.apiSearch.setDropDown.hasAttribute('hidden')) {
-            searchView.showSetsDropDown();
-        }
+  elements.apiSearch.format.addEventListener(
+    "change",
+    searchView.formatLineController
+  );
+}
 
-        searchView.filterSets(elements.apiSearch.setInput.value);
-        searchView.filterSetHeaders();        
-        searchView.startSetsDropDownNavigation();
-    })
-
-    elements.apiSearch.statValue.addEventListener(
-        'input', searchView.statLineController
-    );
-
-    elements.apiSearch.format.addEventListener(
-        'change', searchView.formatLineController
-    );
-
-
-} 
-
- 
 // ******************************* \\
 // ********* Results Page ******** \\
 // ******************************* \\
-if (window.location.pathname.substring(1, 8) === 'results') {
-    const state = {
-        search: new Search(),
+if (window.location.pathname.substring(1, 8) === "results") {
+  const state = {
+    search: new Search(),
 
-        // Get the display method, sort method, and query from the URL
-        display: window.location.pathname.substring(9, window.location.pathname.lastIndexOf('/')),
-        query: window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1),
-        sortMethod: window.location.pathname.substring(window.location.pathname.lastIndexOf('=') + 1),
+    // Get the display method, sort method, and query from the URL
+    display: window.location.pathname.substring(
+      9,
+      window.location.pathname.lastIndexOf("/")
+    ),
+    query: window.location.pathname.substring(
+      window.location.pathname.lastIndexOf("/") + 1
+    ),
+    sortMethod: window.location.pathname.substring(
+      window.location.pathname.lastIndexOf("=") + 1
+    ),
 
-        allCards: [],
-        currentIndex: 0,
-        allResultsLoaded: false,
-    };
+    allCards: [],
+    currentIndex: 0,
+    allResultsLoaded: false,
+  };
 
-    // When the results page is refreshed, display the cards as a checklist by default
-    document.addEventListener('DOMContentLoaded', async () => {
-        // Update the sort by and display asd menus so the selected option is what the user selected
-        resultsView.choseSelectMenuSort(elements.resultsPage.sortBy.options, state);
-        resultsView.choseSelectMenuDisplay(elements.resultsPage.displaySelector, state)
+  // When the results page is refreshed, display the cards as a checklist by default
+  document.addEventListener("DOMContentLoaded", async () => {
+    // Update the sort by and display asd menus so the selected option is what the user selected
+    resultsView.choseSelectMenuSort(elements.resultsPage.sortBy.options, state);
+    resultsView.choseSelectMenuDisplay(
+      elements.resultsPage.displaySelector,
+      state
+    );
 
-        // Run the get cards function, then update the display bar with the total card count
-        await state.search.getCards(state);
+    // Run the get cards function, then update the display bar with the total card count
+    await state.search.getCards(state);
 
-        if (state.allCards[0] === 404) {
-            resultsView.display404();
-            return
-        }
-
-        resultsView.updateDisplayBar(state);
-
-        // In the background, get all cards 
-        state.search.getAllCards(state, resultsView.enableBtn);
-
-        // On loading the page display the cards in a checklist
-        resultsView.updateDisplay(state);
-    });
-
-    // Event listener for the change display method button
-    elements.resultsPage.btn.onclick = async () => {
-        // Update the display method between checklist and cards if the user changed it
-        resultsView.changeDisplayAndUrl(state);
-
-        // If a new sorting method is selected, a request is sent to the server and the page is refreshed.
-        // This resets the state and async tasks
-        resultsView.changeSortMethod(state);
-        
-        // Update the display with a new sort method and display method if either were given
-        resultsView.updateDisplay(state);
-    };
-
-    // Event Listener for next page button
-    elements.resultsPage.nextPageBtn.onclick = () => {
-        // Update the index
-        state.currentIndex ++;
-        
-        // Update the display based on the method stored in the state
-        resultsView.updateDisplay(state);
-
-        // Update the display bar
-        resultsView.updateDisplayBar(state);
-
-        // Enable the previous page and first page btns
-        resultsView.enableBtn(elements.resultsPage.previousPageBtn);
-        resultsView.enableBtn(elements.resultsPage.firstPageBtn);
-
-        // If on the last page, disable the next page btn and last page btn
-        if (state.currentIndex === (state.allCards.length - 1)) {
-            resultsView.disableBtn(elements.resultsPage.nextPageBtn);
-            resultsView.disableBtn(elements.resultsPage.lastPageBtn)
-        }
-    };
-
-    // Event listener for the last page btn
-    elements.resultsPage.lastPageBtn.onclick = () => {
-        // Update the index
-        state.currentIndex = state.allCards.length - 1;
-
-        // Update the display based on the method stored in the state
-        resultsView.updateDisplay(state);
-
-        // Update the display bar
-        resultsView.updateDisplayBar(state);
-
-        // Disable the next and last page buttons
-        resultsView.disableBtn(elements.resultsPage.nextPageBtn);
-        resultsView.disableBtn(elements.resultsPage.lastPageBtn);
-
-        // Enable the previous and first page buttons
-        resultsView.enableBtn(elements.resultsPage.previousPageBtn);
-        resultsView.enableBtn(elements.resultsPage.firstPageBtn);
-    };
-
-    // Event listener for the previous page button
-    elements.resultsPage.previousPageBtn.onclick = () => {
-        // Update the index
-        state.currentIndex --;
-
-        // Update the display based on the method stored in the state
-        resultsView.updateDisplay(state);
-
-        // Update the display bar
-        resultsView.updateDisplayBar(state);
-
-        // If on the first page, disable the previous and first page buttons
-        if (state.currentIndex === 0) {
-            resultsView.disableBtn(elements.resultsPage.previousPageBtn);
-            resultsView.disableBtn(elements.resultsPage.firstPageBtn);
-        }
-
-        // Enable the next and last page buttons. The last page button should only be 
-        // enabled if all results have been loaded
-        resultsView.enableBtn(elements.resultsPage.nextPageBtn);
-        if (state.allResultsLoaded) resultsView.enableBtn(elements.resultsPage.lastPageBtn);
-    };
-
-    // Event listener for the first page btn
-    elements.resultsPage.firstPageBtn.onclick = () => {
-        // Update the index
-        state.currentIndex = 0;
-
-        // Update the display based on the method stored in the state
-        resultsView.updateDisplay(state);
-
-        // Update the display bar
-        resultsView.updateDisplayBar(state);
-
-        // Disable the previous and first page buttons
-        resultsView.disableBtn(elements.resultsPage.previousPageBtn);
-        resultsView.disableBtn(elements.resultsPage.firstPageBtn);
-
-        // Enable the next and last page buttons. The last page button should only be 
-        // enabled if all results have been loaded
-        resultsView.enableBtn(elements.resultsPage.nextPageBtn);
-        if (state.allResultsLoaded) resultsView.enableBtn(elements.resultsPage.lastPageBtn);
+    if (state.allCards[0] === 404) {
+      resultsView.display404();
+      return;
     }
 
-    window.onpopstate = e => {
-        // const data = e.state;
-        // if (data !== null) resultsView.updateDisplayOnPopState(state, data);
+    resultsView.updateDisplayBar(state);
 
-        window.location.href = `/search`;
+    // In the background, get all cards
+    state.search.getAllCards(state, resultsView.enableBtn);
+
+    // On loading the page display the cards in a checklist
+    resultsView.updateDisplay(state);
+  });
+
+  // Event listener for the change display method button
+  elements.resultsPage.btn.onclick = async () => {
+    // Update the display method between checklist and cards if the user changed it
+    resultsView.changeDisplayAndUrl(state);
+
+    // If a new sorting method is selected, a request is sent to the server and the page is refreshed.
+    // This resets the state and async tasks
+    resultsView.changeSortMethod(state);
+
+    // Update the display with a new sort method and display method if either were given
+    resultsView.updateDisplay(state);
+  };
+
+  // Event Listener for next page button
+  elements.resultsPage.nextPageBtn.onclick = () => {
+    // Update the index
+    state.currentIndex++;
+
+    // Update the display based on the method stored in the state
+    resultsView.updateDisplay(state);
+
+    // Update the display bar
+    resultsView.updateDisplayBar(state);
+
+    // Enable the previous page and first page btns
+    resultsView.enableBtn(elements.resultsPage.previousPageBtn);
+    resultsView.enableBtn(elements.resultsPage.firstPageBtn);
+
+    // If on the last page, disable the next page btn and last page btn
+    if (state.currentIndex === state.allCards.length - 1) {
+      resultsView.disableBtn(elements.resultsPage.nextPageBtn);
+      resultsView.disableBtn(elements.resultsPage.lastPageBtn);
     }
+  };
+
+  // Event listener for the last page btn
+  elements.resultsPage.lastPageBtn.onclick = () => {
+    // Update the index
+    state.currentIndex = state.allCards.length - 1;
+
+    // Update the display based on the method stored in the state
+    resultsView.updateDisplay(state);
+
+    // Update the display bar
+    resultsView.updateDisplayBar(state);
+
+    // Disable the next and last page buttons
+    resultsView.disableBtn(elements.resultsPage.nextPageBtn);
+    resultsView.disableBtn(elements.resultsPage.lastPageBtn);
+
+    // Enable the previous and first page buttons
+    resultsView.enableBtn(elements.resultsPage.previousPageBtn);
+    resultsView.enableBtn(elements.resultsPage.firstPageBtn);
+  };
+
+  // Event listener for the previous page button
+  elements.resultsPage.previousPageBtn.onclick = () => {
+    // Update the index
+    state.currentIndex--;
+
+    // Update the display based on the method stored in the state
+    resultsView.updateDisplay(state);
+
+    // Update the display bar
+    resultsView.updateDisplayBar(state);
+
+    // If on the first page, disable the previous and first page buttons
+    if (state.currentIndex === 0) {
+      resultsView.disableBtn(elements.resultsPage.previousPageBtn);
+      resultsView.disableBtn(elements.resultsPage.firstPageBtn);
+    }
+
+    // Enable the next and last page buttons. The last page button should only be
+    // enabled if all results have been loaded
+    resultsView.enableBtn(elements.resultsPage.nextPageBtn);
+    if (state.allResultsLoaded)
+      resultsView.enableBtn(elements.resultsPage.lastPageBtn);
+  };
+
+  // Event listener for the first page btn
+  elements.resultsPage.firstPageBtn.onclick = () => {
+    // Update the index
+    state.currentIndex = 0;
+
+    // Update the display based on the method stored in the state
+    resultsView.updateDisplay(state);
+
+    // Update the display bar
+    resultsView.updateDisplayBar(state);
+
+    // Disable the previous and first page buttons
+    resultsView.disableBtn(elements.resultsPage.previousPageBtn);
+    resultsView.disableBtn(elements.resultsPage.firstPageBtn);
+
+    // Enable the next and last page buttons. The last page button should only be
+    // enabled if all results have been loaded
+    resultsView.enableBtn(elements.resultsPage.nextPageBtn);
+    if (state.allResultsLoaded)
+      resultsView.enableBtn(elements.resultsPage.lastPageBtn);
+  };
+
+  window.onpopstate = (e) => {
+    // const data = e.state;
+    // if (data !== null) resultsView.updateDisplayOnPopState(state, data);
+
+    window.location.href = `/search`;
+  };
 }
-
 
 // ******************************* \\
 // *********** Card Page ********* \\
 // ******************************* \\
-if (window.location.pathname.substring(1, 5) === 'card') {
-    cardView.insertManaCostToCardTextTitle();
+if (window.location.pathname.substring(1, 5) === "card") {
+  cardView.insertManaCostToCardTextTitle();
+  cardView.insertManaCostToOracleText();
+  cardView.removeUnderScoreFromLegalStatus();
+  cardView.fixCardPrices();
+  cardView.setPrintLinkHref();
+  cardView.printListHoverEvents();
 
-    cardView.insertManaCostToOracleText();
+  // If the transform btn is on the dom (if the card is double sided) set
+  // the event listener for the card to be flipped back and forth
+  if (elements.card.transformBtn) {
+    elements.card.transformBtn.addEventListener(
+      "click",
+      cardView.flipToBackSide
+    );
+  }
 
-    cardView.removeUnderScoreFromLegalStatus();
-
-    cardView.fixCardPrices();
-
-    cardView.setPrintLinkHref();
-
-    cardView.printListHoverEvents();
-
-    // If the transform btn is on the dom (if the card is double sided) set
-    // the event listener for the card to be flipped back and forth
-    if (elements.card.transformBtn) {
-        elements.card.transformBtn.addEventListener(
-            'click', cardView.flipToBackSide
-        );
-    }
-
-    document.querySelector('.js--add-to-inv-submit').addEventListener(
-        'click', cardView.checkPriceInputForDigits
-    )
+  document
+    .querySelector(".js--add-to-inv-submit")
+    .addEventListener("click", cardView.checkPriceInputForDigits);
 }
 
 // ******************************* \\
 // ******* Inventory Page ******** \\
 // ******************************* \\
-if (window.location.pathname.substring(1, 10) === 'inventory') {
-    document.addEventListener('DOMContentLoaded', inventoryView.alterInventoryTable)
+if (window.location.pathname.substring(1, 10) === "inventory") {
+  document.addEventListener(
+    "DOMContentLoaded",
+    inventoryView.alterInventoryTable
+  );
 }
 
 // ******************************* \\
 // **** Inventory Search Page **** \\
 // ******************************* \\
-if (window.location.pathname.substring(1, 17) === 'inventory/search') {
-    
-    document.querySelector('.js--inv-search-btn').addEventListener(
-        'click', invSearch.checkPriceInputForDigits
-    )
+if (window.location.pathname.substring(1, 17) === "inventory/search") {
+  document
+    .querySelector(".js--inv-search-btn")
+    .addEventListener("click", invSearch.checkPriceInputForDigits);
 
-    elements.apiSearch.typeLine.addEventListener('click', () => {
-        // Display the dropdown
-        console.log('click')
-        searchView.showTypesDropDown();
-        invSearch.startTypesDropDownNavigation();
+  elements.apiSearch.typeLine.addEventListener("click", () => {
+    // Display the dropdown
+    console.log("click");
+    searchView.showTypesDropDown();
+    invSearch.startTypesDropDownNavigation();
 
-        // Start an event listener on the document. This will close the dropdown if the user clicks
-        // outside of the input or dropdown. This will also cancel the event listener
-        document.addEventListener('click', invSearch.typeLineListener)
-    })
+    // Start an event listener on the document. This will close the dropdown if the user clicks
+    // outside of the input or dropdown. This will also cancel the event listener
+    document.addEventListener("click", invSearch.typeLineListener);
+  });
 
-    elements.apiSearch.typeLine.addEventListener('input', () => {
-        if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
-            searchView.showTypesDropDown();
-        }
+  elements.apiSearch.typeLine.addEventListener("input", () => {
+    if (elements.apiSearch.typeDropDown.hasAttribute("hidden")) {
+      searchView.showTypesDropDown();
+    }
 
-        searchView.filterTypes(elements.apiSearch.typeLine.value);
-        searchView.filterTypeHeaders();
-        invSearch.startTypesDropDownNavigation();
-    })
+    searchView.filterTypes(elements.apiSearch.typeLine.value);
+    searchView.filterTypeHeaders();
+    invSearch.startTypesDropDownNavigation();
+  });
 
-    elements.apiSearch.setInput.addEventListener('click', () => {
-        // Display the dropdown
-        searchView.showSetsDropDown();
-        invSearch.startSetsDropDownNavigation();
+  elements.apiSearch.setInput.addEventListener("click", () => {
+    // Display the dropdown
+    searchView.showSetsDropDown();
+    invSearch.startSetsDropDownNavigation();
 
-        // Start an event listener on the document. This will close the dropdown if the user clicks
-        // outside of the input or dropdown. This will also cancel the event listener
-        document.addEventListener('click', invSearch.setInputListener)
-    })
+    // Start an event listener on the document. This will close the dropdown if the user clicks
+    // outside of the input or dropdown. This will also cancel the event listener
+    document.addEventListener("click", invSearch.setInputListener);
+  });
 
-    elements.apiSearch.setInput.addEventListener('input', () => {
-        if (elements.apiSearch.setDropDown.hasAttribute('hidden')) {
-            searchView.showSetsDropDown();
-        }
+  elements.apiSearch.setInput.addEventListener("input", () => {
+    if (elements.apiSearch.setDropDown.hasAttribute("hidden")) {
+      searchView.showSetsDropDown();
+    }
 
-        searchView.filterSets(elements.apiSearch.setInput.value);
-        searchView.filterSetHeaders();        
-        invSearch.startSetsDropDownNavigation();
-    })
+    searchView.filterSets(elements.apiSearch.setInput.value);
+    searchView.filterSetHeaders();
+    invSearch.startSetsDropDownNavigation();
+  });
 }

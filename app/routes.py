@@ -5,7 +5,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app.models import User, Type, Set, Card, Inventory
 from datetime import datetime
 from sqlalchemy import text
-from time import sleep
+from time import sleep 
 
 
 def get_card_from_scryfall(name, set_code):
