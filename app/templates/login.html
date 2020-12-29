@@ -1,31 +1,46 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block content %} {% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
 
-{% block content %}
+<div class="login">
+  <h3 class="heading-tertiary heading-tertiary--white mt-50 mb-20">
+    Please login
+  </h3>
+  <form action="#" class="login-form" method="POST">
+    <div class="login-form__group">
+      <label for="login-username" class="login-form__label">Username:</label>
+      <input
+        type="text"
+        class="login-form__input"
+        name="username"
+        placeholder="Username"
+        id="login-username"
+        required
+      />
+    </div>
 
-  {% if error %}
-  <p class="error">{{ error }}</p>
-  {% endif %}
+    <div class="login-form__group">
+      <label for="login-password" class="login-form__label">Password:</label>
+      <input
+        type="password"
+        class="login-form__input"
+        name="password"
+        placeholder="Password"
+        id="login-password"
+        required
+      />
+    </div>
 
-  <div class="login">
-    <h3 class="heading-tertiary heading-tertiary--white mt-50 mb-20">Please login</h3>
-    <form action="#" class="login-form" method="POST">
-      <div class="login-form__group">
-        <label for="login-username" class="login-form__label">Username:</label>
-        <input type="text" class="login-form__input" name="username" placeholder="Username" id="login-username" required>
-      </div>
-  
-      <div class="login-form__group">
-        <label for="login-password" class="login-form__label">Password:</label>
-        <input type="password" class="login-form__input" name="password" placeholder="Password" id="login-password" required>
-      </div>
-
-      <div class="login-form__btn-wrapper">
-        <input type="submit" class="btn btn--submit" value="Login">
-      </div>
-    </form>
-    <p class="login__register-text">
-      Not a member? <a href="{{ url_for('register') }}" class="login__register-link">Register now</a>
-    </p>
-  </div>
+    <div class="login-form__btn-wrapper">
+      <input type="submit" class="btn btn--submit" value="Login" />
+    </div>
+  </form>
+  <p class="login__register-text">
+    Not a member?
+    <a href="{{ url_for('register') }}" class="login__register-link"
+      >Register now</a
+    >
+  </p>
+</div>
 
 {% endblock %}

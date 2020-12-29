@@ -1,39 +1,76 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 
 <div class="search">
   <form action="#" method="POST" class="search-form">
-
     <!-- Card Name -->
     <div class="search-form__group">
       <label for="card-name" class="search-form__label">
-        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <path class="search-form__svg-color" d="M29 4h-26c-1.65 0-3 1.35-3 3v18c0 1.65 1.35 3 3 3h26c1.65 0 3-1.35 3-3v-18c0-1.65-1.35-3-3-3zM3 6h26c0.542 0 1 0.458 1 1v3h-28v-3c0-0.542 0.458-1 1-1zM29 26h-26c-0.542 0-1-0.458-1-1v-9h28v9c0 0.542-0.458 1-1 1zM4 20h2v4h-2zM8 20h2v4h-2zM12 20h2v4h-2z"></path>
+        <svg
+          class="search-form__svg-size"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
+          <path
+            class="search-form__svg-color"
+            d="M29 4h-26c-1.65 0-3 1.35-3 3v18c0 1.65 1.35 3 3 3h26c1.65 0 3-1.35 3-3v-18c0-1.65-1.35-3-3-3zM3 6h26c0.542 0 1 0.458 1 1v3h-28v-3c0-0.542 0.458-1 1-1zM29 26h-26c-0.542 0-1-0.458-1-1v-9h28v9c0 0.542-0.458 1-1 1zM4 20h2v4h-2zM8 20h2v4h-2zM12 20h2v4h-2z"
+          ></path>
         </svg>
         Card Name
       </label>
       <div class="search-form__grpup-input-wrapper">
-        <input type="text" autocomplete="off" class="search-form__input-text js--api-card-name" name="card-name" id="card-name" placeholder="Any words that appear in the name of the card">
+        <input
+          type="text"
+          autocomplete="off"
+          class="search-form__input-text js--api-card-name"
+          name="card-name"
+          id="card-name"
+          placeholder="Any words that appear in the name of the card"
+        />
       </div>
     </div>
-    
+
     <!-- Oracle Text -->
     <div class="search-form__group">
       <label for="oracle-text" class="search-form__label">
-        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+        <svg
+          class="search-form__svg-size"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
           <title>file-text2</title>
-          <path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
-          <path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-          <path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-          <path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+          <path
+            d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"
+          ></path>
+          <path
+            d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"
+          ></path>
+          <path
+            d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"
+          ></path>
+          <path
+            d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"
+          ></path>
         </svg>
         Text
       </label>
       <div class="search-form__group-input-wrapper">
-        <input type="text" autocomplete="off" class="search-form__input-text js--api-o-text" name="oracle-text" id="oracle-text" placeholder="Any text, e.g. 'Draw a Card'">
+        <input
+          type="text"
+          autocomplete="off"
+          class="search-form__input-text js--api-o-text"
+          name="oracle-text"
+          id="oracle-text"
+          placeholder="Any text, e.g. 'Draw a Card'"
+        />
         <p class="search-form__tip">
-          Enter text that should appear in the rules box. You can use ~ as a placeholder for the card name. Word order doesn't matter. 
+          Enter text that should appear in the rules box. You can use ~ as a
+          placeholder for the card name. Word order doesn't matter.
         </p>
       </div>
     </div>
@@ -41,125 +78,308 @@
     <!-- Type Line -->
     <div class="search-form__group">
       <label for="type-line" class="search-form__label">
-        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+        <svg
+          class="search-form__svg-size"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
           <title>barcode</title>
-          <path d="M0 4h4v20h-4zM6 4h2v20h-2zM10 4h2v20h-2zM16 4h2v20h-2zM24 4h2v20h-2zM30 4h2v20h-2zM20 4h1v20h-1zM14 4h1v20h-1zM27 4h1v20h-1zM0 26h2v2h-2zM6 26h2v2h-2zM10 26h2v2h-2zM20 26h2v2h-2zM30 26h2v2h-2zM24 26h4v2h-4zM14 26h4v2h-4z"></path>
+          <path
+            d="M0 4h4v20h-4zM6 4h2v20h-2zM10 4h2v20h-2zM16 4h2v20h-2zM24 4h2v20h-2zM30 4h2v20h-2zM20 4h1v20h-1zM14 4h1v20h-1zM27 4h1v20h-1zM0 26h2v2h-2zM6 26h2v2h-2zM10 26h2v2h-2zM20 26h2v2h-2zM30 26h2v2h-2zM24 26h4v2h-4zM14 26h4v2h-4z"
+          ></path>
         </svg>
         Type Line
       </label>
       <div class="search-form__group-input-wrapper">
         <span class="search-form__dropdown-span">
-          <ul class="search-form__selected-types js--api-selected-types">
-            
-          </ul>
+          <ul class="search-form__selected-types js--api-selected-types"></ul>
           <div class="dropdown-wrapper">
-            <input type="search" autocomplete="off" class="search-form__input-text js--api-type-line" name="type-line" id="type-line" placeholder="Enter a type or choose from the list">
-            <div class="search-form__dropdown js--api-types-dropdown js--api-dropdown-types-list" hidden>
-              <ul class="search-form__dropdown-list js--api-dropdown-types-list" role="tree">
-                <li strong class="js--api-dropdown-types-list js--types-category-header js--basic-header search-form__dropdown-list-category">Types</li>
+            <input
+              type="search"
+              autocomplete="off"
+              class="search-form__input-text js--api-type-line"
+              name="type-line"
+              id="type-line"
+              placeholder="Enter a type or choose from the list"
+            />
+            <div
+              class="search-form__dropdown js--api-types-dropdown js--api-dropdown-types-list"
+              hidden
+            >
+              <ul
+                class="search-form__dropdown-list js--api-dropdown-types-list"
+                role="tree"
+              >
+                <li
+                  strong
+                  class="js--api-dropdown-types-list js--types-category-header js--basic-header search-form__dropdown-list-category"
+                >
+                  Types
+                </li>
                 {% for line in types.basic_types %}
-                  <li class="js--api-dropdown-types-list js--basic js--type search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                <li
+                  class="js--api-dropdown-types-list js--basic js--type search-form__dropdown-list-option"
+                  data-type="{{line.name}}"
+                  data-selected="false"
+                >
+                  {{ line.name }}
+                </li>
                 {% endfor %}
-                <li strong class="js--api-dropdown-types-list js--types-category-header js--super-header search-form__dropdown-list-category">Super Types</li>
+                <li
+                  strong
+                  class="js--api-dropdown-types-list js--types-category-header js--super-header search-form__dropdown-list-category"
+                >
+                  Super Types
+                </li>
                 {% for line in types.super_types %}
-                  <li class="js--api-dropdown-types-list js--super js--type search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                <li
+                  class="js--api-dropdown-types-list js--super js--type search-form__dropdown-list-option"
+                  data-type="{{line.name}}"
+                  data-selected="false"
+                >
+                  {{ line.name }}
+                </li>
                 {% endfor %}
-                <li strong class="js--api-dropdown-types-list js--types-category-header js--artifact-header search-form__dropdown-list-category">Artifact Types</li>
+                <li
+                  strong
+                  class="js--api-dropdown-types-list js--types-category-header js--artifact-header search-form__dropdown-list-category"
+                >
+                  Artifact Types
+                </li>
                 {% for line in types.artifact_types %}
-                  <li class="js--api-dropdown-types-list js--artifact js--type search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                <li
+                  class="js--api-dropdown-types-list js--artifact js--type search-form__dropdown-list-option"
+                  data-type="{{line.name}}"
+                  data-selected="false"
+                >
+                  {{ line.name }}
+                </li>
                 {% endfor %}
-                <li strong class="js--api-dropdown-types-list js--types-category-header js--enchantment-header search-form__dropdown-list-category">Enchantment Types</li>
+                <li
+                  strong
+                  class="js--api-dropdown-types-list js--types-category-header js--enchantment-header search-form__dropdown-list-category"
+                >
+                  Enchantment Types
+                </li>
                 {% for line in types.enchantment_types %}
-                  <li class="js--api-dropdown-types-list js--enchantment js--type search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                <li
+                  class="js--api-dropdown-types-list js--enchantment js--type search-form__dropdown-list-option"
+                  data-type="{{line.name}}"
+                  data-selected="false"
+                >
+                  {{ line.name }}
+                </li>
                 {% endfor %}
-                <li strong class="js--api-dropdown-types-list js--types-category-header js--land-header search-form__dropdown-list-category">Land Types</li>
+                <li
+                  strong
+                  class="js--api-dropdown-types-list js--types-category-header js--land-header search-form__dropdown-list-category"
+                >
+                  Land Types
+                </li>
                 {% for line in types.land_types %}
-                  <li class="js--api-dropdown-types-list js--land js--type search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                <li
+                  class="js--api-dropdown-types-list js--land js--type search-form__dropdown-list-option"
+                  data-type="{{line.name}}"
+                  data-selected="false"
+                >
+                  {{ line.name }}
+                </li>
                 {% endfor %}
-                <li strong class="js--api-dropdown-types-list js--types-category-header js--spell-header search-form__dropdown-list-category">Spell Types</li>
+                <li
+                  strong
+                  class="js--api-dropdown-types-list js--types-category-header js--spell-header search-form__dropdown-list-category"
+                >
+                  Spell Types
+                </li>
                 {% for line in types.spell_types %}
-                  <li class="js--api-dropdown-types-list js--spell js--type search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                <li
+                  class="js--api-dropdown-types-list js--spell js--type search-form__dropdown-list-option"
+                  data-type="{{line.name}}"
+                  data-selected="false"
+                >
+                  {{ line.name }}
+                </li>
                 {% endfor %}
-                <li strong class="js--api-dropdown-types-list js--types-category-header js--planeswalker-header search-form__dropdown-list-category">Planesalker Types</li>
+                <li
+                  strong
+                  class="js--api-dropdown-types-list js--types-category-header js--planeswalker-header search-form__dropdown-list-category"
+                >
+                  Planesalker Types
+                </li>
                 {% for line in types.planeswalker_types %}
-                  <li class="js--api-dropdown-types-list js--planeswalker js--type search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                <li
+                  class="js--api-dropdown-types-list js--planeswalker js--type search-form__dropdown-list-option"
+                  data-type="{{line.name}}"
+                  data-selected="false"
+                >
+                  {{ line.name }}
+                </li>
                 {% endfor %}
-                <li strong class="js--api-dropdown-types-list js--types-category-header js--creature-header search-form__dropdown-list-category">Creature Types</li>
+                <li
+                  strong
+                  class="js--api-dropdown-types-list js--types-category-header js--creature-header search-form__dropdown-list-category"
+                >
+                  Creature Types
+                </li>
                 {% for line in types.creature_types %}
-                  <li class="js--api-dropdown-types-list js--creature js--type search-form__dropdown-list-option" data-type="{{line.name}}" data-selected="false">{{ line.name }}</li>
+                <li
+                  class="js--api-dropdown-types-list js--creature js--type search-form__dropdown-list-option"
+                  data-type="{{line.name}}"
+                  data-selected="false"
+                >
+                  {{ line.name }}
+                </li>
                 {% endfor %}
               </ul>
             </div>
-          </div>          
+          </div>
         </span>
 
         <div class="search-form__checkbox-wrapper">
-          <input type="checkbox" class="search-form__input-checkbox js--api-type-box" id="partial-type-box">
-          <label for="partial-type-box" class="search-form__label--checkbox">Allow partial type matches</label>
+          <input
+            type="checkbox"
+            class="search-form__input-checkbox js--api-type-box"
+            id="partial-type-box"
+          />
+          <label for="partial-type-box" class="search-form__label--checkbox"
+            >Allow partial type matches</label
+          >
         </div>
         <p class="search-form__tip">
-          "Including" means cards that are all the colors you select, with or without any others. "At most" means cards that have some or all of the colors you select, plus colorless. 
+          "Including" means cards that are all the colors you select, with or
+          without any others. "At most" means cards that have some or all of the
+          colors you select, plus colorless.
         </p>
       </div>
     </div>
 
-    <!-- Colors -->    
+    <!-- Colors -->
     <div class="search-form__group">
       <label class="search-form__label">
-        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <path d="M13 29c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM0 16c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM26 16c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM3.808 6.808c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM22.192 25.192c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM3.808 25.192c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM22.192 6.808c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3z"></path>
+        <svg
+          class="search-form__svg-size"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
+          <path
+            d="M13 29c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM0 16c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM26 16c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM3.808 6.808c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM22.192 25.192c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM3.808 25.192c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3zM22.192 6.808c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3z"
+          ></path>
         </svg>
         Colors
       </label>
       <div class="search-form__group-input-wrapper">
         <div class="search-form__group--checkbox">
           <div class="search-form__checkbox-wrapper">
-            <input type="checkbox" class="search-form__input-checkbox js--api-color-box" value="w" id="color-white">
+            <input
+              type="checkbox"
+              class="search-form__input-checkbox js--api-color-box"
+              value="w"
+              id="color-white"
+            />
             <label for="color-white" class="search-form__label--checkbox">
-              <img src="{{ url_for('static', filename='/img/white.png') }}" alt="white mana symbol" class="search-form__mana-symbol">
+              <img
+                src="{{ url_for('static', filename='/img/white.png') }}"
+                alt="white mana symbol"
+                class="search-form__mana-symbol"
+              />
               White
             </label>
           </div>
           <div class="search-form__checkbox-wrapper">
-            <input type="checkbox" class="search-form__input-checkbox js--api-color-box" value="u" id="color-blue">
+            <input
+              type="checkbox"
+              class="search-form__input-checkbox js--api-color-box"
+              value="u"
+              id="color-blue"
+            />
             <label for="color-blue" class="search-form__label--checkbox">
-              <img src="{{ url_for('static', filename='/img/blue.png') }}" alt="blue mana symbol" class="search-form__mana-symbol">
+              <img
+                src="{{ url_for('static', filename='/img/blue.png') }}"
+                alt="blue mana symbol"
+                class="search-form__mana-symbol"
+              />
               Blue
             </label>
           </div>
           <div class="search-form__checkbox-wrapper">
-            <input type="checkbox" class="search-form__input-checkbox js--api-color-box" value="b" id="color-black">
+            <input
+              type="checkbox"
+              class="search-form__input-checkbox js--api-color-box"
+              value="b"
+              id="color-black"
+            />
             <label for="color-black" class="search-form__label--checkbox">
-              <img src="{{ url_for('static', filename='/img/black.png') }}" alt="black mana symbol" class="search-form__mana-symbol">
+              <img
+                src="{{ url_for('static', filename='/img/black.png') }}"
+                alt="black mana symbol"
+                class="search-form__mana-symbol"
+              />
               Black
             </label>
           </div>
           <div class="search-form__checkbox-wrapper">
-            <input type="checkbox" class="search-form__input-checkbox js--api-color-box" value="r" id="color-red">
+            <input
+              type="checkbox"
+              class="search-form__input-checkbox js--api-color-box"
+              value="r"
+              id="color-red"
+            />
             <label for="color-red" class="search-form__label--checkbox">
-              <img src="{{ url_for('static', filename='/img/red.png') }}" alt="red mana symbol" class="search-form__mana-symbol">
+              <img
+                src="{{ url_for('static', filename='/img/red.png') }}"
+                alt="red mana symbol"
+                class="search-form__mana-symbol"
+              />
               Red
             </label>
           </div>
           <div class="search-form__checkbox-wrapper">
-            <input type="checkbox" class="search-form__input-checkbox js--api-color-box" value="g" id="color-green">
+            <input
+              type="checkbox"
+              class="search-form__input-checkbox js--api-color-box"
+              value="g"
+              id="color-green"
+            />
             <label for="color-green" class="search-form__label--checkbox">
-              <img src="{{ url_for('static', filename='/img/green.png') }}" alt="green mana symbol" class="search-form__mana-symbol">
+              <img
+                src="{{ url_for('static', filename='/img/green.png') }}"
+                alt="green mana symbol"
+                class="search-form__mana-symbol"
+              />
               Green
             </label>
           </div>
           <div class="search-form__checkbox-wrapper">
-            <input type="checkbox" class="search-form__input-checkbox js--api-color-box" value="colorless" id="color-Colorless">
-            <label for="color-colorless" class="search-form__label--checkbox">Colorless</label>
+            <input
+              type="checkbox"
+              class="search-form__input-checkbox js--api-color-box"
+              value="colorless"
+              id="color-Colorless"
+            />
+            <label for="color-colorless" class="search-form__label--checkbox"
+              >Colorless</label
+            >
           </div>
         </div>
-        <select name="color-select" id="color-select" class="search-form__select-menu js--api-color-sorter">
+        <select
+          name="color-select"
+          id="color-select"
+          class="search-form__select-menu js--api-color-sorter"
+        >
           <option value="%3D>" selected>Including these colors</option>
           <option value="%3D">Only These Colors</option>
           <option value="<%3D">At most these colors</option>
         </select>
         <p class="search-form__tip">
-          "Including" means cards that are all the colors you select, with or without any others. "At most" means cards that have some or all of the colors you select, plus colorless. 
+          "Including" means cards that are all the colors you select, with or
+          without any others. "At most" means cards that have some or all of the
+          colors you select, plus colorless.
         </p>
       </div>
     </div>
@@ -167,8 +387,17 @@
     <!-- Stats -->
     <div class="search-form__group">
       <label class="search-form__label">
-        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <path d="M8.313 8.646c1.026-1.026 2.688-1.026 3.713-0.001l0.245 0.246 3.159-3.161-0.246-0.246c-1.801-1.803-4.329-2.434-6.638-1.891-0.331-2.037-2.096-3.591-4.224-3.592-2.364 0-4.28 1.92-4.28 4.286 0 2.042 1.425 3.75 3.333 4.182-0.723 2.42-0.133 5.151 1.776 7.062l7.12 7.122 3.156-3.163-7.119-7.121c-1.021-1.023-1.023-2.691 0.006-3.722zM31.96 4.286c0-2.368-1.916-4.286-4.281-4.286-2.164 0-3.952 1.608-4.24 3.695-2.409-0.708-5.118-0.109-7.020 1.794l-7.12 7.122 3.159 3.162 7.118-7.12c1.029-1.030 2.687-1.028 3.709-0.006 1.025 1.026 1.025 2.691-0.001 3.717l-0.244 0.245 3.157 3.164 0.246-0.248c1.889-1.893 2.49-4.586 1.8-6.989 2.098-0.276 3.717-2.074 3.717-4.25zM28.321 23.471c0.566-2.327-0.062-4.885-1.878-6.703l-7.109-7.125-3.159 3.16 7.11 7.125c1.029 1.031 1.027 2.691 0.006 3.714-1.025 1.025-2.688 1.025-3.714-0.001l-0.243-0.243-3.156 3.164 0.242 0.241c1.922 1.925 4.676 2.514 7.105 1.765 0.395 1.959 2.123 3.431 4.196 3.431 2.363 0 4.28-1.917 4.28-4.285 0-2.163-1.599-3.952-3.679-4.244zM19.136 16.521l-7.111 7.125c-1.022 1.024-2.689 1.026-3.717-0.004-1.026-1.028-1.026-2.691-0.001-3.718l0.244-0.243-3.159-3.16-0.242 0.241c-1.836 1.838-2.455 4.432-1.858 6.781-1.887 0.446-3.292 2.145-3.292 4.172-0.001 2.367 1.917 4.285 4.281 4.285 2.034-0.001 3.737-1.419 4.173-3.324 2.334 0.58 4.906-0.041 6.729-1.867l7.109-7.124-3.157-3.163z"></path>
+        <svg
+          class="search-form__svg-size"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
+          <path
+            d="M8.313 8.646c1.026-1.026 2.688-1.026 3.713-0.001l0.245 0.246 3.159-3.161-0.246-0.246c-1.801-1.803-4.329-2.434-6.638-1.891-0.331-2.037-2.096-3.591-4.224-3.592-2.364 0-4.28 1.92-4.28 4.286 0 2.042 1.425 3.75 3.333 4.182-0.723 2.42-0.133 5.151 1.776 7.062l7.12 7.122 3.156-3.163-7.119-7.121c-1.021-1.023-1.023-2.691 0.006-3.722zM31.96 4.286c0-2.368-1.916-4.286-4.281-4.286-2.164 0-3.952 1.608-4.24 3.695-2.409-0.708-5.118-0.109-7.020 1.794l-7.12 7.122 3.159 3.162 7.118-7.12c1.029-1.030 2.687-1.028 3.709-0.006 1.025 1.026 1.025 2.691-0.001 3.717l-0.244 0.245 3.157 3.164 0.246-0.248c1.889-1.893 2.49-4.586 1.8-6.989 2.098-0.276 3.717-2.074 3.717-4.25zM28.321 23.471c0.566-2.327-0.062-4.885-1.878-6.703l-7.109-7.125-3.159 3.16 7.11 7.125c1.029 1.031 1.027 2.691 0.006 3.714-1.025 1.025-2.688 1.025-3.714-0.001l-0.243-0.243-3.156 3.164 0.242 0.241c1.922 1.925 4.676 2.514 7.105 1.765 0.395 1.959 2.123 3.431 4.196 3.431 2.363 0 4.28-1.917 4.28-4.285 0-2.163-1.599-3.952-3.679-4.244zM19.136 16.521l-7.111 7.125c-1.022 1.024-2.689 1.026-3.717-0.004-1.026-1.028-1.026-2.691-0.001-3.718l0.244-0.243-3.159-3.16-0.242 0.241c-1.836 1.838-2.455 4.432-1.858 6.781-1.887 0.446-3.292 2.145-3.292 4.172-0.001 2.367 1.917 4.285 4.281 4.285 2.034-0.001 3.737-1.419 4.173-3.324 2.334 0.58 4.906-0.041 6.729-1.867l7.109-7.124-3.157-3.163z"
+          ></path>
         </svg>
         Stats
       </label>
@@ -180,7 +409,10 @@
             <option value="toughness">TOUGHNESS</option>
             <option value="loyalty">LOYALTY</option>
           </select>
-          <select name="stats-filter" class="search-form__select-menu js--api-stat-filter">
+          <select
+            name="stats-filter"
+            class="search-form__select-menu js--api-stat-filter"
+          >
             <option value="%3D">Equal to</option>
             <option value="<">Less than</option>
             <option value=">">Greater than</option>
@@ -188,32 +420,58 @@
             <option value="<%3D">Less than or equal to</option>
             <option value="!%3D">Not Equal to</option>
           </select>
-          <input type="number" class="search-form__input-integer js--api-stat-value" placeholder="Any numeric value">
+          <input
+            type="number"
+            class="search-form__input-integer js--api-stat-value"
+            placeholder="Any numeric value"
+          />
         </div>
         <p class="search-form__tip">
-          Enter symbols that should be in the mana cost. Combine with CMC to search this exact amount. 
+          Enter symbols that should be in the mana cost. Combine with CMC to
+          search this exact amount.
         </p>
-      </div>      
+      </div>
     </div>
 
     <!-- Legal status -->
     <div class="search-form__group">
-      <label  class="search-form__label">
-        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
-          <path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
-          <path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+      <label class="search-form__label">
+        <svg
+          class="search-form__svg-size"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
+          <path
+            d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"
+          ></path>
+          <path
+            d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"
+          ></path>
+          <path
+            d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"
+          ></path>
         </svg>
         Formats
       </label>
       <div class="search-form__group-input-wrapper">
         <div class="search-form__select-menu-grouping js--api-format-wrapper">
-          <select name="legal-status" id="legal-status" class="search-form__select-menu js--api-legal-status">
+          <select
+            name="legal-status"
+            id="legal-status"
+            class="search-form__select-menu js--api-legal-status"
+          >
             <option value="legal" selected>Legal</option>
             <option value="restricted">Restricted</option>
             <option value="banned">Banned</option>
           </select>
-          <select name="format" id="format" class="search-form__select-menu js--api-format">
+          <select
+            name="format"
+            id="format"
+            class="search-form__select-menu js--api-format"
+          >
             <option value=""></option>
             <option value="standard">Standard</option>
             <option value="future">Future Standard</option>
@@ -231,7 +489,8 @@
           </select>
         </div>
         <p class="search-form__tip">
-          Restrict cards based on their numeric statistics. Cards without stats will not be returned.
+          Restrict cards based on their numeric statistics. Cards without stats
+          will not be returned.
         </p>
       </div>
     </div>
@@ -239,192 +498,487 @@
     <!-- Set -->
     <div class="search-form__group">
       <label class="search-form__label">
-        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <path d="M25.549 10.88c-6.049-4.496-8.133-8.094-9.549-10.88v0c-0 0-0-0-0-0v0c-1.415 2.785-3.5 6.384-9.549 10.88-10.314 7.665-0.606 18.365 7.93 12.476-0.556 3.654-2.454 6.318-4.381 7.465v1.179h12.001v-1.179c-1.928-1.147-3.825-3.811-4.382-7.465 8.535 5.889 18.244-4.811 7.93-12.476z"></path>
+        <svg
+          class="search-form__svg-size"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
+          <path
+            d="M25.549 10.88c-6.049-4.496-8.133-8.094-9.549-10.88v0c-0 0-0-0-0-0v0c-1.415 2.785-3.5 6.384-9.549 10.88-10.314 7.665-0.606 18.365 7.93 12.476-0.556 3.654-2.454 6.318-4.381 7.465v1.179h12.001v-1.179c-1.928-1.147-3.825-3.811-4.382-7.465 8.535 5.889 18.244-4.811 7.93-12.476z"
+          ></path>
         </svg>
         Sets
       </label>
-      <div class="search-form__group-input-wrapper search-form__group-input-wrapper--has-dropdown">
+      <div
+        class="search-form__group-input-wrapper search-form__group-input-wrapper--has-dropdown"
+      >
         <span class="search-form__dropdown-span">
-          <ul class="search-form__selected-sets js--api-selected-sets">
-
-          </ul>
+          <ul class="search-form__selected-sets js--api-selected-sets"></ul>
           <div class="dropdown-wrapper">
-            <input type="text" autocomplete="off" class="search-form__input-text js--api-set" name="set" placeholder="Enter a set name or choose from the list">
-            <div class="search-form__dropdown js--api-set-dropdown js--api-set-dropdown-list" hidden>
-              <ul class="search-form__dropdown-list js--api-dropdown-sets js--api-dropdown-sets-target">
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--expansion-header search-form__dropdown-list-category">Expansions</li>
+            <input
+              type="text"
+              autocomplete="off"
+              class="search-form__input-text js--api-set"
+              name="set"
+              placeholder="Enter a set name or choose from the list"
+            />
+            <div
+              class="search-form__dropdown js--api-set-dropdown js--api-set-dropdown-list"
+              hidden
+            >
+              <ul
+                class="search-form__dropdown-list js--api-dropdown-sets js--api-dropdown-sets-target"
+              >
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--expansion-header search-form__dropdown-list-category"
+                >
+                  Expansions
+                </li>
                 {% for s in sets.expansions %}
-                  <li class="js--api-dropdown-sets-list js--expansion js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--expansion js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--core-header search-form__dropdown-list-category">Core</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--core-header search-form__dropdown-list-category"
+                >
+                  Core
+                </li>
                 {% for s in sets.core %}
-                  <li class="js--api-dropdown-sets-list js--core js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--core js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--masters-header search-form__dropdown-list-category">Masters</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--masters-header search-form__dropdown-list-category"
+                >
+                  Masters
+                </li>
                 {% for s in sets.masters %}
-                  <li class="js--api-dropdown-sets-list js--masters js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--masters js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--draft-header search-form__dropdown-list-category">Draft Innovations</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--draft-header search-form__dropdown-list-category"
+                >
+                  Draft Innovations
+                </li>
                 {% for s in sets.draft_innovation %}
-                  <li class="js--api-dropdown-sets-list js--draft js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--draft js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--duel_deck-header search-form__dropdown-list-category">Duel Deck</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--duel_deck-header search-form__dropdown-list-category"
+                >
+                  Duel Deck
+                </li>
                 {% for s in sets.duel_deck %}
-                  <li class="js--api-dropdown-sets-list js--duel_deck js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--duel_deck js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--archenemy-header search-form__dropdown-list-category">Archenemy</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--archenemy-header search-form__dropdown-list-category"
+                >
+                  Archenemy
+                </li>
                 {% for s in sets.archenemy %}
-                  <li class="js--api-dropdown-sets-list js--archenemy js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--archenemy js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--box-header search-form__dropdown-list-category">Box</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--box-header search-form__dropdown-list-category"
+                >
+                  Box
+                </li>
                 {% for s in sets.box %}
-                  <li class="js--api-dropdown-sets-list js--box js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--box js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--commander-header search-form__dropdown-list-category">Commander</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--commander-header search-form__dropdown-list-category"
+                >
+                  Commander
+                </li>
                 {% for s in sets.commander %}
-                  <li class="js--api-dropdown-sets-list js--commander js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--commander js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--vault-header search-form__dropdown-list-category">From the vault</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--vault-header search-form__dropdown-list-category"
+                >
+                  From the vault
+                </li>
                 {% for s in sets.from_the_vault %}
-                  <li class="js--api-dropdown-sets-list js--vault js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--vault js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--funny-header search-form__dropdown-list-category">Funny</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--funny-header search-form__dropdown-list-category"
+                >
+                  Funny
+                </li>
                 {% for s in sets.funny %}
-                  <li class="js--api-dropdown-sets-list js--funny js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--funny js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--masterpiece-header search-form__dropdown-list-category">Masterpiece</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--masterpiece-header search-form__dropdown-list-category"
+                >
+                  Masterpiece
+                </li>
                 {% for s in sets.masterpiece %}
-                  <li class="js--api-dropdown-sets-list js--masterpiece js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--masterpiece js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--memorabilia-header search-form__dropdown-list-category">Memorabilia</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--memorabilia-header search-form__dropdown-list-category"
+                >
+                  Memorabilia
+                </li>
                 {% for s in sets.memorabilia %}
-                  <li class="js--api-dropdown-sets-list js--memorabilia js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--memorabilia js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--planechase-header search-form__dropdown-list-category">Planechase</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--planechase-header search-form__dropdown-list-category"
+                >
+                  Planechase
+                </li>
                 {% for s in sets.planechase %}
-                  <li class="js--api-dropdown-sets-list js--planechase js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--planechase js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--premium_deck-header search-form__dropdown-list-category">Premium Deck</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--premium_deck-header search-form__dropdown-list-category"
+                >
+                  Premium Deck
+                </li>
                 {% for s in sets.premium_deck %}
-                <li class="js--api-dropdown-sets-list js--premium_deck js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--premium_deck js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--promo-header search-form__dropdown-list-category">Promo</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--promo-header search-form__dropdown-list-category"
+                >
+                  Promo
+                </li>
                 {% for s in sets.promo %}
-                  <li class="js--api-dropdown-sets-list js--promo js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--promo js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--spellbook-header search-form__dropdown-list-category">Spellbook</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--spellbook-header search-form__dropdown-list-category"
+                >
+                  Spellbook
+                </li>
                 {% for s in sets.spellbook %}
-                  <li class="js--api-dropdown-sets-list js--spellbook js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--spellbook js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--starter-header search-form__dropdown-list-category">Starter</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--starter-header search-form__dropdown-list-category"
+                >
+                  Starter
+                </li>
                 {% for s in sets.starter %}
-                  <li class="js--api-dropdown-sets-list js--starter js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--starter js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--token-header search-form__dropdown-list-category">Token</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--token-header search-form__dropdown-list-category"
+                >
+                  Token
+                </li>
                 {% for s in sets.token %}
-                  <li class="js--api-dropdown-sets-list js--token js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--token js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--treasure_chest-header search-form__dropdown-list-category">Treasure Chest</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--treasure_chest-header search-form__dropdown-list-category"
+                >
+                  Treasure Chest
+                </li>
                 {% for s in sets.treasure_chest %}
-                  <li class="js--api-dropdown-sets-list js--treasure_chest js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--treasure_chest js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
-                <li class="js--api-dropdown-sets-list js--sets-category-header js--vanguard-header search-form__dropdown-list-category">Vanguard</li>
+                <li
+                  class="js--api-dropdown-sets-list js--sets-category-header js--vanguard-header search-form__dropdown-list-category"
+                >
+                  Vanguard
+                </li>
                 {% for s in sets.vanguard %}
-                  <li class="js--api-dropdown-sets-list js--vanguard js--set search-form__dropdown-list-option" data-set-code="{{ s.code }}" data-set-name="{{ s.name }}">
-                    <img src="{{s.svg}}" alt="set-icon" class="search-form__dropdown-list-img">
-                    {{ s.name }} <span>({{ s.code }})</span>
-                  </li>
+                <li
+                  class="js--api-dropdown-sets-list js--vanguard js--set search-form__dropdown-list-option"
+                  data-set-code="{{ s.code }}"
+                  data-set-name="{{ s.name }}"
+                >
+                  <img
+                    src="{{s.svg}}"
+                    alt="set-icon"
+                    class="search-form__dropdown-list-img"
+                  />
+                  {{ s.name }} <span>({{ s.code }})</span>
+                </li>
                 {% endfor %}
               </ul>
             </div>
           </div>
-        </span>        
+        </span>
       </div>
     </div>
 
     <!-- Rarity -->
     <div class="search-form__group">
       <label class="search-form__label">
-        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <path d="M24.11 10c0.566-0.402 1.11-0.851 1.608-1.348 1.044-1.044 1.742-2.328 1.966-3.616 0.246-1.412-0.115-2.723-0.988-3.597-0.697-0.697-1.641-1.065-2.73-1.065-1.551 0-3.185 0.744-4.483 2.043-2.077 2.077-3.288 4.945-3.94 6.991-0.482-2.056-1.444-4.833-3.313-6.702-1.003-1.003-2.285-1.518-3.495-1.518-0.989 0-1.931 0.344-2.633 1.046-1.562 1.562-1.351 4.306 0.471 6.128 0.65 0.65 1.409 1.189 2.21 1.638h-6.782v8h2v14h24v-14h2v-8h-5.89zM21.073 4.007c0.866-0.866 1.948-1.384 2.892-1.384 0.334 0 0.803 0.070 1.139 0.406 0.813 0.813 0.357 2.697-0.977 4.031-1.373 1.373-3.221 2.318-4.826 2.939h-1.584c0.58-1.798 1.627-4.264 3.356-5.993zM7.31 5.028c-0.022-0.285-0.002-0.82 0.381-1.203 0.32-0.32 0.743-0.387 1.042-0.387v0c0.664 0 1.358 0.313 1.904 0.859 1.059 1.058 1.93 2.743 2.521 4.871 0.016 0.057 0.031 0.115 0.047 0.171-0.057-0.015-0.114-0.031-0.171-0.047-2.128-0.591-3.813-1.462-4.871-2.521-0.495-0.495-0.805-1.13-0.853-1.743zM14 30h-8v-13h8v13zM14 16h-10v-4h10v4zM26 30h-8v-13h8v13zM28 16h-10v-4h10v4z"></path>
+        <svg
+          class="search-form__svg-size"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
+          <path
+            d="M24.11 10c0.566-0.402 1.11-0.851 1.608-1.348 1.044-1.044 1.742-2.328 1.966-3.616 0.246-1.412-0.115-2.723-0.988-3.597-0.697-0.697-1.641-1.065-2.73-1.065-1.551 0-3.185 0.744-4.483 2.043-2.077 2.077-3.288 4.945-3.94 6.991-0.482-2.056-1.444-4.833-3.313-6.702-1.003-1.003-2.285-1.518-3.495-1.518-0.989 0-1.931 0.344-2.633 1.046-1.562 1.562-1.351 4.306 0.471 6.128 0.65 0.65 1.409 1.189 2.21 1.638h-6.782v8h2v14h24v-14h2v-8h-5.89zM21.073 4.007c0.866-0.866 1.948-1.384 2.892-1.384 0.334 0 0.803 0.070 1.139 0.406 0.813 0.813 0.357 2.697-0.977 4.031-1.373 1.373-3.221 2.318-4.826 2.939h-1.584c0.58-1.798 1.627-4.264 3.356-5.993zM7.31 5.028c-0.022-0.285-0.002-0.82 0.381-1.203 0.32-0.32 0.743-0.387 1.042-0.387v0c0.664 0 1.358 0.313 1.904 0.859 1.059 1.058 1.93 2.743 2.521 4.871 0.016 0.057 0.031 0.115 0.047 0.171-0.057-0.015-0.114-0.031-0.171-0.047-2.128-0.591-3.813-1.462-4.871-2.521-0.495-0.495-0.805-1.13-0.853-1.743zM14 30h-8v-13h8v13zM14 16h-10v-4h10v4zM26 30h-8v-13h8v13zM28 16h-10v-4h10v4z"
+          ></path>
         </svg>
         Rarity
       </label>
       <div class="search-form__group-input-wrapper">
         <div class="search-form__group--checkbox">
           <div class="search-form__checkbox-wrapper">
-            <input type="checkbox" class="search-form__input-checkbox js--api-rarity-box" value="common" name="common">
-            <label for="common" class="search-form__label--checkbox">Common</label>
+            <input
+              type="checkbox"
+              class="search-form__input-checkbox js--api-rarity-box"
+              value="common"
+              name="common"
+            />
+            <label for="common" class="search-form__label--checkbox"
+              >Common</label
+            >
           </div>
           <div class="search-form__checkbox-wrapper">
-            <input type="checkbox" class="search-form__input-checkbox js--api-rarity-box" value="uncommon" name="uncommon">
-            <label for="uncommon" class="search-form__label--checkbox">Uncommon</label>
+            <input
+              type="checkbox"
+              class="search-form__input-checkbox js--api-rarity-box"
+              value="uncommon"
+              name="uncommon"
+            />
+            <label for="uncommon" class="search-form__label--checkbox"
+              >Uncommon</label
+            >
           </div>
           <div class="search-form__checkbox-wrapper">
-            <input type="checkbox" class="search-form__input-checkbox js--api-rarity-box" value="rare" name="rare">
+            <input
+              type="checkbox"
+              class="search-form__input-checkbox js--api-rarity-box"
+              value="rare"
+              name="rare"
+            />
             <label for="rare" class="search-form__label--checkbox">Rare</label>
           </div>
           <div class="search-form__checkbox-wrapper">
-            <input type="checkbox" class="search-form__input-checkbox js--api-rarity-box" value="mythic" name="mythic">
-            <label for="mythic" class="search-form__label--checkbox">Mythic Rare</label>
+            <input
+              type="checkbox"
+              class="search-form__input-checkbox js--api-rarity-box"
+              value="mythic"
+              name="mythic"
+            />
+            <label for="mythic" class="search-form__label--checkbox"
+              >Mythic Rare</label
+            >
           </div>
         </div>
         <p class="search-form__tip">
@@ -436,20 +990,39 @@
     <!-- Price -->
     <div class="search-form__group">
       <label class="search-form__label">
-        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <path d="M12 29c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"></path>
-          <path d="M32 29c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"></path>
-          <path d="M32 16v-12h-24c0-1.105-0.895-2-2-2h-6v2h4l1.502 12.877c-0.915 0.733-1.502 1.859-1.502 3.123 0 2.209 1.791 4 4 4h24v-2h-24c-1.105 0-2-0.895-2-2 0-0.007 0-0.014 0-0.020l26-3.98z"></path>
+        <svg
+          class="search-form__svg-size"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
+          <path
+            d="M12 29c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"
+          ></path>
+          <path
+            d="M32 29c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"
+          ></path>
+          <path
+            d="M32 16v-12h-24c0-1.105-0.895-2-2-2h-6v2h4l1.502 12.877c-0.915 0.733-1.502 1.859-1.502 3.123 0 2.209 1.791 4 4 4h24v-2h-24c-1.105 0-2-0.895-2-2 0-0.007 0-0.014 0-0.020l26-3.98z"
+          ></path>
         </svg>
         Price
       </label>
       <div class="search-form__input-wrapper">
         <div class="search-form__select-menu-grouping">
-          <select name="denomination" class="search-form__select-menu js--api-denomination">
+          <select
+            name="denomination"
+            class="search-form__select-menu js--api-denomination"
+          >
             <option value="usd">USD</option>
             <option value="eur">EURO</option>
           </select>
-          <select name="denomination-sorter" class="search-form__select-menu js--api-denomination-sort-by">
+          <select
+            name="denomination-sorter"
+            class="search-form__select-menu js--api-denomination-sort-by"
+          >
             <option value=">">Greater than</option>
             <option value="<">Less than</option>
             <option value="=">Equals</option>
@@ -457,24 +1030,37 @@
             <option value="<=">Less than or equal to</option>
             <option value="!=">Not equal to</option>
           </select>
-          <input type="number" class="search-form__input-integer js--api-denomination-sort-value">
+          <input
+            type="number"
+            class="search-form__input-integer js--api-denomination-sort-value"
+          />
         </div>
-        <p class="search-form__tip">
-          Restrict cards based on their price
-        </p>
+        <p class="search-form__tip">Restrict cards based on their price</p>
       </div>
     </div>
 
     <!-- Sort selection -->
     <div class="search-form__group">
       <label class="search-form__label">
-        <svg class="search-form__svg-size" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-          <path d="M20.807 10.22l-2.030-2.029-10.15 10.148c-1.682 1.681-1.682 4.408 0 6.089s4.408 1.681 6.090 0l12.18-12.178c2.804-2.802 2.804-7.346 0-10.148-2.802-2.803-7.347-2.803-10.149 0l-12.788 12.787c-0.009 0.009-0.019 0.018-0.027 0.026-3.909 3.909-3.909 10.245 0 14.153 3.908 3.908 10.246 3.908 14.156 0 0.009-0.009 0.016-0.018 0.026-0.027l0.001 0.001 8.729-8.728-2.031-2.029-8.729 8.727c-0.009 0.008-0.018 0.018-0.026 0.026-2.784 2.783-7.312 2.783-10.096 0-2.783-2.783-2.783-7.31 0-10.093 0.010-0.009 0.019-0.018 0.028-0.026l-0.001-0.002 12.79-12.786c1.678-1.679 4.411-1.679 6.090 0s1.678 4.411 0 6.089l-12.18 12.178c-0.56 0.56-1.47 0.56-2.030 0-0.559-0.559-0.559-1.47 0-2.029l10.15-10.149z"></path>
+        <svg
+          class="search-form__svg-size"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+        >
+          <path
+            d="M20.807 10.22l-2.030-2.029-10.15 10.148c-1.682 1.681-1.682 4.408 0 6.089s4.408 1.681 6.090 0l12.18-12.178c2.804-2.802 2.804-7.346 0-10.148-2.802-2.803-7.347-2.803-10.149 0l-12.788 12.787c-0.009 0.009-0.019 0.018-0.027 0.026-3.909 3.909-3.909 10.245 0 14.153 3.908 3.908 10.246 3.908 14.156 0 0.009-0.009 0.016-0.018 0.026-0.027l0.001 0.001 8.729-8.728-2.031-2.029-8.729 8.727c-0.009 0.008-0.018 0.018-0.026 0.026-2.784 2.783-7.312 2.783-10.096 0-2.783-2.783-2.783-7.31 0-10.093 0.010-0.009 0.019-0.018 0.028-0.026l-0.001-0.002 12.79-12.786c1.678-1.679 4.411-1.679 6.090 0s1.678 4.411 0 6.089l-12.18 12.178c-0.56 0.56-1.47 0.56-2.030 0-0.559-0.559-0.559-1.47 0-2.029l10.15-10.149z"
+          ></path>
         </svg>
         Preferences
       </label>
       <div class="search-form__input-wrapper">
-        <select name="sorter" class="search-form__select-menu js--api-results-sorter">
+        <select
+          name="sorter"
+          class="search-form__select-menu js--api-results-sorter"
+        >
           <option value="name" selected>Sort by name</option>
           <option value="released">Sort by release date</option>
           <option value="set">Sort by set</option>
@@ -483,18 +1069,19 @@
           <option value="toughness">Sort by toughness</option>
           <option value="power">Sort by power</option>
         </select>
-        <select name="display-as" class="search-form__select-menu js--api-search-display-selector">
+        <select
+          name="display-as"
+          class="search-form__select-menu js--api-search-display-selector"
+        >
           <option value="images">Images</option>
           <option value="list" selected>Checklist</option>
         </select>
       </div>
     </div>
 
-    <button class="search-form__submit js--api-btn">Search with these options</button>
-
-
-
-
+    <button class="search-form__submit js--api-btn">
+      Search with these options
+    </button>
   </form>
 </div>
 

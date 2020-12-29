@@ -1,40 +1,74 @@
-{% extends "layout.html" %}
-{% block content %}
-
-  {% if error %}
-  <p class="error">{{ error }}</p>
-  {% endif %}
+{% extends "layout.html" %} {% block content %} {% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
 
 <div class="register">
-  <h3 class="heading-tertiary heading-tertiary--white mt-50 mb-20">please register</h3>
+  <h3 class="heading-tertiary heading-tertiary--white mt-50 mb-20">
+    please register
+  </h3>
   <form action="#" class="register-form" method="POST">
     <div class="register-form__group">
-      <label for="register-email" class="register-form__label">Email Address:</label>
-      <input type="email" class="register-form__input" name="email" placeholder="Email Address" id="register-email">
+      <label for="register-email" class="register-form__label"
+        >Email Address:</label
+      >
+      <input
+        type="email"
+        class="register-form__input"
+        name="email"
+        placeholder="Email Address"
+        id="register-email"
+      />
     </div>
 
     <div class="register-form__group">
-      <label for="register-username" class="register-form__label">Select a Username:</label>
-      <input type="text" class="register-form__input" name="username" placeholder="Username" id="register-username" required>
+      <label for="register-username" class="register-form__label"
+        >Select a Username:</label
+      >
+      <input
+        type="text"
+        class="register-form__input"
+        name="username"
+        placeholder="Username"
+        id="register-username"
+        required
+      />
     </div>
 
     <div class="register-form__group">
-      <label for="register-password" class="register-form__label">Password:</label>
-      <input type="password" class="register-form__input" name="password" placeholder="Password" id="register-password" required>
+      <label for="register-password" class="register-form__label"
+        >Password:</label
+      >
+      <input
+        type="password"
+        class="register-form__input"
+        name="password"
+        placeholder="Password"
+        id="register-password"
+        required
+      />
     </div>
 
     <div class="register-form__group">
-      <label for="register-password-confirm" class="register-form__label">Confirm Password:</label>
-      <input type="password" class="register-form__input" name="comfirm-password" placeholder="Password" id="register-password-confirm" required>
+      <label for="register-password-confirm" class="register-form__label"
+        >Confirm Password:</label
+      >
+      <input
+        type="password"
+        class="register-form__input"
+        name="comfirm-password"
+        placeholder="Password"
+        id="register-password-confirm"
+        required
+      />
     </div>
 
     <div class="register-form__btn-wrapper">
-      <input type="submit" class="btn btn--submit" value="Register">
+      <input type="submit" class="btn btn--submit" value="Register" />
     </div>
-
   </form>
   <p class="register__login-text">
-    Already a member? <a href="{{ url_for('login') }}" class="register__login-link">Login now</a>
+    Already a member?
+    <a href="{{ url_for('login') }}" class="register__login-link">Login now</a>
   </p>
 </div>
 

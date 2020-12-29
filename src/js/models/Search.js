@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { elements } from "../views/base";
+import { elements } from '../views/base';
 
 export default class Search {
   searchByName() {
     let cardName = elements.apiSearch.cardName.value;
-    cardName = cardName.replace(" ", "+");
+    cardName = cardName.replace(' ', '+');
 
     if (cardName) this.search += cardName;
   }
@@ -15,11 +15,11 @@ export default class Search {
 
     // If the oracle text includes more than one word, we need to search the terms individually
     if (
-      oracleText.includes(" ") &&
-      oracleText.indexOf(" ") !== oracleText.length - 1
+      oracleText.includes(' ') &&
+      oracleText.indexOf(' ') !== oracleText.length - 1
     ) {
-      let temporaryStr = "";
-      const texts = oracleText.split(" ");
+      let temporaryStr = '';
+      const texts = oracleText.split(' ');
 
       texts.forEach((text) => {
         if (text.length > 0) temporaryStr += `oracle%3A${text}+`;
@@ -31,23 +31,23 @@ export default class Search {
 
   searchByCardType() {
     const typesToInclude = Array.from(
-      document.querySelectorAll("[data-include-type]")
+      document.querySelectorAll('[data-include-type]')
     );
     const typesToExclude = Array.from(
-      document.querySelectorAll("[data-exclude-type]")
+      document.querySelectorAll('[data-exclude-type]')
     );
     const includePartialTypes = elements.apiSearch.includePartialTypes.checked;
-    let temporaryStr = "";
+    let temporaryStr = '';
 
     if (typesToInclude && !includePartialTypes) {
       typesToInclude.forEach((type) => {
-        this.search += `+type%3A${type.getAttribute("data-include-type")}`;
+        this.search += `+type%3A${type.getAttribute('data-include-type')}`;
       });
     }
 
     if (typesToInclude.length > 0 && includePartialTypes) {
       typesToInclude.forEach((type) => {
-        temporaryStr += `type%3A${type.getAttribute("data-include-type")}+OR+`;
+        temporaryStr += `type%3A${type.getAttribute('data-include-type')}+OR+`;
       });
 
       temporaryStr = temporaryStr.slice(0, -4);
@@ -56,7 +56,7 @@ export default class Search {
 
     if (typesToExclude) {
       typesToExclude.forEach((type) => {
-        this.search += `+-type%3A${type.getAttribute("data-exclude-type")}`;
+        this.search += `+-type%3A${type.getAttribute('data-exclude-type')}`;
       });
     }
   }
@@ -65,7 +65,7 @@ export default class Search {
     let boxes = elements.apiSearch.colorBoxes;
 
     // Loop through checkboxes to get all colors given
-    var colors = "";
+    var colors = '';
     boxes.forEach((box) => {
       if (box.checked) colors += box.value;
     });
@@ -77,13 +77,13 @@ export default class Search {
 
   searchByStats() {
     const statLines = Array.from(
-      document.querySelectorAll(".js--api-stats-wrapper")
+      document.querySelectorAll('.js--api-stats-wrapper')
     );
 
     statLines.forEach((line) => {
-      const stat = line.querySelector(".js--api-stat").value;
-      const sortBy = line.querySelector(".js--api-stat-filter").value;
-      const sortValue = line.querySelector(".js--api-stat-value").value;
+      const stat = line.querySelector('.js--api-stat').value;
+      const sortBy = line.querySelector('.js--api-stat-filter').value;
+      const sortValue = line.querySelector('.js--api-stat-value').value;
 
       if (stat && sortBy && sortValue) {
         this.search += `+${stat}${sortBy}${sortValue}`;
@@ -93,25 +93,25 @@ export default class Search {
 
   searchByFormat() {
     const formatLines = Array.from(
-      document.querySelectorAll(".js--api-format-wrapper")
+      document.querySelectorAll('.js--api-format-wrapper')
     );
 
     formatLines.forEach((line) => {
-      const status = line.querySelector(".js--api-legal-status").value;
-      const format = line.querySelector(".js--api-format").value;
+      const status = line.querySelector('.js--api-legal-status').value;
+      const format = line.querySelector('.js--api-format').value;
 
       if (format && status) this.search += `+${status}%3A${format}`;
     });
   }
 
   searchBySet() {
-    const sets = Array.from(document.querySelectorAll("[data-include-set]"));
-    let temporaryStr = "";
+    const sets = Array.from(document.querySelectorAll('[data-include-set]'));
+    let temporaryStr = '';
 
     if (sets.length > 0) {
       sets.forEach(
         (s) =>
-          (temporaryStr += `set%3A${s.getAttribute("data-include-set")}+OR+`)
+          (temporaryStr += `set%3A${s.getAttribute('data-include-set')}+OR+`)
       );
 
       temporaryStr = temporaryStr.slice(0, -4);
@@ -122,7 +122,7 @@ export default class Search {
   searchByRarity() {
     const boxes = elements.apiSearch.rarityBoxes;
     var values = [];
-    let temporaryStr = "";
+    let temporaryStr = '';
 
     // Push all rarities given by the user into the values array
     boxes.forEach((box) => {
@@ -131,7 +131,7 @@ export default class Search {
 
     if (values.length > 0) {
       // We need a starter string so we can slice it later %28 is an open parentheses
-      temporaryStr += "%28";
+      temporaryStr += '%28';
 
       // For every value given by the user we need to add the +OR+
       // to the end for grouping. We will remove the +OR+ from the last
@@ -158,7 +158,7 @@ export default class Search {
 
   quickSearch() {
     let cardName = elements.nav.searchInput.value;
-    cardName = cardName.replace(" ", "+");
+    cardName = cardName.replace(' ', '+');
     return cardName;
   }
 
@@ -184,7 +184,7 @@ export default class Search {
   }
 
   resetSearchQuery() {
-    this.search = "";
+    this.search = '';
   }
 
   displayMethod() {

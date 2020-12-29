@@ -12,3 +12,4 @@ migrations
 
 package-lock.json
 
+.prettierrc

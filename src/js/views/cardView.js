@@ -1,12 +1,12 @@
-import { generateManaCostImages } from "./resultsView";
-import { elements } from "./base";
+import { generateManaCostImages } from './resultsView';
+import { elements } from './base';
 
 export const insertManaCostToCardTextTitle = () => {
   const manaCosts = Array.from(elements.card.manaCostTitleSpan);
 
   manaCosts.forEach((cost) => {
     cost.innerHTML = generateManaCostImages(
-      cost.getAttribute("data-mana-cost")
+      cost.getAttribute('data-mana-cost')
     );
   });
 };
@@ -16,7 +16,7 @@ export const insertManaCostToOracleText = () => {
 
   if (oracleTexts.length > 0) {
     oracleTexts.forEach(
-      (text) => (text.innerHTML = generateManaCostImages(text.innerHTML, "xs"))
+      (text) => (text.innerHTML = generateManaCostImages(text.innerHTML, 'xs'))
     );
   }
 };
@@ -25,8 +25,8 @@ export const removeUnderScoreFromLegalStatus = () => {
   const legalities = Array.from(elements.card.legalities);
 
   legalities.forEach((legality) => {
-    if (legality.innerHTML.includes("_")) {
-      legality.innerHTML = legality.innerHTML.replace("_", " ");
+    if (legality.innerHTML.includes('_')) {
+      legality.innerHTML = legality.innerHTML.replace('_', ' ');
     }
   });
 };
@@ -35,13 +35,13 @@ export const fixCardPrices = () => {
   const prices = Array.from(elements.card.prices);
 
   prices.forEach((price) => {
-    if (price.innerHTML.includes("None")) price.innerHTML = "-";
+    if (price.innerHTML.includes('None')) price.innerHTML = '-';
   });
 };
 
 const fixDoubleSidedCardName = (cardName) => {
-  if (cardName.includes("/")) {
-    cardName = cardName.substring(0, cardName.indexOf("/") - 1);
+  if (cardName.includes('/')) {
+    cardName = cardName.substring(0, cardName.indexOf('/') - 1);
   }
   return cardName;
 };
@@ -50,9 +50,9 @@ export const setPrintLinkHref = () => {
   const links = Array.from(elements.card.cardPrintLinks);
 
   links.forEach((link) => {
-    let cardName = link.getAttribute("data-name").replaceAll(" ", "-");
+    let cardName = link.getAttribute('data-name').replaceAll(' ', '-');
     cardName = fixDoubleSidedCardName(cardName);
-    const setCode = link.getAttribute("data-set");
+    const setCode = link.getAttribute('data-set');
 
     link.href = `/card/${setCode}/${cardName}`;
   });
@@ -62,7 +62,7 @@ const setDoubleSidedTransition = () => {
   // Checks to see if an inline style has been set for the front of the card.
   // If not, set a transiton. This makes sure we don't set the transiton every
   // time the card is flipped.
-  if (!elements.card.front.getAttribute("style")) {
+  if (!elements.card.front.getAttribute('style')) {
     elements.card.front.style.transition = `all .8s ease`;
     elements.card.back.style.transition = `all .8s ease`;
   }
@@ -79,8 +79,8 @@ export const flipToBackSide = () => {
 
   // Reset the event listener so that on clicking the button it will flip
   // back to the front of the card
-  elements.card.transformBtn.removeEventListener("click", flipToBackSide);
-  elements.card.transformBtn.addEventListener("click", flipToFrontSide);
+  elements.card.transformBtn.removeEventListener('click', flipToBackSide);
+  elements.card.transformBtn.addEventListener('click', flipToFrontSide);
 };
 
 export const flipToFrontSide = () => {
@@ -89,8 +89,8 @@ export const flipToFrontSide = () => {
 
   // Reset the event listener so that on clicking the button it will flip
   // to the backside of the card
-  elements.card.transformBtn.removeEventListener("click", flipToFrontSide);
-  elements.card.transformBtn.addEventListener("click", flipToBackSide);
+  elements.card.transformBtn.removeEventListener('click', flipToFrontSide);
+  elements.card.transformBtn.addEventListener('click', flipToBackSide);
 };
 
 // Create the hover effect on each row that displays the image of the card
@@ -104,22 +104,22 @@ export const printListHoverEvents = () => {
       if (window.innerWidth < 768) return false;
 
       // If there is already an image being displayed, remove it from the DOM
-      if (document.querySelector(".tooltip")) {
-        document.body.removeChild(document.querySelector(".tooltip"));
+      if (document.querySelector('.tooltip')) {
+        document.body.removeChild(document.querySelector('.tooltip'));
       }
 
       // Prep the div.
-      const div = document.createElement("div");
-      div.className = "tooltip";
+      const div = document.createElement('div');
+      div.className = 'tooltip';
 
       // The div is styled with position absolute. This code puts it just to the right of the cursor
-      div.style.left = e.pageX + 50 + "px";
-      div.style.top = e.pageY - 30 + "px";
+      div.style.left = e.pageX + 50 + 'px';
+      div.style.top = e.pageY - 30 + 'px';
 
       // Prep the img element
-      const img = document.createElement("img");
-      img.className = "tooltip__img";
-      img.src = print.getAttribute("data-cardImg");
+      const img = document.createElement('img');
+      img.className = 'tooltip__img';
+      img.src = print.getAttribute('data-cardImg');
 
       // Put the img into the div and then append the div directly to the body of the document.
       div.appendChild(img);
@@ -128,17 +128,17 @@ export const printListHoverEvents = () => {
 
     // Remove the img when taking the cursor off the print
     print.onmouseout = (e) => {
-      if (document.querySelector(".tooltip")) {
-        document.body.removeChild(document.querySelector(".tooltip"));
+      if (document.querySelector('.tooltip')) {
+        document.body.removeChild(document.querySelector('.tooltip'));
       }
     };
   });
 };
 
 export const checkPriceInputForDigits = (e) => {
-  const priceInput = document.querySelector(".js--add-to-inv-price").value;
+  const priceInput = document.querySelector('.js--add-to-inv-price').value;
 
-  if (isNaN(priceInput) && priceInput !== "") {
+  if (isNaN(priceInput) && priceInput !== '') {
     e.preventDefault();
     renderPriceInputErrorMessage();
     return false;
@@ -146,10 +146,10 @@ export const checkPriceInputForDigits = (e) => {
 };
 
 const renderPriceInputErrorMessage = () => {
-  const priceInputDiv = document.querySelector(".js--add-to-inv-price-div");
+  const priceInputDiv = document.querySelector('.js--add-to-inv-price-div');
   const msg = `<p class="add-to-inv-price-msg">Invalid price. Must be a number.</p>`;
 
-  if (!document.querySelector(".add-to-inv-price-msg")) {
-    priceInputDiv.insertAdjacentHTML("beforeend", msg);
+  if (!document.querySelector('.add-to-inv-price-msg')) {
+    priceInputDiv.insertAdjacentHTML('beforeend', msg);
   }
 };

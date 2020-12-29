@@ -1,18 +1,18 @@
-import { elements } from "./base";
+import { elements } from './base';
 
 const clearChecklist = () => {
-  const checkList = document.querySelector(".js--card-checklist");
+  const checkList = document.querySelector('.js--card-checklist');
   if (checkList) {
     checkList.parentElement.removeChild(checkList);
 
     // Remove any tool tip images if user was hovering
-    const toolTip = document.querySelector(".tooltip");
+    const toolTip = document.querySelector('.tooltip');
     if (toolTip) document.body.removeChild(toolTip);
   }
 };
 
 const clearImageGrid = () => {
-  const grid = document.querySelector(".js--image-grid");
+  const grid = document.querySelector('.js--image-grid');
   if (grid) grid.parentElement.removeChild(grid);
 };
 
@@ -25,13 +25,13 @@ const prepImageContainer = () => {
   const markup = `
         <div class="image-grid js--image-grid"></div>
     `;
-  elements.resultsPage.resultsContainer.insertAdjacentHTML("beforeend", markup);
+  elements.resultsPage.resultsContainer.insertAdjacentHTML('beforeend', markup);
 };
 
 const generateSingleSidedCard = (card) => {
-  const a = document.createElement("a");
-  const div = document.createElement("div");
-  const img = document.createElement("img");
+  const a = document.createElement('a');
+  const div = document.createElement('div');
+  const img = document.createElement('img');
 
   a.classList = `image-grid__link js--image-grid-link`;
   a.href = `/card/${card.set}/${parseCardName(card.name)}`;
@@ -44,30 +44,30 @@ const generateSingleSidedCard = (card) => {
   a.appendChild(div);
 
   document
-    .querySelector(".js--image-grid")
-    .insertAdjacentElement("beforeend", a);
+    .querySelector('.js--image-grid')
+    .insertAdjacentElement('beforeend', a);
 };
 
 const showBackSide = (card) => {
-  const front = card.querySelector(".js--image-grid-card-side-front");
-  const back = card.querySelector(".js--image-grid-card-side-back");
+  const front = card.querySelector('.js--image-grid-card-side-front');
+  const back = card.querySelector('.js--image-grid-card-side-back');
 
-  front.style.transform = "rotateY(-180deg)";
-  back.style.transform = "rotateY(0)";
+  front.style.transform = 'rotateY(-180deg)';
+  back.style.transform = 'rotateY(0)';
 
-  front.classList.remove("js--showing");
-  back.classList.add("js--showing");
+  front.classList.remove('js--showing');
+  back.classList.add('js--showing');
 };
 
 const showFrontSide = (card) => {
-  const front = card.querySelector(".js--image-grid-card-side-front");
-  const back = card.querySelector(".js--image-grid-card-side-back");
+  const front = card.querySelector('.js--image-grid-card-side-front');
+  const back = card.querySelector('.js--image-grid-card-side-back');
 
-  front.style.transform = "rotateY(0)";
-  back.style.transform = "rotateY(180deg)";
+  front.style.transform = 'rotateY(0)';
+  back.style.transform = 'rotateY(180deg)';
 
-  front.classList.add("js--showing");
-  back.classList.remove("js--showing");
+  front.classList.add('js--showing');
+  back.classList.remove('js--showing');
 };
 
 const flipCard = (e) => {
@@ -75,27 +75,27 @@ const flipCard = (e) => {
   e.preventDefault();
   const card = e.target.parentElement;
 
-  const front = card.querySelector(".js--image-grid-card-side-front");
+  const front = card.querySelector('.js--image-grid-card-side-front');
 
   // If the front is showing, display the backside. Otherwise, display the front
-  if (front.classList.contains("js--showing")) showBackSide(card);
+  if (front.classList.contains('js--showing')) showBackSide(card);
   else showFrontSide(card);
 };
 
 const generateFlipCardBtn = () => {
-  const btn = document.createElement("button");
-  btn.classList = "image-grid__double-btn js--image-grid-flip-card-btn";
-  btn.addEventListener("click", (e) => flipCard(e));
+  const btn = document.createElement('button');
+  btn.classList = 'image-grid__double-btn js--image-grid-flip-card-btn';
+  btn.addEventListener('click', (e) => flipCard(e));
 
   return btn;
 };
 
 const generateDoubleSidedCard = (card) => {
-  const a = document.createElement("a");
-  const outerDiv = document.createElement("div");
-  const innerDiv = document.createElement("div");
-  const imgFrontSide = document.createElement("img");
-  const imgBackSide = document.createElement("img");
+  const a = document.createElement('a');
+  const outerDiv = document.createElement('div');
+  const innerDiv = document.createElement('div');
+  const imgFrontSide = document.createElement('img');
+  const imgBackSide = document.createElement('img');
   const flipCardBtn = generateFlipCardBtn();
 
   a.classList = `image-grid__link js--image-grid-link`;
@@ -119,8 +119,8 @@ const generateDoubleSidedCard = (card) => {
   innerDiv.appendChild(flipCardBtn);
 
   document
-    .querySelector(".js--image-grid")
-    .insertAdjacentElement("beforeend", a);
+    .querySelector('.js--image-grid')
+    .insertAdjacentElement('beforeend', a);
 };
 
 const generateImageGrid = (cards) => {
@@ -156,12 +156,12 @@ const prepChecklistContainer = () => {
             <tbody class="js--card-checklist-body"></tbody>
         </table>
         `;
-  elements.resultsPage.resultsContainer.insertAdjacentHTML("beforeend", markup);
+  elements.resultsPage.resultsContainer.insertAdjacentHTML('beforeend', markup);
 };
 
-export const generateManaCostImages = (manaCost, size = "small") => {
+export const generateManaCostImages = (manaCost, size = 'small') => {
   // If there is no mana cost associated with the card, then return an empty string to leave the row empty
-  if (!manaCost) return "";
+  if (!manaCost) return '';
 
   // Regular expressions to find each set of curly braces {}
   let re = /\{(.*?)\}/g;
@@ -173,11 +173,11 @@ export const generateManaCostImages = (manaCost, size = "small") => {
   // html span that correspons to mana.css to render the correct image
   if (matches) {
     matches.forEach((m) => {
-      const regex = new RegExp(`\{(${m.slice(1, -1)})\}`, "g");
+      const regex = new RegExp(`\{(${m.slice(1, -1)})\}`, 'g');
       // This will be the string used to get the right class from mana.css
       // We want to take everything inside the brackets, and if there is a /
       // remove it.
-      const manaIconStr = m.slice(1, -1).toLowerCase().replace("/", "");
+      const manaIconStr = m.slice(1, -1).toLowerCase().replace('/', '');
       manaCost = manaCost.replace(
         regex,
         `<span class="mana ${size} s${manaIconStr}"></span>`
@@ -190,21 +190,21 @@ export const generateManaCostImages = (manaCost, size = "small") => {
 
 const shortenTypeLine = (type) => {
   // If no type is given, return an empty string
-  if (!type) return "";
+  if (!type) return '';
 
   // if the — delimiter is found in the string, return everything before the delimiter
-  if (type.indexOf("—") !== -1) return type.substring(0, type.indexOf("—") - 1);
+  if (type.indexOf('—') !== -1) return type.substring(0, type.indexOf('—') - 1);
 
   // If there is no delimiter, return the type as given in the card object
   return type;
 };
 
 const parseCardName = (cardName) => {
-  if (cardName.indexOf("/") !== -1) {
-    return cardName.slice(0, cardName.indexOf("/") - 1).replaceAll(" ", "-");
+  if (cardName.indexOf('/') !== -1) {
+    return cardName.slice(0, cardName.indexOf('/') - 1).replaceAll(' ', '-');
   }
 
-  return cardName.replaceAll(" ", "-");
+  return cardName.replaceAll(' ', '-');
 };
 
 const generateChecklist = (cards) => {
@@ -255,8 +255,8 @@ const generateChecklist = (cards) => {
             `;
     // Put the row in the table
     document
-      .querySelector(".js--card-checklist-body")
-      .insertAdjacentHTML("beforeend", markup);
+      .querySelector('.js--card-checklist-body')
+      .insertAdjacentHTML('beforeend', markup);
   });
 };
 
@@ -278,7 +278,7 @@ const checkForImg = (card) => {
 // Create the hover effect on each row that displays the image of the card
 export const checkListHoverEvents = () => {
   // Get the HTML for each table row
-  const rows = Array.from(document.querySelectorAll(".js--checklist-row"));
+  const rows = Array.from(document.querySelectorAll('.js--checklist-row'));
 
   rows.forEach((row) => {
     row.onmousemove = (e) => {
@@ -286,21 +286,21 @@ export const checkListHoverEvents = () => {
       if (window.innerWidth < 768) return false;
 
       // If there is already an image being displayed, remove it from the DOM
-      if (document.querySelector(".tooltip")) {
-        document.body.removeChild(document.querySelector(".tooltip"));
+      if (document.querySelector('.tooltip')) {
+        document.body.removeChild(document.querySelector('.tooltip'));
       }
 
       // Prep the div.
-      const div = document.createElement("div");
-      div.className = "tooltip";
+      const div = document.createElement('div');
+      div.className = 'tooltip';
 
       // The div is styled with position absolute. This code puts it just to the right of the cursor
-      div.style.left = e.pageX + 50 + "px";
-      div.style.top = e.pageY - 30 + "px";
+      div.style.left = e.pageX + 50 + 'px';
+      div.style.top = e.pageY - 30 + 'px';
 
       // Prep the img element
-      const img = document.createElement("img");
-      img.className = "tooltip__img";
+      const img = document.createElement('img');
+      img.className = 'tooltip__img';
       img.src = row.dataset.cardImg;
 
       // Put the img into the div and then append the div directly to the body of the document.
@@ -310,8 +310,8 @@ export const checkListHoverEvents = () => {
 
     // Remove the img when taking the cursor off the row
     row.onmouseout = (e) => {
-      if (document.querySelector(".tooltip")) {
-        document.body.removeChild(document.querySelector(".tooltip"));
+      if (document.querySelector('.tooltip')) {
+        document.body.removeChild(document.querySelector('.tooltip'));
       }
     };
   });
@@ -349,7 +349,7 @@ export const choseSelectMenuDisplay = (menu, state) => {
 export const changeSortMethod = (state) => {
   // Get the current sort method from the end of the URL
   const currentSortMethod = window.location.pathname.substring(
-    window.location.pathname.lastIndexOf("=") + 1
+    window.location.pathname.lastIndexOf('=') + 1
   );
 
   // Grab the desired sort method from the user
@@ -368,7 +368,7 @@ export const changeSortMethod = (state) => {
 
     const currentPathName = window.location.pathname.substring(
       0,
-      window.location.pathname.lastIndexOf("=") + 1
+      window.location.pathname.lastIndexOf('=') + 1
     );
 
     window.location.href = currentPathName + newSortMethod;
@@ -402,9 +402,9 @@ export const updateDisplay = (state) => {
   clearResults();
 
   // Refresh the display
-  if (state.display === "list")
+  if (state.display === 'list')
     displayChecklist(state.allCards[state.currentIndex]);
-  if (state.display === "images")
+  if (state.display === 'images')
     dispalyImages(state.allCards[state.currentIndex]);
 };
 
@@ -414,7 +414,7 @@ export const updateDisplay = (state) => {
 
 // Will be called during changing pages. Removes the current element in the bar
 const clearDisplayBar = () => {
-  const displayBarText = document.querySelector(".js--display-bar-text");
+  const displayBarText = document.querySelector('.js--display-bar-text');
   if (displayBarText) displayBarText.parentElement.removeChild(displayBarText);
 };
 
@@ -437,13 +437,13 @@ export const updateDisplayBar = (state) => {
     `;
 
   clearDisplayBar();
-  elements.resultsPage.displayBar.insertAdjacentHTML("beforeend", markup);
+  elements.resultsPage.displayBar.insertAdjacentHTML('beforeend', markup);
 };
 
 export const enableBtn = (btn) => {
   if (btn.disabled) {
     btn.classList.remove(
-      "api-results-display__nav-pagination-container--disabled"
+      'api-results-display__nav-pagination-container--disabled'
     );
     btn.disabled = false;
   }
@@ -452,7 +452,7 @@ export const enableBtn = (btn) => {
 export const disableBtn = (btn) => {
   if (!btn.disabled) {
     btn.classList.add(
-      "api-results-display__nav-pagination-container--disabled"
+      'api-results-display__nav-pagination-container--disabled'
     );
     btn.disabled = true;
   }
@@ -468,20 +468,20 @@ export const display404 = () => {
 };
 
 const create404Div = () => {
-  const div = document.createElement("div");
+  const div = document.createElement('div');
   div.classList = `no-results`;
   return div;
 };
 
 const create404h3 = () => {
-  const h3 = document.createElement("h3");
+  const h3 = document.createElement('h3');
   h3.classList = `no-results__h3`;
   h3.innerHTML = `No cards found`;
   return h3;
 };
 
 const create404pElement = () => {
-  const p = document.createElement("p");
+  const p = document.createElement('p');
   p.classList = `no-results__p`;
   p.innerHTML =
     "Your search didn't match any cards. Go back to the search page and edit your search";
@@ -489,10 +489,10 @@ const create404pElement = () => {
 };
 
 const create404Btn = () => {
-  const btn = document.createElement("a");
+  const btn = document.createElement('a');
   btn.classList = `btn no-results__btn`;
-  btn.href = "/search";
-  btn.innerHTML = "Go Back";
+  btn.href = '/search';
+  btn.innerHTML = 'Go Back';
   return btn;
 };
 

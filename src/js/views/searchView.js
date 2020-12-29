@@ -1,105 +1,105 @@
-import { elements } from "./base";
+import { elements } from './base';
 
 // ******************************* \\
 // ********** TYPE LINE ********** \\
 // ******************************* \\
 
 export const showTypesDropDown = () => {
-  if (elements.apiSearch.typeDropDown.hasAttribute("hidden")) {
-    elements.apiSearch.typeDropDown.removeAttribute("hidden");
+  if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
+    elements.apiSearch.typeDropDown.removeAttribute('hidden');
     elements.apiSearch.typeDropDown.scrollTop = 0;
-    console.log("types dropdown");
+    console.log('types dropdown');
 
     // Make sure to display all types when opening the dropdown and before taking input
-    filterTypes("");
+    filterTypes('');
     filterSelectedTypes();
     filterTypeHeaders();
   }
 };
 
 export const hideTypesDropDown = () => {
-  if (!elements.apiSearch.typeDropDown.hasAttribute("hidden")) {
-    elements.apiSearch.typeLine.value = "";
-    elements.apiSearch.typeDropDown.setAttribute("hidden", "true");
-    document.removeEventListener("keydown", navigateTypesDropDown);
+  if (!elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
+    elements.apiSearch.typeLine.value = '';
+    elements.apiSearch.typeDropDown.setAttribute('hidden', 'true');
+    document.removeEventListener('keydown', navigateTypesDropDown);
   }
 };
 
 export const filterTypeHeaders = () => {
   // On every input into the typeline bar, make all headers visible
   const headers = Array.from(
-    document.querySelectorAll(".js--types-category-header")
+    document.querySelectorAll('.js--types-category-header')
   );
   headers.forEach((header) => {
-    if (header.hasAttribute("hidden")) header.removeAttribute("hidden");
+    if (header.hasAttribute('hidden')) header.removeAttribute('hidden');
   });
 
   // For each category of type, if there are not any visible because they were filtered out
   // hide the header for that category
-  if (!document.querySelector(".js--basic:not([hidden])")) {
-    document.querySelector(".js--basic-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--basic:not([hidden])')) {
+    document.querySelector('.js--basic-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--super:not([hidden])")) {
-    document.querySelector(".js--super-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--super:not([hidden])')) {
+    document.querySelector('.js--super-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--artifact:not([hidden])")) {
+  if (!document.querySelector('.js--artifact:not([hidden])')) {
     document
-      .querySelector(".js--artifact-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--artifact-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--enchantment:not([hidden])")) {
+  if (!document.querySelector('.js--enchantment:not([hidden])')) {
     document
-      .querySelector(".js--enchantment-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--enchantment-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--land:not([hidden])")) {
-    document.querySelector(".js--land-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--land:not([hidden])')) {
+    document.querySelector('.js--land-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--spell:not([hidden])")) {
-    document.querySelector(".js--spell-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--spell:not([hidden])')) {
+    document.querySelector('.js--spell-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--planeswalker:not([hidden])")) {
+  if (!document.querySelector('.js--planeswalker:not([hidden])')) {
     document
-      .querySelector(".js--planeswalker-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--planeswalker-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--creature:not([hidden])")) {
+  if (!document.querySelector('.js--creature:not([hidden])')) {
     document
-      .querySelector(".js--creature-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--creature-header')
+      .setAttribute('hidden', 'true');
   }
 };
 
 export const filterSelectedTypes = () => {
   const types = Array.from(
-    document.querySelectorAll("[data-type][data-selected]")
+    document.querySelectorAll('[data-type][data-selected]')
   );
 
   types.forEach((type) => {
-    if (type.getAttribute("data-selected") === "true") {
-      if (!type.hasAttribute("hidden")) type.setAttribute("hidden", "true");
+    if (type.getAttribute('data-selected') === 'true') {
+      if (!type.hasAttribute('hidden')) type.setAttribute('hidden', 'true');
     }
   });
 };
 
 export const filterTypes = (str) => {
-  const types = Array.from(document.querySelectorAll("[data-type]"));
+  const types = Array.from(document.querySelectorAll('[data-type]'));
 
   // Remove the hidden attribute if it exists on any element, and then hide any elements
   // that don't include the string given in the input from the user
   types.forEach((type) => {
-    if (type.hasAttribute("hidden")) type.removeAttribute("hidden");
+    if (type.hasAttribute('hidden')) type.removeAttribute('hidden');
     if (
-      !type.getAttribute("data-type").toLowerCase().includes(str.toLowerCase())
+      !type.getAttribute('data-type').toLowerCase().includes(str.toLowerCase())
     ) {
-      type.setAttribute("hidden", "true");
+      type.setAttribute('hidden', 'true');
     }
   });
 
@@ -107,22 +107,22 @@ export const filterTypes = (str) => {
 };
 
 export const highlightType = (type) => {
-  if (document.querySelector(".js--highlighted")) removeCurrentHighlight();
+  if (document.querySelector('.js--highlighted')) removeCurrentHighlight();
 
   if (type) {
     type.classList.add(
-      "js--highlighted",
-      "search-form__dropdown-list-option--highlighted"
+      'js--highlighted',
+      'search-form__dropdown-list-option--highlighted'
     );
   }
 };
 
 export const removeCurrentHighlight = () => {
   document
-    .querySelector(".js--highlighted")
+    .querySelector('.js--highlighted')
     .classList.remove(
-      "js--highlighted",
-      "search-form__dropdown-list-option--highlighted"
+      'js--highlighted',
+      'search-form__dropdown-list-option--highlighted'
     );
 };
 
@@ -147,11 +147,11 @@ export const setScrollTopOnUpArrow = (el, dropdown) => {
 
 export const navigateTypesDropDown = (e) => {
   const types = Array.from(
-    document.querySelectorAll(".js--type:not([hidden])")
+    document.querySelectorAll('.js--type:not([hidden])')
   );
-  const i = types.indexOf(document.querySelector(".js--highlighted"));
+  const i = types.indexOf(document.querySelector('.js--highlighted'));
 
-  if (e.code === "ArrowDown" && i < types.length - 1) {
+  if (e.code === 'ArrowDown' && i < types.length - 1) {
     e.preventDefault();
     removeCurrentHighlight();
     highlightType(types[i + 1]);
@@ -159,7 +159,7 @@ export const navigateTypesDropDown = (e) => {
     setScrollTopOnDownArrow(types[i + 1], elements.apiSearch.typeDropDown);
   }
 
-  if (e.code === "ArrowUp") {
+  if (e.code === 'ArrowUp') {
     e.preventDefault();
 
     // We always want to prevent the default. We only want to change the
@@ -172,12 +172,12 @@ export const navigateTypesDropDown = (e) => {
     }
   }
 
-  if (e.code === "Enter") {
+  if (e.code === 'Enter') {
     e.preventDefault();
 
-    toggleDataSelected(document.querySelector(".js--highlighted"));
+    toggleDataSelected(document.querySelector('.js--highlighted'));
     addType(
-      document.querySelector(".js--highlighted").getAttribute("data-type")
+      document.querySelector('.js--highlighted').getAttribute('data-type')
     );
     hideTypesDropDown();
   }
@@ -185,29 +185,29 @@ export const navigateTypesDropDown = (e) => {
 
 export const hoverOverTypesListener = () => {
   const types = Array.from(
-    document.querySelectorAll(".js--type:not([hidden])")
+    document.querySelectorAll('.js--type:not([hidden])')
   );
 
   types.forEach((type) => {
-    type.addEventListener("mouseenter", () => highlightType(type));
+    type.addEventListener('mouseenter', () => highlightType(type));
   });
 };
 
 export const startTypesDropDownNavigation = () => {
-  document.removeEventListener("keydown", navigateTypesDropDown);
-  const firstType = document.querySelector(".js--type:not([hidden])");
+  document.removeEventListener('keydown', navigateTypesDropDown);
+  const firstType = document.querySelector('.js--type:not([hidden])');
   highlightType(firstType);
   hoverOverTypesListener();
-  document.addEventListener("keydown", navigateTypesDropDown);
+  document.addEventListener('keydown', navigateTypesDropDown);
   elements.apiSearch.typeDropDown.scrollTop = 0;
 };
 
 const removeTypeBtn = () => {
   // Span will act as the button to remove types from the "selected" list
-  const btn = document.createElement("span");
+  const btn = document.createElement('span');
   btn.classList =
-    "search-form__selected-types-remove-btn js--api-types-close-btn";
-  btn.innerHTML = "x";
+    'search-form__selected-types-remove-btn js--api-types-close-btn';
+  btn.innerHTML = 'x';
 
   btn.onclick = () => {
     const typeName = btn.nextElementSibling.nextElementSibling.innerHTML;
@@ -224,10 +224,10 @@ const removeTypeBtn = () => {
 
 const typeToggleBtn = () => {
   // Span will act as the button to toggle whether or not a type is included or excluded from the search
-  const btn = document.createElement("span");
+  const btn = document.createElement('span');
   btn.classList =
-    "search-form__selected-types-toggler search-form__selected-types-toggler--is js--api-types-toggler";
-  btn.innerHTML = "IS";
+    'search-form__selected-types-toggler search-form__selected-types-toggler--is js--api-types-toggler';
+  btn.innerHTML = 'IS';
 
   /*
         This will toggle between searching for cards that include the given type and exclude the given type.
@@ -236,24 +236,24 @@ const typeToggleBtn = () => {
 
     */
   btn.onclick = () => {
-    if (btn.innerHTML === "IS") {
+    if (btn.innerHTML === 'IS') {
       btn.classList =
-        "search-form__selected-types-toggler search-form__selected-types-toggler--not js--api-types-toggler";
-      btn.nextElementSibling.removeAttribute("data-include-type");
+        'search-form__selected-types-toggler search-form__selected-types-toggler--not js--api-types-toggler';
+      btn.nextElementSibling.removeAttribute('data-include-type');
       btn.nextElementSibling.setAttribute(
-        "data-exclude-type",
+        'data-exclude-type',
         btn.nextElementSibling.innerHTML
       );
-      btn.innerHTML = "NOT";
+      btn.innerHTML = 'NOT';
     } else {
       btn.classList =
-        "search-form__selected-types-toggler search-form__selected-types-toggler--is js--api-types-toggler";
-      btn.nextElementSibling.removeAttribute("data-exclude-type");
+        'search-form__selected-types-toggler search-form__selected-types-toggler--is js--api-types-toggler';
+      btn.nextElementSibling.removeAttribute('data-exclude-type');
       btn.nextElementSibling.setAttribute(
-        "data-include-type",
+        'data-include-type',
         btn.nextElementSibling.innerHTML
       );
-      btn.innerHTML = "IS";
+      btn.innerHTML = 'IS';
     }
   };
 
@@ -261,23 +261,23 @@ const typeToggleBtn = () => {
 };
 
 export const toggleDataSelected = (typeOrSet) => {
-  if (typeOrSet.getAttribute("data-selected") === "true") {
-    typeOrSet.setAttribute("data-selected", "false");
+  if (typeOrSet.getAttribute('data-selected') === 'true') {
+    typeOrSet.setAttribute('data-selected', 'false');
   } else {
-    typeOrSet.setAttribute("data-selected", "true");
+    typeOrSet.setAttribute('data-selected', 'true');
   }
 };
 
 const addType = (type) => {
   // Create the empty li element to hold the types that the user selects. Set the class list,
   // and the data-selected attribute to true.
-  const li = document.createElement("li");
-  li.classList = "search-form__selected-types-list-item js--api-selected-type";
+  const li = document.createElement('li');
+  li.classList = 'search-form__selected-types-list-item js--api-selected-type';
 
   // The typeSpan holds the type selected by the user from the dropdown. The data attribute
   // is used in Search.js to build the query string
-  const typeSpan = document.createElement("span");
-  typeSpan.setAttribute("data-include-type", type);
+  const typeSpan = document.createElement('span');
+  typeSpan.setAttribute('data-include-type', type);
   typeSpan.innerHTML = type;
 
   // Construct the li element. The removeTypeBtn and typeToggleBtn funcitons return html elements
@@ -293,14 +293,14 @@ export const typeLineListener = (e) => {
   // close the dropdown and remove the event listener
   if (
     e.target !== elements.apiSearch.typeLine &&
-    !e.target.matches(".js--api-dropdown-types-list")
+    !e.target.matches('.js--api-dropdown-types-list')
   ) {
     hideTypesDropDown();
-    document.removeEventListener("click", typeLineListener);
+    document.removeEventListener('click', typeLineListener);
     // If the target is one if types, get the data type
-  } else if (e.target.hasAttribute("data-type")) {
+  } else if (e.target.hasAttribute('data-type')) {
     toggleDataSelected(e.target);
-    addType(e.target.getAttribute("data-type"));
+    addType(e.target.getAttribute('data-type'));
     elements.apiSearch.typeLine.focus();
     hideTypesDropDown();
   }
@@ -311,193 +311,193 @@ export const typeLineListener = (e) => {
 // ******************************* \\
 
 export const showSetsDropDown = () => {
-  if (elements.apiSearch.setDropDown.hasAttribute("hidden")) {
-    elements.apiSearch.setDropDown.removeAttribute("hidden");
+  if (elements.apiSearch.setDropDown.hasAttribute('hidden')) {
+    elements.apiSearch.setDropDown.removeAttribute('hidden');
     elements.apiSearch.setDropDown.scrollTop = 0;
 
-    filterSets("");
+    filterSets('');
     filterSelectedSets();
     filterSetHeaders();
   }
 };
 
 export const hideSetsDropDown = () => {
-  if (!elements.apiSearch.setDropDown.hasAttribute("hidden")) {
-    elements.apiSearch.setDropDown.setAttribute("hidden", "true");
-    elements.apiSearch.setInput.value = "";
-    document.removeEventListener("keydown", navigateSetsDropDown);
+  if (!elements.apiSearch.setDropDown.hasAttribute('hidden')) {
+    elements.apiSearch.setDropDown.setAttribute('hidden', 'true');
+    elements.apiSearch.setInput.value = '';
+    document.removeEventListener('keydown', navigateSetsDropDown);
   }
 };
 
 export const filterSetHeaders = () => {
   // On every input into the typeline bar, make all headers visible
   const headers = Array.from(
-    document.querySelectorAll(".js--sets-category-header")
+    document.querySelectorAll('.js--sets-category-header')
   );
   headers.forEach((header) => {
-    if (header.hasAttribute("hidden")) header.removeAttribute("hidden");
+    if (header.hasAttribute('hidden')) header.removeAttribute('hidden');
   });
 
   // For each category of type, if there are not any visible because they were filtered out
   // hide the header for that category
-  if (!document.querySelector(".js--expansion:not([hidden])")) {
+  if (!document.querySelector('.js--expansion:not([hidden])')) {
     document
-      .querySelector(".js--expansion-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--expansion-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--core:not([hidden])")) {
-    document.querySelector(".js--core-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--core:not([hidden])')) {
+    document.querySelector('.js--core-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--masters:not([hidden])")) {
+  if (!document.querySelector('.js--masters:not([hidden])')) {
     document
-      .querySelector(".js--masters-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--masters-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--draft:not([hidden])")) {
-    document.querySelector(".js--draft-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--draft:not([hidden])')) {
+    document.querySelector('.js--draft-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--duel_deck:not([hidden])")) {
+  if (!document.querySelector('.js--duel_deck:not([hidden])')) {
     document
-      .querySelector(".js--duel_deck-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--duel_deck-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--archenemy:not([hidden])")) {
+  if (!document.querySelector('.js--archenemy:not([hidden])')) {
     document
-      .querySelector(".js--archenemy-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--archenemy-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--box:not([hidden])")) {
-    document.querySelector(".js--box-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--box:not([hidden])')) {
+    document.querySelector('.js--box-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--commander:not([hidden])")) {
+  if (!document.querySelector('.js--commander:not([hidden])')) {
     document
-      .querySelector(".js--commander-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--commander-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--vault:not([hidden])")) {
-    document.querySelector(".js--vault-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--vault:not([hidden])')) {
+    document.querySelector('.js--vault-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--funny:not([hidden])")) {
-    document.querySelector(".js--funny-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--funny:not([hidden])')) {
+    document.querySelector('.js--funny-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--masterpiece:not([hidden])")) {
+  if (!document.querySelector('.js--masterpiece:not([hidden])')) {
     document
-      .querySelector(".js--masterpiece-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--masterpiece-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--memorabilia:not([hidden])")) {
+  if (!document.querySelector('.js--memorabilia:not([hidden])')) {
     document
-      .querySelector(".js--memorabilia-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--memorabilia-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--planechase:not([hidden])")) {
+  if (!document.querySelector('.js--planechase:not([hidden])')) {
     document
-      .querySelector(".js--planechase-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--planechase-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--premium_deck:not([hidden])")) {
+  if (!document.querySelector('.js--premium_deck:not([hidden])')) {
     document
-      .querySelector(".js--premium_deck-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--premium_deck-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--promo:not([hidden])")) {
-    document.querySelector(".js--promo-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--promo:not([hidden])')) {
+    document.querySelector('.js--promo-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--spellbook:not([hidden])")) {
+  if (!document.querySelector('.js--spellbook:not([hidden])')) {
     document
-      .querySelector(".js--spellbook-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--spellbook-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--starter:not([hidden])")) {
+  if (!document.querySelector('.js--starter:not([hidden])')) {
     document
-      .querySelector(".js--starter-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--starter-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--token:not([hidden])")) {
-    document.querySelector(".js--token-header").setAttribute("hidden", "true");
+  if (!document.querySelector('.js--token:not([hidden])')) {
+    document.querySelector('.js--token-header').setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--treasure_chest:not([hidden])")) {
+  if (!document.querySelector('.js--treasure_chest:not([hidden])')) {
     document
-      .querySelector(".js--treasure_chest-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--treasure_chest-header')
+      .setAttribute('hidden', 'true');
   }
 
-  if (!document.querySelector(".js--vanguard:not([hidden])")) {
+  if (!document.querySelector('.js--vanguard:not([hidden])')) {
     document
-      .querySelector(".js--vanguard-header")
-      .setAttribute("hidden", "true");
+      .querySelector('.js--vanguard-header')
+      .setAttribute('hidden', 'true');
   }
 };
 
 export const filterSets = (str) => {
   // get all of the sets out of the dropdown list
-  const sets = Array.from(document.querySelectorAll("[data-set-name]"));
+  const sets = Array.from(document.querySelectorAll('[data-set-name]'));
 
   // Remove the hidden attribute if it exists on any element, and then hide any elements
   // that don't include the string given in the input from the user
   sets.forEach((s) => {
-    if (s.hasAttribute("hidden")) s.removeAttribute("hidden");
+    if (s.hasAttribute('hidden')) s.removeAttribute('hidden');
 
     filterSelectedSets();
 
     if (
       !s
-        .getAttribute("data-set-name")
+        .getAttribute('data-set-name')
         .toLowerCase()
         .includes(str.toLowerCase()) &&
-      !s.getAttribute("data-set-code").toLowerCase().includes(str.toLowerCase())
+      !s.getAttribute('data-set-code').toLowerCase().includes(str.toLowerCase())
     ) {
-      s.setAttribute("hidden", "true");
+      s.setAttribute('hidden', 'true');
     }
   });
 };
 
 export const filterSelectedSets = () => {
   const sets = Array.from(
-    document.querySelectorAll("[data-set-name][data-selected]")
+    document.querySelectorAll('[data-set-name][data-selected]')
   );
 
   sets.forEach((s) => {
-    if (s.getAttribute("data-selected") === "true") {
-      if (!s.hasAttribute("hidden")) s.setAttribute("hidden", "true");
+    if (s.getAttribute('data-selected') === 'true') {
+      if (!s.hasAttribute('hidden')) s.setAttribute('hidden', 'true');
     }
   });
 };
 
 export const highlightSet = (sett) => {
-  if (document.querySelector(".js--highlighted")) removeCurrentHighlight();
+  if (document.querySelector('.js--highlighted')) removeCurrentHighlight();
 
   if (sett) {
     sett.classList.add(
-      "js--highlighted",
-      "search-form__dropdown-list-option--highlighted"
+      'js--highlighted',
+      'search-form__dropdown-list-option--highlighted'
     );
   }
 };
 
 export const navigateSetsDropDown = (e) => {
-  const sets = Array.from(document.querySelectorAll(".js--set:not([hidden])"));
-  const i = sets.indexOf(document.querySelector(".js--highlighted"));
+  const sets = Array.from(document.querySelectorAll('.js--set:not([hidden])'));
+  const i = sets.indexOf(document.querySelector('.js--highlighted'));
 
-  if (e.code === "ArrowDown" && i < sets.length - 1) {
+  if (e.code === 'ArrowDown' && i < sets.length - 1) {
     e.preventDefault();
     removeCurrentHighlight();
     highlightSet(sets[i + 1]);
@@ -505,7 +505,7 @@ export const navigateSetsDropDown = (e) => {
     setScrollTopOnDownArrow(sets[i + 1], elements.apiSearch.setDropDown);
   }
 
-  if (e.code === "ArrowUp" && i > 0) {
+  if (e.code === 'ArrowUp' && i > 0) {
     e.preventDefault();
     removeCurrentHighlight();
     highlightSet(sets[i - 1]);
@@ -513,40 +513,40 @@ export const navigateSetsDropDown = (e) => {
     setScrollTopOnUpArrow(sets[i - 1], elements.apiSearch.setDropDown);
   }
 
-  if (e.code === "Enter") {
+  if (e.code === 'Enter') {
     e.preventDefault();
 
-    toggleDataSelected(document.querySelector(".js--highlighted"));
+    toggleDataSelected(document.querySelector('.js--highlighted'));
     addSet(
-      document.querySelector(".js--highlighted").getAttribute("data-set-name"),
-      document.querySelector(".js--highlighted").getAttribute("data-set-code")
+      document.querySelector('.js--highlighted').getAttribute('data-set-name'),
+      document.querySelector('.js--highlighted').getAttribute('data-set-code')
     );
     hideSetsDropDown();
   }
 };
 
 export const hoverOverSetsListener = () => {
-  const sets = Array.from(document.querySelectorAll(".js--set:not([hidden])"));
+  const sets = Array.from(document.querySelectorAll('.js--set:not([hidden])'));
 
   sets.forEach((s) => {
-    s.addEventListener("mouseenter", () => highlightType(s));
+    s.addEventListener('mouseenter', () => highlightType(s));
   });
 };
 
 export const startSetsDropDownNavigation = () => {
-  const firstSet = document.querySelector(".js--set:not([hidden])");
+  const firstSet = document.querySelector('.js--set:not([hidden])');
   highlightSet(firstSet);
   hoverOverSetsListener();
-  document.addEventListener("keydown", navigateSetsDropDown);
+  document.addEventListener('keydown', navigateSetsDropDown);
   elements.apiSearch.setDropDown.scrollTop = 0;
 };
 
 const removeSetBtn = () => {
   // Span will act as the button to remove sets from the "selected" list
-  const btn = document.createElement("span");
+  const btn = document.createElement('span');
   btn.classList =
-    "search-form__selected-sets-remove-btn js--api-sets-close-btn";
-  btn.innerHTML = "x";
+    'search-form__selected-sets-remove-btn js--api-sets-close-btn';
+  btn.innerHTML = 'x';
 
   btn.onclick = () => {
     const setName = btn.nextElementSibling.innerHTML;
@@ -562,13 +562,13 @@ const removeSetBtn = () => {
 const addSet = (setName, setCode) => {
   // Create the empty li element to hold the types that the user selects. Set the class list,
   // and the data-selected attribute to true.
-  const li = document.createElement("li");
-  li.classList = "search-form__selected-sets-list-item js--api-selected-set";
+  const li = document.createElement('li');
+  li.classList = 'search-form__selected-sets-list-item js--api-selected-set';
 
   // The typeSpan holds the type selected by the user from the dropdown. The data attribute
   // is used in Search.js to build the query string
-  const setSpan = document.createElement("span");
-  setSpan.setAttribute("data-include-set", setCode);
+  const setSpan = document.createElement('span');
+  setSpan.setAttribute('data-include-set', setCode);
   setSpan.innerHTML = setName;
 
   li.appendChild(removeSetBtn());
@@ -582,17 +582,17 @@ export const setInputListener = (e) => {
   // close the dropdown and remove the event listener
   if (
     e.target !== elements.apiSearch.setInput &&
-    !e.target.matches(".js--api-dropdown-sets-list")
+    !e.target.matches('.js--api-dropdown-sets-list')
   ) {
     hideSetsDropDown();
-    document.removeEventListener("click", setInputListener);
+    document.removeEventListener('click', setInputListener);
     // If the target is one of the set options, toggle it as selected, add it to the list,
     // and hide the dropdown.
-  } else if (e.target.hasAttribute("data-set-name")) {
+  } else if (e.target.hasAttribute('data-set-name')) {
     toggleDataSelected(e.target);
     addSet(
-      e.target.getAttribute("data-set-name"),
-      e.target.getAttribute("data-set-code")
+      e.target.getAttribute('data-set-name'),
+      e.target.getAttribute('data-set-code')
     );
     elements.apiSearch.setInput.focus();
     hideSetsDropDown();
@@ -614,42 +614,42 @@ export const statLineController = () => {
 
 const checkStatLineForInteger = () => {
   const statVal = Array.from(
-    document.querySelectorAll(".js--api-stat-value")
+    document.querySelectorAll('.js--api-stat-value')
   ).slice(-1)[0];
 
   return parseInt(statVal.value) >= 0 ? true : false;
 };
 
 const checkForLessThanFourStatLines = () => {
-  const stats = Array.from(document.querySelectorAll(".js--api-stat-value"));
+  const stats = Array.from(document.querySelectorAll('.js--api-stat-value'));
 
   return stats.length < 4 ? true : false;
 };
 
 const createStatsClone = () => {
-  return document.querySelector(".js--api-stats-wrapper").cloneNode(true);
+  return document.querySelector('.js--api-stats-wrapper').cloneNode(true);
 };
 
 const editStatsClone = (clone) => {
-  clone.querySelector(".js--api-stat").value = "";
-  clone.querySelector(".js--api-stat-filter").value = "";
-  clone.querySelector(".js--api-stat-value").value = "";
+  clone.querySelector('.js--api-stat').value = '';
+  clone.querySelector('.js--api-stat-filter').value = '';
+  clone.querySelector('.js--api-stat-value').value = '';
 };
 
 const insertStatsClone = (clone) => {
   const lastStatLine = Array.from(
-    document.querySelectorAll(".js--api-stats-wrapper")
+    document.querySelectorAll('.js--api-stats-wrapper')
   ).slice(-1)[0];
 
-  lastStatLine.insertAdjacentElement("afterend", clone);
+  lastStatLine.insertAdjacentElement('afterend', clone);
 };
 
 const resetStatLineEventListener = () => {
   const statValues = Array.from(
-    document.querySelectorAll(".js--api-stat-value")
+    document.querySelectorAll('.js--api-stat-value')
   );
-  statValues.slice(-2)[0].removeEventListener("input", statLineController);
-  statValues.slice(-1)[0].addEventListener("input", statLineController);
+  statValues.slice(-2)[0].removeEventListener('input', statLineController);
+  statValues.slice(-1)[0].addEventListener('input', statLineController);
 };
 
 // ******************************* \\
@@ -667,37 +667,37 @@ export const formatLineController = () => {
 };
 
 const checkFormatLineForValue = () => {
-  const format = Array.from(document.querySelectorAll(".js--api-format")).slice(
+  const format = Array.from(document.querySelectorAll('.js--api-format')).slice(
     -1
   )[0];
 
-  return format.value !== "" ? true : false;
+  return format.value !== '' ? true : false;
 };
 
 const checkForFourLessThanFormatLines = () => {
-  const formats = Array.from(document.querySelectorAll(".js--api-format"));
+  const formats = Array.from(document.querySelectorAll('.js--api-format'));
   return formats.length < 4 ? true : false;
 };
 
 const createFormatClone = () => {
-  return document.querySelector(".js--api-format-wrapper").cloneNode(true);
+  return document.querySelector('.js--api-format-wrapper').cloneNode(true);
 };
 
 const editFormatClone = (clone) => {
-  clone.querySelector(".js--api-legal-status").value = "";
-  clone.querySelector(".js--api-format").value = "";
+  clone.querySelector('.js--api-legal-status').value = '';
+  clone.querySelector('.js--api-format').value = '';
 };
 
 const insertFormatClone = (clone) => {
   const lastFormatLine = Array.from(
-    document.querySelectorAll(".js--api-format-wrapper")
+    document.querySelectorAll('.js--api-format-wrapper')
   ).slice(-1)[0];
 
-  lastFormatLine.insertAdjacentElement("afterend", clone);
+  lastFormatLine.insertAdjacentElement('afterend', clone);
 };
 
 const resetFormatLineEventListener = () => {
-  const formats = Array.from(document.querySelectorAll(".js--api-format"));
-  formats.slice(-2)[0].removeEventListener("change", formatLineController);
-  formats.slice(-1)[0].addEventListener("change", formatLineController);
+  const formats = Array.from(document.querySelectorAll('.js--api-format'));
+  formats.slice(-2)[0].removeEventListener('change', formatLineController);
+  formats.slice(-1)[0].addEventListener('change', formatLineController);
 };
