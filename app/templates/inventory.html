@@ -31,7 +31,7 @@
       >
         <td class="card-checklist__data card-checklist__data--set">
           <a
-            href="/{{ current_user.username }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
             class="card-checklist__data-link card-checklist__data-link--center"
           >
             {{ card.set_code }}
@@ -42,7 +42,7 @@
           class="card-checklist__data card-checklist__data--name js--checklist-card-name"
         >
           <a
-            href="/{{ current_user.username }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
             class="card-checklist__data-link card-checklist__data-link--start"
           >
             {{ card.name }}
@@ -50,7 +50,7 @@
         </td>
         <td class="card-checklist__data js--inv-mana-cost">
           <a
-            href="/{{ current_user.username }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
             class="card-checklist__data-link card-checklist__data-link--center"
           >
             {{ card.mana_cost }}
@@ -58,18 +58,16 @@
         </td>
         <td class="card-checklist__data js--inv-types">
           <a
-            href="/{{ current_user.username }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
             class="card-checklist__data-link card-checklist__data-link--center"
           >
             {{ card.type_line }}
           </a>
         </td>
-        <td
-          class="card-checklist__data card-checklist__data--rarity js--rarity"
-        >
+        <td class="card-checklist__data card-checklist__data--rarity">
           <a
-            href="/{{ current_user.username }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-            class="card-checklist__data-link card-checklist__data-link--center"
+            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+            class="card-checklist__data-link card-checklist__data-link--center js--rarity"
           >
             {{ card.rarity }}
           </a>
@@ -77,7 +75,7 @@
 
         <td class="card-checklist__data">
           <a
-            href="/{{ current_user.username }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
             class="card-checklist__data-link card-checklist__data-link--center"
           >
             {{ user_inv[loop.index0].purchase_price }}
@@ -86,7 +84,7 @@
         {% if card.price_usd %}
         <td class="card-checklist__data">
           <a
-            href="/{{ current_user.username }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
             class="card-checklist__data-link card-checklist__data-link--center"
           >
             {{ user_inv[loop.index0].current_price }}
@@ -95,7 +93,7 @@
         {% else %}
         <td class="card-checklist__data">
           <a
-            href="/{{ current_user.username }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
             class="card-checklist__data-link card-checklist__data-link--center"
           >
             0
@@ -104,7 +102,7 @@
         {% endif %}
         <td class="card-checklist__data">
           <a
-            href="/{{ current_user.username }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
             class="card-checklist__data-link card-checklist__data-link--center js--inv-earnings"
           >
             {{ (user_inv[loop.index0].current_price -

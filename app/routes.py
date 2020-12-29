@@ -366,8 +366,11 @@ def display_card(card_set, card_name):
 
 
 
-@app.route('/<string:username>/card/<string:card_set>/<string:card_name>', methods=['GET', 'POST'])
-def display_user_card(username, card_set, card_name):
+@app.route(
+  '/<string:username>/inventory/<int:inv_id>/card/<string:card_set>/<string:card_name>',
+  methods=['GET', 'POST']
+)
+def display_user_card(username, inv_id, card_set, card_name):
     if request.method == 'GET':
         values = display_for_card_page(request, card_name, card_set)
             
@@ -383,6 +386,13 @@ def display_user_card(username, card_set, card_name):
             adventure=values['adventure'],
             user_copy=True,
         )
+
+    if request.method == 'POST':
+        inv_item = Inventory.query.filter_by(id=inv_id).one()
+        db.session.delete(inv_item)
+        db.session.commit()
+        return redirect(url_for('user_inventory'))
+
 
 
 def get_inv_value(cards):
