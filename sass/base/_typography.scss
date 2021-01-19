@@ -1,7 +1,15 @@
 .heading-tertiary {
-    font-size: 2.4rem;
-    text-transform: uppercase;
+  font-size: 2.4rem;
+  text-transform: uppercase;
 
-    &--white { color: $color-white; }
+  &--white {
+    color: $color-white;
+  }
 }
 
+.heading-primary {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: $color-white;
+}

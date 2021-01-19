@@ -26,6 +26,12 @@ body {
   .heading-tertiary--white {
     color: #fff; }
 
+.heading-primary {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: #fff; }
+
 .mb-10 {
   margin-bottom: 1rem; }
 
@@ -629,9 +635,42 @@ body {
 .no-results {
   justify-self: center; }
 
+.home-page {
+  background: linear-gradient(to bottom, #1d1c25, #431e3f);
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  justify-content: center; }
+  .home-page__center {
+    align-self: center; }
+  .home-page__search {
+    position: relative; }
+  .home-page__search-input {
+    padding: 1.2rem 1.4rem 1.2rem 6.2rem;
+    font-size: 3rem;
+    background-color: #242031;
+    color: #d7d7d7;
+    border-radius: 2px;
+    box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+    width: 100%; }
+    .home-page__search-input::placeholder {
+      text-align: center; }
+  .home-page__search-btn {
+    position: absolute;
+    left: 6rem;
+    top: 2rem; }
+  .home-page__icon-sizing--search {
+    width: 3rem;
+    height: 3rem;
+    transform: translateX(-150%); }
+  .home-page__icon-path {
+    fill: #bfbfbf; }
+
 .container {
   display: grid;
-  grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end]; }
+  grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+  height: calc(100vh - 84px); }
 
 .login,
 .register {

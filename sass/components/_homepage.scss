@@ -1,0 +1,48 @@
+.home-page {
+  background: linear-gradient(to bottom, #1d1c25, #431e3f);
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+
+  &__center {
+    align-self: center;
+  }
+
+  &__search {
+    position: relative;
+  }
+
+  &__search-input {
+    padding: 1.2rem 1.4rem 1.2rem 6.2rem;
+    font-size: 3rem;
+    background-color: #242031;
+    color: #d7d7d7;
+    border-radius: 2px;
+    box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+    width: 100%;
+
+    &::placeholder {
+      text-align: center;
+    }
+  }
+
+  &__search-btn {
+    position: absolute;
+    left: 6rem;
+    top: 2rem;
+  }
+
+  &__icon-sizing {
+    &--search {
+      width: 3rem;
+      height: 3rem;
+      transform: translateX(-150%);
+    }
+  }
+
+  &__icon-path {
+    fill: $color-grey-medium;
+  }
+}

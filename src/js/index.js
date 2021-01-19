@@ -1,20 +1,20 @@
-import "../css/style.css";
-import "../css/vendor/mana.css";
-import Search from "./models/Search";
-import * as searchView from "./views/searchView";
-import * as resultsView from "./views/resultsView";
-import * as cardView from "./views/cardView";
-import * as inventoryView from "./views/inventoryView";
-import * as invSearch from "./views/inventorySearchView";
-import { elements } from "./views/base";
+import '../css/style.css';
+import '../css/vendor/mana.css';
+import Search from './models/Search';
+import * as searchView from './views/searchView';
+import * as resultsView from './views/resultsView';
+import * as cardView from './views/cardView';
+import * as inventoryView from './views/inventoryView';
+import * as invSearch from './views/inventorySearchView';
+import { elements } from './views/base';
 
 // ******************************* \\
 // ********* Quick Search ******** \\
 // ******************************* \\
-elements.nav.quickSearchBtn.addEventListener("click", () => {
+elements.nav.quickSearchBtn.addEventListener('click', () => {
   const search = new Search();
 
-  if (elements.nav.searchInput.value !== "") {
+  if (elements.nav.searchInput.value !== '') {
     const query = search.quickSearch();
     window.location.href = `/results/list/${query}&order=name`;
   }
@@ -23,7 +23,7 @@ elements.nav.quickSearchBtn.addEventListener("click", () => {
 // ******************************* \\
 // ********* Search Page ********* \\
 // ******************************* \\
-if (window.location.pathname === "/search") {
+if (window.location.pathname === '/search') {
   const search = new Search();
 
   // Event listener for the submit search button. This goes through the form and generates
@@ -46,18 +46,18 @@ if (window.location.pathname === "/search") {
     return false;
   };
 
-  elements.apiSearch.typeLine.addEventListener("click", () => {
+  elements.apiSearch.typeLine.addEventListener('click', () => {
     // Display the dropdown
     searchView.showTypesDropDown();
     searchView.startTypesDropDownNavigation();
 
     // Start an event listener on the document. This will close the dropdown if the user clicks
     // outside of the input or dropdown. This will also cancel the event listener
-    document.addEventListener("click", searchView.typeLineListener);
+    document.addEventListener('click', searchView.typeLineListener);
   });
 
-  elements.apiSearch.typeLine.addEventListener("input", () => {
-    if (elements.apiSearch.typeDropDown.hasAttribute("hidden")) {
+  elements.apiSearch.typeLine.addEventListener('input', () => {
+    if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
       searchView.showTypesDropDown();
     }
 
@@ -66,18 +66,18 @@ if (window.location.pathname === "/search") {
     searchView.startTypesDropDownNavigation();
   });
 
-  elements.apiSearch.setInput.addEventListener("click", () => {
+  elements.apiSearch.setInput.addEventListener('click', () => {
     // Display the dropdown
     searchView.showSetsDropDown();
     searchView.startSetsDropDownNavigation();
 
     // Start an event listener on the document. This will close the dropdown if the user clicks
     // outside of the input or dropdown. This will also cancel the event listener
-    document.addEventListener("click", searchView.setInputListener);
+    document.addEventListener('click', searchView.setInputListener);
   });
 
-  elements.apiSearch.setInput.addEventListener("input", () => {
-    if (elements.apiSearch.setDropDown.hasAttribute("hidden")) {
+  elements.apiSearch.setInput.addEventListener('input', () => {
+    if (elements.apiSearch.setDropDown.hasAttribute('hidden')) {
       searchView.showSetsDropDown();
     }
 
@@ -87,12 +87,12 @@ if (window.location.pathname === "/search") {
   });
 
   elements.apiSearch.statValue.addEventListener(
-    "input",
+    'input',
     searchView.statLineController
   );
 
   elements.apiSearch.format.addEventListener(
-    "change",
+    'change',
     searchView.formatLineController
   );
 }
@@ -100,20 +100,20 @@ if (window.location.pathname === "/search") {
 // ******************************* \\
 // ********* Results Page ******** \\
 // ******************************* \\
-if (window.location.pathname.substring(1, 8) === "results") {
+if (window.location.pathname.substring(1, 8) === 'results') {
   const state = {
     search: new Search(),
 
     // Get the display method, sort method, and query from the URL
     display: window.location.pathname.substring(
       9,
-      window.location.pathname.lastIndexOf("/")
+      window.location.pathname.lastIndexOf('/')
     ),
     query: window.location.pathname.substring(
-      window.location.pathname.lastIndexOf("/") + 1
+      window.location.pathname.lastIndexOf('/') + 1
     ),
     sortMethod: window.location.pathname.substring(
-      window.location.pathname.lastIndexOf("=") + 1
+      window.location.pathname.lastIndexOf('=') + 1
     ),
 
     allCards: [],
@@ -122,7 +122,7 @@ if (window.location.pathname.substring(1, 8) === "results") {
   };
 
   // When the results page is refreshed, display the cards as a checklist by default
-  document.addEventListener("DOMContentLoaded", async () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     // Update the sort by and display asd menus so the selected option is what the user selected
     resultsView.choseSelectMenuSort(elements.resultsPage.sortBy.options, state);
     resultsView.choseSelectMenuDisplay(
@@ -259,7 +259,7 @@ if (window.location.pathname.substring(1, 8) === "results") {
 // ******************************* \\
 // *********** Card Page ********* \\
 // ******************************* \\
-if (window.location.pathname.substring(1, 5) === "card") {
+if (window.location.pathname.substring(1, 5) === 'card') {
   cardView.insertManaCostToCardTextTitle();
   cardView.insertManaCostToOracleText();
   cardView.removeUnderScoreFromLegalStatus();
@@ -271,22 +271,22 @@ if (window.location.pathname.substring(1, 5) === "card") {
   // the event listener for the card to be flipped back and forth
   if (elements.card.transformBtn) {
     elements.card.transformBtn.addEventListener(
-      "click",
+      'click',
       cardView.flipToBackSide
     );
   }
 
   document
-    .querySelector(".js--add-to-inv-submit")
-    .addEventListener("click", cardView.checkPriceInputForDigits);
+    .querySelector('.js--add-to-inv-submit')
+    .addEventListener('click', cardView.checkPriceInputForDigits);
 }
 
 // ******************************* \\
 // ******* Inventory Page ******** \\
 // ******************************* \\
-if (window.location.pathname.substring(1, 10) === "inventory") {
+if (window.location.pathname.substring(1, 10) === 'inventory') {
   document.addEventListener(
-    "DOMContentLoaded",
+    'DOMContentLoaded',
     inventoryView.alterInventoryTable
   );
 }
@@ -294,24 +294,23 @@ if (window.location.pathname.substring(1, 10) === "inventory") {
 // ******************************* \\
 // **** Inventory Search Page **** \\
 // ******************************* \\
-if (window.location.pathname.substring(1, 17) === "inventory/search") {
+if (window.location.pathname.substring(1, 17) === 'inventory/search') {
   document
-    .querySelector(".js--inv-search-btn")
-    .addEventListener("click", invSearch.checkPriceInputForDigits);
+    .querySelector('.js--inv-search-btn')
+    .addEventListener('click', invSearch.checkPriceInputForDigits);
 
-  elements.apiSearch.typeLine.addEventListener("click", () => {
+  elements.apiSearch.typeLine.addEventListener('click', () => {
     // Display the dropdown
-    console.log("click");
     searchView.showTypesDropDown();
     invSearch.startTypesDropDownNavigation();
 
     // Start an event listener on the document. This will close the dropdown if the user clicks
     // outside of the input or dropdown. This will also cancel the event listener
-    document.addEventListener("click", invSearch.typeLineListener);
+    document.addEventListener('click', invSearch.typeLineListener);
   });
 
-  elements.apiSearch.typeLine.addEventListener("input", () => {
-    if (elements.apiSearch.typeDropDown.hasAttribute("hidden")) {
+  elements.apiSearch.typeLine.addEventListener('input', () => {
+    if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
       searchView.showTypesDropDown();
     }
 
@@ -320,18 +319,18 @@ if (window.location.pathname.substring(1, 17) === "inventory/search") {
     invSearch.startTypesDropDownNavigation();
   });
 
-  elements.apiSearch.setInput.addEventListener("click", () => {
+  elements.apiSearch.setInput.addEventListener('click', () => {
     // Display the dropdown
     searchView.showSetsDropDown();
     invSearch.startSetsDropDownNavigation();
 
     // Start an event listener on the document. This will close the dropdown if the user clicks
     // outside of the input or dropdown. This will also cancel the event listener
-    document.addEventListener("click", invSearch.setInputListener);
+    document.addEventListener('click', invSearch.setInputListener);
   });
 
-  elements.apiSearch.setInput.addEventListener("input", () => {
-    if (elements.apiSearch.setDropDown.hasAttribute("hidden")) {
+  elements.apiSearch.setInput.addEventListener('input', () => {
+    if (elements.apiSearch.setDropDown.hasAttribute('hidden')) {
       searchView.showSetsDropDown();
     }
 
