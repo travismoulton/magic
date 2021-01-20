@@ -1,10 +1,11 @@
-.home-page {
+.homepage {
   background: linear-gradient(to bottom, #1d1c25, #431e3f);
   background-repeat: no-repeat;
   height: 100vh;
   display: flex;
   overflow: hidden;
   justify-content: center;
+  position: relative;
 
   &__center {
     align-self: center;
@@ -44,5 +45,91 @@
 
   &__icon-path {
     fill: $color-grey-medium;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link {
+    text-decoration: none;
+    border: 1px solid rgba(85, 26, 139, 0.5);
+    border-color: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    color: $color-white;
+    margin-top: 0.6rem;
+    margin-right: 3rem;
+    cursor: pointer;
+    line-height: 1.4;
+    padding: 0.2rem 1rem 0 1rem;
+    height: 2.8rem;
+    transition: all 0.2s;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+    min-width: 9rem;
+    text-align: center;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.09);
+    }
+  }
+
+  &__colage {
+    position: absolute;
+    overflow: hidden;
+    bottom: 0;
+    left: 0;
+    height: 15rem;
+    width: 100%;
+  }
+
+  &__colage-inner {
+    position: relative;
+    height: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 65.5rem;
+  }
+
+  &__colage-card {
+    width: 16.8rem;
+    height: 23.4rem;
+    position: absolute;
+    border-radius: 5% / 3.75%;
+    transform: translateY(0);
+    transition: all 0.3s;
+    box-shadow: inset 0 0 3px 3px #000;
+
+    &:nth-child(1) {
+      top: 2.2rem;
+    }
+    &:nth-child(2) {
+      top: 6.2rem;
+      left: 3.5rem;
+    }
+    &:nth-child(3) {
+      top: 1rem;
+      left: 17.4rem;
+    }
+    &:nth-child(4) {
+      top: 4.5rem;
+      left: 20.6rem;
+    }
+    &:nth-child(5) {
+      top: 1.6rem;
+      left: 34.7rem;
+    }
+    &:nth-child(6) {
+      top: 6.5rem;
+      left: 38rem;
+    }
+    &:nth-child(7) {
+      top: 3.5rem;
+      right: 0;
+    }
+
+    &:hover {
+      transform: translateY(-5%);
+    }
   }
 }

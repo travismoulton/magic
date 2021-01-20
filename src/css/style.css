@@ -635,18 +635,19 @@ body {
 .no-results {
   justify-self: center; }
 
-.home-page {
+.homepage {
   background: linear-gradient(to bottom, #1d1c25, #431e3f);
   background-repeat: no-repeat;
   height: 100vh;
   display: flex;
   overflow: hidden;
-  justify-content: center; }
-  .home-page__center {
+  justify-content: center;
+  position: relative; }
+  .homepage__center {
     align-self: center; }
-  .home-page__search {
+  .homepage__search {
     position: relative; }
-  .home-page__search-input {
+  .homepage__search-input {
     padding: 1.2rem 1.4rem 1.2rem 6.2rem;
     font-size: 3rem;
     background-color: #242031;
@@ -654,18 +655,82 @@ body {
     border-radius: 2px;
     box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
     width: 100%; }
-    .home-page__search-input::placeholder {
+    .homepage__search-input::placeholder {
       text-align: center; }
-  .home-page__search-btn {
+  .homepage__search-btn {
     position: absolute;
     left: 6rem;
     top: 2rem; }
-  .home-page__icon-sizing--search {
+  .homepage__icon-sizing--search {
     width: 3rem;
     height: 3rem;
     transform: translateX(-150%); }
-  .home-page__icon-path {
+  .homepage__icon-path {
     fill: #bfbfbf; }
+  .homepage__links {
+    display: flex;
+    justify-content: center; }
+  .homepage__link {
+    text-decoration: none;
+    border: 1px solid rgba(85, 26, 139, 0.5);
+    border-color: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    color: #fff;
+    margin-top: 0.6rem;
+    margin-right: 3rem;
+    cursor: pointer;
+    line-height: 1.4;
+    padding: 0.2rem 1rem 0 1rem;
+    height: 2.8rem;
+    transition: all 0.2s;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+    min-width: 9rem;
+    text-align: center; }
+    .homepage__link:hover {
+      background-color: rgba(255, 255, 255, 0.09); }
+  .homepage__colage {
+    position: absolute;
+    overflow: hidden;
+    bottom: 0;
+    left: 0;
+    height: 15rem;
+    width: 100%; }
+  .homepage__colage-inner {
+    position: relative;
+    height: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 65.5rem; }
+  .homepage__colage-card {
+    width: 16.8rem;
+    height: 23.4rem;
+    position: absolute;
+    border-radius: 5% / 3.75%;
+    transform: translateY(0);
+    transition: all 0.3s;
+    box-shadow: inset 0 0 3px 3px #000; }
+    .homepage__colage-card:nth-child(1) {
+      top: 2.2rem; }
+    .homepage__colage-card:nth-child(2) {
+      top: 6.2rem;
+      left: 3.5rem; }
+    .homepage__colage-card:nth-child(3) {
+      top: 1rem;
+      left: 17.4rem; }
+    .homepage__colage-card:nth-child(4) {
+      top: 4.5rem;
+      left: 20.6rem; }
+    .homepage__colage-card:nth-child(5) {
+      top: 1.6rem;
+      left: 34.7rem; }
+    .homepage__colage-card:nth-child(6) {
+      top: 6.5rem;
+      left: 38rem; }
+    .homepage__colage-card:nth-child(7) {
+      top: 3.5rem;
+      right: 0; }
+    .homepage__colage-card:hover {
+      transform: translateY(-5%); }
 
 .container {
   display: grid;

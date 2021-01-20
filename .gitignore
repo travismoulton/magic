@@ -12,6 +12,4 @@ env
 
 migrations
 
-package-lock.json
-
 .prettierrc
