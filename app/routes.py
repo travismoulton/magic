@@ -326,7 +326,7 @@ def display_card(card_set, card_name):
     if request.method == 'POST':   
         scryfall_card = get_card_from_scryfall(card_name, card_set)
 
-        if not Card.query.filter_by(name=card['name']).first():
+        if not Card.query.filter_by(name=scryfall_card['name']).first():
             add_card(scryfall_card)
 
         purchase_price = get_purchase_price(request, scryfall_card)
