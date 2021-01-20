@@ -50,7 +50,7 @@ def update_prices_on_daily_visit():
 
 @app.route('/')
 def index():
-    update_prices_on_daily_visit()
+    # update_prices_on_daily_visit()
     return render_template('index.html')
 
 
@@ -189,7 +189,7 @@ def get_sets():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    update_prices_on_daily_visit()
+    # update_prices_on_daily_visit()
     return render_template('search.html', types=get_types(), sets=get_sets())
 
 
@@ -339,7 +339,7 @@ def display_card(card_set, card_name):
         i = Inventory(
             card=card.id, 
             user=user.id,
-            card_name=card['name'],
+            card_name=card.name,
             purchase_price=purchase_price, 
             current_price=current_price
         )
@@ -415,7 +415,7 @@ def parse_card_name_for_url(card_name):
 
 @app.route('/inventory')
 def user_inventory():
-    update_prices_on_daily_visit()
+    # update_prices_on_daily_visit()
     
     user = User.query.filter_by(username=current_user.username).one()
     user_inv = Inventory.query.filter_by(user=user.id).\
