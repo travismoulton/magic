@@ -334,7 +334,7 @@ def display_card(card_set, card_name):
         current_price = get_current_price(scryfall_card)
         
         user = User.query.filter_by(username=current_user.username).one()
-        card = Card.query.filter_by(name=card['name']).one()
+        card = Card.query.filter_by(name=scryfall_card['name']).one()
 
         i = Inventory(
             card=card.id, 
