@@ -1,6 +1,11 @@
 .card-checklist {
   width: 80%;
   justify-self: center;
+
+  &-header {
+    height: 1.5rem;
+  }
+
   &__row {
     display: grid;
 
@@ -14,6 +19,7 @@
 
     &--header {
       border-bottom: 1px solid $color-black;
+      margin-bottom: 2rem;
     }
 
     &--grey {
@@ -22,6 +28,16 @@
 
     &:nth-child(even) {
       background-color: $color-grey-light;
+    }
+
+    &:not(:first-child) {
+      height: 4rem;
+    }
+
+    &--body {
+      &:nth-child(1) {
+        margin-top: 1.5rem;
+      }
     }
   }
 

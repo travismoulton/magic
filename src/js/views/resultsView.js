@@ -142,7 +142,7 @@ export const dispalyImages = (cards) => {
 const prepChecklistContainer = () => {
   const markup = `
         <table class="card-checklist js--card-checklist">
-            <thead>
+            <thead class="card-checklist-header">
                 <tr class="card-checklist__row card-checklist__row--7 card-checklist__row--header">
                     <th class="card-checklist__data">Set</th>
                     <th class="card-checklist__data">Name</th>
@@ -153,7 +153,7 @@ const prepChecklistContainer = () => {
                     <th class="card-checklist__data">Price</th>
                 </tr>
             </thead>
-            <tbody class="js--card-checklist-body"></tbody>
+            <tbody class="js--card-checklist-body card-checklist-body"></tbody>
         </table>
         `;
   elements.resultsPage.resultsContainer.insertAdjacentHTML('beforeend', markup);
@@ -213,9 +213,11 @@ const generateChecklist = (cards) => {
     const cardNameForUrl = parseCardName(card.name);
 
     const markup = `
-            <tr class="js--checklist-row card-checklist__row card-checklist__row--7 data-component="card-tooltip" data-card-img=${checkForImg(
-              card
-            )}>
+            <tr class="js--checklist-row card-checklist__row ${
+              cards.length < 30 ? 'card-checklist__row--body' : ''
+            } card-checklist__row--7 data-component="card-tooltip" data-card-img=${checkForImg(
+      card
+    )}>
                 <td class="card-checklist__data card-checklist__data--set"><a href="/card/${
                   card.set
                 }/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${

@@ -24,5 +24,7 @@
 .api-results-display {
   grid-column: full-start / full-end;
   background-color: #f5f6f7;
+  background-size: cover;
   display: grid;
+  min-height: calc(100vh - 6rem);
 }

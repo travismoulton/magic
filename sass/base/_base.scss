@@ -13,13 +13,12 @@ html {
 
 body {
   box-sizing: border-box;
-  overflow-x: hidden;
   font-size: 1.6rem;
-  //background-image: linear-gradient(to right bottom, $color-grey-bg-dark, $color-grey-bg-light);
   background-size: cover;
   background-repeat: no-repeat;
   height: 127.5rem;
   font-family: 'Lato', sans-serif;
+  background-color: #000;
 }
 
 // Using this so that the elements in the dopdown menus on the search page are hidden. otherwise
