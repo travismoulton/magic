@@ -4,7 +4,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 1.2rem 30rem;
+  padding: 1.2rem 16%;
   margin-bottom: 0.1rem;
   height: 5.2rem;
 
@@ -104,8 +104,10 @@
 
 .api-results-display__display-bar {
   width: 100%;
-  border-bottom: 1px solid $color-grey-medium;
-  padding-left: 10%;
+  border-bottom: 1px solid rgba(99, 68, 150, 0.1);
+  background-color: #f6f4fa;
+  color: #535353;
+  padding-left: 16%;
   margin-bottom: 2rem;
   height: 2.1rem;
 }

@@ -1,5 +1,5 @@
 .card-checklist {
-  width: 80%;
+  width: 68%;
   justify-self: center;
 
   &-header {
@@ -19,7 +19,10 @@
 
     &--header {
       border-bottom: 1px solid $color-black;
-      margin-bottom: 2rem;
+      color: #531a8b;
+      text-transform: uppercase;
+      font-size: 1.2rem !important;
+      font-weight: 200 !important;
     }
 
     &--grey {
@@ -31,7 +34,13 @@
     }
 
     &:not(:first-child) {
-      height: 4rem;
+      height: 3rem;
+    }
+
+    // height: 3rem;
+
+    &-header {
+      height: 1.5rem;
     }
 
     &--body {
@@ -78,6 +87,10 @@
     }
     &--center {
       justify-content: center;
+    }
+
+    &--price {
+      color: #006885;
     }
   }
 }

@@ -142,7 +142,7 @@ export const dispalyImages = (cards) => {
 const prepChecklistContainer = () => {
   const markup = `
         <table class="card-checklist js--card-checklist">
-            <thead class="card-checklist-header">
+            <thead class="js--card-checklist-header">
                 <tr class="card-checklist__row card-checklist__row--7 card-checklist__row--header">
                     <th class="card-checklist__data">Set</th>
                     <th class="card-checklist__data">Name</th>
@@ -250,8 +250,8 @@ const generateChecklist = (cards) => {
     }</a></td>
                 <td class="card-checklist__data"><a href="/card/${
                   card.set
-                }/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${
-      card.prices.usd
+                }/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--price js--price card-checklist__data-link--center">$ ${
+      card.prices.usd || '-'
     }</a></td>
             </tr>
             `;
@@ -259,6 +259,14 @@ const generateChecklist = (cards) => {
     document
       .querySelector('.js--card-checklist-body')
       .insertAdjacentHTML('beforeend', markup);
+  });
+};
+
+const checkForMissingPrice = () => {
+  const prices = Array.from(document.querySelectorAll('.js--price'));
+
+  prices.forEach((price) => {
+    if (price.innerText.includes('-')) price.innerText = '';
   });
 };
 
@@ -319,11 +327,20 @@ export const checkListHoverEvents = () => {
   });
 };
 
+const changeHeaderForSmallChecklist = (cards) => {
+  if (cards.length < 30)
+    document
+      .querySelector('.js--card-checklist-header')
+      .classList.add('card-checklist-header');
+};
+
 // Funciton to be used in index.js. Takes care of all necessary steps to display cards as a checklist
 export const displayChecklist = (cards) => {
   clearResults();
   prepChecklistContainer();
+  changeHeaderForSmallChecklist(cards);
   generateChecklist(cards);
+  checkForMissingPrice();
   checkListHoverEvents();
 };
 

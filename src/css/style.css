@@ -86,7 +86,7 @@ body {
 .nav {
   display: flex;
   align-items: center;
-  padding: 1rem 30rem;
+  padding: 1rem 16%;
   background-color: #2b253a;
   border-bottom: 1px solid #000; }
   .nav__left {
@@ -283,6 +283,7 @@ body {
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     align-items: flex-start;
     padding: 1.5rem 4rem 1.5rem 0;
+    background-color: #fdfdfd;
     z-index: 1; }
   .search-form__submit {
     border-radius: 3px;
@@ -378,7 +379,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 1.2rem 30rem;
+  padding: 1.2rem 16%;
   margin-bottom: 0.1rem;
   height: 5.2rem; }
   .api-results-display__nav-select {
@@ -451,13 +452,15 @@ body {
 
 .api-results-display__display-bar {
   width: 100%;
-  border-bottom: 1px solid #bfbfbf;
-  padding-left: 10%;
+  border-bottom: 1px solid rgba(99, 68, 150, 0.1);
+  background-color: #f6f4fa;
+  color: #535353;
+  padding-left: 16%;
   margin-bottom: 2rem;
   height: 2.1rem; }
 
 .card-checklist {
-  width: 80%;
+  width: 68%;
   justify-self: center; }
   .card-checklist-header {
     height: 1.5rem; }
@@ -469,13 +472,18 @@ body {
       grid-template-columns: repeat(9, 1fr); }
     .card-checklist__row--header {
       border-bottom: 1px solid #000;
-      margin-bottom: 2rem; }
+      color: #531a8b;
+      text-transform: uppercase;
+      font-size: 1.2rem !important;
+      font-weight: 200 !important; }
     .card-checklist__row--grey {
       background-color: #f2f2f2; }
     .card-checklist__row:nth-child(even) {
       background-color: #f2f2f2; }
     .card-checklist__row:not(:first-child) {
-      height: 4rem; }
+      height: 3rem; }
+    .card-checklist__row-header {
+      height: 1.5rem; }
     .card-checklist__row--body:nth-child(1) {
       margin-top: 1.5rem; }
   .card-checklist__data {
@@ -505,6 +513,8 @@ body {
       justify-content: flex-start; }
     .card-checklist__data-link--center {
       justify-content: center; }
+    .card-checklist__data-link--price {
+      color: #006885; }
 
 .tooltip {
   position: absolute;
