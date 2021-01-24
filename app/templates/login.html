@@ -1,46 +1,76 @@
-{% extends "layout.html" %} {% block content %} {% if error %}
-<p class="error">{{ error }}</p>
-{% endif %}
+{% extends "layout.html" %} {% block content %}
 
 <div class="login">
-  <h3 class="heading-tertiary heading-tertiary--white mt-50 mb-20">
-    Please login
-  </h3>
-  <form action="#" class="login-form" method="POST">
-    <div class="login-form__group">
-      <label for="login-username" class="login-form__label">Username:</label>
+  <form action="#" class="login__form" method="POST">
+    <img
+      src="{{ url_for('static', filename='/img/cool-purple.jpg') }}"
+      alt="back of magic card"
+      class="login-img"
+    />
+    <p class="login__form-instructions">
+      Enter your username and password to login to Scryfall
+    </p>
+    <div class="login__form-group">
       <input
         type="text"
-        class="login-form__input"
-        name="username"
+        class="login__form-input"
         placeholder="Username"
         id="login-username"
+        name="username"
         required
       />
     </div>
-
-    <div class="login-form__group">
-      <label for="login-password" class="login-form__label">Password:</label>
+    <div class="login__form-group">
       <input
         type="password"
-        class="login-form__input"
-        name="password"
+        class="login__form-input"
         placeholder="Password"
         id="login-password"
+        name="password"
         required
       />
     </div>
-
-    <div class="login-form__btn-wrapper">
-      <input type="submit" class="btn btn--submit" value="Login" />
-    </div>
-  </form>
-  <p class="login__register-text">
-    Not a member?
-    <a href="{{ url_for('register') }}" class="login__register-link"
-      >Register now</a
+    <button class="login__form-btn login__form-btn--login" type="submit">
+      <div>
+        <span>Login</span>
+        <svg
+          class="login__form-icon"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 30 30"
+        >
+          <path
+            class="login__form-icon-path--login"
+            d="M9.375 3l12.625 12-12.562 12-1.438-1.406 11.094-10.594-11.094-10.562z"
+          ></path>
+        </svg>
+      </div>
+    </button>
+    <hr class="login__form-hr" />
+    <a
+      class="login__form-btn login__form-btn--register"
+      href="{{ url_for('register') }}"
     >
-  </p>
+      <div>
+        <span>Create an account</span>
+        <svg
+          class="login__form-icon"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 30 30"
+        >
+          <path
+            class="login__form-icon-path--register"
+            d="M9.375 3l12.625 12-12.562 12-1.438-1.406 11.094-10.594-11.094-10.562z"
+          ></path>
+        </svg>
+      </div>
+    </a>
+  </form>
 </div>
 
 {% endblock %}

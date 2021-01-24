@@ -9,6 +9,11 @@ import * as invSearch from './views/inventorySearchView';
 import { elements } from './views/base';
 
 // ******************************* \\
+// *********** Home Page ********* \\
+// ******************************* \\
+if (window.location.pathname === '/') document.body.style.overflow = 'hidden';
+
+// ******************************* \\
 // ********* Quick Search ******** \\
 // ******************************* \\
 elements.nav.quickSearchBtn.addEventListener('click', () => {
@@ -24,6 +29,8 @@ elements.nav.quickSearchBtn.addEventListener('click', () => {
 // ********* Search Page ********* \\
 // ******************************* \\
 if (window.location.pathname === '/search') {
+  document.body.style.backgroundColor = '#fdfdfd';
+
   const search = new Search();
 
   // Event listener for the submit search button. This goes through the form and generates
@@ -101,6 +108,8 @@ if (window.location.pathname === '/search') {
 // ********* Results Page ******** \\
 // ******************************* \\
 if (window.location.pathname.substring(1, 8) === 'results') {
+  document.body.style.backgroundColor = '#f5f6f7';
+
   const state = {
     search: new Search(),
 
@@ -295,6 +304,8 @@ if (window.location.pathname.substring(1, 10) === 'inventory') {
 // **** Inventory Search Page **** \\
 // ******************************* \\
 if (window.location.pathname.substring(1, 17) === 'inventory/search') {
+  document.body.style.backgroundColor = '#fdfdfd';
+
   document
     .querySelector('.js--inv-search-btn')
     .addEventListener('click', invSearch.checkPriceInputForDigits);

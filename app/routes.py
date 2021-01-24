@@ -100,7 +100,9 @@ def register():
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
-        confirm_password = request.form.get('comfirm-password')        
+        confirm_password = request.form.get('comfirm-password')    
+
+        print(username, email, password, confirm_password)    
 
         # if the user didn't provide a necessary peice of information 
         # show an error

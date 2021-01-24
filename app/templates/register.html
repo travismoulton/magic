@@ -3,73 +3,96 @@
 {% endif %}
 
 <div class="register">
-  <h3 class="heading-tertiary heading-tertiary--white mt-50 mb-20">
-    please register
-  </h3>
-  <form action="#" class="register-form" method="POST">
-    <div class="register-form__group">
-      <label for="register-email" class="register-form__label"
-        >Email Address:</label
-      >
+  <form action="#" class="register__form" method="POST">
+    <img
+      src="{{ url_for('static', filename='/img/cool-purple.jpg') }}"
+      alt="back of magic card"
+      class="register-img"
+    />
+    <p class="register__form-instructions">
+      Fill out the form below to register an account
+    </p>
+    <div class="register__form-group">
       <input
         type="email"
-        class="register-form__input"
-        name="email"
+        class="register__form-input"
         placeholder="Email Address"
         id="register-email"
+        name="email"
+        required
       />
     </div>
-
-    <div class="register-form__group">
-      <label for="register-username" class="register-form__label"
-        >Select a Username:</label
-      >
+    <div class="register__form-group">
       <input
         type="text"
-        class="register-form__input"
-        name="username"
+        class="register__form-input"
         placeholder="Username"
         id="register-username"
+        name="username"
         required
       />
     </div>
-
-    <div class="register-form__group">
-      <label for="register-password" class="register-form__label"
-        >Password:</label
-      >
+    <div class="register__form-group">
       <input
         type="password"
-        class="register-form__input"
-        name="password"
+        class="register__form-input"
         placeholder="Password"
         id="register-password"
+        name="password"
         required
       />
     </div>
-
-    <div class="register-form__group">
-      <label for="register-password-confirm" class="register-form__label"
-        >Confirm Password:</label
-      >
+    <div class="register__form-group">
       <input
         type="password"
-        class="register-form__input"
-        name="comfirm-password"
-        placeholder="Password"
+        class="register__form-input"
+        placeholder="Confirm Passoword"
         id="register-password-confirm"
+        name="comfirm-password"
         required
       />
     </div>
-
-    <div class="register-form__btn-wrapper">
-      <input type="submit" class="btn btn--submit" value="Register" />
-    </div>
+    <button class="register__form-btn register__form-btn--login" type="submit">
+      <div>
+        <span>Create Account</span>
+        <svg
+          class="register__form-icon"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 30 30"
+        >
+          <path
+            class="register__form-icon-path--login"
+            d="M9.375 3l12.625 12-12.562 12-1.438-1.406 11.094-10.594-11.094-10.562z"
+          ></path>
+        </svg>
+      </div>
+    </button>
+    <hr class="register__form-hr" />
+    <a
+      class="register__form-btn register__form-btn--register"
+      href="{{ url_for('login') }}"
+    >
+      <div>
+        <span>Login</span>
+        <svg
+          class="register__form-icon"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 30 30"
+        >
+          <path
+            class="register__form-icon-path--register"
+            d="M9.375 3l12.625 12-12.562 12-1.438-1.406 11.094-10.594-11.094-10.562z"
+          ></path>
+        </svg>
+      </div>
+    </a>
   </form>
-  <p class="register__login-text">
-    Already a member?
-    <a href="{{ url_for('login') }}" class="register__login-link">Login now</a>
-  </p>
 </div>
 
 {% endblock %}
