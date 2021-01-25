@@ -1,7 +1,11 @@
 {% extends "layout.html" %} {% block content %}
 <div class="inventory-details">
-  <p>Your inventory is worth {{ (total_inv_value.value)|round(2) }}</p>
-  <a href="{{ url_for('search_inventory') }}">Search your inventory</a>
+  <p>
+    Your inventory is worth <span>${{ (total_inv_value.value)|round(2) }}</span>
+  </p>
+  <a href="{{ url_for('search_inventory') }}" class="inventory-details__link"
+    >Search your inventory</a
+  >
   <p>{{ search_string }}</p>
 </div>
 <div class="api-results-display">

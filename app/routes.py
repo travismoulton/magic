@@ -437,7 +437,7 @@ def user_inventory():
         user_inv=user_inv, 
         cards=cards, 
         total_inv_value=get_inv_value(user_inv),
-        search_string=f'Display all of {user.username}\'s cards',
+        search_string=f'Displaying all of {user.username}\'s cards',
         card_links=card_links
     )
 
@@ -447,11 +447,6 @@ def adjust_for_two_rarities(string):
         part_one = string[0:string.find('rarity')]
         part_two = string[string.find('rarity'):string.rfind('rarity')]
         part_three = string[string.rfind('rarity'):]
-
-        # part_two = part_two.replace('and', 'or')
-
-        print(string.find('rarity'))
-        print(string.rfind('rarity'))
 
         return part_one + part_two + part_three
     

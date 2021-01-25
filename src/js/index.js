@@ -293,7 +293,8 @@ if (window.location.pathname.substring(1, 5) === 'card') {
 // ******************************* \\
 // ******* Inventory Page ******** \\
 // ******************************* \\
-if (window.location.pathname.substring(1, 10) === 'inventory') {
+if (window.location.pathname.endsWith('inventory')) {
+  document.body.style.backgroundColor = '#f5f6f7';
   document.addEventListener(
     'DOMContentLoaded',
     inventoryView.alterInventoryTable

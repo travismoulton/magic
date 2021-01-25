@@ -1,269 +1,313 @@
 .card {
-    display: flex;    
-    margin-top: 3rem;
+  display: flex;
+  margin-top: 3rem;
 
-    // Single  sided cards
-    &__img-container {
-        margin-right: 10rem;
+  // Single  sided cards
+  &__img-container {
+    // margin-right: 10rem;
+    z-index: 2;
+    border-radius: 100%;
+  }
+
+  &__img {
+    width: 33rem;
+    height: 46rem;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 4.75% / 3.5%;
+  }
+
+  // Double sided cards
+  &__img-left {
+    // margin-right: 10rem;
+    width: 33rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+  }
+
+  &__img-btn {
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin-top: auto;
+  }
+
+  &__img-double-area {
+    position: relative;
+  }
+
+  &__img-double-sided {
+    perspective: 150rem;
+    height: 46rem;
+  }
+
+  &__img-double {
+    width: 33rem;
+    height: 46rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    overflow: hidden;
+
+    &--back {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &__text {
+    background-color: $color-white;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-top: 3px solid $color-black;
+    border-bottom: 3px solid $color-black;
+    margin-top: 2rem;
+    width: 34rem;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    margin-right: 3rem;
+    margin-left: -2rem;
+    height: 48rem;
+
+    &-flex {
+      margin-bottom: 1rem;
+      border-bottom: 1px solid $color-grey-medium;
     }
 
-    &__img { 
-        width: 33rem;
-        height: 46rem;
+    &-title {
+      display: flex;
+      align-items: center;
+
+      &-h3 {
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-right: 1rem;
+      }
     }
 
-    // Double sided cards
-    &__img-left {
-        margin-right: 10rem;
-        width: 33rem;
+    &-color-indicator {
+      width: 1.3rem;
+      height: 1.3rem;
+      border: 1px solid $color-grey-dark;
+      border-radius: 50%;
+      box-shadow: 0px 0px 0px 2px rgba($color-black, 0.2);
+      margin-right: 0.7rem;
+      display: inline-block;
+
+      &--U {
+        background-color: $color-indicator-blue;
+      }
+      &--B {
+        background-color: $color-indicator-black;
+      }
+      &--R {
+        background-color: $color-indicator-red;
+      }
+      &--W {
+        background-color: $color-indicator-white;
+      }
+      &--G {
+        background-color: $color-indicator-green;
+      }
+    }
+
+    &-oracle-p {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    &-oracle-flavor {
+      font-size: 1.3rem;
+      font-style: italic;
+    }
+
+    &-illustrator {
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    &-legal {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &-half {
         display: flex;
         flex-direction: column;
-    }
+      }
 
-    &__img-btn {
-        justify-self: flex-end;
-        align-self: flex-end;
-        margin-top: auto;
-    }
-
-    &__img-double-area {
-        position: relative;
-    }
-
-    &__img-double-sided {
-        perspective: 150rem;
-        height: 46rem;
-    }
-
-    &__img-double {
-        width: 33rem;
-        height: 46rem;
-        position: absolute;
-        top: 0;
-        left: 0;
-        backface-visibility: hidden;
-        overflow: hidden;
-
-        &--back { transform: rotateY(180deg); }
-    }
-
-    &__text {
-        background-color: $color-beige;
-        width: 34rem;
+      &-span-container {
         display: flex;
-        flex-direction: column;
-        padding: 1rem;
-        margin-right: 3rem;
+        align-items: center;
 
-        &-flex {
-            margin-bottom: 1rem;
-            border-bottom: 1px solid $color-grey-medium;
+        &:not(:last-child) {
+          margin-bottom: 0.5rem;
         }
+      }
 
-        &-title {
-            display: flex;
-            align-items: center;
-
-            &-h3 {
-                font-size: 1.8rem;
-                font-weight: 400;
-                margin-right: 1rem;
-            }
-        }
-
-        &-color-indicator {
-            width: 1.3rem;
-            height: 1.3rem;
-            border: 1px solid $color-grey-dark;            
-            border-radius: 50%;
-            box-shadow: 0px 0px 0px 2px rgba($color-black, .2);
-            margin-right: .7rem; 
-            display: inline-block;
-
-            &--U { background-color: $color-indicator-blue; }
-            &--B { background-color: $color-indicator-black; }
-            &--R { background-color: $color-indicator-red; }
-            &--W { background-color: $color-indicator-white; }
-            &--G { background-color: $color-indicator-green; }
-        }
-
-        &-oracle-p {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        &-oracle-flavor {
-            font-size: 1.3rem;
-            font-style: italic;
-        }
-
-        &-illustrator {
-            font-size: 1.2rem;
-            font-style: italic;
-        }
-
-        &-legal {
-            display: flex; 
-            flex-direction: row;
-            justify-content: space-between;
-
-            &-half {
-                display: flex;
-                flex-direction: column;
-            }
-
-            &-span-container {
-                display: flex;
-                align-items: center;
-
-                &:not(:last-child) { margin-bottom: .5rem; }
-            }
-
-            &-span-box {
-                width: 6rem;
-                height: 2.5rem;
-                border: 1px solid $color-black;  
-                margin-right: .3rem;    
-                font-size: 1rem;
-                text-transform: uppercase;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                
-                &--not_legal { background-color: $color-red-dark; }
-
-                &--legal { background-color: $color-green; }
-            }
-        }
-    }
-
-    &__set {
+      &-span-box {
+        width: 6rem;
+        height: 2.5rem;
+        border: 1px solid $color-black;
+        margin-right: 0.3rem;
+        font-size: 1rem;
+        text-transform: uppercase;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-        &-banner {
-            display: flex;
-            border: 1px solid $color-grey-medium;
-            width: 40rem;
-            background-color: $color-black;
-            color: $color-white;
-
-            &-svg-container {
-                margin-right: 1rem;
-            }
-
-            &-svg {
-                width: 2.4rem;
-                height: 2.4rem;
-                filter: invert(100%);
-            }
+        &--not_legal {
+          background-color: $color-red-dark;
         }
 
-        &-details {
-            display: flex;
-            flex-direction: column;
+        &--legal {
+          background-color: $color-green;
         }
-
-        &-header {
-            &-name {
-                font-size: 1.7remrem;
-            }
-
-            &-code { text-transform: uppercase; }            
-        }
-
-        &-prints-header {
-            display: flex;
-            justify-content: space-between;
-            background-color: $color-black;
-            color: $color-white;
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            border: 1px solid $color-grey-medium;
-            padding: .3rem .7rem;
-        }
-
-        &-prints-svg-container {
-            height: 1.8rem;
-            width: 1.8rem;
-            border: 1px solid $color-grey-medium;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            border-radius: 100%;
-        }
-
-        &-prints-svg {
-            &--common { fill: $color-black; }
-            &--uncommon { fill: $color-silver; }
-            &--rare { fill: $color-gold; }
-            &--mythic { fill: $color-red-dark; }
-        }
-
-        &-prints-list {
-            list-style: none;
-
-            &-link:link,
-            &-link:visited {
-                text-decoration: none; 
-                color: $color-black;
-            }
-
-            &-item {
-                display: flex;
-                justify-content: space-between;
-                cursor: pointer;
-
-                &:hover { background-color: $color-grey-light; }
-            }
-
-            &-item-name-wrapper {
-                display: flex;
-                align-items: center;
-                margin-left: -1rem;
-            }
-
-            &-item-set-name {
-                margin-left: .5rem;
-            }
-
-            &-item-price {
-                margin-right: .7rem;
-            }
-        }
+      }
     }
+  }
+
+  &__set {
+    display: flex;
+    flex-direction: column;
+
+    &-banner {
+      display: flex;
+      border: 1px solid $color-grey-medium;
+      width: 40rem;
+      background-color: $color-black;
+      color: $color-white;
+
+      &-svg-container {
+        margin-right: 1rem;
+      }
+
+      &-svg {
+        width: 2.4rem;
+        height: 2.4rem;
+        filter: invert(100%);
+      }
+    }
+
+    &-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-header {
+      &-name {
+        font-size: 1.7remrem;
+      }
+
+      &-code {
+        text-transform: uppercase;
+      }
+    }
+
+    &-prints-header {
+      display: flex;
+      justify-content: space-between;
+      background-color: $color-black;
+      color: $color-white;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      border: 1px solid $color-grey-medium;
+      padding: 0.3rem 0.7rem;
+    }
+
+    &-prints-svg-container {
+      height: 1.8rem;
+      width: 1.8rem;
+      border: 1px solid $color-grey-medium;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 100%;
+    }
+
+    &-prints-svg {
+      &--common {
+        fill: $color-black;
+      }
+      &--uncommon {
+        fill: $color-silver;
+      }
+      &--rare {
+        fill: $color-gold;
+      }
+      &--mythic {
+        fill: $color-red-dark;
+      }
+    }
+
+    &-prints-list {
+      list-style: none;
+
+      &-link:link,
+      &-link:visited {
+        text-decoration: none;
+        color: $color-black;
+      }
+
+      &-item {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $color-grey-light;
+        }
+      }
+
+      &-item-name-wrapper {
+        display: flex;
+        align-items: center;
+        margin-left: -1rem;
+      }
+
+      &-item-set-name {
+        margin-left: 0.5rem;
+      }
+
+      &-item-price {
+        margin-right: 0.7rem;
+      }
+    }
+  }
 }
 
 .card-page {
-    display: flex;
-    flex-direction: column;
-    grid-column: center-start / center-end;
+  display: flex;
+  flex-direction: column;
+  grid-column: center-start / center-end;
 }
 
 .add-to-inv,
 .remove-from-inv {
-    margin-top: 3rem;
-    width: 50%;
-    
-    &__form {
-        display: flex;
-        flex-direction: column; 
+  margin-top: 3rem;
+  width: 50%;
 
-        &-group {
-            display: flex;
-            align-content: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
+  &__form {
+    display: flex;
+    flex-direction: column;
 
-        &-label { margin-right: .3rem; }
+    &-group {
+      display: flex;
+      align-content: center;
+      margin-bottom: 3rem;
+      position: relative;
     }
 
-    &-price-msg {
-        position: absolute;
-        bottom: -1.8rem;
-        right: 25%;
-        color: red;
+    &-label {
+      margin-right: 0.3rem;
     }
+  }
+
+  &-price-msg {
+    position: absolute;
+    bottom: -1.8rem;
+    right: 25%;
+    color: red;
+  }
 }

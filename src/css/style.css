@@ -536,6 +536,8 @@ body {
       background-color: #f2f2f2; }
     .card-checklist__row:nth-child(even) {
       background-color: #f2f2f2; }
+    .card-checklist__row--header {
+      height: 3.5rem; }
   .card-checklist__data {
     display: flex;
     flex-wrap: nowrap;
@@ -623,15 +625,18 @@ body {
   display: flex;
   margin-top: 3rem; }
   .card__img-container {
-    margin-right: 10rem; }
+    z-index: 2;
+    border-radius: 100%; }
   .card__img {
     width: 33rem;
-    height: 46rem; }
+    height: 46rem;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 4.75% / 3.5%; }
   .card__img-left {
-    margin-right: 10rem;
     width: 33rem;
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    z-index: 2; }
   .card__img-btn {
     justify-self: flex-end;
     align-self: flex-end;
@@ -652,12 +657,19 @@ body {
     .card__img-double--back {
       transform: rotateY(180deg); }
   .card__text {
-    background-color: #f4f4d7;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-top: 3px solid #000;
+    border-bottom: 3px solid #000;
+    margin-top: 2rem;
     width: 34rem;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    margin-right: 3rem; }
+    padding: 3rem;
+    margin-right: 3rem;
+    margin-left: -2rem;
+    height: 48rem; }
     .card__text-flex {
       margin-bottom: 1rem;
       border-bottom: 1px solid #bfbfbf; }
@@ -674,7 +686,7 @@ body {
       border: 1px solid #333;
       border-radius: 50%;
       box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.2);
-      margin-right: .7rem;
+      margin-right: 0.7rem;
       display: inline-block; }
       .card__text-color-indicator--U {
         background-color: rgba(128, 128, 255, 0.7); }
@@ -706,12 +718,12 @@ body {
         display: flex;
         align-items: center; }
         .card__text-legal-span-container:not(:last-child) {
-          margin-bottom: .5rem; }
+          margin-bottom: 0.5rem; }
       .card__text-legal-span-box {
         width: 6rem;
         height: 2.5rem;
         border: 1px solid #000;
-        margin-right: .3rem;
+        margin-right: 0.3rem;
         font-size: 1rem;
         text-transform: uppercase;
         display: flex;
@@ -751,7 +763,7 @@ body {
       font-size: 1.3rem;
       text-transform: uppercase;
       border: 1px solid #bfbfbf;
-      padding: .3rem .7rem; }
+      padding: 0.3rem 0.7rem; }
     .card__set-prints-svg-container {
       height: 1.8rem;
       width: 1.8rem;
@@ -784,9 +796,9 @@ body {
         align-items: center;
         margin-left: -1rem; }
       .card__set-prints-list-item-set-name {
-        margin-left: .5rem; }
+        margin-left: 0.5rem; }
       .card__set-prints-list-item-price {
-        margin-right: .7rem; }
+        margin-right: 0.7rem; }
 
 .card-page {
   display: flex;
@@ -809,7 +821,7 @@ body {
       position: relative; }
     .add-to-inv__form-label,
     .remove-from-inv__form-label {
-      margin-right: .3rem; }
+      margin-right: 0.3rem; }
   .add-to-inv-price-msg,
   .remove-from-inv-price-msg {
     position: absolute;
@@ -918,6 +930,28 @@ body {
       right: 0; }
     .homepage__colage-card:hover {
       transform: translateY(-5%); }
+
+.inventory-details {
+  grid-column: 1 / -1;
+  border-bottom: 1px solid rgba(99, 68, 150, 0.1);
+  background-color: #f6f4fa;
+  color: #535353;
+  padding: 1rem 16%;
+  margin-bottom: 2rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between; }
+  .inventory-details__link {
+    text-decoration: none;
+    color: rgba(83, 83, 83, 0.75);
+    transition: all 0.2s;
+    padding: 0 0.6rem;
+    border-left: 1px solid #535353;
+    border-right: 1px solid #535353; }
+    .inventory-details__link:hover {
+      color: #535353; }
+  .inventory-details span {
+    color: #006885; }
 
 .container {
   display: grid;

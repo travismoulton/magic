@@ -1,0 +1,29 @@
+.inventory-details {
+  grid-column: 1 / -1;
+  border-bottom: 1px solid rgba(99, 68, 150, 0.1);
+  background-color: #f6f4fa;
+  color: #535353;
+  padding: 1rem 16%;
+  margin-bottom: 2rem;
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+
+  &__link {
+    text-decoration: none;
+    color: rgba(#535353, 0.75);
+    transition: all 0.2s;
+    padding: 0 0.6rem;
+    border-left: 1px solid #535353;
+    border-right: 1px solid #535353;
+
+    &:hover {
+      color: #535353;
+    }
+  }
+
+  & span {
+    color: #006885;
+  }
+}
