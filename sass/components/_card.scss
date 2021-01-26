@@ -139,6 +139,7 @@
       &-span-container {
         display: flex;
         align-items: center;
+        font-size: 1.4rem;
 
         &:not(:last-child) {
           margin-bottom: 0.5rem;
@@ -148,21 +149,25 @@
       &-span-box {
         width: 6rem;
         height: 2.5rem;
-        border: 1px solid $color-black;
         margin-right: 0.3rem;
         font-size: 1rem;
         text-transform: uppercase;
         display: flex;
         justify-content: center;
         align-items: center;
+        border-radius: 3px;
 
         &--not_legal {
-          background-color: $color-red-dark;
+          background-color: #e60000;
         }
 
         &--legal {
-          background-color: $color-green;
+          background-color: #009900;
         }
+      }
+
+      &-span-box {
+        color: $color-white;
       }
     }
   }
@@ -175,8 +180,10 @@
       display: flex;
       border: 1px solid $color-grey-medium;
       width: 40rem;
-      background-color: $color-black;
-      color: $color-white;
+      background-color: #49465c;
+      color: #fdfdfd;
+      padding: 0.7rem;
+      border-radius: 3px;
 
       &-svg-container {
         margin-right: 1rem;
@@ -207,11 +214,12 @@
     &-prints-header {
       display: flex;
       justify-content: space-between;
-      background-color: $color-black;
-      color: $color-white;
+      background-color: #49465c;
+      color: #fdfdfd;
       font-size: 1.3rem;
       text-transform: uppercase;
       border: 1px solid $color-grey-medium;
+      border-radius: 3px;
       padding: 0.3rem 0.7rem;
     }
 
@@ -243,6 +251,7 @@
 
     &-prints-list {
       list-style: none;
+      border-radius: 3px;
 
       &-link:link,
       &-link:visited {
@@ -254,6 +263,15 @@
         display: flex;
         justify-content: space-between;
         cursor: pointer;
+        border-bottom: 1px solid #e7e9ec;
+        border-left: 1px solid #cdcdcd;
+        background-color: $color-white;
+        padding: 0.25rem 0;
+
+        &--pl-14 {
+          padding-left: 1.4rem;
+          border-bottom: 3px solid $color-black;
+        }
 
         &:hover {
           background-color: $color-grey-light;
@@ -272,6 +290,7 @@
 
       &-item-price {
         margin-right: 0.7rem;
+        color: #006885;
       }
     }
   }

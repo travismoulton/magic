@@ -716,23 +716,26 @@ body {
         flex-direction: column; }
       .card__text-legal-span-container {
         display: flex;
-        align-items: center; }
+        align-items: center;
+        font-size: 1.4rem; }
         .card__text-legal-span-container:not(:last-child) {
           margin-bottom: 0.5rem; }
       .card__text-legal-span-box {
         width: 6rem;
         height: 2.5rem;
-        border: 1px solid #000;
         margin-right: 0.3rem;
         font-size: 1rem;
         text-transform: uppercase;
         display: flex;
         justify-content: center;
-        align-items: center; }
+        align-items: center;
+        border-radius: 3px; }
         .card__text-legal-span-box--not_legal {
-          background-color: #ff0000; }
+          background-color: #e60000; }
         .card__text-legal-span-box--legal {
-          background-color: #47d147; }
+          background-color: #009900; }
+      .card__text-legal-span-box {
+        color: #fff; }
   .card__set {
     display: flex;
     flex-direction: column; }
@@ -740,8 +743,10 @@ body {
       display: flex;
       border: 1px solid #bfbfbf;
       width: 40rem;
-      background-color: #000;
-      color: #fff; }
+      background-color: #49465c;
+      color: #fdfdfd;
+      padding: 0.7rem;
+      border-radius: 3px; }
       .card__set-banner-svg-container {
         margin-right: 1rem; }
       .card__set-banner-svg {
@@ -758,11 +763,12 @@ body {
     .card__set-prints-header {
       display: flex;
       justify-content: space-between;
-      background-color: #000;
-      color: #fff;
+      background-color: #49465c;
+      color: #fdfdfd;
       font-size: 1.3rem;
       text-transform: uppercase;
       border: 1px solid #bfbfbf;
+      border-radius: 3px;
       padding: 0.3rem 0.7rem; }
     .card__set-prints-svg-container {
       height: 1.8rem;
@@ -781,14 +787,22 @@ body {
     .card__set-prints-svg--mythic {
       fill: #ff0000; }
     .card__set-prints-list {
-      list-style: none; }
+      list-style: none;
+      border-radius: 3px; }
       .card__set-prints-list-link:link, .card__set-prints-list-link:visited {
         text-decoration: none;
         color: #000; }
       .card__set-prints-list-item {
         display: flex;
         justify-content: space-between;
-        cursor: pointer; }
+        cursor: pointer;
+        border-bottom: 1px solid #e7e9ec;
+        border-left: 1px solid #cdcdcd;
+        background-color: #fff;
+        padding: 0.25rem 0; }
+        .card__set-prints-list-item--pl-14 {
+          padding-left: 1.4rem;
+          border-bottom: 3px solid #000; }
         .card__set-prints-list-item:hover {
           background-color: #f2f2f2; }
       .card__set-prints-list-item-name-wrapper {
@@ -798,7 +812,8 @@ body {
       .card__set-prints-list-item-set-name {
         margin-left: 0.5rem; }
       .card__set-prints-list-item-price {
-        margin-right: 0.7rem; }
+        margin-right: 0.7rem;
+        color: #006885; }
 
 .card-page {
   display: flex;

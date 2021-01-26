@@ -208,6 +208,7 @@ const parseCardName = (cardName) => {
 };
 
 const generateChecklist = (cards) => {
+  console.log(cards);
   // Create a new table row for each card object
   cards.forEach((card) => {
     const cardNameForUrl = parseCardName(card.name);
