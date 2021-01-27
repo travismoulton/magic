@@ -10,10 +10,30 @@
 
   &__center {
     align-self: center;
+    display: flex;
+    flex-direction: column;
+
+    @media only screen and (max-width: $bp-450) {
+      margin-top: -5rem;
+    }
+  }
+
+  &__center-heading-wrapper {
+    @media only screen and (max-width: $bp-650) {
+      margin: 0 auto 0.5rem auto;
+      width: 75%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
   }
 
   &__search {
     position: relative;
+
+    // @media only screen and (max-width: $bp-650) {
+    //   margin: 0 auto;
+    // }
   }
 
   &__search-input {
@@ -29,12 +49,25 @@
     &::placeholder {
       text-align: center;
     }
+
+    @media only screen and (max-width: $bp-650) {
+      width: 80%;
+      margin-left: 10%;
+    }
   }
 
   &__search-btn {
     position: absolute;
     left: 6rem;
     top: 2rem;
+
+    @media only screen and (max-width: $bp-650) {
+      left: 12rem;
+    }
+
+    @media only screen and (max-width: $bp-450) {
+      left: 10rem;
+    }
   }
 
   &__icon-sizing {
@@ -52,6 +85,14 @@
   &__links {
     display: flex;
     justify-content: center;
+
+    @media only screen and (max-width: $bp-650) {
+      flex-direction: column;
+    }
+
+    @media only screen and (max-width: $bp-450) {
+      margin-left: 7.5%;
+    }
   }
 
   &__link {
@@ -70,6 +111,11 @@
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06);
     min-width: 9rem;
     text-align: center;
+
+    @media only screen and (max-width: $bp-650) {
+      align-self: center;
+      width: 14.5rem;
+    }
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.09);

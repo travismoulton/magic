@@ -6,7 +6,7 @@ $color-grey-bg-dark: #808080;
 $color-grey-bg-light: #bfbfbf;
 
 $color-orange: #ff8000;
-$color-orange-light:  #ffa64d; 
+$color-orange-light: #ffa64d;
 
 $color-white: #fff;
 $color-black: #000;
@@ -28,8 +28,24 @@ $color-silver: #e6e6e6;
 $color-gold: #e6c300;
 
 // Color indicators for double sided cards
-$color-indicator-blue: rgba(#8080ff, .7);
-$color-indicator-white: rgba(#fff, .7);
-$color-indicator-red: rgba(#ff4d4d, .7);
-$color-indicator-black: rgba(#000, .7);
-$color-indicator-green: rgba(#00ff00, .7);
+$color-indicator-blue: rgba(#8080ff, 0.7);
+$color-indicator-white: rgba(#fff, 0.7);
+$color-indicator-red: rgba(#ff4d4d, 0.7);
+$color-indicator-black: rgba(#000, 0.7);
+$color-indicator-green: rgba(#00ff00, 0.7);
+
+// Media query variables
+$bp-1600: 100em; // 1600px
+$bp-1400: 87.5em; // 1400px
+$bp-1300: 81.25em; // 1300px
+$bp-1200: 75rem; // 1200px
+$bp-1100: 68.75em; // 1100px
+$bp-1060: 66.25em; // 1060px;
+$bp-1000: 62.5em; // 1000px
+$bp-900: 56.25em; // 900px
+$bp-825: 51.5625em; // 825px
+$bp-700: 43.75em; // 700px
+$bp-650: 40.625em; //650px
+$bp-600: 37.5em; // 600px
+$bp-500: 31.5em; // 500px
+$bp-450: 28.125em; //450px
