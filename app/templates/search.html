@@ -20,7 +20,7 @@
         </svg>
         Card Name
       </label>
-      <div class="search-form__grpup-input-wrapper">
+      <div class="search-form__group-input-wrapper">
         <input
           type="text"
           autocomplete="off"
@@ -281,96 +281,100 @@
       </label>
       <div class="search-form__group-input-wrapper">
         <div class="search-form__group--checkbox">
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-color-box"
-              value="w"
-              id="color-white"
-            />
-            <label for="color-white" class="search-form__label--checkbox">
-              <img
-                src="{{ url_for('static', filename='/img/white.png') }}"
-                alt="white mana symbol"
-                class="search-form__mana-symbol"
+          <div class="search-form__group-colors-left">
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-color-box"
+                value="w"
+                id="color-white"
               />
-              White
-            </label>
-          </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-color-box"
-              value="u"
-              id="color-blue"
-            />
-            <label for="color-blue" class="search-form__label--checkbox">
-              <img
-                src="{{ url_for('static', filename='/img/blue.png') }}"
-                alt="blue mana symbol"
-                class="search-form__mana-symbol"
+              <label for="color-white" class="search-form__label--checkbox">
+                <img
+                  src="{{ url_for('static', filename='/img/white.png') }}"
+                  alt="white mana symbol"
+                  class="search-form__mana-symbol"
+                />
+                White
+              </label>
+            </div>
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-color-box"
+                value="u"
+                id="color-blue"
               />
-              Blue
-            </label>
-          </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-color-box"
-              value="b"
-              id="color-black"
-            />
-            <label for="color-black" class="search-form__label--checkbox">
-              <img
-                src="{{ url_for('static', filename='/img/black.png') }}"
-                alt="black mana symbol"
-                class="search-form__mana-symbol"
+              <label for="color-blue" class="search-form__label--checkbox">
+                <img
+                  src="{{ url_for('static', filename='/img/blue.png') }}"
+                  alt="blue mana symbol"
+                  class="search-form__mana-symbol"
+                />
+                Blue
+              </label>
+            </div>
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-color-box"
+                value="b"
+                id="color-black"
               />
-              Black
-            </label>
+              <label for="color-black" class="search-form__label--checkbox">
+                <img
+                  src="{{ url_for('static', filename='/img/black.png') }}"
+                  alt="black mana symbol"
+                  class="search-form__mana-symbol"
+                />
+                Black
+              </label>
+            </div>
           </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-color-box"
-              value="r"
-              id="color-red"
-            />
-            <label for="color-red" class="search-form__label--checkbox">
-              <img
-                src="{{ url_for('static', filename='/img/red.png') }}"
-                alt="red mana symbol"
-                class="search-form__mana-symbol"
+          <div class="search-form__group-colors-right">
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-color-box"
+                value="r"
+                id="color-red"
               />
-              Red
-            </label>
-          </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-color-box"
-              value="g"
-              id="color-green"
-            />
-            <label for="color-green" class="search-form__label--checkbox">
-              <img
-                src="{{ url_for('static', filename='/img/green.png') }}"
-                alt="green mana symbol"
-                class="search-form__mana-symbol"
+              <label for="color-red" class="search-form__label--checkbox">
+                <img
+                  src="{{ url_for('static', filename='/img/red.png') }}"
+                  alt="red mana symbol"
+                  class="search-form__mana-symbol"
+                />
+                Red
+              </label>
+            </div>
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-color-box"
+                value="g"
+                id="color-green"
               />
-              Green
-            </label>
-          </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-color-box"
-              value="colorless"
-              id="color-Colorless"
-            />
-            <label for="color-colorless" class="search-form__label--checkbox"
-              >Colorless</label
-            >
+              <label for="color-green" class="search-form__label--checkbox">
+                <img
+                  src="{{ url_for('static', filename='/img/green.png') }}"
+                  alt="green mana symbol"
+                  class="search-form__mana-symbol"
+                />
+                Green
+              </label>
+            </div>
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-color-box"
+                value="colorless"
+                id="color-Colorless"
+              />
+              <label for="color-colorless" class="search-form__label--checkbox"
+                >Colorless</label
+              >
+            </div>
           </div>
         </div>
         <select
@@ -410,7 +414,10 @@
       </label>
       <div class="search-form__group-input-wrapper">
         <div class="search-form__select-menu-grouping js--api-stats-wrapper">
-          <select name="stat" class="search-form__select-menu js--api-stat">
+          <select
+            name="stat"
+            class="search-form__select-menu search-form__select-menu--3 js--api-stat"
+          >
             <option value="cmc">CMC</option>
             <option value="power">POWER</option>
             <option value="toughness">TOUGHNESS</option>
@@ -418,7 +425,7 @@
           </select>
           <select
             name="stats-filter"
-            class="search-form__select-menu js--api-stat-filter"
+            class="search-form__select-menu search-form__select-menu--3 js--api-stat-filter"
           >
             <option value="%3D">Equal to</option>
             <option value="<">Less than</option>
@@ -471,7 +478,7 @@
           <select
             name="legal-status"
             id="legal-status"
-            class="search-form__select-menu js--api-legal-status"
+            class="search-form__select-menu search-form__select-menu--2 js--api-legal-status"
           >
             <option value="legal" selected>Legal</option>
             <option value="restricted">Restricted</option>
@@ -480,7 +487,7 @@
           <select
             name="format"
             id="format"
-            class="search-form__select-menu js--api-format"
+            class="search-form__select-menu search-form__select-menu--2 js--api-format"
           >
             <option value=""></option>
             <option value="standard">Standard</option>
@@ -950,47 +957,53 @@
       </label>
       <div class="search-form__group-input-wrapper">
         <div class="search-form__group--checkbox">
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-rarity-box"
-              value="common"
-              name="common"
-            />
-            <label for="common" class="search-form__label--checkbox"
-              >Common</label
-            >
+          <div class="search-form__group-rarity-left">
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-rarity-box"
+                value="common"
+                name="common"
+              />
+              <label for="common" class="search-form__label--checkbox"
+                >Common</label
+              >
+            </div>
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-rarity-box"
+                value="uncommon"
+                name="uncommon"
+              />
+              <label for="uncommon" class="search-form__label--checkbox"
+                >Uncommon</label
+              >
+            </div>
           </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-rarity-box"
-              value="uncommon"
-              name="uncommon"
-            />
-            <label for="uncommon" class="search-form__label--checkbox"
-              >Uncommon</label
-            >
-          </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-rarity-box"
-              value="rare"
-              name="rare"
-            />
-            <label for="rare" class="search-form__label--checkbox">Rare</label>
-          </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-rarity-box"
-              value="mythic"
-              name="mythic"
-            />
-            <label for="mythic" class="search-form__label--checkbox"
-              >Mythic Rare</label
-            >
+          <div class="search-form__group-rarity-right">
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-rarity-box"
+                value="rare"
+                name="rare"
+              />
+              <label for="rare" class="search-form__label--checkbox"
+                >Rare</label
+              >
+            </div>
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-rarity-box"
+                value="mythic"
+                name="mythic"
+              />
+              <label for="mythic" class="search-form__label--checkbox"
+                >Mythic Rare</label
+              >
+            </div>
           </div>
         </div>
         <p class="search-form__tip">
@@ -1029,14 +1042,14 @@
         <div class="search-form__select-menu-grouping">
           <select
             name="denomination"
-            class="search-form__select-menu js--api-denomination"
+            class="search-form__select-menu search-form__select-menu--3 js--api-denomination"
           >
             <option value="usd">USD</option>
             <option value="eur">EURO</option>
           </select>
           <select
             name="denomination-sorter"
-            class="search-form__select-menu js--api-denomination-sort-by"
+            class="search-form__select-menu search-form__select-menu--3 js--api-denomination-sort-by"
           >
             <option value=">">Greater than</option>
             <option value="<">Less than</option>
@@ -1075,7 +1088,7 @@
       <div class="search-form__input-wrapper">
         <select
           name="sorter"
-          class="search-form__select-menu js--api-results-sorter"
+          class="search-form__select-menu search-form__select-menu--2 js--api-results-sorter"
         >
           <option value="name" selected>Sort by name</option>
           <option value="released">Sort by release date</option>
@@ -1087,7 +1100,7 @@
         </select>
         <select
           name="display-as"
-          class="search-form__select-menu js--api-search-display-selector"
+          class="search-form__select-menu search-form__select-menu--2 js--api-search-display-selector"
         >
           <option value="images">Images</option>
           <option value="list" selected>Checklist</option>

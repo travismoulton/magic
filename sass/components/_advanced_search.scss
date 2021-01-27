@@ -3,6 +3,18 @@
   background-color: #fdfdfd;
   min-height: calc(100vh - 6.2rem);
 
+  @media only screen and (max-width: $bp-1300) {
+    padding: 2rem 15rem;
+  }
+
+  @media only screen and (max-width: $bp-1000) {
+    padding: 2rem 5rem;
+  }
+
+  @media only screen and (max-width: $bp-900) {
+    padding: 2rem 1rem;
+  }
+
   &__group {
     width: 75%;
     display: flex;
@@ -10,6 +22,14 @@
     align-items: flex-start;
     padding: 0.5rem 4rem 0.5rem 0;
     border-bottom: 1px solid rgba($color-black, 0.2);
+
+    @media only screen and (max-width: $bp-1500) {
+      width: 100%;
+    }
+
+    @media only screen and (max-width: $bp-750) {
+      flex-direction: column;
+    }
 
     &:nth-child(10) {
       border-bottom: none;
@@ -27,10 +47,29 @@
     font-weight: 300;
     margin-top: 0.7rem;
     color: #551a8b;
+
+    @media only screen and (max-width: $bp-750) {
+      margin-bottom: 1.2rem;
+      margin-left: 1rem;
+    }
   }
 
   &__group-input-wrapper {
     flex: 0 0 80%;
+
+    @media only screen and (max-width: $bp-750) {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+  }
+
+  &__input-wrapper {
+    flex: 0 0 80%;
+
+    @media only screen and (max-width: $bp-750) {
+      flex: 0 0 100%;
+      width: 100%;
+    }
   }
 
   &__tip {
@@ -46,6 +85,14 @@
     padding: 1rem;
     border: solid 1px $color-grey-medium;
     border-radius: 5px;
+
+    @media only screen and (max-width: $bp-450) {
+      width: 30rem;
+    }
+
+    @media only screen and (max-width: $bp-350) {
+      width: 20rem;
+    }
 
     &:focus {
       border: solid 1px $color-black;
@@ -63,11 +110,49 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06);
+
+    @media only screen and (max-width: $bp-600) {
+      max-width: 30%;
+    }
   }
 
   &__group--checkbox {
     display: flex;
     margin-bottom: 1rem;
+  }
+
+  &__group-colors {
+    &-left,
+    &-right {
+      display: flex;
+
+      @media only screen and (max-width: $bp-1300) {
+        flex-direction: column;
+      }
+    }
+
+    &-left {
+      @media only screen and (max-width: $bp-1300) {
+        margin-right: 3rem;
+      }
+    }
+  }
+
+  &__group-rarity {
+    &-left,
+    &-right {
+      display: flex;
+
+      @media only screen and (max-width: $bp-450) {
+        flex-direction: column;
+      }
+    }
+
+    &-left {
+      @media only screen and (max-width: $bp-1300) {
+        margin-right: 3rem;
+      }
+    }
   }
 
   &__label--checkbox {
@@ -78,6 +163,10 @@
     width: 2.25rem;
     height: 2.25rem;
     margin-right: 0.8rem;
+
+    @media only screen and (max-width: $bp-1500) {
+      margin-bottom: 0.3rem;
+    }
   }
 
   &__checkbox-wrapper {
@@ -87,9 +176,6 @@
 
   &__select-menu {
     margin-bottom: 1rem;
-  }
-
-  &__select-menu {
     color: #343242;
     margin-right: 1rem;
     border: 1px solid #aeaeae;
@@ -108,6 +194,22 @@
     background-position: right 0.8rem center;
     background-size: 1.2rem 1rem;
     background-color: $color-white;
+
+    @media only screen and (max-width: $bp-1300) {
+      margin-right: 0.3rem;
+    }
+
+    &--2 {
+      @media only screen and (max-width: $bp-600) {
+        max-width: 49%;
+      }
+    }
+
+    &--3 {
+      @media only screen and (max-width: $bp-600) {
+        max-width: 32%;
+      }
+    }
   }
 
   &__svg-size {
@@ -123,7 +225,7 @@
   &__submit-wrapper {
     position: sticky;
     bottom: 0;
-    width: 75%;
+    width: 100%;
     display: flex;
     margin-bottom: 3rem;
     border-top: 1px solid rgba($color-black, 0.2);
