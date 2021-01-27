@@ -62,6 +62,7 @@ const setDoubleSidedTransition = () => {
   // Checks to see if an inline style has been set for the front of the card.
   // If not, set a transiton. This makes sure we don't set the transiton every
   // time the card is flipped.
+
   if (!elements.card.front.getAttribute('style')) {
     elements.card.front.style.transition = `all .8s ease`;
     elements.card.back.style.transition = `all .8s ease`;
@@ -132,6 +133,17 @@ export const printListHoverEvents = () => {
         document.body.removeChild(document.querySelector('.tooltip'));
       }
     };
+  });
+};
+
+export const shortenCardName = () => {
+  const names = Array.from(document.querySelectorAll('.js--card-name'));
+  console.log(names);
+
+  names.forEach((n) => {
+    if (n.innerText.includes('/')) {
+      n.innerHTML = n.innerHTML.substring(0, n.innerHTML.indexOf('/') - 1);
+    }
   });
 };
 

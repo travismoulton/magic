@@ -1,6 +1,10 @@
 .card {
+  width: 100%;
+  padding: 0 16%;
   display: flex;
   margin-top: 3rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px dashed rgba($color-black, 0.7);
 
   // Single  sided cards
   &__img-container {
@@ -26,9 +30,38 @@
   }
 
   &__img-btn {
-    justify-self: flex-end;
-    align-self: flex-end;
-    margin-top: auto;
+    align-self: center;
+    margin-top: 1rem;
+    height: 2.8rem;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: #551a8b;
+    background-color: #f9f7f5;
+    border: 1px solid rgba(85, 26, 139, 0.5);
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+    transition: all 0.2s;
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-white;
+      border-color: #634496;
+    }
+  }
+
+  &__img-svg {
+    height: 1.4rem;
+    width: 1.4rem;
+    margin-right: 0.3rem;
+    pointer-events: none;
+  }
+
+  &__img-svg-color {
+    fill: #551a8b;
   }
 
   &__img-double-area {
@@ -67,7 +100,6 @@
     padding: 3rem;
     margin-right: 3rem;
     margin-left: -2rem;
-    height: 48rem;
 
     &-flex {
       margin-bottom: 1rem;
@@ -299,27 +331,57 @@
 .card-page {
   display: flex;
   flex-direction: column;
-  grid-column: center-start / center-end;
+  grid-column: 1 / -1;
+  position: relative;
 }
 
 .add-to-inv,
 .remove-from-inv {
   margin-top: 3rem;
   width: 50%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
 
+  &__header {
+    color: #16161d;
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin: 0 auto 1rem auto;
+  }
   &__form {
     display: flex;
     flex-direction: column;
 
+    &-price {
+      width: 20rem;
+      height: 3.5rem;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border: solid 1px $color-grey-medium;
+      border-radius: 5px;
+
+      &:focus {
+        border: solid 1px $color-black;
+      }
+    }
+
     &-group {
       display: flex;
+      justify-content: space-evenly;
       align-content: center;
-      margin-bottom: 3rem;
+      margin-bottom: 1.5rem;
       position: relative;
     }
 
     &-label {
       margin-right: 0.3rem;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      color: #16161d;
+      margin-top: 0.45rem;
     }
   }
 
@@ -329,4 +391,34 @@
     right: 25%;
     color: red;
   }
+
+  &__submit {
+    align-self: center;
+    height: 3.1rem;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: #551a8b;
+    background-color: #f9f7f5;
+    border: 1px solid rgba(85, 26, 139, 0.5);
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+    transition: all 0.2s;
+    padding: 0.2rem 0.75rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-white;
+      border-color: #634496;
+    }
+  }
+}
+
+.util-space::before,
+.util-space::after {
+  content: '';
+  margin: 0 0.2rem;
 }

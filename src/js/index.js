@@ -275,6 +275,7 @@ if (window.location.pathname.substring(1, 5) === 'card') {
   cardView.fixCardPrices();
   cardView.setPrintLinkHref();
   cardView.printListHoverEvents();
+  cardView.shortenCardName();
 
   // If the transform btn is on the dom (if the card is double sided) set
   // the event listener for the card to be flipped back and forth
@@ -350,4 +351,8 @@ if (window.location.pathname.substring(1, 17) === 'inventory/search') {
     searchView.filterSetHeaders();
     invSearch.startSetsDropDownNavigation();
   });
+}
+
+if (window.location.pathname.includes('/card')) {
+  document.body.style.backgroundColor = '#f5f6f7';
 }

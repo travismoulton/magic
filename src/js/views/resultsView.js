@@ -74,6 +74,7 @@ const flipCard = (e) => {
   // Prevent the link from going to the card specific page
   e.preventDefault();
   const card = e.target.parentElement;
+  console.log(card);
 
   const front = card.querySelector('.js--image-grid-card-side-front');
 
@@ -85,6 +86,14 @@ const flipCard = (e) => {
 const generateFlipCardBtn = () => {
   const btn = document.createElement('button');
   btn.classList = 'image-grid__double-btn js--image-grid-flip-card-btn';
+  btn.innerHTML = `
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1024 1024" class="image-grid__double-btn-svg">
+
+    <path d="M884.3,357.6c116.8,117.7,151.7,277-362.2,320V496.4L243.2,763.8L522,1031.3V860.8C828.8,839.4,1244.9,604.5,884.3,357.6z" class="image-grid__double-btn-svg"-color></path>
+    <path d="M557.8,288.2v138.4l230.8-213.4L557.8,0v142.8c-309.2,15.6-792.1,253.6-426.5,503.8C13.6,527.9,30,330.1,557.8,288.2z" class="image-grid__double-btn-svg-color"></path>
+    </svg>
+  `;
+
   btn.addEventListener('click', (e) => flipCard(e));
 
   return btn;

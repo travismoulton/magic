@@ -1,51 +1,72 @@
 .image-grid {
-    padding: 10rem 15rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    grid-column-gap: 2rem;
-    grid-row-gap: 1rem;
+  padding: 7rem 16%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-column-gap: 2rem;
+  grid-row-gap: 1rem;
 
-    &__outer-div {
-        position: relative;
+  &__outer-div {
+    position: relative;
+  }
+
+  &__inner-div {
+    perspective: 150rem;
+    height: 34rem;
+    width: 24rem;
+  }
+
+  &__double {
+    height: 34rem;
+    width: 24rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    overflow: hidden;
+    transition: all 0.8s ease;
+
+    &--back {
+      transform: rotateY(180deg);
     }
+  }
 
-    &__inner-div {
-        perspective: 150rem;
-        height: 34rem; 
-        width: 24rem;
+  &__double-btn {
+    position: absolute;
+    top: 26%;
+    left: 75%;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background-color: rgba($color-white, 0.6);
+    border: 2px solid #342442;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-white;
     }
+  }
 
-    &__double {
-        height: 34rem;
-        width: 24rem;
-        position: absolute;
-        top: 0;
-        left: 0;
-        backface-visibility: hidden;
-        overflow: hidden;
-        transition: all .8s ease;
+  &__double-btn-svg {
+    height: 2.5rem;
+    width: 2.5rem;
+    pointer-events: none;
+  }
 
-        &--back { transform: rotateY(180deg); }
-    }
+  &__dobule-btn-svg-color {
+    color: #16161d;
+  }
 
-    &__double-btn {
-        position: absolute;
-        top: 50%;
-        right: 15%;
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-        background-color: rgba($color-white, .4);
-    }
+  &__container {
+    width: 24rem;
+    height: 34rem;
+  }
 
-    &__container {
-        width: 24rem;
-        height: 34rem;
-    }
-
-    &__image {
-        width: 100%;
-        height: 100%;
-    }
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
 }
-

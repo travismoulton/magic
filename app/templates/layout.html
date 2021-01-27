@@ -93,7 +93,7 @@
       </ul>
       {% endif %} {% endwith %} {% block content %}{% endblock %}
     </div>
-
+    {% block outsidecontainer %}{% endblock %}
     <script src="{{ url_for('static', filename='/js/bundle.js') }}"></script>
   </body>
 </html>
