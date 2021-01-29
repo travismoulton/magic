@@ -865,11 +865,19 @@ body {
 
 .card {
   width: 100%;
+  max-width: 100rem;
   padding: 0 16%;
   display: flex;
   margin-top: 3rem;
   padding-bottom: 0.7rem;
   border-bottom: 1px dashed rgba(0, 0, 0, 0.7); }
+  @media only screen and (max-width: 75rem) {
+    .card {
+      padding: 0 2.5% 0.7rem 2.5%; } }
+  @media only screen and (max-width: 62.5em) {
+    .card {
+      flex-direction: column;
+      align-items: center; } }
   .card__img-container {
     z-index: 2;
     border-radius: 100%; }
@@ -908,10 +916,9 @@ body {
     width: 1.4rem;
     margin-right: 0.3rem;
     pointer-events: none; }
-  .card__img-svg-color {
-    fill: #551a8b; }
-  .card__img-double-area {
-    position: relative; }
+    @media only screen and (max-width: 62.5em) {
+      .card__img-svg {
+        flex-direction: column; } }
   .card__img-double-sided {
     perspective: 150rem;
     height: 46rem; }
@@ -938,6 +945,9 @@ body {
     padding: 3rem;
     margin-right: 3rem;
     margin-left: -2rem; }
+    @media only screen and (max-width: 62.5em) {
+      .card__text {
+        margin: 1rem 0; } }
     .card__text-flex {
       margin-bottom: 1rem;
       border-bottom: 1px solid #bfbfbf; }
@@ -1007,6 +1017,9 @@ body {
   .card__set {
     display: flex;
     flex-direction: column; }
+    @media only screen and (max-width: 81.25em) {
+      .card__set {
+        width: 30rem; } }
     .card__set-banner {
       display: flex;
       border: 1px solid #bfbfbf;
@@ -1015,6 +1028,9 @@ body {
       color: #fdfdfd;
       padding: 0.7rem;
       border-radius: 3px; }
+      @media only screen and (max-width: 81.25em) {
+        .card__set-banner {
+          width: 30rem; } }
       .card__set-banner-svg-container {
         margin-right: 1rem; }
       .card__set-banner-svg {
@@ -1097,6 +1113,10 @@ body {
   transform: translateX(-50%);
   display: flex;
   flex-direction: column; }
+  @media only screen and (max-width: 62.5em) {
+    .add-to-inv,
+    .remove-from-inv {
+      width: 100%; } }
   .add-to-inv__header,
   .remove-from-inv__header {
     color: #16161d;
@@ -1125,6 +1145,11 @@ body {
       align-content: center;
       margin-bottom: 1.5rem;
       position: relative; }
+      @media only screen and (max-width: 31.5em) {
+        .add-to-inv__form-group,
+        .remove-from-inv__form-group {
+          flex-direction: column;
+          align-items: center; } }
     .add-to-inv__form-label,
     .remove-from-inv__form-label {
       margin-right: 0.3rem;
@@ -1133,6 +1158,10 @@ body {
       justify-content: center;
       color: #16161d;
       margin-top: 0.45rem; }
+      @media only screen and (max-width: 31.5em) {
+        .add-to-inv__form-label,
+        .remove-from-inv__form-label {
+          margin-bottom: 0.5rem; } }
   .add-to-inv-price-msg,
   .remove-from-inv-price-msg {
     position: absolute;
@@ -1293,6 +1322,9 @@ body {
 
 .cardpage__colage {
   bottom: -2.6rem; }
+  @media only screen and (max-width: 62.5em) {
+    .cardpage__colage {
+      display: none; } }
 
 .homepage__colage-inner,
 .cardpage__colage-inner {

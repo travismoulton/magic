@@ -1,10 +1,20 @@
 .card {
   width: 100%;
+  max-width: 100rem;
   padding: 0 16%;
   display: flex;
   margin-top: 3rem;
   padding-bottom: 0.7rem;
   border-bottom: 1px dashed rgba($color-black, 0.7);
+
+  @media only screen and (max-width: $bp-1200) {
+    padding: 0 2.5% 0.7rem 2.5%;
+  }
+
+  @media only screen and (max-width: $bp-1000) {
+    flex-direction: column;
+    align-items: center;
+  }
 
   // Single  sided cards
   &__img-container {
@@ -58,14 +68,9 @@
     width: 1.4rem;
     margin-right: 0.3rem;
     pointer-events: none;
-  }
-
-  &__img-svg-color {
-    fill: #551a8b;
-  }
-
-  &__img-double-area {
-    position: relative;
+    @media only screen and (max-width: $bp-1000) {
+      flex-direction: column;
+    }
   }
 
   &__img-double-sided {
@@ -100,6 +105,10 @@
     padding: 3rem;
     margin-right: 3rem;
     margin-left: -2rem;
+
+    @media only screen and (max-width: $bp-1000) {
+      margin: 1rem 0;
+    }
 
     &-flex {
       margin-bottom: 1rem;
@@ -208,6 +217,10 @@
     display: flex;
     flex-direction: column;
 
+    @media only screen and (max-width: $bp-1300) {
+      width: 30rem;
+    }
+
     &-banner {
       display: flex;
       border: 1px solid $color-grey-medium;
@@ -216,6 +229,10 @@
       color: #fdfdfd;
       padding: 0.7rem;
       border-radius: 3px;
+
+      @media only screen and (max-width: $bp-1300) {
+        width: 30rem;
+      }
 
       &-svg-container {
         margin-right: 1rem;
@@ -344,6 +361,10 @@
   display: flex;
   flex-direction: column;
 
+  @media only screen and (max-width: $bp-1000) {
+    width: 100%;
+  }
+
   &__header {
     color: #16161d;
     font-size: 2.2rem;
@@ -373,6 +394,11 @@
       align-content: center;
       margin-bottom: 1.5rem;
       position: relative;
+
+      @media only screen and (max-width: $bp-500) {
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
     &-label {
@@ -382,6 +408,10 @@
       justify-content: center;
       color: #16161d;
       margin-top: 0.45rem;
+
+      @media only screen and (max-width: $bp-500) {
+        margin-bottom: 0.5rem;
+      }
     }
   }
 
