@@ -717,7 +717,9 @@ body {
 
 .wrapper {
   overflow-x: scroll;
-  position: relative; }
+  overflow-y: hidden;
+  position: relative;
+  display: flex; }
 
 .card-checklist {
   width: 68%;
