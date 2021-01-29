@@ -143,7 +143,7 @@
     &-right {
       display: flex;
 
-      @media only screen and (max-width: $bp-450) {
+      @media only screen and (max-width: $bp-600) {
         flex-direction: column;
       }
     }

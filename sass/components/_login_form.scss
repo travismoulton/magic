@@ -1,6 +1,6 @@
 .login,
 .register {
-  min-height: calc(100vh - 6.1rem);
+  min-height: calc(100vh - 4.1rem);
   width: 100vw;
   background: linear-gradient(to top, #5f4f66, #342332);
   background-repeat: no-repeat;
@@ -28,6 +28,10 @@
     align-items: center;
     padding: 4rem 0 2.6rem 0;
     transform: translateY(-25%);
+
+    @media only screen and (max-width: $bp-1200) {
+      transform: translateY(0);
+    }
   }
 
   &__form-instructions {

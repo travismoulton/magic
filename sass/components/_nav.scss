@@ -129,7 +129,6 @@
       display: flex;
       flex: 0 0 50%;
       align-items: center;
-      justify-content: end;
     }
 
     &-links {
@@ -170,6 +169,7 @@
       margin-right: 1rem;
       height: 3rem;
       width: 3rem;
+      margin-left: auto;
     }
 
     &-hamburger {

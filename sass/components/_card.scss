@@ -451,4 +451,6 @@
 .util-space::after {
   content: '';
   margin: 0 0.2rem;
+  display: flex;
+  align-items: center;
 }

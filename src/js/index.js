@@ -11,7 +11,7 @@ import { elements } from './views/base';
 // ******************************* \\
 // *********** Home Page ********* \\
 // ******************************* \\
-if (window.location.pathname === '/') document.body.style.overflow = 'hidden';
+// if (window.location.pathname === '/') document.body.style.overflow = 'hidden';
 
 // ******************************* \\
 // ********* Quick Search ******** \\
@@ -388,3 +388,9 @@ if (document.querySelector('.js--nav-hamburger')) {
     }
   });
 }
+
+if (
+  window.location.pathname.includes('/login') ||
+  window.location.pathname.includes('/register')
+)
+  document.body.style.overflowY = 'hidden';
