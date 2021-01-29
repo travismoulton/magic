@@ -2,11 +2,20 @@
   width: 68%;
   justify-self: center;
 
+  @media only screen and (max-width: $bp-1150) {
+    width: 90%;
+  }
+
   &__row {
     display: grid;
 
     &--7 {
-      grid-template-columns: repeat(7, 1fr);
+      // grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: 10% 25% 10% 20% 15% 15% 5%;
+
+      @media only screen and (max-width: $bp-1000) {
+        grid-template-columns: 10% 32.5% 17.5% 17.5% 17.5% 5%;
+      }
     }
 
     &--9 {
@@ -37,43 +46,35 @@
   }
 
   &__data {
+    width: 100%;
     display: flex;
     flex-wrap: nowrap;
-    justify-content: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    justify-content: flex-start;
     font-size: 1.4rem;
 
     &--set {
       text-transform: uppercase;
+      padding-left: 0.5rem;
+    }
+
+    &--name {
+      justify-content: flex-start;
     }
 
     &--rarity {
       text-transform: capitalize;
     }
-
-    &--name {
-      white-space: nowrap;
-      justify-content: flex-start;
-    }
   }
 
   &__data-link {
     padding: 1rem 0;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
+    display: block;
     text-decoration: none;
     width: 100%;
     color: $color-black;
     white-space: nowrap;
-
-    &--start {
-      justify-content: flex-start;
-    }
-    &--center {
-      justify-content: center;
-    }
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &--price {
       color: #006885;
@@ -98,4 +99,30 @@
 }
 .positive-earnings {
   color: green;
+}
+
+.responsive {
+  &--set {
+  }
+
+  &--name {
+  }
+
+  &--cost {
+  }
+
+  &--type {
+  }
+
+  &--rarity {
+  }
+
+  &--artist {
+    @media only screen and (max-width: $bp-1000) {
+      display: none;
+    }
+  }
+
+  &--price {
+  }
 }

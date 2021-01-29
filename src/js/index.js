@@ -356,3 +356,15 @@ if (window.location.pathname.substring(1, 17) === 'inventory/search') {
 if (window.location.pathname.includes('/card')) {
   document.body.style.backgroundColor = '#f5f6f7';
 }
+
+// ******************************* \\
+// ****** Mobile Nav Button ****** \\
+// ******************************* \\
+
+document.querySelector('.js--nav-hamburger').addEventListener('click', () => {
+  if (document.querySelector('.js--mobile-links').style.display === 'flex') {
+    document.querySelector('.js--mobile-links').style.display = 'none';
+  } else {
+    document.querySelector('.js--mobile-links').style.display = 'flex';
+  }
+});

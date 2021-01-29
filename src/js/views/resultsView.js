@@ -153,13 +153,13 @@ const prepChecklistContainer = () => {
         <table class="card-checklist js--card-checklist">
             <thead class="js--card-checklist-header">
                 <tr class="card-checklist__row card-checklist__row--7 card-checklist__row--header">
-                    <th class="card-checklist__data">Set</th>
-                    <th class="card-checklist__data">Name</th>
-                    <th class="card-checklist__data">Cost</th>
-                    <th class="card-checklist__data">Type</th>
-                    <th class="card-checklist__data">Rarity</th>
-                    <th class="card-checklist__data">Artist</th>
-                    <th class="card-checklist__data">Price</th>
+                    <th class="card-checklist__data responsive--set">Set</th>
+                    <th class="card-checklist__data responsive--name">Name</th>
+                    <th class="card-checklist__data responsive--cost">Cost</th>
+                    <th class="card-checklist__data responsive--type">Type</th>
+                    <th class="card-checklist__data responsive--rarity">Rarity</th>
+                    <th class="card-checklist__data responsive--artist">Artist</th>
+                    <th class="card-checklist__data responsive--price">Price</th>
                 </tr>
             </thead>
             <tbody class="js--card-checklist-body card-checklist-body"></tbody>
@@ -228,37 +228,37 @@ const generateChecklist = (cards) => {
             } card-checklist__row--7 data-component="card-tooltip" data-card-img=${checkForImg(
       card
     )}>
-                <td class="card-checklist__data card-checklist__data--set"><a href="/card/${
+                <td class="card-checklist__data card-checklist__data--set responsive--set"><a href="/card/${
                   card.set
-                }/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${
+                }/${cardNameForUrl}" class="card-checklist__data-link">${
       card.set
     }</a></td>
-                <td class="card-checklist__data"><a href="/card/${
+                <td class="card-checklist__data card-checklist__data--name responsive--name"><a href="/card/${
                   card.set
-                }/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--start">${
+                }/${cardNameForUrl}" class="card-checklist__data-link">${
       card.name
     }</a></td>
-                <td class="card-checklist__data"><a href="/card/${
+                <td class="card-checklist__data responsive--cost"><a href="/card/${
                   card.set
-                }/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${generateManaCostImages(
+                }/${cardNameForUrl}" class="card-checklist__data-link">${generateManaCostImages(
       checkForManaCost(card)
     )}</a></td>
-                <td class="card-checklist__data"><a href="/card/${
+                <td class="card-checklist__data responsive--type"><a href="/card/${
                   card.set
-                }/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${shortenTypeLine(
+                }/${cardNameForUrl}" class="card-checklist__data-link">${shortenTypeLine(
       card.type_line
     )}</a></td>
-                <td class="card-checklist__data card-checklist__data--rarity"><a href="/card/${
+                <td class="card-checklist__data card-checklist__data--rarity responsive--rarity"><a href="/card/${
                   card.set
-                }/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${
+                }/${cardNameForUrl}" class="card-checklist__data-link">${
       card.rarity
     }</a></td>
-                <td class="card-checklist__data"><a href="/card/${
+                <td class="card-checklist__data responsive--artist"><a href="/card/${
                   card.set
-                }/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--center">${
+                }/${cardNameForUrl}" class="card-checklist__data-link">${
       card.artist
     }</a></td>
-                <td class="card-checklist__data"><a href="/card/${
+                <td class="card-checklist__data card-checklist__data--price responsive--price"><a href="/card/${
                   card.set
                 }/${cardNameForUrl}" class="card-checklist__data-link card-checklist__data-link--price js--price card-checklist__data-link--center">$ ${
       card.prices.usd || '-'

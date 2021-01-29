@@ -82,6 +82,26 @@
         </div>
         {% endif %}
       </div>
+      <div class="nav__mobile">
+        <div class="nav__mobile-hamburger-wrapper js--nav-hamburger">
+          <span class="nav__mobile-hamburger">&nbsp;</span>
+        </div>
+      </div>
+    </div>
+    <!-- MOBILE NAV LINKS -->
+    <div class="nav__mobile-links js--mobile-links">
+      <a href="{{ url_for('search') }}" class="nav__mobile-link"
+        >Advanced Search</a
+      >
+      {% if current_user.is_anonymous %}
+      <a href="{{ url_for('login') }}" class="nav__mobile-link">Login</a>
+      <a href="{{ url_for('register') }}" class="nav__mobile-link">Register</a>
+      {% else %}
+      <a href="{{ url_for('user_inventory') }}" class="nav__mobile-link"
+        >My Inventory</a
+      >
+      <a href="{{ url_for('logout') }}" class="nav__mobile-link">Logout</a>
+      {% endif %}
     </div>
 
     <div class="container">
