@@ -109,6 +109,106 @@
       </button>
     </div>
   </div>
+  <!-- MOBILE -->
+  <div class="api-results-display__mobile">
+    <button
+      class="api-results-display__nav-pagination-container api-results-display__nav-pagination-container--disabled js--api-previous-page-mobile"
+      disabled
+    >
+      <svg
+        class="api-results-display__nav-svg-size"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+      >
+        <path
+          class="api-results-display__nav-svg-color"
+          d="M12.586 27.414l-10-10c-0.781-0.781-0.781-2.047 0-2.828l10-10c0.781-0.781 2.047-0.781 2.828 0s0.781 2.047 0 2.828l-6.586 6.586h19.172c1.105 0 2 0.895 2 2s-0.895 2-2 2h-19.172l6.586 6.586c0.39 0.39 0.586 0.902 0.586 1.414s-0.195 1.024-0.586 1.414c-0.781 0.781-2.047 0.781-2.828 0z"
+        ></path>
+      </svg>
+      Previous
+    </button>
+
+    <button
+      class="api-results-display__nav-pagination-container js--mobile-display-options"
+    >
+      <svg
+        class="api-results-display__mobile-svg-size"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 100 100"
+      >
+        <path
+          class="api-results-display__nav-svg-color"
+          d="M93.633 93.812a1.985 1.985 0 0 1 0 2.805l-2.805 2.804a1.985 1.985 0 0 1-2.804 0L68.387 79.784a1.956 1.956 0 0 1-.454-.734c-4.027 2.941-8.972 4.7-14.344 4.7-13.46 0-24.375-10.91-24.375-24.372 0-13.46 10.914-24.375 24.375-24.375s24.375 10.914 24.375 24.375c0 5.371-1.757 10.316-4.699 14.344.27.094.52.235.735.453zM53.59 43.132c-8.973 0-16.25 7.273-16.25 16.25 0 8.973 7.273 16.246 16.25 16.246 8.973 0 16.25-7.273 16.25-16.246 0-8.977-7.277-16.25-16.25-16.25zM4.68 28.594h59.184v-6.281H4.68zm0-22.496v6.281h59.184V6.098zm0 38.707h22.102a30.283 30.283 0 0 1 4.664-6.281l-26.766.004zm0 9.938v6.28h18.383c-.028-.527-.078-1.046-.078-1.577 0-1.602.164-3.164.402-4.703z"
+        ></path>
+      </svg>
+      View
+    </button>
+
+    <button
+      class="api-results-display__nav-pagination-container api-results-display__nav-pagination-container--disabled js--api-next-page-mobile"
+      disabled
+    >
+      Next 175
+      <svg
+        class="api-results-display__nav-svg-size"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+      >
+        <path
+          class="api-results-display__nav-svg-color"
+          d="M19.414 27.414l10-10c0.781-0.781 0.781-2.047 0-2.828l-10-10c-0.781-0.781-2.047-0.781-2.828 0s-0.781 2.047 0 2.828l6.586 6.586h-19.172c-1.105 0-2 0.895-2 2s0.895 2 2 2h19.172l-6.586 6.586c-0.39 0.39-0.586 0.902-0.586 1.414s0.195 1.024 0.586 1.414c0.781 0.781 2.047 0.781 2.828 0z"
+        ></path>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    class="api-results-display__mobile-display-options js--mobile-display-menu"
+  >
+    <div class="api-results-display__mobile-display-options-group">
+      <label for="display-selector" class="api-results-display__nav-label"
+        >Display as:</label
+      >
+      <select
+        id="display-selector"
+        class="api-results-display__nav-select api-results-display__nav-select--mobile js--results-display-option-mobile"
+      >
+        <option value="list" selected>Checklist</option>
+        <option value="images">Images</option>
+      </select>
+    </div>
+    <div class="api-results-display__mobile-display-options-group">
+      <label for="display-sorter" class="api-results-display__nav-label"
+        >Sort by:</label
+      >
+      <select
+        id="display-sorter"
+        class="api-results-display__nav-select api-results-display__nav-select--mobile js--results-sort-options-mobile"
+      >
+        <option value="name">Name</option>
+        <option value="released">Release Date</option>
+        <option value="set">Set</option>
+        <option value="usd">Price</option>
+        <option value="color">Color</option>
+        <option value="toughness">Toughness</option>
+        <option value="power">Power</option>
+      </select>
+    </div>
+    <button
+      class="api-results-display__nav-btn api-results-mobile-display-btn js--results-submit-btn-mobile"
+    >
+      Display
+    </button>
+  </div>
   <div class="api-results-display__display-bar js--api-display-bar"></div>
 </div>
 

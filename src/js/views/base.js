@@ -33,16 +33,36 @@ export const elements = {
   },
   resultsPage: {
     resultsContainer: document.querySelector('.js--api-results-display'),
-    displaySelector: document.querySelector('.js--results-display-option'),
-    sortBy: document.querySelector('.js--results-sort-options'),
-    btn: document.querySelector('.js--results-submit-btn'),
+    displaySelector: () => {
+      if (window.innerWidth < 851)
+        return document.querySelector('.js--results-display-option-mobile');
+      return document.querySelector('.js--results-display-option');
+    },
+    sortBy: () => {
+      if (window.innerWidth < 851)
+        return document.querySelector('.js--results-sort-options-mobile');
+      return document.querySelector('.js--results-sort-options');
+    },
+    btn: () => {
+      if (window.innerWidth < 851)
+        return document.querySelector('.js--results-submit-btn-mobile');
+      return document.querySelector('.js--results-submit-btn');
+    },
     cardChecklist: document.querySelector('.js--card-checklist'),
     imageGrid: document.querySelector('.js--image-grid'),
     displayBar: document.querySelector('.js--api-display-bar'),
     firstPageBtn: document.querySelector('.js--api-first-page'),
-    previousPageBtn: document.querySelector('.js--api-previous-page'),
-    nextPageBtn: document.querySelector('.js--api-next-page'),
     lastPageBtn: document.querySelector('.js--api-last-page'),
+    previousPageBtn: () => {
+      if (window.innerWidth < 851)
+        return document.querySelector('.js--api-previous-page-mobile');
+      return document.querySelector('.js--api-previous-page');
+    },
+    nextPageBtn: () => {
+      if (window.innerWidth < 851)
+        return document.querySelector('.js--api-next-page-mobile');
+      return document.querySelector('.js--api-next-page');
+    },
   },
   card: {
     manaCostTitleSpan: document.querySelectorAll('.js--card-mana-cost'),

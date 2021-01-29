@@ -382,7 +382,7 @@ export const changeSortMethod = (state) => {
   );
 
   // Grab the desired sort method from the user
-  const newSortMethod = elements.resultsPage.sortBy.value;
+  const newSortMethod = elements.resultsPage.sortBy().value;
 
   // If the new sort method is not different, exit the function as to not push a new state
   if (currentSortMethod === newSortMethod) {
@@ -391,8 +391,8 @@ export const changeSortMethod = (state) => {
     // Disable all four buttons
     // Only doing this because firefox requires a ctrl f5
     disableBtn(elements.resultsPage.firstPageBtn);
-    disableBtn(elements.resultsPage.nextPageBtn);
-    disableBtn(elements.resultsPage.previousPageBtn);
+    disableBtn(elements.resultsPage.nextPageBtn());
+    disableBtn(elements.resultsPage.previousPageBtn());
     disableBtn(elements.resultsPage.lastPageBtn);
 
     const currentPathName = window.location.pathname.substring(
@@ -406,7 +406,7 @@ export const changeSortMethod = (state) => {
 
 export const changeDisplayAndUrl = (state) => {
   const currentMethod = state.display;
-  const newMethod = elements.resultsPage.displaySelector.value;
+  const newMethod = elements.resultsPage.displaySelector().value;
 
   if (newMethod === currentMethod) return;
 

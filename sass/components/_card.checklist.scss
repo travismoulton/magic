@@ -11,10 +11,22 @@
 
     &--7 {
       // grid-template-columns: repeat(7, 1fr);
-      grid-template-columns: 10% 25% 10% 20% 15% 15% 5%;
+      grid-template-columns: 10% 22.5% 10% 17.5% 15% 15% 10%;
 
       @media only screen and (max-width: $bp-1000) {
-        grid-template-columns: 10% 32.5% 17.5% 17.5% 17.5% 5%;
+        grid-template-columns: 10% 30% 17.5% 20% 12.5% 10%;
+      }
+
+      @media only screen and (max-width: $bp-700) {
+        grid-template-columns: 10% 30% 25% 25% 10%;
+      }
+
+      @media only screen and (max-width: $bp-550) {
+        grid-template-columns: 12.5% 37.5% 25% 25%;
+      }
+
+      @media only screen and (max-width: $bp-400) {
+        grid-template-columns: 15% 50% 35%;
       }
     }
 
@@ -112,9 +124,15 @@
   }
 
   &--type {
+    @media only screen and (max-width: $bp-550) {
+      display: none;
+    }
   }
 
   &--rarity {
+    @media only screen and (max-width: $bp-700) {
+      display: none;
+    }
   }
 
   &--artist {
@@ -124,5 +142,8 @@
   }
 
   &--price {
+    @media only screen and (max-width: $bp-400) {
+      display: none;
+    }
   }
 }

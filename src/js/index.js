@@ -133,9 +133,12 @@ if (window.location.pathname.substring(1, 8) === 'results') {
   // When the results page is refreshed, display the cards as a checklist by default
   document.addEventListener('DOMContentLoaded', async () => {
     // Update the sort by and display asd menus so the selected option is what the user selected
-    resultsView.choseSelectMenuSort(elements.resultsPage.sortBy.options, state);
+    resultsView.choseSelectMenuSort(
+      elements.resultsPage.sortBy().options,
+      state
+    );
     resultsView.choseSelectMenuDisplay(
-      elements.resultsPage.displaySelector,
+      elements.resultsPage.displaySelector(),
       state
     );
 
@@ -157,7 +160,7 @@ if (window.location.pathname.substring(1, 8) === 'results') {
   });
 
   // Event listener for the change display method button
-  elements.resultsPage.btn.onclick = async () => {
+  elements.resultsPage.btn().onclick = async () => {
     // Update the display method between checklist and cards if the user changed it
     resultsView.changeDisplayAndUrl(state);
 
@@ -170,7 +173,7 @@ if (window.location.pathname.substring(1, 8) === 'results') {
   };
 
   // Event Listener for next page button
-  elements.resultsPage.nextPageBtn.onclick = () => {
+  elements.resultsPage.nextPageBtn().onclick = () => {
     // Update the index
     state.currentIndex++;
 
@@ -181,12 +184,12 @@ if (window.location.pathname.substring(1, 8) === 'results') {
     resultsView.updateDisplayBar(state);
 
     // Enable the previous page and first page btns
-    resultsView.enableBtn(elements.resultsPage.previousPageBtn);
+    resultsView.enableBtn(elements.resultsPage.previousPageBtn());
     resultsView.enableBtn(elements.resultsPage.firstPageBtn);
 
     // If on the last page, disable the next page btn and last page btn
     if (state.currentIndex === state.allCards.length - 1) {
-      resultsView.disableBtn(elements.resultsPage.nextPageBtn);
+      resultsView.disableBtn(elements.resultsPage.nextPageBtn());
       resultsView.disableBtn(elements.resultsPage.lastPageBtn);
     }
   };
@@ -203,16 +206,16 @@ if (window.location.pathname.substring(1, 8) === 'results') {
     resultsView.updateDisplayBar(state);
 
     // Disable the next and last page buttons
-    resultsView.disableBtn(elements.resultsPage.nextPageBtn);
+    resultsView.disableBtn(elements.resultsPage.nextPageBtn());
     resultsView.disableBtn(elements.resultsPage.lastPageBtn);
 
     // Enable the previous and first page buttons
-    resultsView.enableBtn(elements.resultsPage.previousPageBtn);
+    resultsView.enableBtn(elements.resultsPage.previousPageBtn());
     resultsView.enableBtn(elements.resultsPage.firstPageBtn);
   };
 
   // Event listener for the previous page button
-  elements.resultsPage.previousPageBtn.onclick = () => {
+  elements.resultsPage.previousPageBtn().onclick = () => {
     // Update the index
     state.currentIndex--;
 
@@ -224,13 +227,13 @@ if (window.location.pathname.substring(1, 8) === 'results') {
 
     // If on the first page, disable the previous and first page buttons
     if (state.currentIndex === 0) {
-      resultsView.disableBtn(elements.resultsPage.previousPageBtn);
+      resultsView.disableBtn(elements.resultsPage.previousPageBtn());
       resultsView.disableBtn(elements.resultsPage.firstPageBtn);
     }
 
     // Enable the next and last page buttons. The last page button should only be
     // enabled if all results have been loaded
-    resultsView.enableBtn(elements.resultsPage.nextPageBtn);
+    resultsView.enableBtn(elements.resultsPage.nextPageBtn());
     if (state.allResultsLoaded)
       resultsView.enableBtn(elements.resultsPage.lastPageBtn);
   };
@@ -247,22 +250,37 @@ if (window.location.pathname.substring(1, 8) === 'results') {
     resultsView.updateDisplayBar(state);
 
     // Disable the previous and first page buttons
-    resultsView.disableBtn(elements.resultsPage.previousPageBtn);
+    resultsView.disableBtn(elements.resultsPage.previousPageBtn());
     resultsView.disableBtn(elements.resultsPage.firstPageBtn);
 
     // Enable the next and last page buttons. The last page button should only be
     // enabled if all results have been loaded
-    resultsView.enableBtn(elements.resultsPage.nextPageBtn);
+    resultsView.enableBtn(elements.resultsPage.nextPageBtn());
     if (state.allResultsLoaded)
       resultsView.enableBtn(elements.resultsPage.lastPageBtn);
   };
 
   window.onpopstate = (e) => {
-    // const data = e.state;
-    // if (data !== null) resultsView.updateDisplayOnPopState(state, data);
-
     window.location.href = `/search`;
   };
+
+  // Mobile display menu
+  if (document.querySelector('.js--mobile-display-options')) {
+    document
+      .querySelector('.js--mobile-display-options')
+      .addEventListener('click', () => {
+        if (
+          document.querySelector('.js--mobile-display-menu').style.display ===
+          'flex'
+        ) {
+          document.querySelector('.js--mobile-display-menu').style.display =
+            'none';
+        } else {
+          document.querySelector('.js--mobile-display-menu').style.display =
+            'flex';
+        }
+      });
+  }
 }
 
 // ******************************* \\
@@ -361,10 +379,12 @@ if (window.location.pathname.includes('/card')) {
 // ****** Mobile Nav Button ****** \\
 // ******************************* \\
 
-document.querySelector('.js--nav-hamburger').addEventListener('click', () => {
-  if (document.querySelector('.js--mobile-links').style.display === 'flex') {
-    document.querySelector('.js--mobile-links').style.display = 'none';
-  } else {
-    document.querySelector('.js--mobile-links').style.display = 'flex';
-  }
-});
+if (document.querySelector('.js--nav-hamburger')) {
+  document.querySelector('.js--nav-hamburger').addEventListener('click', () => {
+    if (document.querySelector('.js--mobile-links').style.display === 'flex') {
+      document.querySelector('.js--mobile-links').style.display = 'none';
+    } else {
+      document.querySelector('.js--mobile-links').style.display = 'flex';
+    }
+  });
+}

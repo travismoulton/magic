@@ -225,7 +225,7 @@ export default class Search {
         state.allCards.push(res.data.data);
 
         // Enable the next page btn and resolve the promise
-        enableBtn(elements.resultsPage.nextPageBtn);
+        enableBtn(elements.resultsPage.nextPageBtn());
         resolve();
       });
     });

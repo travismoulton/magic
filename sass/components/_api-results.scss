@@ -12,6 +12,10 @@
     padding: 1.2rem 5%;
   }
 
+  @media only screen and (max-width: $bp-850) {
+    display: none;
+  }
+
   &-select {
     color: $color-purple;
     margin-right: 1rem;
@@ -94,6 +98,10 @@
       color: rgba(0, 0, 0, 0.25);
       background-color: #f5f6f7;
     }
+
+    @media only screen and (max-width: $bp-500) {
+      margin: 0;
+    }
   }
 
   &-svg-size {
@@ -118,4 +126,55 @@
   @media only screen and (max-width: $bp-1150) {
     padding-left: 5%;
   }
+}
+
+.api-results-display__mobile {
+  background-color: #f3f5f8;
+  border-bottom: 1px solid rgba(99, 68, 150, 0.1);
+  justify-content: space-between;
+  margin-bottom: 0.1rem;
+  height: 5.2rem;
+  display: none;
+
+  @media only screen and (max-width: $bp-850) {
+    display: flex;
+    padding: 1.2rem 5%;
+  }
+
+  @media only screen and (max-width: $bp-500) {
+    padding: 1.2rem;
+  }
+
+  &-svg-size {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+
+.api-results-display__mobile-display-options {
+  background-color: #f3f5f8;
+  border-bottom: 1px solid rgba(99, 68, 150, 0.1);
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.2rem 0;
+  display: none;
+}
+
+.api-results-display__mobile-display-options-group {
+  display: flex;
+  justify-content: space-between;
+  width: 45%;
+  margin: 0 auto 1rem auto;
+
+  & label {
+    margin-right: 1rem;
+  }
+}
+
+.api-results-display__nav-select--mobile {
+  width: 24rem;
+}
+
+.api-results-mobile-display-btn {
+  align-self: center;
 }
