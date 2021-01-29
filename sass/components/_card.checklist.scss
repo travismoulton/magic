@@ -3,14 +3,16 @@
   overflow-y: hidden;
   position: relative;
   display: flex;
+  margin: 0 auto;
+  width: 68%;
+
+  @media only screen and (max-width: $bp-1200) {
+    width: 905;
+  }
 }
 .card-checklist {
-  width: 68%;
+  width: 100%;
   justify-self: center;
-
-  @media only screen and (max-width: $bp-1150) {
-    width: 90%;
-  }
 
   &__row {
     display: grid;

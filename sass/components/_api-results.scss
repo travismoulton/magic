@@ -8,8 +8,8 @@
   margin-bottom: 0.1rem;
   height: 5.2rem;
 
-  @media only screen and (max-width: $bp-1150) {
-    padding: 1.2rem 5%;
+  @media only screen and (max-width: $bp-1200) {
+    padding: 1.2rem 2.5%;
   }
 
   @media only screen and (max-width: $bp-850) {
@@ -123,8 +123,8 @@
   margin-bottom: 2rem;
   height: 2.1rem;
 
-  @media only screen and (max-width: $bp-1150) {
-    padding-left: 5%;
+  @media only screen and (max-width: $bp-1200) {
+    padding-left: 2.5%;
   }
 }
 
@@ -138,7 +138,7 @@
 
   @media only screen and (max-width: $bp-850) {
     display: flex;
-    padding: 1.2rem 5%;
+    padding: 1.2rem 2.5%;
   }
 
   @media only screen and (max-width: $bp-500) {

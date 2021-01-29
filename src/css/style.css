@@ -181,9 +181,9 @@ body {
   padding: 1rem 16%;
   background-color: #2b253a;
   border-bottom: 1px solid #000; }
-  @media only screen and (max-width: 71.875em) {
+  @media only screen and (max-width: 75rem) {
     .nav {
-      padding: 1.2rem 5%; } }
+      padding: 1.2rem 2.5%; } }
   @media only screen and (max-width: 43.75em) {
     .nav {
       padding: 1rem; } }
@@ -196,14 +196,14 @@ body {
     border-left: 1px solid #fff;
     padding-left: 1rem;
     margin-left: auto; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 40.625em) {
       .nav__right {
         display: none; } }
     .nav__right > * {
       margin-right: 1rem; }
   .nav__item--search {
     flex: 0 0 25%; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 40.625em) {
       .nav__item--search {
         display: none; } }
   .nav__item--home {
@@ -253,7 +253,7 @@ body {
     fill: #bfbfbf; }
   .nav__mobile {
     display: none; }
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 40.625em) {
       .nav__mobile {
         display: flex;
         flex: 0 0 50%;
@@ -574,9 +574,9 @@ body {
   padding: 1.2rem 16%;
   margin-bottom: 0.1rem;
   height: 5.2rem; }
-  @media only screen and (max-width: 71.875em) {
+  @media only screen and (max-width: 75rem) {
     .api-results-display__nav {
-      padding: 1.2rem 5%; } }
+      padding: 1.2rem 2.5%; } }
   @media only screen and (max-width: 53.125em) {
     .api-results-display__nav {
       display: none; } }
@@ -659,9 +659,9 @@ body {
   padding-left: 16%;
   margin-bottom: 2rem;
   height: 2.1rem; }
-  @media only screen and (max-width: 71.875em) {
+  @media only screen and (max-width: 75rem) {
     .api-results-display__display-bar {
-      padding-left: 5%; } }
+      padding-left: 2.5%; } }
 
 .api-results-display__mobile {
   background-color: #f3f5f8;
@@ -673,7 +673,7 @@ body {
   @media only screen and (max-width: 53.125em) {
     .api-results-display__mobile {
       display: flex;
-      padding: 1.2rem 5%; } }
+      padding: 1.2rem 2.5%; } }
   @media only screen and (max-width: 31.5em) {
     .api-results-display__mobile {
       padding: 1.2rem; } }
@@ -719,14 +719,16 @@ body {
   overflow-x: scroll;
   overflow-y: hidden;
   position: relative;
-  display: flex; }
+  display: flex;
+  margin: 0 auto;
+  width: 68%; }
+  @media only screen and (max-width: 75rem) {
+    .wrapper {
+      width: 905; } }
 
 .card-checklist {
-  width: 68%;
+  width: 100%;
   justify-self: center; }
-  @media only screen and (max-width: 71.875em) {
-    .card-checklist {
-      width: 90%; } }
   .card-checklist__row {
     display: grid;
     height: 3rem; }
@@ -788,19 +790,25 @@ body {
 
 .image-grid {
   padding: 7rem 16%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  grid-column-gap: 2rem;
-  grid-row-gap: 1rem; }
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  @media only screen and (max-width: 75rem) {
+    .image-grid {
+      padding: 4rem 2.5%; } }
+  @media only screen and (max-width: 62.5em) {
+    .image-grid {
+      grid-column-gap: 1rem; } }
   .image-grid__outer-div {
-    position: relative; }
+    position: relative;
+    height: 100%; }
   .image-grid__inner-div {
     perspective: 150rem;
-    height: 34rem;
-    width: 24rem; }
+    width: 100%;
+    height: 100%; }
   .image-grid__double {
-    height: 34rem;
-    width: 24rem;
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -832,11 +840,28 @@ body {
   .image-grid__dobule-btn-svg-color {
     color: #16161d; }
   .image-grid__container {
-    width: 24rem;
-    height: 34rem; }
-  .image-grid__image {
     width: 100%;
     height: 100%; }
+  .image-grid__image {
+    width: 100%;
+    height: 100%;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.45);
+    border-radius: 4.75% / 3.5%; }
+  .image-grid__link {
+    margin-bottom: 0.9rem;
+    width: 24.25%;
+    height: auto;
+    margin-bottom: 0.9rem;
+    page-break-after: auto;
+    page-break-before: auto;
+    page-break-inside: avoid;
+    display: block; }
+    @media only screen and (max-width: 59.375em) {
+      .image-grid__link {
+        width: 31.75%; } }
+    @media only screen and (max-width: 40.625em) {
+      .image-grid__link {
+        width: 47.25%; } }
 
 .card {
   width: 100%;

@@ -6,13 +6,9 @@
   background-color: #2b253a;
   border-bottom: 1px solid $color-black;
 
-  @media only screen and (max-width: $bp-1150) {
-    padding: 1.2rem 5%;
+  @media only screen and (max-width: $bp-1200) {
+    padding: 1.2rem 2.5%;
   }
-
-  // @media only screen and (max-width: $bp-900) {
-  //   padding: 1rem 8%;
-  // }
 
   @media only screen and (max-width: $bp-700) {
     padding: 1rem;
@@ -30,7 +26,7 @@
     padding-left: 1rem;
     margin-left: auto;
 
-    @media only screen and (max-width: $bp-600) {
+    @media only screen and (max-width: $bp-650) {
       display: none;
     }
 
@@ -43,7 +39,7 @@
     &--search {
       flex: 0 0 25%;
 
-      @media only screen and (max-width: $bp-600) {
+      @media only screen and (max-width: $bp-650) {
         display: none;
       }
     }
@@ -129,7 +125,7 @@
   &__mobile {
     display: none;
 
-    @media only screen and (max-width: $bp-600) {
+    @media only screen and (max-width: $bp-650) {
       display: flex;
       flex: 0 0 50%;
       align-items: center;

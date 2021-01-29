@@ -1,23 +1,32 @@
 .image-grid {
   padding: 7rem 16%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  grid-column-gap: 2rem;
-  grid-row-gap: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  @media only screen and (max-width: $bp-1200) {
+    padding: 4rem 2.5%;
+  }
+
+  @media only screen and (max-width: $bp-1000) {
+    grid-column-gap: 1rem;
+  }
 
   &__outer-div {
     position: relative;
+    height: 100%;
   }
 
   &__inner-div {
     perspective: 150rem;
-    height: 34rem;
-    width: 24rem;
+    width: 100%;
+    height: 100%;
   }
 
   &__double {
-    height: 34rem;
-    width: 24rem;
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -61,12 +70,33 @@
   }
 
   &__container {
-    width: 24rem;
-    height: 34rem;
+    width: 100%;
+    height: 100%;
   }
 
   &__image {
     width: 100%;
     height: 100%;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.45);
+    border-radius: 4.75% / 3.5%;
+  }
+
+  &__link {
+    margin-bottom: 0.9rem;
+    width: 24.25%;
+    height: auto;
+    margin-bottom: 0.9rem;
+    page-break-after: auto;
+    page-break-before: auto;
+    page-break-inside: avoid;
+    display: block;
+
+    @media only screen and (max-width: $bp-950) {
+      width: 31.75%;
+    }
+
+    @media only screen and (max-width: $bp-650) {
+      width: 47.25%;
+    }
   }
 }
