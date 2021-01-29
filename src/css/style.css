@@ -724,7 +724,7 @@ body {
   width: 68%; }
   @media only screen and (max-width: 75rem) {
     .wrapper {
-      width: 905; } }
+      width: 90%; } }
 
 .card-checklist {
   width: 100%;
