@@ -150,7 +150,7 @@ export const dispalyImages = (cards) => {
 
 const prepChecklistContainer = () => {
   const markup = `
-        <table class="card-checklist js--card-checklist">
+        <div class="wrapper"><table class="card-checklist js--card-checklist">
             <thead class="js--card-checklist-header">
                 <tr class="card-checklist__row card-checklist__row--7 card-checklist__row--header">
                     <th class="card-checklist__data responsive--set">Set</th>
@@ -163,7 +163,7 @@ const prepChecklistContainer = () => {
                 </tr>
             </thead>
             <tbody class="js--card-checklist-body card-checklist-body"></tbody>
-        </table>
+        </table></div>
         `;
   elements.resultsPage.resultsContainer.insertAdjacentHTML('beforeend', markup);
 };

@@ -694,14 +694,30 @@ body {
   justify-content: space-between;
   width: 45%;
   margin: 0 auto 1rem auto; }
+  @media only screen and (max-width: 51.5625em) {
+    .api-results-display__mobile-display-options-group {
+      width: 60%; } }
+  @media only screen and (max-width: 37.5em) {
+    .api-results-display__mobile-display-options-group {
+      width: 80%; } }
+  @media only screen and (max-width: 28.125em) {
+    .api-results-display__mobile-display-options-group {
+      width: 95%; } }
   .api-results-display__mobile-display-options-group label {
     margin-right: 1rem; }
 
 .api-results-display__nav-select--mobile {
   width: 24rem; }
+  @media only screen and (max-width: 21.875em) {
+    .api-results-display__nav-select--mobile {
+      width: 16rem; } }
 
 .api-results-mobile-display-btn {
   align-self: center; }
+
+.wrapper {
+  overflow-x: scroll;
+  position: relative; }
 
 .card-checklist {
   width: 68%;
@@ -714,18 +730,6 @@ body {
     height: 3rem; }
     .card-checklist__row--7 {
       grid-template-columns: 10% 22.5% 10% 17.5% 15% 15% 10%; }
-      @media only screen and (max-width: 62.5em) {
-        .card-checklist__row--7 {
-          grid-template-columns: 10% 30% 17.5% 20% 12.5% 10%; } }
-      @media only screen and (max-width: 43.75em) {
-        .card-checklist__row--7 {
-          grid-template-columns: 10% 30% 25% 25% 10%; } }
-      @media only screen and (max-width: 34.375em) {
-        .card-checklist__row--7 {
-          grid-template-columns: 12.5% 37.5% 25% 25%; } }
-      @media only screen and (max-width: 25em) {
-        .card-checklist__row--7 {
-          grid-template-columns: 15% 50% 35%; } }
     .card-checklist__row--9 {
       grid-template-columns: repeat(9, 1fr); }
     .card-checklist__row--header {
@@ -779,22 +783,6 @@ body {
 
 .positive-earnings {
   color: green; }
-
-@media only screen and (max-width: 34.375em) {
-  .responsive--type {
-    display: none; } }
-
-@media only screen and (max-width: 43.75em) {
-  .responsive--rarity {
-    display: none; } }
-
-@media only screen and (max-width: 62.5em) {
-  .responsive--artist {
-    display: none; } }
-
-@media only screen and (max-width: 25em) {
-  .responsive--price {
-    display: none; } }
 
 .image-grid {
   padding: 7rem 16%;

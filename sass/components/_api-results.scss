@@ -166,6 +166,18 @@
   width: 45%;
   margin: 0 auto 1rem auto;
 
+  @media only screen and (max-width: $bp-825) {
+    width: 60%;
+  }
+
+  @media only screen and (max-width: $bp-600) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: $bp-450) {
+    width: 95%;
+  }
+
   & label {
     margin-right: 1rem;
   }
@@ -173,6 +185,10 @@
 
 .api-results-display__nav-select--mobile {
   width: 24rem;
+
+  @media only screen and (max-width: $bp-350) {
+    width: 16rem;
+  }
 }
 
 .api-results-mobile-display-btn {
