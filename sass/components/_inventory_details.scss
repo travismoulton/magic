@@ -10,6 +10,15 @@
   display: flex;
   justify-content: space-between;
 
+  @media only screen and (max-width: $bp-1200) {
+    padding: 1rem 2.5%;
+  }
+
+  @media only screen and (max-width: $bp-900) {
+    flex-direction: column;
+    align-items: center;
+  }
+
   &__link {
     text-decoration: none;
     color: rgba(#535353, 0.75);
@@ -17,6 +26,10 @@
     padding: 0 0.6rem;
     border-left: 1px solid #535353;
     border-right: 1px solid #535353;
+
+    @media only screen and (max-width: $bp-900) {
+      margin: 1rem 0;
+    }
 
     &:hover {
       color: #535353;

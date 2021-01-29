@@ -869,7 +869,6 @@ body {
 
 .card {
   width: 100%;
-  max-width: 100rem;
   padding: 0 16%;
   display: flex;
   margin-top: 3rem;
@@ -1303,6 +1302,13 @@ body {
   position: relative;
   display: flex;
   justify-content: space-between; }
+  @media only screen and (max-width: 75rem) {
+    .inventory-details {
+      padding: 1rem 2.5%; } }
+  @media only screen and (max-width: 56.25em) {
+    .inventory-details {
+      flex-direction: column;
+      align-items: center; } }
   .inventory-details__link {
     text-decoration: none;
     color: rgba(83, 83, 83, 0.75);
@@ -1310,6 +1316,9 @@ body {
     padding: 0 0.6rem;
     border-left: 1px solid #535353;
     border-right: 1px solid #535353; }
+    @media only screen and (max-width: 56.25em) {
+      .inventory-details__link {
+        margin: 1rem 0; } }
     .inventory-details__link:hover {
       color: #535353; }
   .inventory-details span {

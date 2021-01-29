@@ -574,13 +574,26 @@ def search_inventory():
 
         user_inv = Inventory.query.from_statement(stmt).params(params).all()
 
+        card_links = []
+        for card in cards:
+            card_links.append(parse_card_name_for_url(card.name))
+
         return render_template(
             'inventory.html', 
             user_inv=user_inv, 
             cards=cards, 
             total_inv_value=get_inv_value(user_inv),
-            search_string=build_search_paramater_string(request)
+            search_string=build_search_paramater_string(request),
+            card_links=card_links,
         )
+
+        # return redirect(url_for('user_inventory',            
+        #     user_inv=user_inv, 
+        #     cards=cards, 
+        #     total_inv_value=get_inv_value(user_inv),
+        #     search_string=build_search_paramater_string(request),
+        #     card_links='', ))
+
 
 
 # # One time route to store the types in a data base

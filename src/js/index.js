@@ -11,7 +11,7 @@ import { elements } from './views/base';
 // ******************************* \\
 // *********** Home Page ********* \\
 // ******************************* \\
-// if (window.location.pathname === '/') document.body.style.overflow = 'hidden';
+if (window.location.pathname === '/') document.body.style.overflow = 'hidden';
 
 // ******************************* \\
 // ********* Quick Search ******** \\
@@ -312,7 +312,7 @@ if (window.location.pathname.substring(1, 5) === 'card') {
 // ******************************* \\
 // ******* Inventory Page ******** \\
 // ******************************* \\
-if (window.location.pathname.endsWith('inventory')) {
+if (window.location.pathname.startsWith('/inventory')) {
   document.body.style.backgroundColor = '#f5f6f7';
   document.addEventListener(
     'DOMContentLoaded',
@@ -323,52 +323,55 @@ if (window.location.pathname.endsWith('inventory')) {
 // ******************************* \\
 // **** Inventory Search Page **** \\
 // ******************************* \\
-if (window.location.pathname.substring(1, 17) === 'inventory/search') {
+if (document.querySelector('.js--inv-search-btn')) {
   document.body.style.backgroundColor = '#fdfdfd';
 
-  document
-    .querySelector('.js--inv-search-btn')
-    .addEventListener('click', invSearch.checkPriceInputForDigits);
+  if (document.querySelector('.js--inv-search-btn')) {
+    console.log('hash');
+    document
+      .querySelector('.js--inv-search-btn')
+      .addEventListener('click', invSearch.checkPriceInputForDigits);
 
-  elements.apiSearch.typeLine.addEventListener('click', () => {
-    // Display the dropdown
-    searchView.showTypesDropDown();
-    invSearch.startTypesDropDownNavigation();
-
-    // Start an event listener on the document. This will close the dropdown if the user clicks
-    // outside of the input or dropdown. This will also cancel the event listener
-    document.addEventListener('click', invSearch.typeLineListener);
-  });
-
-  elements.apiSearch.typeLine.addEventListener('input', () => {
-    if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
+    elements.apiSearch.typeLine.addEventListener('click', () => {
+      // Display the dropdown
       searchView.showTypesDropDown();
-    }
+      invSearch.startTypesDropDownNavigation();
 
-    searchView.filterTypes(elements.apiSearch.typeLine.value);
-    searchView.filterTypeHeaders();
-    invSearch.startTypesDropDownNavigation();
-  });
+      // Start an event listener on the document. This will close the dropdown if the user clicks
+      // outside of the input or dropdown. This will also cancel the event listener
+      document.addEventListener('click', invSearch.typeLineListener);
+    });
 
-  elements.apiSearch.setInput.addEventListener('click', () => {
-    // Display the dropdown
-    searchView.showSetsDropDown();
-    invSearch.startSetsDropDownNavigation();
+    elements.apiSearch.typeLine.addEventListener('input', () => {
+      if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
+        searchView.showTypesDropDown();
+      }
 
-    // Start an event listener on the document. This will close the dropdown if the user clicks
-    // outside of the input or dropdown. This will also cancel the event listener
-    document.addEventListener('click', invSearch.setInputListener);
-  });
+      searchView.filterTypes(elements.apiSearch.typeLine.value);
+      searchView.filterTypeHeaders();
+      invSearch.startTypesDropDownNavigation();
+    });
 
-  elements.apiSearch.setInput.addEventListener('input', () => {
-    if (elements.apiSearch.setDropDown.hasAttribute('hidden')) {
+    elements.apiSearch.setInput.addEventListener('click', () => {
+      // Display the dropdown
       searchView.showSetsDropDown();
-    }
+      invSearch.startSetsDropDownNavigation();
 
-    searchView.filterSets(elements.apiSearch.setInput.value);
-    searchView.filterSetHeaders();
-    invSearch.startSetsDropDownNavigation();
-  });
+      // Start an event listener on the document. This will close the dropdown if the user clicks
+      // outside of the input or dropdown. This will also cancel the event listener
+      document.addEventListener('click', invSearch.setInputListener);
+    });
+
+    elements.apiSearch.setInput.addEventListener('input', () => {
+      if (elements.apiSearch.setDropDown.hasAttribute('hidden')) {
+        searchView.showSetsDropDown();
+      }
+
+      searchView.filterSets(elements.apiSearch.setInput.value);
+      searchView.filterSetHeaders();
+      invSearch.startSetsDropDownNavigation();
+    });
+  }
 }
 
 if (window.location.pathname.includes('/card')) {
