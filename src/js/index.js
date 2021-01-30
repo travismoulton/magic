@@ -396,4 +396,4 @@ if (
   window.location.pathname.includes('/login') ||
   window.location.pathname.includes('/register')
 )
-  document.body.style.overflowY = 'hidden';
+  document.body.style.overflow = 'hidden';

@@ -254,7 +254,7 @@
     </div>
   </div>
 
-  {% if not user_copy %}
+  {% if current_user.is_authenticated %} {% if not user_copy %}
 
   <div class="add-to-inv">
     <h3 class="add-to-inv__header">
@@ -315,7 +315,7 @@
       </button>
     </form>
   </div>
-  {% endif %}
+  {% endif %} {% endif %}
 </div>
 {% endblock %} {% block outsidecontainer %}
 <div class="cardpage__colage">
