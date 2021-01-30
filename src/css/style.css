@@ -13,7 +13,6 @@ body {
   font-size: 1.6rem;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 127.5rem;
   font-family: 'Lato', sans-serif;
   position: relative; }
 
@@ -55,7 +54,7 @@ body {
 
 .login,
 .register {
-  min-height: calc(100vh - 4.1rem);
+  height: 100vh;
   width: 100vw;
   background: linear-gradient(to top, #5f4f66, #342332);
   background-repeat: no-repeat;

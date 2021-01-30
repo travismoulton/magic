@@ -11,7 +11,8 @@ import { elements } from './views/base';
 // ******************************* \\
 // *********** Home Page ********* \\
 // ******************************* \\
-if (window.location.pathname === '/') document.body.style.overflow = 'hidden';
+if (window.location.pathname === '/')
+  document.body.style.backgroundColor = '#431e3f';
 
 // ******************************* \\
 // ********* Quick Search ******** \\
@@ -304,9 +305,11 @@ if (window.location.pathname.substring(1, 5) === 'card') {
     );
   }
 
-  document
-    .querySelector('.js--add-to-inv-submit')
-    .addEventListener('click', cardView.checkPriceInputForDigits);
+  if (document.querySelector('.js--add-to-inv-submit')) {
+    document
+      .querySelector('.js--add-to-inv-submit')
+      .addEventListener('click', cardView.checkPriceInputForDigits);
+  }
 }
 
 // ******************************* \\
@@ -396,4 +399,4 @@ if (
   window.location.pathname.includes('/login') ||
   window.location.pathname.includes('/register')
 )
-  document.body.style.overflow = 'hidden';
+  document.body.style.backgroundColor = '#431e3f';
