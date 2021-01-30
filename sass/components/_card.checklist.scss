@@ -7,39 +7,21 @@
   width: 68%;
 
   @media only screen and (max-width: $bp-1200) {
-    width: 90%;
+    width: 95%;
   }
 }
 .card-checklist {
   width: 100%;
-  justify-self: center;
 
   &__row {
     display: grid;
 
     &--7 {
-      // grid-template-columns: repeat(7, 1fr);
       grid-template-columns: 10% 22.5% 10% 17.5% 15% 15% 10%;
-
-      // @media only screen and (max-width: $bp-1000) {
-      //   grid-template-columns: 10% 30% 17.5% 20% 12.5% 10%;
-      // }
-
-      // @media only screen and (max-width: $bp-700) {
-      //   grid-template-columns: 10% 30% 25% 25% 10%;
-      // }
-
-      // @media only screen and (max-width: $bp-550) {
-      //   grid-template-columns: 12.5% 37.5% 25% 25%;
-      // }
-
-      // @media only screen and (max-width: $bp-400) {
-      //   grid-template-columns: 15% 50% 35%;
-      // }
     }
 
     &--9 {
-      grid-template-columns: repeat(9, 1fr);
+      grid-template-columns: 5rem 22.5rem 10rem 12rem 12rem 7.5rem 7.5rem 7.5rem;
     }
 
     &--header {
@@ -84,6 +66,12 @@
     &--rarity {
       text-transform: capitalize;
     }
+
+    &--inv-header {
+      @media only screen and (max-width: $bp-700) {
+        font-size: 1.2rem;
+      }
+    }
   }
 
   &__data-link {
@@ -101,6 +89,32 @@
     }
   }
 }
+
+// .responsive {
+//   @media only screen and (max-width: $bp-900) {
+//     &--type {
+//       display: none;
+//     }
+
+//     &--rarity {
+//       display: none;
+//     }
+//   }
+// }
+
+// .responsive {
+//   &--type {
+//     @media only screen and (max-width: $bp-900) {
+//       display: none;
+//     }
+//   }
+
+//   &--rarity {
+//     @media only screen and (max-width: $bp-900) {
+//       display: none;
+//     }
+//   }
+// }
 
 .tooltip {
   position: absolute;
@@ -120,38 +134,3 @@
 .positive-earnings {
   color: green;
 }
-
-// .responsive {
-//   &--set {
-//   }
-
-//   &--name {
-//   }
-
-//   &--cost {
-//   }
-
-//   &--type {
-//     @media only screen and (max-width: $bp-550) {
-//       display: none;
-//     }
-//   }
-
-//   &--rarity {
-//     @media only screen and (max-width: $bp-700) {
-//       display: none;
-//     }
-//   }
-
-//   &--artist {
-//     @media only screen and (max-width: $bp-1000) {
-//       display: none;
-//     }
-//   }
-
-//   &--price {
-//     @media only screen and (max-width: $bp-400) {
-//       display: none;
-//     }
-//   }
-// }

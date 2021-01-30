@@ -1,121 +1,146 @@
 {% extends "layout.html" %} {% block content %}
-<div class="inventory-details">
-  <p>
-    Your inventory is worth <span>${{ (total_inv_value.value)|round(2) }}</span>
-  </p>
-  <a href="{{ url_for('search_inventory') }}" class="inventory-details__link"
-    >Search your inventory</a
-  >
-  <p>{{ search_string }}</p>
-</div>
+
 <div class="api-results-display">
-  <table class="card-checklist js--card-checklist">
-    <thead>
-      <tr
-        class="card-checklist__row card-checklist__row--9 card-checklist__row--header"
-      >
-        <th class="card-checklist__data">Set</th>
-        <th class="card-checklist__data">Name</th>
-        <th class="card-checklist__data">Cost</th>
-        <th class="card-checklist__data">Type</th>
-        <th class="card-checklist__data">Rarity</th>
-
-        <th class="card-checklist__data">Purchase Price</th>
-        <th class="card-checklist__data">Current Market Value</th>
-        <th class="card-checklist__data">Earnings</th>
-      </tr>
-    </thead>
-    <tbody class="js--card-checklist-body">
-      {% for card in cards %}
-      <tr
-        class="card-checklist__row card-checklist__row--9 js--checklist-row"
-        data-row="{{ card.name }}"
-        data-component="card-tooltip"
-        data-card-img="{{ card.image_uri_normal }}"
-      >
-        <td class="card-checklist__data card-checklist__data--set">
-          <a
-            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-            class="card-checklist__data-link card-checklist__data-link--center"
-          >
-            {{ card.set_code }}
-          </a>
-        </td>
-
-        <td
-          class="card-checklist__data card-checklist__data--name js--checklist-card-name"
+  <div class="inventory-details">
+    <p>
+      Your inventory is worth
+      <span>${{ (total_inv_value.value)|round(2) }}</span>
+    </p>
+    <a href="{{ url_for('search_inventory') }}" class="inventory-details__link"
+      >Search your inventory</a
+    >
+    <p>{{ search_string }}</p>
+  </div>
+  <div class="wrapper">
+    <table class="card-checklist js--card-checklist">
+      <thead>
+        <tr
+          class="card-checklist__row card-checklist__row--9 card-checklist__row--header"
         >
-          <a
-            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-            class="card-checklist__data-link card-checklist__data-link--start"
+          <th class="card-checklist__data card-checklist__data--inv-header">
+            Set
+          </th>
+          <th class="card-checklist__data card-checklist__data--inv-header">
+            Name
+          </th>
+          <th class="card-checklist__data card-checklist__data--inv-header">
+            Cost
+          </th>
+          <th
+            class="card-checklist__data card-checklist__data--inv-header responsive--type"
           >
-            {{ card.name }}
-          </a>
-        </td>
-        <td class="card-checklist__data js--inv-mana-cost">
-          <a
-            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-            class="card-checklist__data-link card-checklist__data-link--center"
+            Type
+          </th>
+          <th
+            class="card-checklist__data card-checklist__data--inv-header responsive--rarity"
           >
-            {{ card.mana_cost }}
-          </a>
-        </td>
-        <td class="card-checklist__data js--inv-types">
-          <a
-            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-            class="card-checklist__data-link card-checklist__data-link--center"
-          >
-            {{ card.type_line }}
-          </a>
-        </td>
-        <td class="card-checklist__data card-checklist__data--rarity">
-          <a
-            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-            class="card-checklist__data-link card-checklist__data-link--center js--rarity"
-          >
-            {{ card.rarity }}
-          </a>
-        </td>
+            Rarity
+          </th>
+          <th class="card-checklist__data card-checklist__data--inv-header">
+            Purchase Price
+          </th>
+          <th class="card-checklist__data card-checklist__data--inv-header">
+            Current Value
+          </th>
+          <th class="card-checklist__data card-checklist__data--inv-header">
+            Earnings
+          </th>
+        </tr>
+      </thead>
+      <tbody class="js--card-checklist-body">
+        {% for card in cards %}
+        <tr
+          class="card-checklist__row card-checklist__row--9 js--checklist-row"
+          data-row="{{ card.name }}"
+          data-component="card-tooltip"
+          data-card-img="{{ card.image_uri_normal }}"
+        >
+          <td class="card-checklist__data card-checklist__data--set">
+            <a
+              href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+              class="card-checklist__data-link card-checklist__data-link--center"
+            >
+              {{ card.set_code }}
+            </a>
+          </td>
 
-        <td class="card-checklist__data">
-          <a
-            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-            class="card-checklist__data-link card-checklist__data-link--center"
+          <td
+            class="card-checklist__data card-checklist__data--name js--checklist-card-name"
           >
-            {{ user_inv[loop.index0].purchase_price }}
-          </a>
-        </td>
-        {% if card.price_usd %}
-        <td class="card-checklist__data">
-          <a
-            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-            class="card-checklist__data-link card-checklist__data-link--center"
+            <a
+              href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+              class="card-checklist__data-link card-checklist__data-link--start"
+            >
+              {{ card.name }}
+            </a>
+          </td>
+          <td class="card-checklist__data js--inv-mana-cost">
+            <a
+              href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+              class="card-checklist__data-link card-checklist__data-link--center"
+            >
+              {{ card.mana_cost }}
+            </a>
+          </td>
+          <td class="card-checklist__data js--inv-types responsive--type">
+            <a
+              href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+              class="card-checklist__data-link card-checklist__data-link--center"
+            >
+              {{ card.type_line }}
+            </a>
+          </td>
+          <td
+            class="card-checklist__data card-checklist__data--rarity responsive--rarity"
           >
-            {{ user_inv[loop.index0].current_price }}
-          </a>
-        </td>
-        {% else %}
-        <td class="card-checklist__data">
-          <a
-            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-            class="card-checklist__data-link card-checklist__data-link--center"
-          >
-            0
-          </a>
-        </td>
-        {% endif %}
-        <td class="card-checklist__data">
-          <a
-            href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-            class="card-checklist__data-link card-checklist__data-link--center js--inv-earnings"
-          >
-            {{ (user_inv[loop.index0].current_price -
-            user_inv[loop.index0].purchase_price)|round(2) }}
-          </a>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+            <a
+              href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+              class="card-checklist__data-link card-checklist__data-link--center js--rarity"
+            >
+              {{ card.rarity }}
+            </a>
+          </td>
+
+          <td class="card-checklist__data">
+            <a
+              href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+              class="card-checklist__data-link card-checklist__data-link--center"
+            >
+              {{ user_inv[loop.index0].purchase_price }}
+            </a>
+          </td>
+          {% if card.price_usd %}
+          <td class="card-checklist__data">
+            <a
+              href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+              class="card-checklist__data-link card-checklist__data-link--center"
+            >
+              {{ user_inv[loop.index0].current_price }}
+            </a>
+          </td>
+          {% else %}
+          <td class="card-checklist__data">
+            <a
+              href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+              class="card-checklist__data-link card-checklist__data-link--center"
+            >
+              0
+            </a>
+          </td>
+          {% endif %}
+          <td class="card-checklist__data">
+            <a
+              href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
+              class="card-checklist__data-link card-checklist__data-link--center js--inv-earnings"
+            >
+              {{ (user_inv[loop.index0].current_price -
+              user_inv[loop.index0].purchase_price)|round(2) }}
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
 {% endblock %}

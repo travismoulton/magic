@@ -218,101 +218,105 @@
       </label>
       <div class="search-form__group-input-wrapper">
         <div class="search-form__group--checkbox">
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              name="white"
-              class="search-form__input-checkbox js--api-color-box"
-              value="w"
-              id="color-white"
-            />
-            <label for="color-white" class="search-form__label--checkbox">
-              <img
-                src="{{ url_for('static', filename='/img/white.png') }}"
-                alt="white mana symbol"
-                class="search-form__mana-symbol"
+          <div class="search-form__group-colors-left">
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                name="white"
+                class="search-form__input-checkbox js--api-color-box"
+                value="w"
+                id="color-white"
               />
-              White
-            </label>
-          </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              name="blue"
-              class="search-form__input-checkbox js--api-color-box"
-              value="u"
-              id="color-blue"
-            />
-            <label for="color-blue" class="search-form__label--checkbox">
-              <img
-                src="{{ url_for('static', filename='/img/blue.png') }}"
-                alt="blue mana symbol"
-                class="search-form__mana-symbol"
+              <label for="color-white" class="search-form__label--checkbox">
+                <img
+                  src="{{ url_for('static', filename='/img/white.png') }}"
+                  alt="white mana symbol"
+                  class="search-form__mana-symbol"
+                />
+                White
+              </label>
+            </div>
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                name="blue"
+                class="search-form__input-checkbox js--api-color-box"
+                value="u"
+                id="color-blue"
               />
-              Blue
-            </label>
-          </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              name="black"
-              class="search-form__input-checkbox js--api-color-box"
-              value="b"
-              id="color-black"
-            />
-            <label for="color-black" class="search-form__label--checkbox">
-              <img
-                src="{{ url_for('static', filename='/img/black.png') }}"
-                alt="black mana symbol"
-                class="search-form__mana-symbol"
+              <label for="color-blue" class="search-form__label--checkbox">
+                <img
+                  src="{{ url_for('static', filename='/img/blue.png') }}"
+                  alt="blue mana symbol"
+                  class="search-form__mana-symbol"
+                />
+                Blue
+              </label>
+            </div>
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                name="black"
+                class="search-form__input-checkbox js--api-color-box"
+                value="b"
+                id="color-black"
               />
-              Black
-            </label>
+              <label for="color-black" class="search-form__label--checkbox">
+                <img
+                  src="{{ url_for('static', filename='/img/black.png') }}"
+                  alt="black mana symbol"
+                  class="search-form__mana-symbol"
+                />
+                Black
+              </label>
+            </div>
           </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              name="red"
-              class="search-form__input-checkbox js--api-color-box"
-              value="r"
-              id="color-red"
-            />
-            <label for="color-red" class="search-form__label--checkbox">
-              <img
-                src="{{ url_for('static', filename='/img/red.png') }}"
-                alt="red mana symbol"
-                class="search-form__mana-symbol"
+          <div class="search-form__group-colors-right">
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                name="red"
+                class="search-form__input-checkbox js--api-color-box"
+                value="r"
+                id="color-red"
               />
-              Red
-            </label>
-          </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              name="green"
-              class="search-form__input-checkbox js--api-color-box"
-              value="g"
-              id="color-green"
-            />
-            <label for="color-green" class="search-form__label--checkbox">
-              <img
-                src="{{ url_for('static', filename='/img/green.png') }}"
-                alt="green mana symbol"
-                class="search-form__mana-symbol"
+              <label for="color-red" class="search-form__label--checkbox">
+                <img
+                  src="{{ url_for('static', filename='/img/red.png') }}"
+                  alt="red mana symbol"
+                  class="search-form__mana-symbol"
+                />
+                Red
+              </label>
+            </div>
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                name="green"
+                class="search-form__input-checkbox js--api-color-box"
+                value="g"
+                id="color-green"
               />
-              Green
-            </label>
-          </div>
-          <div class="search-form__checkbox-wrapper">
-            <input
-              type="checkbox"
-              class="search-form__input-checkbox js--api-color-box"
-              value="colorless"
-              id="color-Colorless"
-            />
-            <label for="color-colorless" class="search-form__label--checkbox"
-              >Colorless</label
-            >
+              <label for="color-green" class="search-form__label--checkbox">
+                <img
+                  src="{{ url_for('static', filename='/img/green.png') }}"
+                  alt="green mana symbol"
+                  class="search-form__mana-symbol"
+                />
+                Green
+              </label>
+            </div>
+            <div class="search-form__checkbox-wrapper">
+              <input
+                type="checkbox"
+                class="search-form__input-checkbox js--api-color-box"
+                value="colorless"
+                id="color-Colorless"
+              />
+              <label for="color-colorless" class="search-form__label--checkbox"
+                >Colorless</label
+              >
+            </div>
           </div>
         </div>
         <p class="search-form__tip">

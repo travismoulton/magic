@@ -728,18 +728,17 @@ body {
   width: 68%; }
   @media only screen and (max-width: 75rem) {
     .wrapper {
-      width: 90%; } }
+      width: 95%; } }
 
 .card-checklist {
-  width: 100%;
-  justify-self: center; }
+  width: 100%; }
   .card-checklist__row {
     display: grid;
     height: 3rem; }
     .card-checklist__row--7 {
       grid-template-columns: 10% 22.5% 10% 17.5% 15% 15% 10%; }
     .card-checklist__row--9 {
-      grid-template-columns: repeat(9, 1fr); }
+      grid-template-columns: 5rem 22.5rem 10rem 12rem 12rem 7.5rem 7.5rem 7.5rem; }
     .card-checklist__row--header {
       border-bottom: 1px solid #000;
       color: #531a8b;
@@ -765,6 +764,9 @@ body {
       justify-content: flex-start; }
     .card-checklist__data--rarity {
       text-transform: capitalize; }
+    @media only screen and (max-width: 43.75em) {
+      .card-checklist__data--inv-header {
+        font-size: 1.2rem; } }
   .card-checklist__data-link {
     padding: 1rem 0;
     display: block;
