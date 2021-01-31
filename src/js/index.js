@@ -1,5 +1,5 @@
 // import '../css/style.css';
-// import '../css/vendor/mana.css';
+import '../css/vendor/mana.css';
 import Search from './models/Search';
 import * as searchView from './views/searchView';
 import * as resultsView from './views/resultsView';
