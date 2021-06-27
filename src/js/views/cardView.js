@@ -138,7 +138,6 @@ export const printListHoverEvents = () => {
 
 export const shortenCardName = () => {
   const names = Array.from(document.querySelectorAll('.js--card-name'));
-  console.log(names);
 
   names.forEach((n) => {
     if (n.innerText.includes('/')) {
