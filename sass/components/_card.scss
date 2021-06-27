@@ -1,6 +1,5 @@
 .card {
   width: 100%;
-  // max-width: 100rem;
   padding: 0 16%;
   display: flex;
   margin-top: 3rem;
@@ -18,7 +17,6 @@
 
   // Single  sided cards
   &__img-container {
-    // margin-right: 10rem;
     z-index: 2;
     border-radius: 100%;
   }
@@ -32,7 +30,6 @@
 
   // Double sided cards
   &__img-left {
-    // margin-right: 10rem;
     width: 33rem;
     display: flex;
     flex-direction: column;
@@ -350,6 +347,7 @@
   flex-direction: column;
   grid-column: 1 / -1;
   position: relative;
+  min-height: calc(100vh - 6rem);
 }
 
 .add-to-inv,

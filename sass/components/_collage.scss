@@ -11,7 +11,8 @@
 }
 
 .cardpage__colage {
-  bottom: -2.6rem;
+  // bottom: -2.6rem;
+  bottom: 0;
 
   @media only screen and (max-width: $bp-1000) {
     display: none;

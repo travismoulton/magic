@@ -1,0 +1,2 @@
+//1: Add error handling
+//2: Double sided cards not displaying view all prints

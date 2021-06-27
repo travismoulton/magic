@@ -1110,7 +1110,8 @@ body {
   display: flex;
   flex-direction: column;
   grid-column: 1 / -1;
-  position: relative; }
+  position: relative;
+  min-height: calc(100vh - 6rem); }
 
 .add-to-inv,
 .remove-from-inv {
@@ -1340,7 +1341,7 @@ body {
   bottom: 0; }
 
 .cardpage__colage {
-  bottom: -2.6rem; }
+  bottom: 0; }
   @media only screen and (max-width: 62.5em) {
     .cardpage__colage {
       display: none; } }
