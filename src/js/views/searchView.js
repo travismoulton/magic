@@ -8,7 +8,6 @@ export const showTypesDropDown = () => {
   if (elements.apiSearch.typeDropDown.hasAttribute('hidden')) {
     elements.apiSearch.typeDropDown.removeAttribute('hidden');
     elements.apiSearch.typeDropDown.scrollTop = 0;
-    console.log('types dropdown');
 
     // Make sure to display all types when opening the dropdown and before taking input
     filterTypes('');
@@ -657,7 +656,6 @@ const resetStatLineEventListener = () => {
 // ******************************* \\
 
 export const formatLineController = () => {
-  console.log(checkForFourLessThanFormatLines());
   if (checkForFourLessThanFormatLines() && checkFormatLineForValue()) {
     const clone = createFormatClone();
     editFormatClone(clone);

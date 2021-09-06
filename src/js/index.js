@@ -330,7 +330,6 @@ if (document.querySelector('.js--inv-search-btn')) {
   document.body.style.backgroundColor = '#fdfdfd';
 
   if (document.querySelector('.js--inv-search-btn')) {
-    console.log('hash');
     document
       .querySelector('.js--inv-search-btn')
       .addEventListener('click', invSearch.checkPriceInputForDigits);

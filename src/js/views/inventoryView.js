@@ -47,7 +47,6 @@ const sortTableAlphabetically = () => {
 
 const giveEarningsColumnModifier = () => {
   const rows = Array.from(document.querySelectorAll('.js--inv-earnings'));
-  console.log(rows);
 
   rows.forEach((row) => {
     if (row.innerText.startsWith('-')) {

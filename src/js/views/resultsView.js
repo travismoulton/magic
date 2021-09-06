@@ -74,7 +74,6 @@ const flipCard = (e) => {
   // Prevent the link from going to the card specific page
   e.preventDefault();
   const card = e.target.parentElement;
-  console.log(card);
 
   const front = card.querySelector('.js--image-grid-card-side-front');
 
@@ -219,7 +218,6 @@ const parseCardName = (cardName) => {
 };
 
 const generateChecklist = (cards) => {
-  console.log(cards);
   // Create a new table row for each card object
   cards.forEach((card) => {
     const cardNameForUrl = parseCardName(card.name);
