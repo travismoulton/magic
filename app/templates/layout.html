@@ -13,7 +13,7 @@
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='/css/style.css') }}"
+      href="{{ url_for('static', filename='css/style.css') }}"
     />
     <title>Document</title>
   </head>
@@ -120,6 +120,6 @@
       {% endif %} {% endwith %} {% block content %}{% endblock %}
     </div>
     {% block outsidecontainer %}{% endblock %}
-    <script src="{{ url_for('static', filename='/js/bundle.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
   </body>
 </html>
