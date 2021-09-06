@@ -15,7 +15,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
-    <title>Document</title>
+    {% block title%}{% endblock %}
   </head>
   <body>
     <div class="nav">
