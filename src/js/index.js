@@ -26,6 +26,14 @@ elements.nav.quickSearchBtn.addEventListener('click', () => {
   }
 });
 
+document.addEventListener('keydown', (e) => {
+  const searchIsFocused = document.activeElement === elements.nav.searchInput;
+  const hasSearchValue = elements.nav.searchInput !== '';
+
+  if (e.code === 'Enter' && searchIsFocused && hasSearchValue)
+    elements.nav.quickSearchBtn.click();
+});
+
 // ******************************* \\
 // ********* Search Page ********* \\
 // ******************************* \\
