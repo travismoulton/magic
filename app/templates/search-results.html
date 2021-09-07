@@ -1,4 +1,6 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %} {% block title %}
+<title>Search Results</title>
+{% endblock %} {% block content %}
 
 <div class="api-results-display js--api-results-display">
   <div class="api-results-display__nav">
@@ -34,7 +36,11 @@
     </div>
     <div class="api-results-display__nav-right">
       <button
-        class="api-results-display__nav-pagination-container api-results-display__nav-pagination-container--disabled js--api-first-page"
+        class="
+          api-results-display__nav-pagination-container
+          api-results-display__nav-pagination-container--disabled
+          js--api-first-page
+        "
         disabled
       >
         <svg
@@ -52,7 +58,11 @@
         </svg>
       </button>
       <button
-        class="api-results-display__nav-pagination-container api-results-display__nav-pagination-container--disabled js--api-previous-page"
+        class="
+          api-results-display__nav-pagination-container
+          api-results-display__nav-pagination-container--disabled
+          js--api-previous-page
+        "
         disabled
       >
         <svg
@@ -71,7 +81,11 @@
         Previous
       </button>
       <button
-        class="api-results-display__nav-pagination-container api-results-display__nav-pagination-container--disabled js--api-next-page"
+        class="
+          api-results-display__nav-pagination-container
+          api-results-display__nav-pagination-container--disabled
+          js--api-next-page
+        "
         disabled
       >
         Next 175
@@ -90,7 +104,11 @@
         </svg>
       </button>
       <button
-        class="api-results-display__nav-pagination-container api-results-display__nav-pagination-container--disabled js--api-last-page"
+        class="
+          api-results-display__nav-pagination-container
+          api-results-display__nav-pagination-container--disabled
+          js--api-last-page
+        "
         disabled
       >
         <svg
@@ -112,7 +130,11 @@
   <!-- MOBILE -->
   <div class="api-results-display__mobile">
     <button
-      class="api-results-display__nav-pagination-container api-results-display__nav-pagination-container--disabled js--api-previous-page-mobile"
+      class="
+        api-results-display__nav-pagination-container
+        api-results-display__nav-pagination-container--disabled
+        js--api-previous-page-mobile
+      "
       disabled
     >
       <svg
@@ -132,7 +154,10 @@
     </button>
 
     <button
-      class="api-results-display__nav-pagination-container js--mobile-display-options"
+      class="
+        api-results-display__nav-pagination-container
+        js--mobile-display-options
+      "
     >
       <svg
         class="api-results-display__mobile-svg-size"
@@ -151,7 +176,11 @@
     </button>
 
     <button
-      class="api-results-display__nav-pagination-container api-results-display__nav-pagination-container--disabled js--api-next-page-mobile"
+      class="
+        api-results-display__nav-pagination-container
+        api-results-display__nav-pagination-container--disabled
+        js--api-next-page-mobile
+      "
       disabled
     >
       Next 175
@@ -180,7 +209,11 @@
       >
       <select
         id="display-selector"
-        class="api-results-display__nav-select api-results-display__nav-select--mobile js--results-display-option-mobile"
+        class="
+          api-results-display__nav-select
+          api-results-display__nav-select--mobile
+          js--results-display-option-mobile
+        "
       >
         <option value="list" selected>Checklist</option>
         <option value="images">Images</option>
@@ -192,7 +225,11 @@
       >
       <select
         id="display-sorter"
-        class="api-results-display__nav-select api-results-display__nav-select--mobile js--results-sort-options-mobile"
+        class="
+          api-results-display__nav-select
+          api-results-display__nav-select--mobile
+          js--results-sort-options-mobile
+        "
       >
         <option value="name">Name</option>
         <option value="released">Release Date</option>
@@ -204,7 +241,11 @@
       </select>
     </div>
     <button
-      class="api-results-display__nav-btn api-results-mobile-display-btn js--results-submit-btn-mobile"
+      class="
+        api-results-display__nav-btn
+        api-results-mobile-display-btn
+        js--results-submit-btn-mobile
+      "
     >
       Display
     </button>

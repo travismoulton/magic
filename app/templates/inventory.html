@@ -1,5 +1,5 @@
-{% extends "layout.html" %} {% block content %}
-
+{% extends "layout.html" %} {% block title %} <title>My inventory</title>
+{% endblock %} {% block content %}
 <div class="api-results-display">
   <div class="inventory-details">
     <p>
@@ -15,7 +15,11 @@
     <table class="card-checklist js--card-checklist">
       <thead>
         <tr
-          class="card-checklist__row card-checklist__row--9 card-checklist__row--header"
+          class="
+            card-checklist__row
+            card-checklist__row--9
+            card-checklist__row--header
+          "
         >
           <th class="card-checklist__data card-checklist__data--inv-header">
             Set
@@ -27,12 +31,18 @@
             Cost
           </th>
           <th
-            class="card-checklist__data card-checklist__data--inv-header responsive--type"
+            class="
+              card-checklist__data card-checklist__data--inv-header
+              responsive--type
+            "
           >
             Type
           </th>
           <th
-            class="card-checklist__data card-checklist__data--inv-header responsive--rarity"
+            class="
+              card-checklist__data card-checklist__data--inv-header
+              responsive--rarity
+            "
           >
             Rarity
           </th>
@@ -58,14 +68,19 @@
           <td class="card-checklist__data card-checklist__data--set">
             <a
               href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-              class="card-checklist__data-link card-checklist__data-link--center"
+              class="
+                card-checklist__data-link card-checklist__data-link--center
+              "
             >
               {{ card.set_code }}
             </a>
           </td>
 
           <td
-            class="card-checklist__data card-checklist__data--name js--checklist-card-name"
+            class="
+              card-checklist__data card-checklist__data--name
+              js--checklist-card-name
+            "
           >
             <a
               href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
@@ -77,7 +92,9 @@
           <td class="card-checklist__data js--inv-mana-cost">
             <a
               href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-              class="card-checklist__data-link card-checklist__data-link--center"
+              class="
+                card-checklist__data-link card-checklist__data-link--center
+              "
             >
               {{ card.mana_cost }}
             </a>
@@ -85,17 +102,25 @@
           <td class="card-checklist__data js--inv-types responsive--type">
             <a
               href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-              class="card-checklist__data-link card-checklist__data-link--center"
+              class="
+                card-checklist__data-link card-checklist__data-link--center
+              "
             >
               {{ card.type_line }}
             </a>
           </td>
           <td
-            class="card-checklist__data card-checklist__data--rarity responsive--rarity"
+            class="
+              card-checklist__data card-checklist__data--rarity
+              responsive--rarity
+            "
           >
             <a
               href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-              class="card-checklist__data-link card-checklist__data-link--center js--rarity"
+              class="
+                card-checklist__data-link card-checklist__data-link--center
+                js--rarity
+              "
             >
               {{ card.rarity }}
             </a>
@@ -104,7 +129,9 @@
           <td class="card-checklist__data">
             <a
               href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-              class="card-checklist__data-link card-checklist__data-link--center"
+              class="
+                card-checklist__data-link card-checklist__data-link--center
+              "
             >
               {{ user_inv[loop.index0].purchase_price }}
             </a>
@@ -113,7 +140,9 @@
           <td class="card-checklist__data">
             <a
               href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-              class="card-checklist__data-link card-checklist__data-link--center"
+              class="
+                card-checklist__data-link card-checklist__data-link--center
+              "
             >
               {{ user_inv[loop.index0].current_price }}
             </a>
@@ -122,7 +151,9 @@
           <td class="card-checklist__data">
             <a
               href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-              class="card-checklist__data-link card-checklist__data-link--center"
+              class="
+                card-checklist__data-link card-checklist__data-link--center
+              "
             >
               0
             </a>
@@ -131,7 +162,10 @@
           <td class="card-checklist__data">
             <a
               href="/{{ current_user.username }}/inventory/{{ user_inv[loop.index0].id }}/card/{{ card.set_code }}/{{ card_links[loop.index0] }}"
-              class="card-checklist__data-link card-checklist__data-link--center js--inv-earnings"
+              class="
+                card-checklist__data-link card-checklist__data-link--center
+                js--inv-earnings
+              "
             >
               {{ (user_inv[loop.index0].current_price -
               user_inv[loop.index0].purchase_price)|round(2) }}

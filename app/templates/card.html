@@ -1,4 +1,6 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %} {% block title %}
+<title>{{ card.name }}</title>
+{% endblock %} {% block content %}
 
 <div class="card-page">
   <div class="card">
@@ -18,7 +20,10 @@
           <img
             src="{{ face_one.image_uris.large }}"
             alt="front"
-            class="card__img-double card__img-double--front js--front js--visibile-side"
+            class="
+              card__img-double card__img-double--front
+              js--front js--visibile-side
+            "
           />
         </div>
       </div>

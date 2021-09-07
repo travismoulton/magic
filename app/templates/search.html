@@ -1,4 +1,6 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %} {% block title %}
+<title>Advanced Search</title>
+{% endblock %} {% block content %}
 
 <div class="search">
   <form action="#" method="POST" class="search-form">
@@ -111,7 +113,10 @@
               placeholder="Enter a type or choose from the list"
             />
             <div
-              class="search-form__dropdown js--api-types-dropdown js--api-dropdown-types-list"
+              class="
+                search-form__dropdown
+                js--api-types-dropdown js--api-dropdown-types-list
+              "
               hidden
             >
               <ul
@@ -120,13 +125,21 @@
               >
                 <li
                   strong
-                  class="js--api-dropdown-types-list js--types-category-header js--basic-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-types-list
+                    js--types-category-header
+                    js--basic-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Types
                 </li>
                 {% for line in types.basic_types %}
                 <li
-                  class="js--api-dropdown-types-list js--basic js--type search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-types-list js--basic js--type
+                    search-form__dropdown-list-option
+                  "
                   data-type="{{line.name}}"
                   data-selected="false"
                 >
@@ -135,13 +148,21 @@
                 {% endfor %}
                 <li
                   strong
-                  class="js--api-dropdown-types-list js--types-category-header js--super-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-types-list
+                    js--types-category-header
+                    js--super-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Super Types
                 </li>
                 {% for line in types.super_types %}
                 <li
-                  class="js--api-dropdown-types-list js--super js--type search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-types-list js--super js--type
+                    search-form__dropdown-list-option
+                  "
                   data-type="{{line.name}}"
                   data-selected="false"
                 >
@@ -150,13 +171,21 @@
                 {% endfor %}
                 <li
                   strong
-                  class="js--api-dropdown-types-list js--types-category-header js--artifact-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-types-list
+                    js--types-category-header
+                    js--artifact-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Artifact Types
                 </li>
                 {% for line in types.artifact_types %}
                 <li
-                  class="js--api-dropdown-types-list js--artifact js--type search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-types-list js--artifact js--type
+                    search-form__dropdown-list-option
+                  "
                   data-type="{{line.name}}"
                   data-selected="false"
                 >
@@ -165,13 +194,21 @@
                 {% endfor %}
                 <li
                   strong
-                  class="js--api-dropdown-types-list js--types-category-header js--enchantment-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-types-list
+                    js--types-category-header
+                    js--enchantment-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Enchantment Types
                 </li>
                 {% for line in types.enchantment_types %}
                 <li
-                  class="js--api-dropdown-types-list js--enchantment js--type search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-types-list js--enchantment js--type
+                    search-form__dropdown-list-option
+                  "
                   data-type="{{line.name}}"
                   data-selected="false"
                 >
@@ -180,13 +217,21 @@
                 {% endfor %}
                 <li
                   strong
-                  class="js--api-dropdown-types-list js--types-category-header js--land-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-types-list
+                    js--types-category-header
+                    js--land-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Land Types
                 </li>
                 {% for line in types.land_types %}
                 <li
-                  class="js--api-dropdown-types-list js--land js--type search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-types-list js--land js--type
+                    search-form__dropdown-list-option
+                  "
                   data-type="{{line.name}}"
                   data-selected="false"
                 >
@@ -195,13 +240,21 @@
                 {% endfor %}
                 <li
                   strong
-                  class="js--api-dropdown-types-list js--types-category-header js--spell-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-types-list
+                    js--types-category-header
+                    js--spell-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Spell Types
                 </li>
                 {% for line in types.spell_types %}
                 <li
-                  class="js--api-dropdown-types-list js--spell js--type search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-types-list js--spell js--type
+                    search-form__dropdown-list-option
+                  "
                   data-type="{{line.name}}"
                   data-selected="false"
                 >
@@ -210,13 +263,21 @@
                 {% endfor %}
                 <li
                   strong
-                  class="js--api-dropdown-types-list js--types-category-header js--planeswalker-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-types-list
+                    js--types-category-header
+                    js--planeswalker-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Planesalker Types
                 </li>
                 {% for line in types.planeswalker_types %}
                 <li
-                  class="js--api-dropdown-types-list js--planeswalker js--type search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-types-list js--planeswalker js--type
+                    search-form__dropdown-list-option
+                  "
                   data-type="{{line.name}}"
                   data-selected="false"
                 >
@@ -225,13 +286,21 @@
                 {% endfor %}
                 <li
                   strong
-                  class="js--api-dropdown-types-list js--types-category-header js--creature-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-types-list
+                    js--types-category-header
+                    js--creature-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Creature Types
                 </li>
                 {% for line in types.creature_types %}
                 <li
-                  class="js--api-dropdown-types-list js--creature js--type search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-types-list js--creature js--type
+                    search-form__dropdown-list-option
+                  "
                   data-type="{{line.name}}"
                   data-selected="false"
                 >
@@ -416,7 +485,10 @@
         <div class="search-form__select-menu-grouping js--api-stats-wrapper">
           <select
             name="stat"
-            class="search-form__select-menu search-form__select-menu--3 js--api-stat"
+            class="
+              search-form__select-menu search-form__select-menu--3
+              js--api-stat
+            "
           >
             <option value="cmc">CMC</option>
             <option value="power">POWER</option>
@@ -425,7 +497,10 @@
           </select>
           <select
             name="stats-filter"
-            class="search-form__select-menu search-form__select-menu--3 js--api-stat-filter"
+            class="
+              search-form__select-menu search-form__select-menu--3
+              js--api-stat-filter
+            "
           >
             <option value="%3D">Equal to</option>
             <option value="<">Less than</option>
@@ -478,7 +553,10 @@
           <select
             name="legal-status"
             id="legal-status"
-            class="search-form__select-menu search-form__select-menu--2 js--api-legal-status"
+            class="
+              search-form__select-menu search-form__select-menu--2
+              js--api-legal-status
+            "
           >
             <option value="legal" selected>Legal</option>
             <option value="restricted">Restricted</option>
@@ -487,7 +565,10 @@
           <select
             name="format"
             id="format"
-            class="search-form__select-menu search-form__select-menu--2 js--api-format"
+            class="
+              search-form__select-menu search-form__select-menu--2
+              js--api-format
+            "
           >
             <option value=""></option>
             <option value="standard">Standard</option>
@@ -531,7 +612,10 @@
         Sets
       </label>
       <div
-        class="search-form__group-input-wrapper search-form__group-input-wrapper--has-dropdown"
+        class="
+          search-form__group-input-wrapper
+          search-form__group-input-wrapper--has-dropdown
+        "
       >
         <span class="search-form__dropdown-span">
           <ul class="search-form__selected-sets js--api-selected-sets"></ul>
@@ -544,20 +628,34 @@
               placeholder="Enter a set name or choose from the list"
             />
             <div
-              class="search-form__dropdown js--api-set-dropdown js--api-set-dropdown-list"
+              class="
+                search-form__dropdown
+                js--api-set-dropdown js--api-set-dropdown-list
+              "
               hidden
             >
               <ul
-                class="search-form__dropdown-list js--api-dropdown-sets js--api-dropdown-sets-target"
+                class="
+                  search-form__dropdown-list
+                  js--api-dropdown-sets js--api-dropdown-sets-target
+                "
               >
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--expansion-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--expansion-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Expansions
                 </li>
                 {% for s in sets.expansions %}
                 <li
-                  class="js--api-dropdown-sets-list js--expansion js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--expansion js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -570,13 +668,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--core-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--core-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Core
                 </li>
                 {% for s in sets.core %}
                 <li
-                  class="js--api-dropdown-sets-list js--core js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--core js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -589,13 +695,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--masters-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--masters-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Masters
                 </li>
                 {% for s in sets.masters %}
                 <li
-                  class="js--api-dropdown-sets-list js--masters js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--masters js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -608,13 +722,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--draft-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--draft-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Draft Innovations
                 </li>
                 {% for s in sets.draft_innovation %}
                 <li
-                  class="js--api-dropdown-sets-list js--draft js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--draft js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -627,13 +749,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--duel_deck-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--duel_deck-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Duel Deck
                 </li>
                 {% for s in sets.duel_deck %}
                 <li
-                  class="js--api-dropdown-sets-list js--duel_deck js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--duel_deck js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -646,13 +776,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--archenemy-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--archenemy-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Archenemy
                 </li>
                 {% for s in sets.archenemy %}
                 <li
-                  class="js--api-dropdown-sets-list js--archenemy js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--archenemy js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -665,13 +803,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--box-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--box-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Box
                 </li>
                 {% for s in sets.box %}
                 <li
-                  class="js--api-dropdown-sets-list js--box js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--box js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -684,13 +830,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--commander-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--commander-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Commander
                 </li>
                 {% for s in sets.commander %}
                 <li
-                  class="js--api-dropdown-sets-list js--commander js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--commander js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -703,13 +857,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--vault-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--vault-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   From the vault
                 </li>
                 {% for s in sets.from_the_vault %}
                 <li
-                  class="js--api-dropdown-sets-list js--vault js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--vault js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -722,13 +884,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--funny-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--funny-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Funny
                 </li>
                 {% for s in sets.funny %}
                 <li
-                  class="js--api-dropdown-sets-list js--funny js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--funny js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -741,13 +911,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--masterpiece-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--masterpiece-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Masterpiece
                 </li>
                 {% for s in sets.masterpiece %}
                 <li
-                  class="js--api-dropdown-sets-list js--masterpiece js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--masterpiece js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -760,13 +938,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--memorabilia-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--memorabilia-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Memorabilia
                 </li>
                 {% for s in sets.memorabilia %}
                 <li
-                  class="js--api-dropdown-sets-list js--memorabilia js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--memorabilia js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -779,13 +965,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--planechase-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--planechase-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Planechase
                 </li>
                 {% for s in sets.planechase %}
                 <li
-                  class="js--api-dropdown-sets-list js--planechase js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--planechase js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -798,13 +992,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--premium_deck-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--premium_deck-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Premium Deck
                 </li>
                 {% for s in sets.premium_deck %}
                 <li
-                  class="js--api-dropdown-sets-list js--premium_deck js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--premium_deck js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -817,13 +1019,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--promo-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--promo-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Promo
                 </li>
                 {% for s in sets.promo %}
                 <li
-                  class="js--api-dropdown-sets-list js--promo js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--promo js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -836,13 +1046,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--spellbook-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--spellbook-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Spellbook
                 </li>
                 {% for s in sets.spellbook %}
                 <li
-                  class="js--api-dropdown-sets-list js--spellbook js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--spellbook js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -855,13 +1073,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--starter-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--starter-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Starter
                 </li>
                 {% for s in sets.starter %}
                 <li
-                  class="js--api-dropdown-sets-list js--starter js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--starter js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -874,13 +1100,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--token-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--token-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Token
                 </li>
                 {% for s in sets.token %}
                 <li
-                  class="js--api-dropdown-sets-list js--token js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--token js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -893,13 +1127,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--treasure_chest-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--treasure_chest-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Treasure Chest
                 </li>
                 {% for s in sets.treasure_chest %}
                 <li
-                  class="js--api-dropdown-sets-list js--treasure_chest js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--treasure_chest js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -912,13 +1154,21 @@
                 </li>
                 {% endfor %}
                 <li
-                  class="js--api-dropdown-sets-list js--sets-category-header js--vanguard-header search-form__dropdown-list-category"
+                  class="
+                    js--api-dropdown-sets-list
+                    js--sets-category-header
+                    js--vanguard-header
+                    search-form__dropdown-list-category
+                  "
                 >
                   Vanguard
                 </li>
                 {% for s in sets.vanguard %}
                 <li
-                  class="js--api-dropdown-sets-list js--vanguard js--set search-form__dropdown-list-option"
+                  class="
+                    js--api-dropdown-sets-list js--vanguard js--set
+                    search-form__dropdown-list-option
+                  "
                   data-set-code="{{ s.code }}"
                   data-set-name="{{ s.name }}"
                 >
@@ -1042,14 +1292,20 @@
         <div class="search-form__select-menu-grouping">
           <select
             name="denomination"
-            class="search-form__select-menu search-form__select-menu--3 js--api-denomination"
+            class="
+              search-form__select-menu search-form__select-menu--3
+              js--api-denomination
+            "
           >
             <option value="usd">USD</option>
             <option value="eur">EURO</option>
           </select>
           <select
             name="denomination-sorter"
-            class="search-form__select-menu search-form__select-menu--3 js--api-denomination-sort-by"
+            class="
+              search-form__select-menu search-form__select-menu--3
+              js--api-denomination-sort-by
+            "
           >
             <option value=">">Greater than</option>
             <option value="<">Less than</option>
@@ -1088,7 +1344,10 @@
       <div class="search-form__input-wrapper">
         <select
           name="sorter"
-          class="search-form__select-menu search-form__select-menu--2 js--api-results-sorter"
+          class="
+            search-form__select-menu search-form__select-menu--2
+            js--api-results-sorter
+          "
         >
           <option value="name" selected>Sort by name</option>
           <option value="released">Sort by release date</option>
@@ -1100,7 +1359,10 @@
         </select>
         <select
           name="display-as"
-          class="search-form__select-menu search-form__select-menu--2 js--api-search-display-selector"
+          class="
+            search-form__select-menu search-form__select-menu--2
+            js--api-search-display-selector
+          "
         >
           <option value="images">Images</option>
           <option value="list" selected>Checklist</option>
