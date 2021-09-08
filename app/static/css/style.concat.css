@@ -54,14 +54,15 @@ body {
 
 .login,
 .register {
-  height: 100vh;
-  width: 100vw;
+  min-height: calc(100vh - 6.2rem);
   background: linear-gradient(to top, #5f4f66, #342332);
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  grid-column: full-start / full-end;
+  flex-direction: column; }
   .login-img,
   .register-img {
     position: absolute;
@@ -80,11 +81,11 @@ body {
     flex-flow: column nowrap;
     align-items: center;
     padding: 4rem 0 2.6rem 0;
-    transform: translateY(-25%); }
+    margin-bottom: 10%; }
     @media only screen and (max-width: 75rem) {
       .login__form,
       .register__form {
-        transform: translateY(0); } }
+        margin-bottom: 0; } }
   .login__form-instructions,
   .register__form-instructions {
     color: #fff;
@@ -311,14 +312,14 @@ body {
         margin-top: 0.8rem; }
 
 .error {
-  margin-top: 2rem;
   text-align: center;
   background-color: #ff8080;
   border-radius: 10px;
   padding: 2rem;
   font-size: 2rem;
-  grid-column: center-start / center-end;
-  font-weight: 700; }
+  font-weight: 700;
+  position: absolute;
+  top: 3rem; }
 
 .search-form {
   padding: 2rem 25rem;
