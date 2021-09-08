@@ -406,13 +406,11 @@ def get_inv_value(cards):
 
 
 def parse_card_name_for_url(card_name):
-    print(card_name)
     card_name = card_name.replace(' ', '-')
 
     if card_name.find('/') != -1:
         card_name = card_name[0:card_name.index('/')]
    
-    print(card_name)
     return card_name
 
 @app.route('/inventory')
