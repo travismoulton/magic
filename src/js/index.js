@@ -38,6 +38,8 @@ if (window.location.pathname === '/')
 //   }
 // });
 
+// useless comment
+
 const quickSearch = document.querySelector('.js--homepage-quick-search');
 
 quickSearch &&
