@@ -1250,32 +1250,27 @@ body {
     @media only screen and (max-width: 40.625em) {
       .homepage__search-input {
         width: 80%;
-        margin-left: 10%; } }
-  .homepage__search-btn {
-    position: absolute;
-    left: 6rem;
-    top: 2rem; }
-    @media only screen and (max-width: 40.625em) {
-      .homepage__search-btn {
-        left: 12rem; } }
-    @media only screen and (max-width: 28.125em) {
-      .homepage__search-btn {
-        left: 10rem; } }
-    .homepage__search-btn svg:hover {
-      cursor: pointer; }
+        margin-left: 10%; }
+        .homepage__search-input::placeholder {
+          font-size: 1rem; } }
   .homepage__search-submit {
     border-radius: 3px;
     padding: 0.7rem;
-    background-color: rgba(249, 247, 245, 0.6);
+    background-color: rgba(249, 247, 245, 0.9);
     border: 1px solid rgba(85, 26, 139, 0.5);
     color: #551a8b;
     font-weight: 500;
     transition: all 0.2s;
     margin-top: 1rem;
-    width: 100%; }
+    width: 100%;
+    min-height: 3.5rem; }
     .homepage__search-submit:hover {
       cursor: pointer;
       background-color: #fff; }
+    @media only screen and (max-width: 40.625em) {
+      .homepage__search-submit {
+        width: 80%;
+        margin-left: 10%; } }
   .homepage__icon-sizing--search {
     width: 3rem;
     height: 3rem;
