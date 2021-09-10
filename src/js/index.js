@@ -17,26 +17,37 @@ if (window.location.pathname === '/')
 // ******************************* \\
 // ********* Quick Search ******** \\
 // ******************************* \\
-elements.nav.quickSearchBtn.addEventListener('click', () => {
-  const search = new Search();
+// elements.nav.quickSearchBtn.addEventListener('click', () => {
+//   const search = new Search();
 
-  if (elements.nav.searchInput.value !== '') {
-    const query = search.quickSearch();
-    window.location.href = `/results/list/${query}&order=name`;
-  }
-});
+//   if (elements.nav.searchInput.value !== '') {
+//     const query = search.quickSearch();
+//     window.location.href = `/results/list/${query}&order=name`;
+//   }
+// });
 
-document.addEventListener('keydown', (e) => {
-  const searchIsFocused = document.activeElement === elements.nav.searchInput;
-  const hasSearchValue = elements.nav.searchInput.value !== '';
+// document.addEventListener('keydown', (e) => {
+//   const searchIsFocused = document.activeElement === elements.nav.searchInput;
+//   const hasSearchValue = elements.nav.searchInput.value !== '';
 
-  if (e.code === 'Enter' && hasSearchValue && searchIsFocused) {
-    const search = new Search();
-    const query = search.quickSearch();
+//   if (e.code === 'Enter' && hasSearchValue && searchIsFocused) {
+//     const search = new Search();
+//     const query = search.quickSearch();
 
-    window.location.href = `/results/list/${query}&order=name`;
-  }
-});
+//     window.location.href = `/results/list/${query}&order=name`;
+//   }
+// });
+
+const quickSearch = document.querySelector('.js--homepage-quick-search');
+
+quickSearch &&
+  quickSearch.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = document.querySelector('.js--hompeage-search-input');
+    const cardName = input.value;
+
+    window.location.href = `/results/list/${cardName}&order=name`;
+  });
 
 // ******************************* \\
 // ********* Search Page ********* \\

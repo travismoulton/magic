@@ -88,13 +88,16 @@
     }
 
     &-btn {
-      cursor: pointer;
       position: absolute;
       left: 2rem;
       top: 1rem;
 
       &:hover .nav__icon-path--search {
         fill: $color-white;
+      }
+
+      & svg:hover {
+        cursor: pointer;
       }
     }
   }

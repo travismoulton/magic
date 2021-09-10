@@ -238,12 +238,13 @@ body {
       .nav__search-input:focus {
         outline: none; }
     .nav__search-btn {
-      cursor: pointer;
       position: absolute;
       left: 2rem;
       top: 1rem; }
       .nav__search-btn:hover .nav__icon-path--search {
         fill: #fff; }
+      .nav__search-btn svg:hover {
+        cursor: pointer; }
   .nav__icon-sizing--home {
     width: 3rem;
     height: 3rem; }
@@ -1260,7 +1261,7 @@ body {
     @media only screen and (max-width: 28.125em) {
       .homepage__search-btn {
         left: 10rem; } }
-    .homepage__search-btn:hover {
+    .homepage__search-btn svg:hover {
       cursor: pointer; }
   .homepage__icon-sizing--search {
     width: 3rem;
