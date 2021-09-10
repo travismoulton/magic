@@ -64,6 +64,10 @@
     @media only screen and (max-width: $bp-450) {
       left: 10rem;
     }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__icon-sizing {

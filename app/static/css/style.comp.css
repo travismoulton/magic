@@ -1260,6 +1260,8 @@ body {
     @media only screen and (max-width: 28.125em) {
       .homepage__search-btn {
         left: 10rem; } }
+    .homepage__search-btn:hover {
+      cursor: pointer; }
   .homepage__icon-sizing--search {
     width: 3rem;
     height: 3rem;
