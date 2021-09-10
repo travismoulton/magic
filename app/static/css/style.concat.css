@@ -1252,7 +1252,7 @@ body {
         width: 80%;
         margin-left: 10%; }
         .homepage__search-input::placeholder {
-          font-size: 1rem; } }
+          font-size: 1.6rem; } }
   .homepage__search-submit {
     border-radius: 3px;
     padding: 0.7rem;
