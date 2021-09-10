@@ -28,10 +28,12 @@ elements.nav.quickSearchBtn.addEventListener('click', () => {
 
 document.addEventListener('keydown', (e) => {
   const searchIsFocused = document.activeElement === elements.nav.searchInput;
-  const hasSearchValue = elements.nav.searchInput !== '';
+  const hasSearchValue = elements.nav.searchInput.value !== '';
 
-  // if (e.code === 'Enter' && hasSearchValue) elements.nav.quickSearchBtn.click();
   if (e.code === 'Enter' && hasSearchValue && searchIsFocused) {
+    const search = new Search();
+    const query = search.quickSearch();
+
     window.location.href = `/results/list/${query}&order=name`;
   }
 });
