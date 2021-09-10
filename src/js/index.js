@@ -21,18 +21,19 @@ elements.nav.quickSearchBtn.addEventListener('click', () => {
   const search = new Search();
 
   if (elements.nav.searchInput.value !== '') {
-    console.log('click');
     const query = search.quickSearch();
     window.location.href = `/results/list/${query}&order=name`;
   }
 });
 
 document.addEventListener('keydown', (e) => {
-  // const searchIsFocused = document.activeElement === elements.nav.searchInput;
+  const searchIsFocused = document.activeElement === elements.nav.searchInput;
   const hasSearchValue = elements.nav.searchInput !== '';
-  console.log(hasSearchValue);
 
-  if (e.code === 'Enter' && hasSearchValue) elements.nav.quickSearchBtn.click();
+  // if (e.code === 'Enter' && hasSearchValue) elements.nav.quickSearchBtn.click();
+  if (e.code === 'Enter' && hasSearchValue && searchIsFocused) {
+    window.location.href = `/results/list/${query}&order=name`;
+  }
 });
 
 // ******************************* \\
