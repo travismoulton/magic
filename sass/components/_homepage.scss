@@ -70,6 +70,24 @@
     }
   }
 
+  &__search-submit {
+    border-radius: 3px;
+    padding: 0.7rem;
+    // background-color: #f9f7f5;
+    background-color: rgba(249, 247, 245, 0.6);
+    border: 1px solid rgba(85, 26, 139, 0.5);
+    color: #551a8b;
+    font-weight: 500;
+    transition: all 0.2s;
+    margin-top: 1rem;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-white;
+    }
+  }
+
   &__icon-sizing {
     &--search {
       width: 3rem;

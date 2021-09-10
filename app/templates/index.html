@@ -51,17 +51,15 @@
           />
         </div> -->
 
-        <div class="homepage__search">
-          <form class="js--homepage-quick-search">
-            <input
-              type="text"
-              class="homepage__search-input js--hompeage-search-input"
-              id="nav-search"
-              placeholder="Search by card name"
-            />
-            <input type="submit" />
-          </form>
-        </div>
+        <form class="js--homepage-quick-search homepage__search">
+          <input
+            type="text"
+            class="homepage__search-input js--hompeage-search-input"
+            id="nav-search"
+            placeholder="Search by card name"
+          />
+          <input type="submit" class="homepage__search-submit" value="Search" />
+        </form>
 
         <div class="homepage__links">
           {% if current_user.is_anonymous %}
