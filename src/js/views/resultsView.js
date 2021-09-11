@@ -3,7 +3,9 @@ import { elements } from './base';
 const clearChecklist = () => {
   const checkList = document.querySelector('.js--card-checklist');
   if (checkList) {
-    checkList.parentElement.removeChild(checkList);
+    const checkListWrapper = checkList.parentElement;
+    // checkList.parentElement.removeChild(checkList);
+    checkListWrapper.parentElement.removeChild(checkListWrapper);
 
     // Remove any tool tip images if user was hovering
     const toolTip = document.querySelector('.tooltip');
@@ -141,7 +143,7 @@ const generateImageGrid = (cards) => {
 };
 
 // Funciton to be used in index.js. Takes care of all necessary steps to display cards as a images
-export const dispalyImages = (cards) => {
+export const displayImages = (cards) => {
   clearResults();
   prepImageContainer();
   generateImageGrid(cards);
@@ -434,7 +436,7 @@ export const updateDisplay = (state) => {
   if (state.display === 'list')
     displayChecklist(state.allCards[state.currentIndex]);
   if (state.display === 'images')
-    dispalyImages(state.allCards[state.currentIndex]);
+    displayImages(state.allCards[state.currentIndex]);
 };
 
 // ********************************************** \\
