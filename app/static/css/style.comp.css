@@ -599,7 +599,7 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     text-overflow: '';
-    background-image: url(../../app/static/img/SVG/arrow-down2.svg);
+    background-image: url(../../static/img/SVG/arrow-down2.svg);
     background-repeat: no-repeat;
     background-position: right 0.8rem center;
     background-size: 1.2rem 1rem; }
