@@ -29,7 +29,9 @@ if (elements.nav.quickSearchBtn)
 
 document.addEventListener('keydown', (e) => {
   const searchIsFocused = document.activeElement === elements.nav.searchInput;
-  const hasSearchValue = elements.nav.searchInput.value !== '';
+  const hasSearchValue = elements.nav.searchInput
+    ? elements.nav.searchInput.value !== ''
+    : false;
 
   if (e.code === 'Enter' && hasSearchValue && searchIsFocused) {
     const search = new Search();
