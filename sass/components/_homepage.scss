@@ -16,6 +16,10 @@
     @media only screen and (max-width: $bp-450) {
       margin-top: -12rem;
     }
+
+    @media only screen and (max-height: $bp-500) {
+      align-self: flex-start;
+    }
   }
 
   &__center-heading-wrapper {

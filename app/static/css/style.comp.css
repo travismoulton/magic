@@ -1227,6 +1227,9 @@ body {
     @media only screen and (max-width: 28.125em) {
       .homepage__center {
         margin-top: -12rem; } }
+    @media only screen and (max-height: 31.5em) {
+      .homepage__center {
+        align-self: flex-start; } }
   @media only screen and (max-width: 40.625em) {
     .homepage__center-heading-wrapper {
       margin: 0 auto 0.5rem auto;
